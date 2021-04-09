@@ -11,7 +11,3 @@ title: Projects mentored by Apache Petri
 - [BuildStream](buildstream) -- [source](https://github.com/apache/petri-site/blob/master/content/pages/buildstream.md)
 
   BuildStream is an integration build system. It models dependencies at a project level, enabling projects to use their own underlying build system
-
-### Petri Website Markdown Source
-
-- [view source](https://github.com/apache/petri-site/blob/master/content/pages/projects.md)
