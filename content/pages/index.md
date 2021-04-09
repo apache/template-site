@@ -49,7 +49,3 @@ Please read our [FAQ](/faq) or ask questions on discuss@petri.apache.org
 
 - [info.yaml](https://petri.apache.org/info.yaml)
 - [petri.rdf](https://projects.apache.org/project.html?petri)
-
-### Petri Website Markdown Source
-
-- [view source](https://github.com/apache/petri-site/blob/master/content/pages/index.md)
