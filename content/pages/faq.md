@@ -3,6 +3,8 @@ Title: Apache Petri - FAQ
 
 # General
 
+[TOC]
+
 ## What is Apache Petri?
 
 The Apache Petri (as in “petri dish” –where cultures are grown and bloom) committee
