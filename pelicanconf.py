@@ -74,7 +74,7 @@ AUTHOR_FEED_RSS = None
 
 # Pelican Plugins
 # The provided location. If the buildbot does not have a new plugin then look into requirements.txt
-PLUGIN_PATHS = ['./theme/plugins']
+PLUGIN_PATHS = ['theme/plugins', './theme/plugins']
 PLUGINS = ['toc', 'pelican-gfm', 'sitemap']
 
 # Markdown Configuration
