@@ -13,7 +13,7 @@ pelican:
   autobuild:      true
   target:         asf-site
   theme:          theme/apache
-  whoami:         master
+  whoami:         main
 
 staging:
   profile:  ~
