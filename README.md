@@ -1,13 +1,12 @@
-# Apache Petri
+# Apache Template
 
-[Apache Petri](https://petri.apache.org/)
+[Apache Template](https://template.staged.apache.org/)
 
 This repository provides the website and source code for Apache Petri.
 
 - [info.yaml](info.yaml) -- Machine Readable Culture Status
-- [petri.rdf](content/petri.rdf) -- Machine Readable [Project DOAP](https://projects.apache.org/project.html?petri)
 - [Pages](content/pages) -- website pages in GitHub Markdown
-- [Issues](https://github.com/apache/petri-site/issues) -- tracker
+- [Issues](https://github.com/apache/template-site/issues) -- tracker
 
 The website is built with [Pelican](https://blog.getpelican.com).
 CI/CD is via a [.asf.yaml file](https://cwiki.apache.org/confluence/display/INFRA/Git+-+.asf.yaml+features).
