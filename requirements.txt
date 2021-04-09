@@ -1,3 +1,4 @@
 pelican
 pelican-sitemap
 markdown-extra
+markdown-headerid
