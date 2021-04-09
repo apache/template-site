@@ -78,7 +78,19 @@ PLUGIN_PATHS = ['./theme/plugins']
 PLUGINS = ['toc', 'pelican-gfm', 'sitemap', 'headerid']
 
 # Markdown Configuration
-MD_EXTENSIONS = ["codehilite(css_class=highlight)", "extra", "toc", "attr_list"]
+MARKDOWN = {
+     'extension_configs': {
+         'markdown.extensions.extra': {
+             'attr_list': {}
+         },
+         'markdown.extensions.codehilite': {
+             'css_class': 'highlight'
+         },
+         'smarty' : {
+             'smart_angled_quotes' : 'true'
+         },
+     }
+ }
 
 # TOC Generator
 TOC_HEADERS = r"h[1-6]"
