@@ -2,7 +2,7 @@ title: Cookbook @ Apache Petri
 <!-- Licensed under ALv2 -->
 ## Petri Cookbook
 
-{TOC}
+[TOC]
 
 During its time in Petri a culture may go through a number of transitions. We track these on a web page.
 
