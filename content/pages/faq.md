@@ -1,6 +1,8 @@
 Title: Apache Petri - FAQ
 <!-- Licensed under ALv2 -->
 
+[TOC]
+
 # General
 
 ## What is Apache Petri?
