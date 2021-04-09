@@ -50,7 +50,7 @@ SLUGIFY_SOURCE = 'basename'
 PAGE_SAVE_AS = '{slug}.html'
 
 # We want to serve info.yaml and template.rdf in addition to any images
-STATIC_PATHS = ['.htaccess', 'info.yaml', 'template.rdf', 'images']
+STATIC_PATHS = ['.htaccess', 'template.rdf', 'images']
 
 # We don't use articles, but we don't want pelican to think
 # that content/ contains articles.
@@ -80,8 +80,9 @@ PLUGINS = ['toc', 'pelican-gfm', 'sitemap']
 # Markdown Configuration
 MARKDOWN = {
     'extension_configs': {
-        'markdown.extensions.extra': {},
-        'markdown.extensions.admonition': {},
+        'markdown.extensions.extra': {
+            'attr_list': {}
+        },
         'markdown.extensions.codehilite': {
             'css_class': 'highlight'
         },
