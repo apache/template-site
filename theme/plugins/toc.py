@@ -65,6 +65,7 @@ class HtmlTreeNode(object):
             new_id = slugify(new_string, ())
 
         new_id = unique(new_id, ids)  # make sure id is unique
+        print("ID = %s" % new_id)
         new_header.attrs['id'] = new_id
         if(self.level < new_level):
             new_node = HtmlTreeNode(self, new_string, new_level, new_id)
