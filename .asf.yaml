@@ -1,20 +1,3 @@
-github:
-  features:
-    # Enable issue management
-    issues: true
-
-notifications:
-  commits:      wave@apache.org
-  issues:       wave@apache.org
-  pullrequests: wave@apache.org
-
-pelican:
-  notify:         wave@apache.org
-  autobuild:      true
-  target:         asf-site
-  theme:          theme/apache
-  whoami:         master
-
 staging:
-  profile:  ~
-  whoami:   asf-site
+  profile: ~
+  whoami: asf-site
