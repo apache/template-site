@@ -75,15 +75,17 @@ AUTHOR_FEED_RSS = None
 # Pelican Plugins
 # The provided location. If the buildbot does not have a new plugin then look into requirements.txt
 PLUGIN_PATHS = ['./theme/plugins']
-PLUGINS = ['toc', 'pelican-gfm', 'sitemap']
+# PLUGINS = ['toc', 'pelican-gfm', 'sitemap']
+PLUGINS = ['toc', 'sitemap']
 
 # Markdown Configuration
 MARKDOWN = {
     'extensions' : [
-         'markdown.extensions.codehilite',
-         'markdown.extensions.extra',
-         'markdown.extensions.headerid',
-         'markdown.extensions.attr_list'
+        'markdown.extensions.codehilite',
+        'markdown.extensions.extra',
+        'markdown.extensions.headerid',
+        'markdown.extensions.attr_list',
+        'markdown.extensions.smarty'
     ],
     'extension_configs': {
         'markdown.extensions.codehilite': {'css_class': 'highlight'},
