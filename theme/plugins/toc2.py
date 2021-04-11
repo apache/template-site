@@ -91,7 +91,7 @@ class HtmlTreeNode(object):
             ret = "<li>{}</li>".format(ret)
 
         if not self.parent:
-            ret = "<div id='toc'><ul>{}</ul></div>".format(ret)
+            ret = "<div id='toc'>{}</div>".format(ret)
 
         return ret
 
