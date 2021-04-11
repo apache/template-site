@@ -22,6 +22,7 @@ def register():
             parent = node.parent
             if isinstance(parent, nodes.section) and parent.hasattr('ids') and parent['ids']:
                 anchor_name = parent['ids'][0]
+                print("ID = %s" % anchor_name)
                 # add permalink anchor
                 if close_tag.startswith('</h'):
                     self.body.append(
