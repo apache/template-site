@@ -129,7 +129,7 @@ def generate_toc(content):
         raise e
 
     # Find TOC tag
-    tocTag = soup.find('p', text = '[TOC]')
+    tocTag = soup.find('p', text = '[TOC2]')
     if tocTag:
         for header in tocTag.findAllNext(header_re):
             settoc = True
@@ -141,7 +141,7 @@ def generate_toc(content):
             tree_string = '{}'.format(tree)
             tree_soup = BeautifulSoup(tree_string, 'html.parser')
             content.toc = tree_soup.decode(formatter='html')
-            itoc = soup.find('p', text = '[TOC]')
+            itoc = soup.find('p', text = '[TOC2]')
             if itoc:
                 itoc.replaceWith(tree_soup)
             
