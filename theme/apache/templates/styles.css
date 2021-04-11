@@ -1,6 +1,12 @@
 html {
   font-size: 18px;
 }
+body {
+  font-family: 'Montserrat', 'Source Sans Pro','Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
+	padding-top:60px;
+	background-color: #fff;
+}
 .markdown-body {
   box-sizing: border-box;
   min-width: 200px;
