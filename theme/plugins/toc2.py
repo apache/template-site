@@ -41,7 +41,6 @@ end
 '''
 
 
-@python_2_unicode_compatible
 class HtmlTreeNode(object):
     def __init__(self, parent, header, level, id):
         self.children = []
