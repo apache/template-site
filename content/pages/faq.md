@@ -44,7 +44,8 @@ that once a PMC is constructed, any resources not hosted at the Foundation will
 be the new PMC’s first order of business (i.e. a transition plan would be part of
 the presentation to the Board).
 
-## Why does this matter? What is special about The Apache Way? {: #whats-special }
+<div id="whats-special" class="target"/>
+## Why does this matter? What is special about The Apache Way? <a class="headerlink" href="#whats-special" title="Permanent link">¶</a>
  
 The Apache Way is the ASF’s process of community-led development is the backbone
 of all Apache projects, and emulated by many Open Source foundations. The Apache
