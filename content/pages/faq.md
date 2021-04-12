@@ -1,7 +1,7 @@
 Title: Apache Petri - FAQ
 <!-- Licensed under ALv2 -->
 
-[TOC2]
+[TOC]
 
 # General
 
