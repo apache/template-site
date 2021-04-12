@@ -12,6 +12,7 @@ def init_headerid(sender):
     if char:
         LINK_CHAR = char
 
+
 def register():
     signals.initialized.connect(init_headerid)
 
@@ -29,4 +30,6 @@ def register():
                         '<a class="headerlink" href="#%s" title="Permalink to this headline">%s</a>' %
                         (anchor_name, LINK_CHAR))
             PelicanHTMLTranslator.depart_title(self, node)
+
+
     readers.PelicanHTMLTranslator = HeaderIDPatchedPelicanHTMLTranslator
