@@ -3,7 +3,6 @@ title: Projects mentored by Apache Petri
 
 ## Project Status
 
-- Machine readable status [petri.yaml](https://petri.apache.org/info.yaml) -- [view source]({{ SITEREPOSITORY }}/../info.yaml)
 - [Cookbook](cookbook)
 
 ## Current Cultures
