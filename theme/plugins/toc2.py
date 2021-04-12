@@ -36,6 +36,8 @@ def unique(id, ids):
             id = '%s_%d' % (id, 1)
     ids.add(id)
     return id
+
+
 '''
 end
 '''
@@ -56,15 +58,14 @@ class HtmlTreeNode(object):
 
         if not new_string:
             new_string = new_header.find_all(
-                    text=lambda t: not isinstance(t, Comment),
-                    recursive=True)
+                text=lambda t: not isinstance(t, Comment),
+                recursive=True)
             new_string = "".join(new_string)
 
         if not new_id:
             new_id = slugify(new_string, ())
 
         new_id = unique(new_id, ids)  # make sure id is unique
-        print("%s - %s" % (new_id,new_string))
 
         new_header.attrs['id'] = new_id
         if(self.level < new_level):
@@ -82,11 +83,11 @@ class HtmlTreeNode(object):
         ret = ""
         if self.parent:
             ret = "<a class='toc-href' href='#{0}' title='{1}'>{1}</a>".format(
-                    self.id, self.header)
+                self.id, self.header)
 
         if self.children:
-            ret += "<ul>{}</ul>".format('{}'*len(self.children)).format(
-                    *self.children)
+            ret += "<ul>{}</ul>".format('{}' * len(self.children)).format(
+                *self.children)
 
         if self.parent:
             ret = "<li>{}</li>".format(ret)
@@ -119,7 +120,6 @@ def generate_toc(content):
     tree = node = HtmlTreeNode(None, title, 'h0', '')
     soup = BeautifulSoup(content._content, 'html.parser')
     settoc = False
-    print("Plugin ToC2 for %s" % content.slug)
 
     try:
         header_re = re.compile(content.metadata.get(
@@ -130,25 +130,27 @@ def generate_toc(content):
         raise e
 
     # Find TOC tag
-    tocTag = soup.find('p', text = '[TOC]')
+    tocTag = soup.find('p', text='[TOC]')
     if tocTag:
         for header in tocTag.findAllNext(header_re):
             settoc = True
             node, new_header = node.add(header, all_ids)
             header.replaceWith(new_header)  # to get our ids back into soup
-    
+
         if settoc:
             print("Generating ToC for %s" % content.slug)
             tree_string = '{}'.format(tree)
             tree_soup = BeautifulSoup(tree_string, 'html.parser')
             content.toc = tree_soup.decode(formatter='html')
-            itoc = soup.find('p', text = '[TOC]')
+            itoc = soup.find('p', text='[TOC]')
             if itoc:
                 itoc.replaceWith(tree_soup)
-            
+
         content._content = soup.decode(formatter='html')
 
 
 def register():
     signals.initialized.connect(init_default_config)
+
+
 signals.content_object_init.connect(generate_toc)
