@@ -4,17 +4,17 @@ github:
     issues: true
 
 notifications:
-  commits:      wave@apache.org
-  issues:       wave@apache.org
+  commits: wave@apache.org
+  issues: wave@apache.org
   pullrequests: wave@apache.org
 
 pelican:
-  notify:         wave@apache.org
-  autobuild:      true
-  target:         asf-site
-  theme:          theme/apache
-  whoami:         main
+  notify: wave@apache.org
+  autobuild: true
+  target: asf-site
+  theme: theme/apache
+  whoami: main
 
 staging:
-  profile:  ~
-  whoami:   asf-site
+  profile: ~
+  whoami: asf-site
