@@ -16,7 +16,6 @@ def init_headerid(sender):
 def register():
     signals.initialized.connect(init_headerid)
 
-
     class HeaderIDPatchedPelicanHTMLTranslator(PelicanHTMLTranslator):
         def depart_title(self, node):
             close_tag = self.context[-1]
@@ -30,6 +29,5 @@ def register():
                         '<a class="headerlink" href="#%s" title="Permalink to this headline">%s</a>' %
                         (anchor_name, LINK_CHAR))
             PelicanHTMLTranslator.depart_title(self, node)
-
 
     readers.PelicanHTMLTranslator = HeaderIDPatchedPelicanHTMLTranslator
