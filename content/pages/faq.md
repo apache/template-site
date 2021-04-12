@@ -46,7 +46,7 @@ the presentation to the Board).
 
 <h2 id="whats-special">Why does this matter? What is special about The Apache Way?
 <a class="headerlink" href="#whats-special" title="Permanent link">¶</a></h2>
- 
+
 The Apache Way is the ASF’s process of community-led development is the backbone
 of all Apache projects, and emulated by many Open Source foundations. The Apache
 Way comprises:
