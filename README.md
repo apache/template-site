@@ -4,7 +4,6 @@
 
 This repository provides the website and source code for Apache Petri.
 
-- [info.yaml](info.yaml) -- Machine Readable Culture Status
 - [Pages](content/pages) -- website pages in GitHub Markdown
 - [Issues](https://github.com/apache/template-site/issues) -- tracker
 
