@@ -6,7 +6,7 @@ The Apache Theme included here consists two types of files.
   There should be one template for each page type.
 2. CSS stylesheets.
   There are css overrides for the site and/or template.
-  
+
 ## Page Templates
 
 1. base.html - there is only one page type.
