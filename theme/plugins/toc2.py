@@ -119,6 +119,7 @@ def generate_toc(content):
     tree = node = HtmlTreeNode(None, title, 'h0', '')
     soup = BeautifulSoup(content._content, 'html.parser')
     settoc = False
+    print("Plugin ToC2 for %s" % content.slug)
 
     try:
         header_re = re.compile(content.metadata.get(
