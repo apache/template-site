@@ -1,6 +1,6 @@
 # Apache Theme
 
-The Apache Theme included here consists two types of html files.
+The Apache Theme included here consists two types of files.
 
 1. Page templates.
   There should be one template for each page type.
