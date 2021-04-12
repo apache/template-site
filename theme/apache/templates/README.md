@@ -26,7 +26,7 @@ Each of the above files should be edited as needed for the deployed website.
 
 ## Pelican Variables set in [pelicanconf.py](../../../pelicanconf.py)
 
-~~~
+~~~python
 SITENAME = u'Apache <pmc>'
 SITEDOMAIN = '<pmc>.apache.org'
 SITEURL = 'https://<pmc>.apache.org'
