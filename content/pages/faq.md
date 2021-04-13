@@ -116,7 +116,7 @@ accept projects that are not supported by some form of community.
 
 # Process
 
-## What about the Maturity Model? Haven’t other projects bypassed incubation by meeting these requirements?
+## What about the Maturity Model? Have other projects bypassed incubation by meeting these requirements?
 
 In March 2015 Apache Zest (now Polygene) became the first project to enter
 the ASF as a Top-Level Project &mdash; without entering the Apache Incubator. As
