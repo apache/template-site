@@ -58,6 +58,9 @@ STATIC_PATHS = ['.']
 # that content/ contains articles.
 ARTICLE_PATHS = ['articles']
 
+# No translations
+PAGE_TRANSLATION_ID = None
+
 # Disable these pages
 ARCHIVES_SAVE_AS = ''
 AUTHORS_SAVE_AS = ''
