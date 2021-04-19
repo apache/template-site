@@ -38,7 +38,7 @@ SITEURL = 'https://template.apache.org'
 SITELOGO = 'https://template.apache.org/images/logo.png'
 SITEDESC = u'Assists external project communities interested in becoming an Apache project learn how The ASF works and its views on how to build a healthy community'
 TRADEMARKS = u'Apache, the Apache feather logo, and Template are trademarks or registered trademarks'
-SITEREPOSITORY = 'https://github.com/apache/template-site/blob/main/content'
+SITEREPOSITORY = 'https://github.com/apache/template-site/blob/main/content/'
 CURRENTYEAR = date.today().year
 
 # Save pages using full directory preservation
@@ -46,7 +46,7 @@ PAGE_PATHS = ['.']
 # PAGE_EXCLUDES = {'pages/pages']
 # PATH_METADATA= '(?P<path_no_ext>.*)\..*'
 # PAGE_SAVE_AS= '{path_no_ext}.html'
-PAGE_URL = '{slug}.html'
+PAGE_URL = '{path_no_ext}.html'
 SLUGIFY_SOURCE = 'basename'
 PAGE_SAVE_AS = '{slug}.html'
 
