@@ -34,7 +34,19 @@ character_map = {
     ord('\"') : None,
     ord('?') : None,
     ord('/') : None,
-    ord(',') : None
+    ord(',') : None,
+    ord('.') : None,
+    ord('(') : None,
+    ord(')') : None,
+    8216 : None,
+    8217 : None,
+    8218 : None,
+    8219 : None,
+    8220 : None,
+    8221 : None,
+    8222 : None,
+    8223 : None,
+    ord('¶') : None
 }
 
 def unique(id, ids):
