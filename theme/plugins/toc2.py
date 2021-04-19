@@ -138,7 +138,7 @@ def generate_toc(content):
             header.replaceWith(new_header)  # to get our ids back into soup
 
         if settoc:
-            print("Generating ToC for %s" % content.slug)
+            print("Generating ToC for %s" % content.path_no_ext)
             tree_string = '{}'.format(tree)
             tree_soup = BeautifulSoup(tree_string, 'html.parser')
             content.toc = tree_soup.decode(formatter='html')
