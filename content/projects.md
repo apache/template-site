@@ -3,7 +3,7 @@ title: Projects mentored by Apache Petri
 
 ## Project Status
 
-- [Cookbook](cookbook)
+- [Cookbook](projects/cookbook)
 
 ## Current Cultures
 

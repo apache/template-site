@@ -51,7 +51,8 @@ PAGE_SAVE_AS= '{path_no_ext}.html'
 # PAGE_SAVE_AS = '{slug}.html'
 
 # We want to serve info.yaml and template.rdf in addition to any images
-STATIC_PATHS = ['.htaccess', 'template.rdf', 'images']
+# STATIC_PATHS = ['.htaccess', 'template.rdf', 'images']
+STATIC_PATHS = ['.']
 
 # We don't use articles, but we don't want pelican to think
 # that content/ contains articles.
