@@ -25,6 +25,14 @@ https://github.com/waylan/Python-Markdown/blob/master/markdown/extensions/header
 '''
 IDCOUNT_RE = re.compile(r'^(.*)_([0-9]+)$')
 
+character_map = {
+    ord('\n') : '-',
+    ord('\t') : '-',
+    ord('\r') : None,
+    ord(' ') : '-',
+    ord('\'') : '-',
+    ord('"') : '-'
+}
 
 def unique(id, ids):
     """ Ensure id is unique in set of ids. Append '_1', '_2'... if not """
@@ -63,7 +71,7 @@ class HtmlTreeNode(object):
             new_string = "".join(new_string)
 
         if not new_id:
-            new_id = slugify(new_string, ())
+            new_id = slugify(new_string, character_map)
 
         new_id = unique(new_id, ids)  # make sure id is unique
 
