@@ -1,0 +1,462 @@
+<!doctype html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one or more
+    contributor license agreements.  See the NOTICE file distributed with
+    this work for additional information regarding copyright ownership.
+    The ASF licenses this file to You under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with
+    the License.  You may obtain a copy of the License at
+
+         https://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<html lang="en" prefix="og: https://ogp.me/ns#">
+  <head>
+      <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Apache Template - Apache Petri - FAQ</title>
+
+
+    <!-- Below Meta Tags Generated via https://www.opengraph.xyz -->
+    <!-- If you don't care about social media then remove this section -->
+    <!-- Values are set in pelicanconf.py -->
+    <!-- HTML Meta Tags -->
+    <meta name="description" content="Assists external project communities interested in becoming an Apache project learn how The ASF works and its views on how to build a healthy community">
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://template.apache.org">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Apache Template">
+    <meta property="og:description" content="Assists external project communities interested in becoming an Apache project learn how The ASF works and its views on how to build a healthy community">
+    <meta property="og:image" content="https://template.apache.org/images/logo.png">
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="template.apache.org">
+    <meta property="twitter:url" content="https://template.apache.org">
+    <meta name="twitter:title" content="Apache Template">
+    <meta name="twitter:description" content="Assists external project communities interested in becoming an Apache project learn how The ASF works and its views on how to build a healthy community">
+    <meta name="twitter:image" content="https://template.apache.org/images/logo.png">
+    <!-- Above Meta Tags Generated via https://www.opengraph.xyz -->
+
+    <!-- Start favicon styles - use apache feather -->
+    <link rel="shortcut icon" href="https://www.apache.org/favicons/favicon.ico">
+    <link rel="apple-touch-icon" sizes="57x57" href="https://www.apache.org/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="https://www.apache.org/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="https://www.apache.org/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="https://www.apache.org/favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="https://www.apache.org/favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="https://www.apache.org/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="https://www.apache.org/favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://www.apache.org/favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://www.apache.org/favicons/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="https://www.apache.org/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://www.apache.org/favicons/favicon-194x194.png" sizes="194x194">
+    <link rel="icon" type="image/png" href="https://www.apache.org/favicons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="https://www.apache.org/favicons/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="https://www.apache.org/favicons/favicon-16x16.png" sizes="16x16">
+    <!--<link rel="manifest" href="https://www.apache.org/favicons/manifest.json" crossorigin="anonymous">-->
+    <meta name="msapplication-TileColor" content="#603cba">
+    <meta name="msapplication-TileImage" content="https://www.apache.org/favicons/mstile-144x144.png">
+    <meta name="msapplication-config" content="https://www.apache.org/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#282661">
+    <!-- End favicon styles - use apache feather -->
+
+    <!-- Start load of stylesheets (will need to upgrade periodically) -->
+    <link rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous">
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css"
+      crossorigin="anonymous">
+    <!-- Override css for this site. You can do this inline as shown here or with a site asset. See comment.-->
+    <style>
+html {
+  font-size: 18px;
+}
+body {
+  font-family: 'Montserrat', 'Source Sans Pro','Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  background-color: #fff;
+}
+.markdown-body {
+  box-sizing: border-box;
+  min-width: 200px;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 45px;
+}
+@media (max-width: 767px) {
+  .markdown-body {
+    padding: 15px;
+  }
+}
+.footer {
+  border-top: 1px solid black;
+  padding-top: 3px;
+}
+.right-align {
+  text-align: right;
+}
+.center-align {
+  text-align: center;
+}
+blockquote {
+  background: bisque;
+}
+.bg-primary {
+  background-color: #005bff!important;
+}
+a {
+  font-weight: 400;
+  color: #4643aa;
+#  color: #005bff;
+}
+#li {
+#  line-height: 2;
+#}
+.h1, h1 {
+  font-size: 1.5rem;
+}
+.h2, h2 {
+  font-size: 1.4rem;
+}
+.h3, h3 {
+  font-size: 1.3rem;
+}
+.h4, h4 {
+  font-size: 1.2rem;
+}
+.h5, h5 {
+  font-size: 1.1rem;
+}
+.headerlink {
+  visibility: hidden;
+}
+h1:hover > .headerlink, h2:hover > .headerlink, h3:hover > .headerlink, h4:hover > .headerlink, h5:hover > .headerlink, h6:hover > .headerlink {
+  visibility: visible
+}
+    </style>
+    <!--<link rel="stylesheet" href="/styles/styles.css">-->
+    <!-- End stylesheets -->
+  </head>
+
+  <body id="index" class="home">
+    <!-- Start branding and top navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <img src="https://www.apache.org/foundation/press/kit/feather.svg"
+        width="30" height="30" class="d-inline-block align-top"
+        alt="Apache Feather">
+      <a class="navbar-brand" href="/">Apache Template</a>
+      <button class="navbar-toggler" type="button"
+        data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/projects">Projects</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/mentors">Mentors</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/faq">FAQ</a>
+          </li>
+        </ul>
+        <div class="navbar-nav">
+          <div class="nav-item dropdown dropdown-menu-right active">
+            <a class="nav-link dropdown-toggle" href="#"
+              role="button" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">About</a>
+            <div class="dropdown-menu dropdown-menu-right">
+              <a class="dropdown-item" href="https://www.apache.org/">Foundation</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item"
+                href="https://www.apache.org/licenses/">License</a>
+              <a class="dropdown-item"
+                href="https://www.apache.org/foundation/sponsorship.html">Sponsorship</a>
+              <a class="dropdown-item"
+                href="https://www.apache.org/foundation/thanks.html">Thanks</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item"
+                href="https://www.apache.org/security/">Security</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- End branding and top navigation -->
+
+    <!-- Start main content area -->
+    <div class="container">
+    <h1>Apache Petri - FAQ</h1>
+    
+
+    <!-- Licensed under ALv2 -->
+<div id="toc"><ul><li><a class="toc-href" href="#general" title="General">General</a><ul><li><a class="toc-href" href="#what is apache petri?" title="What is Apache Petri?">What is Apache Petri?</a></li><li><a class="toc-href" href="#how is petri different from the apache incubator?" title="How is Petri different from the Apache Incubator?">How is Petri different from the Apache Incubator?</a></li><li><a class="toc-href" href="#whats-special" title="Why does this matter? What is special about The Apache Way?
+&para;">Why does this matter? What is special about The Apache Way?
+&para;</a></li><li><a class="toc-href" href='#what does "direct to tlp" entail?' title="What does &ldquo;Direct to TLP&rdquo; entail?">What does &ldquo;Direct to TLP&rdquo; entail?</a></li><li><a class="toc-href" href="#is apache petri right for you?" title="Is Apache Petri right for you?">Is Apache Petri right for you?</a></li></ul></li><li><a class="toc-href" href="#process_1" title="Process">Process</a><ul><li><a class="toc-href" href="#what about the maturity model? have other projects bypassed incubation by meeting these requirements?" title="What about the Maturity Model? Have other projects bypassed incubation by meeting these requirements?">What about the Maturity Model? Have other projects bypassed incubation by meeting these requirements?</a></li><li><a class="toc-href" href="#how long does the petri process take?" title="How long does the Petri process take?">How long does the Petri process take?</a></li><li><a class="toc-href" href="#do people involved in petri-mentored projects need to sign iclas?" title="Do people involved in Petri-mentored projects need to sign ICLAs?">Do people involved in Petri-mentored projects need to sign ICLAs?</a></li><li><a class="toc-href" href="#if our project wants to become an official apache project, what is the best way to do so?" title="If our project wants to become an official Apache project, what is the best way to do so?">If our project wants to become an official Apache project, what is the best way to do so?</a></li><li><a class="toc-href" href="#if i propose my project to be mentored by petri, will it be accepted?" title="If I propose my project to be mentored by Petri, will it be accepted?">If I propose my project to be mentored by Petri, will it be accepted?</a></li><li><a class="toc-href" href="#what is the expected intake rate for petri?" title="What is the expected intake rate for Petri?">What is the expected intake rate for Petri?</a></li><li><a class="toc-href" href="#what should the board expect from a project that petri recommends to become a tlp?" title="What should the Board expect from a Project that Petri Recommends to become a TLP?">What should the Board expect from a Project that Petri Recommends to become a TLP?</a></li><li><a class="toc-href" href="#who will provide guidance once the petri mentor is gone after the assessment?" title="Who will provide guidance once the Petri mentor is gone after the assessment?">Who will provide guidance once the Petri mentor is gone after the assessment?</a></li><li><a class="toc-href" href="#how can our project/community apply for apache petri mentorship?" title="How can our project/community apply for Apache Petri mentorship?">How can our project/community apply for Apache Petri mentorship?</a></li><li><a class="toc-href" href="#if a project wants to move out of the apache incubator and into petri, what happens?" title="If a project wants to move out of the Apache Incubator and into Petri, what happens?">If a project wants to move out of the Apache Incubator and into Petri, what happens?</a></li></ul></li></ul></div>
+<h1 id="general">General</h1>
+<h2 id="what is apache petri?">What is Apache Petri?</h2>
+<p>The Apache Petri (as in &ldquo;petri dish&rdquo; &ndash;where cultures are grown and bloom) committee
+assists external project communities interested in becoming an Apache project to
+learn how The Apache Software Foundation (ASF) works, its views on community, and
+how to build a healthy community for the long -term.</p>
+<p>Petri&rsquo;s mission is to mentor existing external communities (&ldquo;cultures&rdquo;) about
+&ldquo;The Apache Way&rdquo; by focusing on community governance that includes discussions
+about ASF policies. The mentoring and education is conducted on a mailing list.</p>
+<p>The primary goal is to reach a point where a recommendation to the ASF Board can
+be made to construct a new Apache Project Management Committee (PMC) for the
+external community.</p>
+<p>In the Incubator model, projects graduate to become Apache Top-Level Projects (TLPs).
+Under Petri, projects can become TLPs under a process described as &ldquo;direct to TLP&rdquo;,
+which is an alternative path to that used by the Apache Incubator. Apache Petri aims
+to shepherd projects and their communities to a point of confidence that the
+ASF Board will welcome the community to the Apache family of projects as a
+Top-Level Project.</p>
+<h2 id="how is petri different from the apache incubator?">How is Petri different from the Apache Incubator?</h2>
+<p>Apache Petri provides an alternative process to Incubation that would be suitable
+for some projects and their communities. Petri provides educational resources, and
+mentors external groups on their path to becoming an official project of the ASF.
+The primary goal is to reach a point where a recommendation to the ASF Board can
+be made to construct a PMC for the community.</p>
+<p>&ldquo;Podlings&rdquo; in the Apache Incubator are provided a complete set of Foundation-based
+resources upon their acceptance into the Incubator. Since Petri will begin
+mentoring the community &ldquo;where they live&rdquo;, it will not provide an initial set of
+resources. Over time, as part of the education process and shift of the community
+towards the Foundation, resources will be provided as appropriate. It is expected
+that once a PMC is constructed, any resources not hosted at the Foundation will
+be the new PMC&rsquo;s first order of business (i.e. a transition plan would be part of
+the presentation to the Board).</p>
+<h2 id="whats-special">Why does this matter? What is special about The Apache Way?
+<a class="headerlink" href="#whats-special" title="Permanent link">&para;</a></h2>
+<p>The Apache Way is the ASF&rsquo;s process of community-led development is the backbone
+of all Apache projects, and emulated by many Open Source foundations. The Apache
+Way comprises:</p>
+<ul>
+<li>Earned Authority (merit);</li>
+<li>Community of Peers;</li>
+<li>Open Communications;</li>
+<li>Consensus Decision Making; and</li>
+<li>Responsible Oversight.</li>
+</ul>
+<p>For more information, see <a href="https://www.apache.org/theapacheway/">The Apache Way</a>.</p>
+<p>The Apache Software Foundation's mission is to provide software for the public good.</p>
+<p>Quoting from <a href="https://s.apache.org/GhnI">The Apache Way to Sustainable Open Source Success</a>:</p>
+<blockquote>
+<p>To allow us to deliver on this part of the mission, it is critical that we adopt a
+license that uses the law to protect the software curated here at the Foundation.
+For us that license is the <a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache License, Version 2</a>.
+In addition, we adopt an <a href="https://apache.org/legal/resolved.html">inbound licensing policy</a>
+that defines which licenses are allowable on software reused within Apache projects. This policy can be summarized as:</p>
+<ul>
+<li>The license must meet the <a href="https://opensource.org/osd">Open Source Definition (OSD)</a>.</li>
+<li>The license, as applied in practice, must not impose significant restrictions beyond those imposed by the Apache License 2.0.</li>
+</ul>
+</blockquote>
+<h2 id='what does "direct to tlp" entail?'>What does &ldquo;Direct to TLP&rdquo; entail?</h2>
+<p>The Board makes the ultimate decision, and generally ensures that the project has:</p>
+<ul>
+<li>Demonstrated
+<a href="https://community.apache.org/projectIndependence.html">vendor neutrality</a>
+in the
+<a href="https://incubator.apache.org/guides/community.html">community</a>;</li>
+<li>Demonstrated understanding of the
+<a href="https://www.apache.org/legal/release-policy.html">Apache Release Policy</a>
+including <a href="https://infra.apache.org/apply-license.html">Applying the Apache License</a>;</li>
+<li>Completed
+<a href="https://www.apache.org/licenses/contributor-agreements.html">Contributor Licence Agreements and Software Grant Agreements</a>;</li>
+<li>Performed a
+<a href="https://incubator.apache.org/guides/names.html">Suitable Name Search</a>;</li>
+<li>Developed a
+<a href="https://incubator.apache.org/guides/transitioning_asf.html">Transition Plan</a>
+to move the project's resources to the ASF;</li>
+<li>Shown how the community will
+<a href="https://incubator.apache.org/guides/community.html">recognize merit</a>; and</li>
+<li>Shown auditable decision making on the provided mailing list.</li>
+</ul>
+<h2 id="is apache petri right for you?">Is Apache Petri right for you?</h2>
+<p>If you are:</p>
+<ul>
+<li>An established, diverse community that already releases quickly; or</li>
+<li>A project with a single &ldquo;leader&rdquo; that seeks to grow to a community-driven
+development model; or</li>
+<li>A company that has an Open Source project with other vendors and wants to
+expand and diversify its community...</li>
+</ul>
+<p>And you are:</p>
+<ul>
+<li>Willing to license your project's works under the <a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache License, Version 2</a>.</li>
+</ul>
+<p>Petri would help the community learn how to integrate governance and
+development &ldquo;The Apache Way&rdquo; without interrupting the project&rsquo;s velocity.</p>
+<p>In keeping with the ASF&rsquo;s slogan of &ldquo;Community Over Code&rdquo;, we are unable to
+accept projects that are not supported by some form of community.</p>
+<h1 id="process_1">Process</h1>
+<h2 id="what about the maturity model? have other projects bypassed incubation by meeting these requirements?">What about the Maturity Model? Have other projects bypassed incubation by meeting these requirements?</h2>
+<p>In March 2015 Apache Zest (now Polygene) became the first project to enter
+the ASF as a Top-Level Project &mdash; without entering the Apache Incubator. As
+part of the discussion, the project
+<a href="https://mail-private.apache.org/members/private-arch/board/201502.mbox/%3CCADmm%2BKf9A1O%2B%3DKOd9__sDF2-kMh9b3iy3cf4NCRUnSDOPDq92w%40mail.gmail.com%3E">chose to review itself</a>
+(private link) against the
+<a href="http://s.apache.org/O4p">Apache Maturity Model</a>, that addresses the integrity
+of a project's code, copyright, licenses, releases, community, consensus
+building, and independence, among other qualities.</p>
+<p>The Apache Maturity Model will not be a requirement for communities (as the
+Model does not have broad consensus as a true and thorough viewpoint), but
+the Model may provide a helpful guide for some.</p>
+<h2 id="how long does the petri process take?">How long does the Petri process take?</h2>
+<p>There&rsquo;s no &ldquo;one size fits all&rdquo; answer here. Some external projects have
+applied to the Apache Board to become TLPs, and have become TLPs without
+going through either Petri or the Incubator. Historically, every project&rsquo;s
+experience and time spent in the Apache Incubator varies, depending on its
+specific needs and circumstances; this has ranged from less than one year
+to more than three years.</p>
+<p>Similarly, some projects undergoing Petri mentorship will take longer
+than others. Petri is more about education about The Apache Way of project
+governance and Apache Policy, and less about process.</p>
+<h2 id="do people involved in petri-mentored projects need to sign iclas?">Do people involved in Petri-mentored projects need to sign ICLAs?</h2>
+<p>No, unless the projects intend to apply for TLP status and migrate their
+source control to ASF hardware. This applies both to Incubator podlings
+and direct-to-TLP applicants.</p>
+<h2 id="if our project wants to become an official apache project, what is the best way to do so?">If our project wants to become an official Apache project, what is the best way to do so?</h2>
+<p>There is more than one way to do so: not all incoming projects will be
+mentored by Petri. Traditionally, the Apache Incubator has been the entry
+path for external projects, codebases, and communities wishing to become
+a part of the ASF.</p>
+<p>Petri's primary goal is preparing a community for Direct-to-TLP; moving
+from Petri to become a podling undergoing development in the Apache Incubator
+is a possibility, but not mandated.</p>
+<h2 id="if i propose my project to be mentored by petri, will it be accepted?">If I propose my project to be mentored by Petri, will it be accepted?</h2>
+<p>That depends. First, there have to be available mentors. Second, the Petri
+PMC may have to rate-limit intake, especially at first, in order not to
+stretch itself too thin with its oversight duties. This is true of the
+entire ASF: the Board may put intake of new TLPs on hold from time to
+time, though it has never yet done that to date.</p>
+<h2 id="what is the expected intake rate for petri?">What is the expected intake rate for Petri?</h2>
+<p>We anticipate 2-3 communities in the first year, with one per year likely following that.</p>
+<h2 id="what should the board expect from a project that petri recommends to become a tlp?">What should the Board expect from a Project that Petri Recommends to become a TLP?</h2>
+<p>This list is only complete in that we are considering what the Board
+currently seems to require and it is as always up to the Board the
+requirements for any particular TLP. In addition to the list of
+items shared above, in the <strong>What does &ldquo;Direct to TLP&rdquo; entail</strong> section:</p>
+<ul>
+<li><strong>Graduation Resolution</strong>. If there are Apache Members involved or
+recruited then they will be included in the resolution. Apache
+Members like anyone else are certainly invited to contribute
+to the project.</li>
+<li><strong>Transfer of Registered Trademarks</strong>. If there are any registered
+trademarks then the transfer agreement will be discussed with
+the VP, Brand in advance.</li>
+<li><strong>Software Grant</strong>. Petri should collect <a href="https://www.apache.org/licenses/contributor-agreements.html#grants">software grants</a>.</li>
+<li><strong>Committers</strong>. Petri can collect ICLAs in advance of going to TLP.
+Petri can make the committers from a prospective community
+Petri committers in order to create accounts.</li>
+<li><strong>Resources</strong>. Graduation proposals will include a <strong>Transition Plan</strong>
+explaining the actions that the project has already taken or intends to take once
+the PMC is established. This may include:
+<ul>
+<li>Creating Apache project mailing lists</li>
+<li>Creating Apache issue trackers</li>
+<li>Creating Apache wikis</li>
+<li>Creating Apache code repositories</li>
+<li>Migrating code repositories to Apache</li>
+<li>Applying the Apache License</li>
+<li>Creating Apache web presence</li>
+<li>Migrating web presence from Project to Apache</li>
+<li>Rebranding web, code, documentation from Project to Apache Project</li>
+<li>Retiring external Project and redirecting to Apache</li>
+<li>Creating and migrating CI, build, release processes to Apache Project</li>
+<li>Establish processes for release distribution at Apache</li>
+<li>New TLPs should report on their progress towards completing
+their Transition Plan in their Board Reports.</li>
+</ul>
+</li>
+</ul>
+<h2 id="who will provide guidance once the petri mentor is gone after the assessment?">Who will provide guidance once the Petri mentor is gone after the assessment?</h2>
+<p>This assumes that the Mentor is no longer interested in the community
+once it is assessed. Even if this were true TLPs have a range of Apache
+committees and resources available. If necessary the Board can provide
+additional guidance through the normal reporting process as the Board
+does for every PMC.</p>
+<h2 id="how can our project/community apply for apache petri mentorship?">How can our project/community apply for Apache Petri mentorship?</h2>
+<p>Email <a href="mailto:discuss@petri.apache.org">discuss@petri.apache.org</a> (public list; if you're not subscribe,
+ask explicitly to be Cc'd on replies)
+or <a href="mailto:private@petri.apache.org">private@petri.apache.org</a> (private list, only Apache Petri PMC members
+and Apache Members can subscribe) and introduce yourself! We don&rsquo;t
+have any forms or questionnaires, but may introduce these should
+the need arise.</p>
+<h2 id="if a project wants to move out of the apache incubator and into petri, what happens?">If a project wants to move out of the Apache Incubator and into Petri, what happens?</h2>
+<p>We don&rsquo;t recommend leaving the Incubator, if the podling is already
+established there; podlings should strive to graduate. In the event
+a community is unwilling to wait for graduation, and Petri has
+accepted them, then the Incubator will need to retire the podling.
+Petri will then take responsibility for the podling&rsquo;s resources, and
+perform any needed changes to make that happen.</p>
+
+
+        <!-- button to view source in github -->
+        <h2><span class="badge badge-secondary"><a href="https://github.com/apache/template-site/blob/main/content/pagespages/pages/pages/pages/pages/pages/pages/pages/pages/pages/pages/pages/pages/pages/pages/pages/pages/pages/pages/pages/pages/pages/pages/pages/pages/pages/faq.md" style="color:white">Page Source</a></span></h2>
+    </div>
+    <!-- End main content area -->
+
+    <!-- Start footer -->
+    <footer class="navbar-expand-lg navbar-light bg-light">
+      <div class="footer" id="footer">
+        <div class="row container-fluid">
+          <div class="col-sm">
+            <a href="https://www.apache.org/">
+              <img src="https://www.apache.org/img/asf_logo.png" alt="The Apache Software Foundation" style="border: 0; margin-top: 2px" width="200">
+            </a>
+          </div>
+          <div class="col-sm center-align">
+            <a href="https://www.apache.org/foundation/contributing.html">
+              <img src="https://www.apache.org/images/SupportApache-small.png" alt="Support The ASF" height="80" width="80">
+            </a>
+          </div>
+          <div class="col-sm right-align">
+            <a class="acevent" data-format="wide" data-mode="light" data-event="random"></a>
+          </div>
+        </div>
+
+        <div class="container-fluid">
+          Copyright &copy; 2021 The Apache Software Foundation,
+          Licensed under the
+          <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0.</a>
+          <br/>
+          Apache, the Apache feather logo, and Template are trademarks or registered trademarks of <a href="https://www.apache.org/">The Apache Software Foundation.</a>
+        </div><!-- #container-fluid -->
+
+      </div>
+    </footer>
+    <!-- End footer -->
+
+    <!-- Start the loading of javascript frameworks (will need to upgrade periodically) -->
+    <script src="https://www.apachecon.com/event-images/snippet.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.slim.min.js"
+      integrity="sha512-6ORWJX/LrnSjBzwefdNUyLCMTIsGoNP6NftMy2UAm1JBm6PRZCO1d7OHBStWpVFZLO+RerTvqX/Z9mBFfCJZ4A=="
+      crossorigin="anonymous"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"></script>
+    <!-- End the loading of javascript frameworks -->
+
+  </body>
+</html>
