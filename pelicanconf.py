@@ -38,11 +38,11 @@ SITEURL = 'https://template.apache.org'
 SITELOGO = 'https://template.apache.org/images/logo.png'
 SITEDESC = u'Assists external project communities interested in becoming an Apache project learn how The ASF works and its views on how to build a healthy community'
 TRADEMARKS = u'Apache, the Apache feather logo, and Template are trademarks or registered trademarks'
-SITEREPOSITORY = 'https://github.com/apache/template-site/blob/main/content/pages'
+SITEREPOSITORY = 'https://github.com/apache/template-site/blob/main/content'
 CURRENTYEAR = date.today().year
 
 # Save pages using full directory preservation
-PAGES_PATHS = ['content']
+PAGES_PATHS = ['content/pages/*.md']
 # PATH_METADATA= '(?P<path_no_ext>.*)\..*'
 # PAGE_SAVE_AS= '{path_no_ext}.html'
 PAGE_URL = '{slug}.html'
@@ -50,7 +50,7 @@ SLUGIFY_SOURCE = 'basename'
 PAGE_SAVE_AS = '{slug}.html'
 
 # We want to serve info.yaml and template.rdf in addition to any images
-STATIC_PATHS = ['pages/.htaccess', 'pages/template.rdf', 'pages/images']
+STATIC_PATHS = ['.htaccess', 'template.rdf', 'images']
 
 # We don't use articles, but we don't want pelican to think
 # that content/ contains articles.
