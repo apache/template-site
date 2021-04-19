@@ -71,7 +71,9 @@ class HtmlTreeNode(object):
             new_string = "".join(new_string)
 
         if not new_id:
-            new_id = slugify(new_string, character_map)
+            new_slug = new_string
+            new_slug.translate(character_map)
+            new_id = slugify(new_slug)
 
         new_id = unique(new_id, ids)  # make sure id is unique
 
