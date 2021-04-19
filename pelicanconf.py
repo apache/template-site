@@ -42,8 +42,8 @@ SITEREPOSITORY = 'https://github.com/apache/template-site/blob/main/content'
 CURRENTYEAR = date.today().year
 
 # Save pages using full directory preservation
-PAGES_PATHS = ['content/pages/*.md']
-PAGE_EXCLUDES = {'content/pages/pages']
+PAGES_PATHS = ['pages/*.md']
+PAGE_EXCLUDES = {'pages/pages/']
 # PATH_METADATA= '(?P<path_no_ext>.*)\..*'
 # PAGE_SAVE_AS= '{path_no_ext}.html'
 PAGE_URL = '{slug}.html'
