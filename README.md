@@ -4,7 +4,7 @@
 
 This repository provides the website and source code for Apache Petri.
 
-- [Pages](content/pages) -- website pages in GitHub Markdown
+- [Content](content) -- website pages in GitHub Markdown
 - [Issues](https://github.com/apache/template-site/issues) -- tracker
 
 The website is built with [Pelican](https://blog.getpelican.com).
