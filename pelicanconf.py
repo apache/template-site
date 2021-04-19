@@ -44,11 +44,11 @@ CURRENTYEAR = date.today().year
 # Save pages using full directory preservation
 PAGE_PATHS = ['.']
 # PAGE_EXCLUDES = {'pages/pages']
-# PATH_METADATA= '(?P<path_no_ext>.*)\..*'
-# PAGE_SAVE_AS= '{path_no_ext}.html'
-PAGE_URL = '{path_no_ext}.html'
-SLUGIFY_SOURCE = 'basename'
-PAGE_SAVE_AS = '{slug}.html'
+PATH_METADATA = '(?P<path_no_ext>.*)\..*'
+ARTICLE_URL = ARTICLE_SAVE_AS = PAGE_URL = PAGE_SAVE_AS = '{path_no_ext}.html'
+PAGE_SAVE_AS= '{path_no_ext}.html'
+# SLUGIFY_SOURCE = 'basename'
+# PAGE_SAVE_AS = '{slug}.html'
 
 # We want to serve info.yaml and template.rdf in addition to any images
 STATIC_PATHS = ['.htaccess', 'template.rdf', 'images']
@@ -59,7 +59,6 @@ ARTICLE_PATHS = ['articles']
 
 # Disable these pages
 ARCHIVES_SAVE_AS = ''
-ARTICLE_SAVE_AS = ''
 AUTHORS_SAVE_AS = ''
 CATEGORIES_SAVE_AS = ''
 INDEX_SAVE_AS = ''
