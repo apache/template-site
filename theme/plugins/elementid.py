@@ -107,6 +107,7 @@ def generate_elementid(content):
     all_ids = set()
     soup = BeautifulSoup(content._content, 'html.parser')
 
+    print("Checking for elementid")
     # Find all {#id} and {.class} attr tags
     for tag in soup.findAll(string=ELEMENTID_RE):
         if tag.name not in ['code', 'pre']:
@@ -121,6 +122,7 @@ def generate_elementid(content):
                 tag.string = tag.string[:m.start()]
                 print("Class %s : %s" % (tag.name,tag['class']))
 
+    print("Checking for headings")
     # Find all headings
     for tag in soup.findAll(HEADING_RE):
         if not tag['id']:
