@@ -68,6 +68,19 @@ CHARACTER_MAP = {
     ord('¶') : None
 }
 
+def init_default_config(pelican):
+    from pelican.settings import DEFAULT_CONFIG
+
+    ELEMENTID_DEFAULT = {
+        'PERMALINK': 'true',
+        'HEADINGS': 'true'
+    }
+
+    DEFAULT_CONFIG.setdefault('ELEMENTID', ELEMENTID_DEFAULT)
+    if(pelican):
+        pelican.settings.setdefault('ELEMENTID', ELEMENTID_DEFAULT)
+
+
 def unique(id, ids):
     """ Ensure id is unique in set of ids. Append '_1', '_2'... if not """
     while id in ids or not id:
