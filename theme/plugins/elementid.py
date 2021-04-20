@@ -125,7 +125,7 @@ def generate_elementid(content):
                 new_slug = new_string.translate(CHARACTER_MAP)
                 new_id = slugify(new_slug)
                 tag['id'] = unique(new_id, ids)
-                print("Slug %s : %s : %s" % (tag.['id'],new_slug,new_string))
+                print("Slug %s : %s : %s" % (tag['id'],new_slug,new_string))
                 permalink(soup, tag)
             else:
                 # existing ids are assumed to be covered by {#id} form
