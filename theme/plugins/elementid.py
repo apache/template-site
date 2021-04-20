@@ -79,8 +79,6 @@ def unique(id, ids):
     ids.add(id)
     return id
 
-def mod(mod_element, ids):
-
 def permalink(soup, mod_element):
     new_tag = soup.new_tag('a', href="#"+mod_element['id'])
     new_tag['class'] = "headerlink"
