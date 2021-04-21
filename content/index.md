@@ -20,7 +20,7 @@ The primary goal is to reach a point where a recommendation to the ASF Board can
 be made to construct a new Apache Project Management Committee (PMC) for the
 external community.
 
-## About "The Apache Way"
+## About "The Apache Way" {#the-way}
 
 - [The Apache Way](https://www.apache.org/theapacheway/index.html)
 - [Sustainable Open Source](https://s.apache.org/GhnI)
