@@ -81,7 +81,7 @@ class HtmlTreeNode(object):
 
         if not new_string:
             new_string = new_header.find_all(
-                text=lambda t: not isinstance(t, Comment),
+                text=lambda t: not isinstance(t, Comment), id!="headerlink",
                 recursive=True)
             new_string = "".join(new_string)
 
