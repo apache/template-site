@@ -214,7 +214,7 @@ def generate_elementid(content):
                 that_string = this_string[:m.start()]
                 print("string = %s" % that_string)
                 if len(that_string) < 1:
-                    del tag.string
+                    tag.string.replace_with(None)
                 else:
                     tag.string.replace_with(that_string)
                 tag['class'] = new_class
