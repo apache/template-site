@@ -203,8 +203,11 @@ def generate_elementid(content):
             this_string = str(tag.string)
             print("name = %s, string = %s" % (tagnav.name, this_string))
             m = ELEMENTID_RE.match(this_string)
-            if m.group('type') == '#':
-                new_id = m.group('id')
+            this_type = m.group('type')
+            this_id = m.group('id')
+            print("type = %s, id = %s" % (this_type, this_id))
+            if this_type == '#':
+                new_id = this_id
                 print("id = %s" % new_id)
                 tagnav['id'] = unique(new_id, ids)
                 that_string = this_string[:m.start()]
@@ -212,7 +215,7 @@ def generate_elementid(content):
                 tag.string.replace_with(that_string)
                 permalink(soup, tagnav)
             else:
-                new_class = m.group('id')
+                new_class = this_id
                 print("class = %s" % new_class)
                 tagnav['class'] = new_class
                 that_string = this_string[:m.start()]
