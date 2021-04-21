@@ -125,6 +125,10 @@ class HtmlTreeNode(object):
 
 def init_default_config(pelican):
     from pelican.settings import DEFAULT_CONFIG
+    from pelican.settings import EXTENSIONS
+
+    for name in EXTENSIONS:
+        print("Extension: %s" % name)
 
     TOC_DEFAULT = {
         'TOC_HEADERS': '^h[1-6]',
@@ -134,9 +138,6 @@ def init_default_config(pelican):
     DEFAULT_CONFIG.setdefault('TOC', TOC_DEFAULT)
     if(pelican):
         pelican.settings.setdefault('TOC', TOC_DEFAULT)
-
-    for name in EXTENSIONS:
-        print("Extension: %s" % name)
 
 
 def generate_toc(soup, content, title, ids):
