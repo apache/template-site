@@ -136,24 +136,16 @@ def init_default_config(pelican):
         pelican.settings.setdefault('TOC', TOC_DEFAULT)
 
 
-def generate_toc(soup):
+def generate_toc(soup, ids):
 
     settoc = False
-
-    try:
-        header_re = re.compile(content.metadata.get(
-            'toc_headers', content.settings['TOC']['TOC_HEADERS']))
-    except re.error as e:
-        logger.error("TOC_HEADERS '%s' is not a valid re\n%s",
-                     content.settings['TOC']['TOC_HEADERS'])
-        raise e
 
     # Find TOC tag
     tocTag = soup.find('p', text='[TOC]')
     if tocTag:
-        for header in tocTag.findAllNext(header_re):
+        for header in tocTag.findAllNext(HEADING_RE):
             settoc = True
-            node, new_header = node.add(header, all_ids)
+            node, new_header = node.add(header, ids)
             header.replaceWith(new_header)  # to get our ids back into soup
 
         if settoc:
@@ -187,6 +179,14 @@ def permalink(soup, mod_element):
 def generate_elementid(content):
     if isinstance(content, contents.Static):
         return
+
+    try:
+        header_re = re.compile(content.metadata.get(
+            'toc_headers', content.settings['TOC']['TOC_HEADERS']))
+    except re.error as e:
+        logger.error("TOC_HEADERS '%s' is not a valid re\n%s",
+                     content.settings['TOC']['TOC_HEADERS'])
+        raise e
 
     ids = set()
     soup = BeautifulSoup(content._content, 'html.parser')
@@ -226,7 +226,7 @@ def generate_elementid(content):
         permalink(soup, tag)
 
     print("Reflowing content in %s" % content.path_no_ext)
-    generate_toc(soup)
+    generate_toc(soup, ids)
     content._content = soup.decode(formatter='html')
 
 
