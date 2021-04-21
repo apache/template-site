@@ -203,6 +203,7 @@ def generate_elementid(content):
             this_string = str(tag.string)
             print("name = %s, string = %s" % (tagnav.name, this_string))
             m = ELEMENTID_RE.match(this_string)
+            print(m)
             this_type = m.group('type')
             this_id = m.group('id')
             print("type = %s, id = %s" % (this_type, this_id))
