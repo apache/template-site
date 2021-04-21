@@ -200,14 +200,17 @@ def generate_elementid(content):
     for tag in soup.findAll(string=ELEMENTID_RE):
         if tag.name not in ['code', 'pre']:
             this_string = str(tag.string)
+            print(this_string)
             m = ELEMENTID_RE.match(this_string)
             if m.group('type') == '#':
                 new_id = m.group('id')
+                print("id = %s" % new_id)
                 tag.string.replace_with(this_string[:m.start()])
                 tag['id'] = unique(new_id, ids)
                 permalink(soup, tag)
             else:
                 tag['class'] = m.group('id')
+                print("class = %s" % tag['class'])
                 tag.string.replace_with(this_string[:m.start()])
                 print("Class %s : %s" % (tag.name,tag['class']))
 
