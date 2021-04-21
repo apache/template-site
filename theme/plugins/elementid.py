@@ -125,10 +125,6 @@ class HtmlTreeNode(object):
 
 def init_default_config(pelican):
     from pelican.settings import DEFAULT_CONFIG
-    from pelican.settings import PLUGINS
-
-    for name in PLUGINS:
-        print("Plugin: %s" % name)
 
     TOC_DEFAULT = {
         'TOC_HEADERS': '^h[1-6]',
@@ -192,6 +188,9 @@ def generate_elementid(content):
         logger.error("TOC_HEADERS '%s' is not a valid re\n%s",
                      content.settings['TOC']['TOC_HEADERS'])
         raise e
+
+    for name in content.settings['PLUGINS']:
+        print("Plugin: %s" % name)
 
     ids = set()
     soup = BeautifulSoup(content._content, 'html.parser')
