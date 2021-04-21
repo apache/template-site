@@ -25,46 +25,9 @@ https://github.com/waylan/Python-Markdown/blob/master/markdown/extensions/header
 '''
 IDCOUNT_RE = re.compile(r'^(.*)_([0-9]+)$')
 
-character_map = {
-    ord('\n') : '-',
-    ord('\t') : '-',
-    ord('\r') : None,
-    ord(' ') : '-',
-    ord('\'') : None,
-    ord('\"') : None,
-    ord('?') : None,
-    ord('/') : None,
-    ord(',') : None,
-    ord('.') : None,
-    ord('(') : None,
-    ord(')') : None,
-    8216 : None,
-    8217 : None,
-    8218 : None,
-    8219 : None,
-    8220 : None,
-    8221 : None,
-    8222 : None,
-    8223 : None,
+PARA_MAP = {
     ord('¶') : None
 }
-
-def unique(id, ids):
-    """ Ensure id is unique in set of ids. Append '_1', '_2'... if not """
-    while id in ids or not id:
-        m = IDCOUNT_RE.match(id)
-        if m:
-            id = '%s_%d' % (m.group(1), int(m.group(2)) + 1)
-        else:
-            id = '%s_%d' % (id, 1)
-    ids.add(id)
-    return id
-
-
-'''
-end
-'''
-
 
 class HtmlTreeNode(object):
     def __init__(self, parent, header, level, id):
@@ -84,13 +47,7 @@ class HtmlTreeNode(object):
                 text=lambda t: not isinstance(t, Comment), id!="headerlink",
                 recursive=True)
             new_string = "".join(new_string)
-
-        if not new_id:
-            new_slug = new_string.translate(character_map)
-            new_id = slugify(new_slug)
-            print("Slug %s : %s : %s" % (new_id,new_slug,new_string))
-
-        new_id = unique(new_id, ids)  # make sure id is unique
+        new_string = new_string.translate(PARA_MAP)
 
         new_header.attrs['id'] = new_id
         if(self.level < new_level):
