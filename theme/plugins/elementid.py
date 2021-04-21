@@ -136,9 +136,10 @@ def init_default_config(pelican):
         pelican.settings.setdefault('TOC', TOC_DEFAULT)
 
 
-def generate_toc(soup, ids):
+def generate_toc(soup, title, ids):
 
     settoc = False
+    tree = node = HtmlTreeNode(None, title, 'h0', '')
 
     # Find TOC tag
     tocTag = soup.find('p', text='[TOC]')
@@ -226,7 +227,9 @@ def generate_elementid(content):
         permalink(soup, tag)
 
     print("Reflowing content in %s" % content.path_no_ext)
-    generate_toc(soup, ids)
+
+    title = content.metadata.get('title', 'Title')
+    generate_toc(soup, title, ids)
     content._content = soup.decode(formatter='html')
 
 
