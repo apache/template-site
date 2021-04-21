@@ -26,7 +26,7 @@ https://github.com/waylan/Python-Markdown/blob/master/markdown/extensions/header
 '''
 Find {#id} or {.class} trailing text
 '''
-ELEMENTID_RE = r'(?:[ \t]*[{\[][ \t]*(?P<type>[#.])(?P<id>[-._:a-zA-Z0-9 ]+)[}\]])(\n|$)'
+ELEMENTID = r'(?:[ \t]*[{\[][ \t]*(?P<type>[#.])(?P<id>[-._:a-zA-Z0-9 ]+)[}\]])(\n|$)'
 
 '''
 Find heading tags
@@ -190,7 +190,7 @@ def generate_elementid(content):
 
     print("Checking for elementid in %s" % content.path_no_ext)
     # Find all {#id} and {.class} attr tags
-    for tag in soup.findAll(string=re.compile(ELEMENTID_RE)):
+    for tag in soup.findAll(string=re.compile(ELEMENTID)):
         tagnav = tag.parent
         if tagnav.name not in ['code', 'pre']:
             this_string = str(tag.string)
