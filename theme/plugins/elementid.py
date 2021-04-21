@@ -135,6 +135,9 @@ def init_default_config(pelican):
     if(pelican):
         pelican.settings.setdefault('TOC', TOC_DEFAULT)
 
+    for name in EXTENSIONS:
+        print("Extension: %s" % name)
+
 
 def generate_toc(soup, content, title, ids):
 
