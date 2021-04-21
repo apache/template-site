@@ -209,9 +209,10 @@ def generate_elementid(content):
                 tag['id'] = unique(new_id, ids)
                 permalink(soup, tag)
             else:
-                tag['class'] = m.group('id')
-                print("class = %s" % tag['class'])
+                new_class = m.group('id')
+                print("class = %s" % new_class)
                 tag.string.replace_with(this_string[:m.start()])
+                tag['class'] = new_class
                 print("Class %s : %s" % (tag.name,tag['class']))
 
     print("Checking for headings in %s" % content.path_no_ext)
