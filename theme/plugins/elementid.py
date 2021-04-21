@@ -104,7 +104,7 @@ def generate_elementid(content):
     if isinstance(content, contents.Static):
         return
 
-    all_ids = set()
+    ids = set()
     soup = BeautifulSoup(content._content, 'html.parser')
 
     print("Checking for elementid in %s" % content.path_no_ext)
