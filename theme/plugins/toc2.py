@@ -44,7 +44,7 @@ class HtmlTreeNode(object):
 
         if not new_string:
             new_string = new_header.find_all(
-                text=lambda t: not isinstance(t, Comment), id!="headerlink",
+                text=lambda t: not isinstance(t, Comment),
                 recursive=True)
             new_string = "".join(new_string)
         new_string = new_string.translate(PARA_MAP)
