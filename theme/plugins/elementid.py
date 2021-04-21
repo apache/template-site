@@ -200,7 +200,7 @@ def generate_elementid(content):
     for tag in soup.findAll(string=ELEMENTID_RE):
         if tag.name not in ['code', 'pre']:
             this_string = str(tag.string)
-            print(this_string)
+            print("name = %s, string = %s" % (tag.name, this_string))
             m = ELEMENTID_RE.match(this_string)
             if m.group('type') == '#':
                 new_id = m.group('id')
