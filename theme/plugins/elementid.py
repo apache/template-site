@@ -192,14 +192,15 @@ def generate_elementid(content):
     # Find all {#id} and {.class} attr tags
     for tag in soup.findAll(string=re.compile(ELEMENTID)):
         tagnav = tag.parent
+        this_string = unicode(tag.string)
+        elementid_re = re.compile(ELEMENTID)
+        print("name = %s, string = %s" % (tagnav.name, this_string))
+        m = elementid_re.match(this_string)
+        print(m)
+        this_type = m.group('type')
+        this_id = m.group('id')
+        print("type = %s, id = %s" % (this_type, this_id))
         if tagnav.name not in ['code', 'pre']:
-            this_string = str(tag.string)
-            print("name = %s, string = %s" % (tagnav.name, this_string))
-            m = re.compile(ELEMENTID).match(this_string)
-            print(m)
-            this_type = m.group('type')
-            this_id = m.group('id')
-            print("type = %s, id = %s" % (this_type, this_id))
             if this_type == '#':
                 new_id = this_id
                 print("id = %s" % new_id)
