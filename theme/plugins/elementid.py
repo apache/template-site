@@ -211,7 +211,9 @@ def generate_elementid(content):
             else:
                 new_class = m.group('id')
                 print("class = %s" % new_class)
-                tag.string.replace_with(this_string[:m.start()])
+                that_string = this_string[:m.start()]
+                print("string = %s" % that_string)
+                tag.string.replace_with(that_string)
                 tag['class'] = new_class
                 print("Class %s : %s" % (tag.name,tag['class']))
 
