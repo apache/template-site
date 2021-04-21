@@ -44,6 +44,10 @@ IDCOUNT_RE = re.compile(r'^(.*)_([0-9]+)$')
 
 LINK_CHAR = u'¶'
 
+PARA_MAP = {
+    ord('¶') : None
+}
+
 CHARACTER_MAP = {
     ord('\n') : '-',
     ord('\t') : '-',
@@ -68,18 +72,98 @@ CHARACTER_MAP = {
     ord('¶') : None
 }
 
+class HtmlTreeNode(object):
+    def __init__(self, parent, header, level, id):
+        self.children = []
+        self.parent = parent
+        self.header = header
+        self.level = level
+        self.id = id
+
+    def add(self, new_header, ids):
+        new_level = new_header.name
+        new_string = new_header.string
+        new_id = new_header.attrs.get('id')
+
+        if not new_string:
+            new_string = new_header.find_all(
+                text=lambda t: not isinstance(t, Comment),
+                recursive=True)
+            new_string = "".join(new_string)
+        new_string = new_string.translate(PARA_MAP)
+
+        new_header.attrs['id'] = new_id
+        if(self.level < new_level):
+            new_node = HtmlTreeNode(self, new_string, new_level, new_id)
+            self.children += [new_node]
+            return new_node, new_header
+        elif(self.level == new_level):
+            new_node = HtmlTreeNode(self.parent, new_string, new_level, new_id)
+            self.parent.children += [new_node]
+            return new_node, new_header
+        elif(self.level > new_level):
+            return self.parent.add(new_header, ids)
+
+    def __str__(self):
+        ret = ""
+        if self.parent:
+            ret = "<a class='toc-href' href='#{0}' title='{1}'>{1}</a>".format(
+                self.id, self.header)
+
+        if self.children:
+            ret += "<ul>{}</ul>".format('{}' * len(self.children)).format(
+                *self.children)
+
+        if self.parent:
+            ret = "<li>{}</li>".format(ret)
+
+        if not self.parent:
+            ret = "<div id='toc'>{}</div>".format(ret)
+
+        return ret
+
+
 def init_default_config(pelican):
     from pelican.settings import DEFAULT_CONFIG
 
-    ELEMENTID_DEFAULT = {
-        'PERMALINK': 'true',
-        'HEADINGS': 'true'
+    TOC_DEFAULT = {
+        'TOC_HEADERS': '^h[1-6]',
+        'TOC_RUN': 'true'
     }
 
-    DEFAULT_CONFIG.setdefault('ELEMENTID', ELEMENTID_DEFAULT)
+    DEFAULT_CONFIG.setdefault('TOC', TOC_DEFAULT)
     if(pelican):
-        pelican.settings.setdefault('ELEMENTID', ELEMENTID_DEFAULT)
+        pelican.settings.setdefault('TOC', TOC_DEFAULT)
 
+
+def generate_toc(soup):
+
+    settoc = False
+
+    try:
+        header_re = re.compile(content.metadata.get(
+            'toc_headers', content.settings['TOC']['TOC_HEADERS']))
+    except re.error as e:
+        logger.error("TOC_HEADERS '%s' is not a valid re\n%s",
+                     content.settings['TOC']['TOC_HEADERS'])
+        raise e
+
+    # Find TOC tag
+    tocTag = soup.find('p', text='[TOC]')
+    if tocTag:
+        for header in tocTag.findAllNext(header_re):
+            settoc = True
+            node, new_header = node.add(header, all_ids)
+            header.replaceWith(new_header)  # to get our ids back into soup
+
+        if settoc:
+            print("Generating ToC for %s" % content.path_no_ext)
+            tree_string = '{}'.format(tree)
+            tree_soup = BeautifulSoup(tree_string, 'html.parser')
+            content.toc = tree_soup.decode(formatter='html')
+            itoc = soup.find('p', text='[TOC]')
+            if itoc:
+                itoc.replaceWith(tree_soup)
 
 def unique(id, ids):
     """ Ensure id is unique in set of ids. Append '_1', '_2'... if not """
@@ -142,6 +226,7 @@ def generate_elementid(content):
         permalink(soup, tag)
 
     print("Reflowing content in %s" % content.path_no_ext)
+    generate_toc(soup)
     content._content = soup.decode(formatter='html')
 
 
