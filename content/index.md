@@ -3,9 +3,9 @@ Title: What is Apache Petri?
 
 ![Apache Petri Logo](images/logo.svg) {.float-right}
 
-<div style="margin-left: 1rem;" class="float-right">
+<!--<div style="margin-left: 1rem;" class="float-right">
   <p><img src="images/logo.svg" alt="Apache Petri Logo" width="300" height="135"></p>
-</div>
+</div>-->
 
 The Apache Petri (as in “petri dish” –where cultures are grown and bloom) committee
 assists external project communities interested in becoming an Apache project to
