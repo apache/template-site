@@ -125,10 +125,10 @@ class HtmlTreeNode(object):
 
 def init_default_config(pelican):
     from pelican.settings import DEFAULT_CONFIG
-    from pelican.settings import EXTENSIONS
+    from pelican.settings import PLUGINS
 
-    for name in EXTENSIONS:
-        print("Extension: %s" % name)
+    for name in PLUGINS:
+        print("Plugin: %s" % name)
 
     TOC_DEFAULT = {
         'TOC_HEADERS': '^h[1-6]',
