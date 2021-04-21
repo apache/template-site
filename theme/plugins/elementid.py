@@ -124,28 +124,22 @@ def generate_elementid(content):
 
     print("Checking for headings in %s" % content.path_no_ext)
     # Find all headings
-    for tag in soup.findAll(HEADING_RE):
+    for tag in soup.findAll(HEADING_RE, id=False):
         print("heading %s" % tag.name)
-        if not tag['id']:
-            new_string = tag.string
-            if not new_string:
-                # roll up strings if no immediate string
-                new_string = tag.find_all(
-                    text=lambda t: not isinstance(t, Comment),
-                    recursive=True)
-                new_string = "".join(new_string)
+        new_string = tag.string
+        if not new_string:
+            # roll up strings if no immediate string
+            new_string = tag.find_all(
+                text=lambda t: not isinstance(t, Comment),
+                recursive=True)
+            new_string = "".join(new_string)
 
-            new_id = tag['id']
-            if not new_id:
-                # don't have an id then createit from text
-                new_slug = new_string.translate(CHARACTER_MAP)
-                new_id = slugify(new_slug)
-                tag['id'] = unique(new_id, ids)
-                print("Slug %s : %s : %s" % (tag['id'],new_slug,new_string))
-                permalink(soup, tag)
-            else:
-                # existing ids are assumed to be covered by {#id} form
-                ids.add(new_id)
+        # don't have an id then createit from text
+        new_slug = new_string.translate(CHARACTER_MAP)
+        new_id = slugify(new_slug)
+        tag['id'] = unique(new_id, ids)
+        print("Slug %s : %s : %s" % (tag['id'],new_slug,new_string))
+        permalink(soup, tag)
 
     print("Reflowing content in %s" % content.path_no_ext)
     content._content = soup.decode(formatter='html')
