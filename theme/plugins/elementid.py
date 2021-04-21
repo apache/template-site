@@ -26,12 +26,7 @@ https://github.com/waylan/Python-Markdown/blob/master/markdown/extensions/header
 '''
 Find {#id} or {.class} trailing text
 '''
-ELEMENTID_RE = re.compile(r"""
-                       (?:[ \t]*[{\[][ \t]*(?P<type>[#.])(?P<id>[-._:a-zA-Z0-9 ]+)[}\]])
-                       [ \t]*   # optional whitespace
-                       (\n|$)   #  ^^ group('id') = id attribute
-                    """,
-                    re.VERBOSE)
+ELEMENTID_RE = re.compile(r'(?:[ \t]*[{\[][ \t]*(?P<type>[#.])(?P<id>[-._:a-zA-Z0-9 ]+)[}\]])(\n|$)')
 
 '''
 Find heading tags
