@@ -198,26 +198,27 @@ def generate_elementid(content):
     print("Checking for elementid in %s" % content.path_no_ext)
     # Find all {#id} and {.class} attr tags
     for tag in soup.findAll(string=ELEMENTID_RE):
-        if tag.name not in ['code', 'pre']:
+        tagnav = tag.parent
+        if tagnav.name not in ['code', 'pre']:
             this_string = str(tag.string)
-            print("name = %s, string = %s" % (tag.name, this_string))
+            print("name = %s, string = %s" % (tagnav.name, this_string))
             m = ELEMENTID_RE.match(this_string)
             if m.group('type') == '#':
                 new_id = m.group('id')
                 print("id = %s" % new_id)
-                tag['id'] = unique(new_id, ids)
+                tagnav['id'] = unique(new_id, ids)
                 tag.string.replace_with(this_string[:m.start()])
                 permalink(soup, tag)
             else:
                 new_class = m.group('id')
                 print("class = %s" % new_class)
-                tag['class'] = new_class
+                tagnav['class'] = new_class
                 that_string = this_string[:m.start()]
                 print("string = %s" % that_string)
                 if len(that_string) < 1:
                     that_string = ""
                 tag.string.replace_with(that_string)
-                print("Class %s : %s" % (tag.name,tag['class']))
+                print("Class %s : %s" % (tag.name,tagnav['class']))
 
     print("Checking for headings in %s" % content.path_no_ext)
     # Find all headings
