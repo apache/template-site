@@ -160,8 +160,8 @@ def generate_id(content):
     for name in content.settings['PLUGINS']:
         print("Plugin: %s" % name)
 
-    for option in content.settings['GENID']:
-        print(option)
+    for option,setting in content.settings['GENID']:
+        print(option,setting)
 
         
     ids = set()
