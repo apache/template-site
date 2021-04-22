@@ -211,7 +211,7 @@ def generate_elementid(content):
         tree = node = HtmlTreeNode(None, title, 'h0', '')
         for header in tocTag.findAllNext(HEADING_RE):
             settoc = True
-            node = node.add(header)
+            node, new_header = node.add(header)
 
         if settoc:
             print("Generating ToC for %s" % content.path_no_ext)
