@@ -26,7 +26,7 @@ https://github.com/waylan/Python-Markdown/blob/master/markdown/extensions/header
 '''
 Find {#id} or {.class} trailing text
 '''
-ELEMENTID = r'(?:[ \t]*[{\[][ \t]*(?P<type>[#.])(?P<id>[-._:a-zA-Z0-9 ]+)[}\]])(\n|$)'
+ELEMENTID_RE = re.compile(r'(?:[ \t]*[{\[][ \t]*(?P<type>[#.])(?P<id>[-._:a-zA-Z0-9 ]+)[}\]])(\n|$)')
 
 '''
 Find heading tags
@@ -168,7 +168,7 @@ def permalink(soup, mod_element):
     new_tag['title'] = "Permalink"
     new_tag.string = LINK_CHAR
     mod_element.append(new_tag)
-    print("Perm %s : %s" % (mod_element.name,new_tag['href']))
+    print(newtag)
 
 def generate_elementid(content):
     if isinstance(content, contents.Static):
@@ -187,44 +187,29 @@ def generate_elementid(content):
 
     ids = set()
     soup = BeautifulSoup(content._content, 'html.parser')
+    title = content.metadata.get('title', 'Title')
 
     print("Checking for elementid in %s" % content.path_no_ext)
-    elementid_re = re.compile(ELEMENTID)
     # Find all {#id} and {.class} attr tags
-    for tag in soup.findAll(string=elementid_re):
+    for tag in soup.findAll(string=ELEMENTID_RE):
         tagnav = tag.parent
         this_string = str(tag.string)
         print("name = %s, string = %s" % (tagnav.name, this_string))
-        m = elementid_re.search(tag.string)
-        if m:
-            print(m)
-            this_type = m.group('type')
-            this_id = m.group('id')
-            print("type = %s, id = %s" % (this_type, this_id))
-            if tagnav.name not in ['code', 'pre']:
-                if this_type == '#':
-                    new_id = this_id
-                    print("id = %s" % new_id)
-                    tagnav['id'] = unique(new_id, ids)
-                    that_string = this_string[:m.start()]
-                    print("string = %s" % that_string)
-                    tag.string.replace_with(that_string)
+        if tagnav.name not in ['[document]', 'code', 'pre']:
+            m = ELEMENTID_RE.search(tag.string)
+            if m:
+                tag.string.replace_with(this_string[:m.start()])
+                if m.group('type') == '#':
+                    tagnav['id'] = unique(m.group('id'), ids)
                     permalink(soup, tagnav)
+                    print(tagnav)
                 else:
-                    new_class = this_id
-                    print("class = %s" % new_class)
-                    tagnav['class'] = new_class
-                    that_string = this_string[:m.start()]
-                    print("string = %s" % that_string)
-                    if len(that_string) < 1:
-                        that_string = ""
-                    tag.string.replace_with(that_string)
+                    tagnav['class'] = m.group('id')
                     print("Class %s : %s" % (tag.name,tagnav['class']))
 
     print("Checking for headings in %s" % content.path_no_ext)
-    # Find all headings
+    # Find all headings w/o ids
     for tag in soup.findAll(HEADING_RE, id=False):
-        print("heading %s" % tag.name)
         new_string = tag.string
         if not new_string:
             # roll up strings if no immediate string
@@ -240,10 +225,9 @@ def generate_elementid(content):
         print("Slug %s : %s : %s" % (tag['id'],new_slug,new_string))
         permalink(soup, tag)
 
-    print("Reflowing content in %s" % content.path_no_ext)
-
-    title = content.metadata.get('title', 'Title')
     generate_toc(soup, content, title, ids)
+
+    print("Reflowing content in %s" % content.path_no_ext)
     content._content = soup.decode(formatter='html')
 
 
