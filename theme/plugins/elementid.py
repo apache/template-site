@@ -65,6 +65,7 @@ CHARACTER_MAP = {
     ord('¶') : None
 }
 
+# An item in a Table of Contents
 class HtmlTreeNode(object):
     def __init__(self, parent, header, level, id):
         self.children = []
@@ -128,28 +129,6 @@ def init_default_config(pelican):
     if(pelican):
         pelican.settings.setdefault('TOC', TOC_DEFAULT)
 
-
-def generate_toc(soup, content, title, ids):
-
-    settoc = False
-    tree = node = HtmlTreeNode(None, title, 'h0', '')
-
-    # Find TOC tag
-    tocTag = soup.find('p', text='[TOC]')
-    if tocTag:
-        for header in tocTag.findAllNext(HEADING_RE):
-            settoc = True
-            node, new_header = node.add(header, ids)
-            header.replaceWith(new_header)  # to get our ids back into soup
-
-        if settoc:
-            print("Generating ToC for %s" % content.path_no_ext)
-            tree_string = '{}'.format(tree)
-            tree_soup = BeautifulSoup(tree_string, 'html.parser')
-            content.toc = tree_soup.decode(formatter='html')
-            itoc = soup.find('p', text='[TOC]')
-            if itoc:
-                itoc.replaceWith(tree_soup)
 
 def unique(id, ids):
     """ Ensure id is unique in set of ids. Append '_1', '_2'... if not """
@@ -225,7 +204,25 @@ def generate_elementid(content):
         print("Slug %s : %s : %s" % (tag['id'],new_slug,new_string))
         permalink(soup, tag)
 
-    generate_toc(soup, content, title, ids)
+    # Find TOC tag
+    tocTag = soup.find('p', text='[TOC]')
+    if tocTag:
+        # generate_toc(soup, content, title, ids)
+        settoc = False
+        tree = node = HtmlTreeNode(None, title, 'h0', '')
+        for header in tocTag.findAllNext(HEADING_RE):
+            settoc = True
+            node, new_header = node.add(header, ids)
+            # header.replaceWith(new_header)  # to get our ids back into soup
+
+        if settoc:
+            print("Generating ToC for %s" % content.path_no_ext)
+            tree_string = '{}'.format(tree)
+            tree_soup = BeautifulSoup(tree_string, 'html.parser')
+            content.toc = tree_soup.decode(formatter='html')
+            itoc = soup.find('p', text='[TOC]')
+            if itoc:
+                itoc.replaceWith(tree_soup)
 
     print("Reflowing content in %s" % content.path_no_ext)
     content._content = soup.decode(formatter='html')
