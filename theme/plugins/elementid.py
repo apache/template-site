@@ -189,15 +189,15 @@ def generate_elementid(content):
     soup = BeautifulSoup(content._content, 'html.parser')
 
     print("Checking for elementid in %s" % content.path_no_ext)
+    elementid_re = re.compile(ELEMENTID)
     # Find all {#id} and {.class} attr tags
-    for tag in soup.findAll(string=re.compile(ELEMENTID)):
+    for tag in soup.findAll(string=elementid_re):
         tagnav = tag.parent
         this_string = str(tag.string)
-        elementid_re = re.compile(ELEMENTID)
         print("name = %s, string = %s" % (tagnav.name, this_string))
         m = elementid_re.match(tag.string)
-        print(m)
         if m:
+            print(m)
             this_type = m.group('type')
             this_id = m.group('id')
             print("type = %s, id = %s" % (this_type, this_id))
