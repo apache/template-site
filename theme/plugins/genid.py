@@ -52,7 +52,6 @@ PARA_MAP = {
 }
 
 CHARACTER_MAP = {
-<<<<<<< HEAD
     ord('\n'): '-',
     ord('\t'): '-',
     ord('\r'): None,
@@ -61,7 +60,7 @@ CHARACTER_MAP = {
     ord('\"'): None,
     ord('?'): None,
     ord('/'): None,
-     ord(','): None,
+    ord(','): None,
     ord('.'): None,
     ord('('): None,
     ord(')'): None,
@@ -74,29 +73,6 @@ CHARACTER_MAP = {
     8222: None,
     8223: None,
     ord('¶'): None
-=======
-    ord('\n') : '-',
-    ord('\t') : '-',
-    ord('\r') : None,
-    ord(' ') : '-',
-    ord('\'') : None,
-    ord('\"') : None,
-    ord('?') : None,
-    ord('/') : None,
-    ord(',') : None,
-    ord('.') : None,
-    ord('(') : None,
-    ord(')') : None,
-    8216 : None,
-    8217 : None,
-    8218 : None,
-    8219 : None,
-    8220 : None,
-    8221 : None,
-    8222 : None,
-    8223 : None,
-    ord('¶') : None
->>>>>>> d1a87af89c042a4c6fce1d7d889688a762958beb
 }
 
 
