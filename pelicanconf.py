@@ -85,7 +85,7 @@ GENID = {
     'elements' : True,
     'headings' : True,
     'toc' : True,
-    'toc_headers' : r"h[1-6]"
+    'toc_headers' : r"h[1-6]",
     'permalinks' : True
 }
 
