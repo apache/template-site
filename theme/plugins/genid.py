@@ -29,7 +29,8 @@ GENID = {
     'headings' : True,
     'toc' : True,
     'toc_headers' : r"h[1-6]",
-    'permalinks' : True
+    'permalinks' : True,
+    'debug' : False
 }
 
 '''
@@ -151,7 +152,6 @@ def permalink(soup, mod_element):
     new_tag['title'] = "Permalink"
     new_tag.string = LINK_CHAR
     mod_element.append(new_tag)
-    print(mod_element)
 
 def generate_id(content):
     if isinstance(content, contents.Static):
@@ -169,19 +169,22 @@ def generate_id(content):
     soup = BeautifulSoup(content._content, 'html.parser')
     title = content.metadata.get('title', 'Title')
 
-    print("Directory of ids already in %s" % content.path_no_ext)
+    if genid['debug']:
+        print("Directory of ids already in %s" % content.path_no_ext)
     # Find all id attributes already present
     for tag in soup.findAll(id=True):
         this_id = unique(tag["id"], ids)
         # don't change existing ids
 
     if genid['elements']:
-        print("Checking for elementid in %s" % content.path_no_ext)
+        if genid['debug']:
+            print("Checking for elementid in %s" % content.path_no_ext)
         # Find all {#id} and {.class} text and assign attributes
         for tag in soup.findAll(string=ELEMENTID_RE):
             tagnav = tag.parent
             this_string = str(tag.string)
-            print("name = %s, string = %s" % (tagnav.name, this_string))
+            if genid['debug']:
+                print("name = %s, string = %s" % (tagnav.name, this_string))
             if tagnav.name not in ['[document]', 'code', 'pre']:
                 m = ELEMENTID_RE.search(tag.string)
                 if m:
@@ -190,10 +193,12 @@ def generate_id(content):
                         tagnav['id'] = unique(m.group('id'), ids)
                         if genid['permalinks']:
                             permalink(soup, tagnav)
-                            # print(tagnav)
+                            if genid['debug']:
+                                print(tagnav)
                     else:
                         tagnav['class'] = m.group('id')
-                        # print("Class %s : %s" % (tag.name,tagnav['class']))
+                        if genid['debug']:
+                            print("Class %s : %s" % (tag.name,tagnav['class']))
 
     if genid['headings']:
         print("Checking for headings in %s" % content.path_no_ext)
@@ -211,9 +216,12 @@ def generate_id(content):
             new_slug = new_string.translate(CHARACTER_MAP)
             new_id = slugify(new_slug)
             tag['id'] = unique(new_id, ids)
-            # print("Slug %s : %s : %s" % (tag['id'],new_slug,new_string))
+            if genid['debug']:
+                print("Slug %s : %s : %s" % (tag['id'],new_slug,new_string))
             if genid['permalinks']:
                 permalink(soup, tag)
+                if genid['debug']:
+                    print(tag)
 
     if genid['toc']:
         # Find TOC tag
@@ -228,15 +236,18 @@ def generate_id(content):
                 node, new_header = node.add(header)
 
             if settoc:
-                print("Generating ToC for %s" % content.path_no_ext)
+                if genid['debug']:
+                    print("Generating ToC for %s" % content.path_no_ext)
                 # convert the HtmlTreeNode into Beautiful soup
                 tree_string = '{}'.format(tree)
                 tree_soup = BeautifulSoup(tree_string, 'html.parser')
                 content.toc = tree_soup.decode(formatter='html')
-                # print(content.toc)
+                if genid['debug']:
+                    print(content.toc)
                 tocTag.replaceWith(tree_soup)
 
-    print("Reflowing content in %s" % content.path_no_ext)
+    if genid['debug']:
+        print("Reflowing content in %s" % content.path_no_ext)
     content._content = soup.decode(formatter='html')
 
 
