@@ -161,7 +161,7 @@ def generate_id(content):
         print("Plugin: %s" % name)
 
     for option in content.settings['GENID']:
-        print option
+        print(option)
 
         
     ids = set()
