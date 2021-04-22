@@ -229,7 +229,7 @@ def generate_id(content):
             new_id = slugify(new_string,'-')
             tag['id'] = unique(new_id, ids)
             if genid['debug']:
-                print("Slug %s : %s : %s" % (tag['id'], new_slug, new_string))
+                print("Slug %s : %s" % (tag['id'], new_string))
             if genid['permalinks']:
                 permalink(soup, tag)
                 if genid['debug']:
