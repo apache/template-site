@@ -120,14 +120,17 @@ class HtmlTreeNode(object):
 def init_default_config(pelican):
     from pelican.settings import DEFAULT_CONFIG
 
-    TOC_DEFAULT = {
-        'TOC_HEADERS': '^h[1-6]',
-        'TOC_RUN': 'true'
+    GENID_DEFAULT = {
+        'elements' : True,
+        'headings' : True,
+        'toc' : True,
+        'toc_headers' : r"h[1-6]",
+        'permalinks' : True
     }
 
-    DEFAULT_CONFIG.setdefault('TOC', TOC_DEFAULT)
+    DEFAULT_CONFIG.setdefault('GENID', GENID_DEFAULT)
     if(pelican):
-        pelican.settings.setdefault('TOC', TOC_DEFAULT)
+        pelican.settings.setdefault('GENID', GENID_DEFAULT)
 
 
 def unique(id, ids):
@@ -154,17 +157,13 @@ def generate_id(content):
     if isinstance(content, contents.Static):
         return
 
-    try:
-        header_re = re.compile(content.metadata.get(
-            'toc_headers', content.settings['TOC']['TOC_HEADERS']))
-    except re.error as e:
-        logger.error("TOC_HEADERS '%s' is not a valid re\n%s",
-                     content.settings['TOC']['TOC_HEADERS'])
-        raise e
-
     for name in content.settings['PLUGINS']:
         print("Plugin: %s" % name)
 
+    for option in content.settings['GENID']:
+        print option
+
+        
     ids = set()
     soup = BeautifulSoup(content._content, 'html.parser')
     title = content.metadata.get('title', 'Title')
