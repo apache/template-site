@@ -83,10 +83,10 @@ PLUGINS = ['genid', 'pelican-gfm', 'sitemap']
 
 GENID = {
     'elements' : True,
-    'headings' : True,
+    'headings' : False,
     'toc' : True,
     'toc_headers' : r"h[1-6]",
-    'permalinks' : False,
+    'permalinks' : True,
     'debug' : True
 }
 
