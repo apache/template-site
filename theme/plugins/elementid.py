@@ -215,6 +215,7 @@ def generate_elementid(content):
 
         if settoc:
             print("Generating ToC for %s" % content.path_no_ext)
+            print(tree)
             # Beautiful soup doesn't to be formatted and unformatted if you have a node or tree to add
             #tree_string = '{}'.format(tree)
             #tree_soup = BeautifulSoup(tree_string, 'html.parser')
