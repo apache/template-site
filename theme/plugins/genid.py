@@ -1,9 +1,10 @@
 '''
-elementid
+genid
 ===================================
 Generates HeadingIDs, ElementID, and PermaLinks
 First find all specified IDs and classes. Assure unique ID and permalonk
 Next find all headings missing IDs. Assure unique ID and permalink
+Generates a Table of Content
 '''
 
 from __future__ import unicode_literals
@@ -149,7 +150,7 @@ def permalink(soup, mod_element):
     mod_element.append(new_tag)
     print(mod_element)
 
-def generate_elementid(content):
+def generate_id(content):
     if isinstance(content, contents.Static):
         return
 
@@ -237,4 +238,4 @@ def register():
     signals.initialized.connect(init_default_config)
 
 
-signals.content_object_init.connect(generate_elementid)
+signals.content_object_init.connect(generate_id)
