@@ -44,9 +44,9 @@ CURRENTYEAR = date.today().year
 # Save pages using full directory preservation
 PAGE_PATHS = ['.']
 # PAGE_EXCLUDES = {'pages/pages']
-PATH_METADATA = '(?P<path_no_ext>.*)\..*'
+PATH_METADATA = '(?P<path_no_ext>.*)..*'
 ARTICLE_URL = ARTICLE_SAVE_AS = PAGE_URL = PAGE_SAVE_AS = '{path_no_ext}.html'
-PAGE_SAVE_AS= '{path_no_ext}.html'
+PAGE_SAVE_AS = '{path_no_ext}.html'
 # SLUGIFY_SOURCE = 'basename'
 # PAGE_SAVE_AS = '{slug}.html'
 
@@ -85,12 +85,12 @@ PLUGIN_PATHS = ['./theme/plugins']
 PLUGINS = ['genid', 'pelican-gfm', 'sitemap']
 
 GENID = {
-    'elements' : True,
-    'headings' : True,
-    'toc' : True,
-    'toc_headers' : r"h[1-6]",
-    'permalinks' : True,
-    'debug' : True
+    'elements': True,
+    'headings': True,
+    'toc': True,
+    'toc_headers': r"h[1-6]",
+    'permalinks': True,
+    'debug': True
 }
 
 # Markdown Configuration

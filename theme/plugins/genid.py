@@ -25,12 +25,12 @@ https://github.com/waylan/Python-Markdown/blob/master/markdown/extensions/header
 '''
 
 GENID = {
-    'elements' : True,
-    'headings' : True,
-    'toc' : True,
-    'toc_headers' : r"h[1-6]",
-    'permalinks' : True,
-    'debug' : False
+    'elements': True,
+    'headings': True,
+    'toc': True,
+    'toc_headers': r"h[1-6]",
+    'permalinks': True,
+    'debug': False
 }
 
 '''
@@ -48,32 +48,33 @@ IDCOUNT_RE = re.compile(r'^(.*)_([0-9]+)$')
 LINK_CHAR = u'¶'
 
 PARA_MAP = {
-    ord('¶') : None
+    ord('¶'): None
 }
 
 CHARACTER_MAP = {
-    ord('\n') : '-',
-    ord('\t') : '-',
-    ord('\r') : None,
-    ord(' ') : '-',
-    ord('\'') : None,
-    ord('\"') : None,
-    ord('?') : None,
-    ord('/') : None,
-     ord(',') : None,
-    ord('.') : None,
-    ord('(') : None,
-    ord(')') : None,
-    8216 : None,
-    8217 : None,
-    8218 : None,
-    8219 : None,
-    8220 : None,
-    8221 : None,
-    8222 : None,
-    8223 : None,
-    ord('¶') : None
+    ord('\n'): '-',
+    ord('\t'): '-',
+    ord('\r'): None,
+    ord(' '): '-',
+    ord('\''): None,
+    ord('\"'): None,
+    ord('?'): None,
+    ord('/'): None,
+     ord(','): None,
+    ord('.'): None,
+    ord('('): None,
+    ord(')'): None,
+    8216: None,
+    8217: None,
+    8218: None,
+    8219: None,
+    8220: None,
+    8221: None,
+    8222: None,
+    8223: None,
+    ord('¶'): None
 }
+
 
 # An item in a Table of Contents
 class HtmlTreeNode(object):
@@ -146,13 +147,15 @@ def unique(id, ids):
     ids.add(id)
     return id
 
+
 def permalink(soup, mod_element):
-    new_tag = soup.new_tag('a', href="#"+mod_element['id'])
+    new_tag = soup.new_tag('a', href="#" + mod_element['id'])
     new_tag['class'] = "headerlink"
     new_tag['title'] = "Permalink"
     new_tag.string = LINK_CHAR
     mod_element.append(new_tag)
 
+    
 def generate_id(content):
     if isinstance(content, contents.Static):
         return
@@ -160,12 +163,11 @@ def generate_id(content):
     genid = content.settings['GENID']
     if genid['debug']:
         for option in genid:
-            print("Setting: %s: %s" % (option,genid[option]))
+            print("Setting: %s: %s" % (option, genid[option]))
 
         for name in content.settings['PLUGINS']:
             print("Plugin: %s" % name)
 
-        
     ids = set()
     soup = BeautifulSoup(content._content, 'html.parser')
     title = content.metadata.get('title', 'Title')
@@ -174,7 +176,7 @@ def generate_id(content):
         print("Directory of ids already in %s" % content.path_no_ext)
     # Find all id attributes already present
     for tag in soup.findAll(id=True):
-        this_id = unique(tag["id"], ids)
+        unique(tag["id"], ids)
         # don't change existing ids
 
     if genid['elements']:
@@ -199,7 +201,7 @@ def generate_id(content):
                     else:
                         tagnav['class'] = m.group('id')
                         if genid['debug']:
-                            print("Class %s : %s" % (tag.name,tagnav['class']))
+                            print("Class %s : %s" % (tag.name, tagnav['class']))
 
     if genid['headings']:
         if genid['debug']:
@@ -219,7 +221,7 @@ def generate_id(content):
             new_id = slugify(new_slug)
             tag['id'] = unique(new_id, ids)
             if genid['debug']:
-                print("Slug %s : %s : %s" % (tag['id'],new_slug,new_string))
+                print("Slug %s : %s : %s" % (tag['id'], new_slug, new_string))
             if genid['permalinks']:
                 permalink(soup, tag)
                 if genid['debug']:
