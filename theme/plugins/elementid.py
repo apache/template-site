@@ -200,7 +200,7 @@ def generate_elementid(content):
         new_slug = new_string.translate(CHARACTER_MAP)
         new_id = slugify(new_slug)
         tag['id'] = unique(new_id, ids)
-        print("Slug %s : %s : %s" % (tag['id'],new_slug,new_string))
+        # print("Slug %s : %s : %s" % (tag['id'],new_slug,new_string))
         permalink(soup, tag)
 
     # Find TOC tag
@@ -215,12 +215,11 @@ def generate_elementid(content):
 
         if settoc:
             print("Generating ToC for %s" % content.path_no_ext)
-            print(tree)
-            # Beautiful soup doesn't to be formatted and unformatted if you have a node or tree to add
-            #tree_string = '{}'.format(tree)
-            #tree_soup = BeautifulSoup(tree_string, 'html.parser')
-            #content.toc = tree_soup.decode(formatter='html')
-            tocTag.replaceWith(tree)
+            tree_string = '{}'.format(tree)
+            tree_soup = BeautifulSoup(tree_string, 'html.parser')
+            content.toc = tree_soup.decode(formatter='html')
+            print(content.toc)
+            tocTag.replaceWith(tree_soup)
 
     print("Reflowing content in %s" % content.path_no_ext)
     content._content = soup.decode(formatter='html')
