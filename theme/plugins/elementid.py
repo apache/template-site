@@ -74,7 +74,7 @@ class HtmlTreeNode(object):
         self.level = level
         self.id = id
 
-    def add(self, new_header, ids):
+    def add(self, new_header):
         new_level = new_header.name
         new_string = new_header.string
         new_id = new_header.attrs.get('id')
@@ -86,7 +86,6 @@ class HtmlTreeNode(object):
             new_string = "".join(new_string)
         new_string = new_string.translate(PARA_MAP)
 
-        new_header.attrs['id'] = new_id
         if(self.level < new_level):
             new_node = HtmlTreeNode(self, new_string, new_level, new_id)
             self.children += [new_node]
@@ -96,7 +95,7 @@ class HtmlTreeNode(object):
             self.parent.children += [new_node]
             return new_node, new_header
         elif(self.level > new_level):
-            return self.parent.add(new_header, ids)
+            return self.parent.add(new_header)
 
     def __str__(self):
         ret = ""
@@ -207,20 +206,19 @@ def generate_elementid(content):
     # Find TOC tag
     tocTag = soup.find('p', text='[TOC]')
     if tocTag:
-        # generate_toc(soup, content, title, ids)
+        # generate_toc
         settoc = False
         tree = node = HtmlTreeNode(None, title, 'h0', '')
         for header in tocTag.findAllNext(HEADING_RE):
             settoc = True
-            node, new_header = node.add(header, ids)
-            # header.replaceWith(new_header)  # to get our ids back into soup
+            node = node.add(header)
 
         if settoc:
             print("Generating ToC for %s" % content.path_no_ext)
-            tree_string = '{}'.format(tree)
-            tree_soup = BeautifulSoup(tree_string, 'html.parser')
-            content.toc = tree_soup.decode(formatter='html')
-            tocTag.replaceWith(tree_soup)
+            #tree_string = '{}'.format(tree)
+            #tree_soup = BeautifulSoup(tree_string, 'html.parser')
+            #content.toc = tree_soup.decode(formatter='html')
+            tocTag.replaceWith(tree)
 
     print("Reflowing content in %s" % content.path_no_ext)
     content._content = soup.decode(formatter='html')
