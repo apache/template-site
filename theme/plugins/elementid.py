@@ -220,9 +220,7 @@ def generate_elementid(content):
             tree_string = '{}'.format(tree)
             tree_soup = BeautifulSoup(tree_string, 'html.parser')
             content.toc = tree_soup.decode(formatter='html')
-            itoc = soup.find('p', text='[TOC]')
-            if itoc:
-                itoc.replaceWith(tree_soup)
+            tocTag.replaceWith(tree_soup)
 
     print("Reflowing content in %s" % content.path_no_ext)
     content._content = soup.decode(formatter='html')
