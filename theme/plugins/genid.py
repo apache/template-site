@@ -11,11 +11,12 @@ from __future__ import unicode_literals
 
 import logging
 import re
+import unicodedata
 
 from bs4 import BeautifulSoup, Comment
 
 from pelican import contents, signals
-from pelican.utils import slugify
+# from pelican.utils import slugify
 
 
 logger = logging.getLogger(__name__)
@@ -135,6 +136,13 @@ def init_default_config(pelican):
         pelican.settings.setdefault('GENID', GENID)
 
 
+def slugify(value, separator):
+    """ Slugify a string, to make it URL friendly. """
+    value = unicodedata.normalize('NFKD', value).encode('ascii', 'ignore')
+    value = re.sub('[^\w\s-]', '', value.decode('ascii')).strip().lower()
+    return re.sub('[%s\s]+' % separator, separator, value)
+
+
 def unique(id, ids):
     """ Ensure id is unique in set of ids. Append '_1', '_2'... if not """
     while id in ids or not id:
@@ -217,8 +225,8 @@ def generate_id(content):
                 new_string = "".join(new_string)
 
             # don't have an id then createit from text
-            new_slug = new_string.translate(CHARACTER_MAP)
-            new_id = slugify(new_slug)
+            # new_slug = new_string.translate(CHARACTER_MAP)
+            new_id = slugify(new_string,'-')
             tag['id'] = unique(new_id, ids)
             if genid['debug']:
                 print("Slug %s : %s : %s" % (tag['id'], new_slug, new_string))
