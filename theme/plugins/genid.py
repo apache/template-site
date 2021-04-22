@@ -157,12 +157,13 @@ def generate_id(content):
     if isinstance(content, contents.Static):
         return
 
-    for name in content.settings['PLUGINS']:
-        print("Plugin: %s" % name)
-
     genid = content.settings['GENID']
-    for option in genid:
-        print("%s: %s" % (option,genid[option]))
+    if genid['debug']:
+        for option in genid:
+            print("Setting: %s: %s" % (option,genid[option]))
+
+        for name in content.settings['PLUGINS']:
+            print("Plugin: %s" % name)
 
         
     ids = set()
@@ -201,7 +202,8 @@ def generate_id(content):
                             print("Class %s : %s" % (tag.name,tagnav['class']))
 
     if genid['headings']:
-        print("Checking for headings in %s" % content.path_no_ext)
+        if genid['debug']:
+            print("Checking for headings in %s" % content.path_no_ext)
         # Find all headings w/o ids already present or assigned with {#id} text
         for tag in soup.findAll(HEADING_RE, id=False):
             new_string = tag.string
