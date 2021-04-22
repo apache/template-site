@@ -16,7 +16,6 @@ import unicodedata
 from bs4 import BeautifulSoup, Comment
 
 from pelican import contents, signals
-# from pelican.utils import slugify
 
 
 logger = logging.getLogger(__name__)
@@ -49,30 +48,6 @@ IDCOUNT_RE = re.compile(r'^(.*)_([0-9]+)$')
 LINK_CHAR = u'¶'
 
 PARA_MAP = {
-    ord('¶'): None
-}
-
-CHARACTER_MAP = {
-    ord('\n'): '-',
-    ord('\t'): '-',
-    ord('\r'): None,
-    ord(' '): '-',
-    ord('\''): None,
-    ord('\"'): None,
-    ord('?'): None,
-    ord('/'): None,
-    ord(','): None,
-    ord('.'): None,
-    ord('('): None,
-    ord(')'): None,
-    8216: None,
-    8217: None,
-    8218: None,
-    8219: None,
-    8220: None,
-    8221: None,
-    8222: None,
-    8223: None,
     ord('¶'): None
 }
 
@@ -225,11 +200,8 @@ def generate_id(content):
                 new_string = "".join(new_string)
 
             # don't have an id then createit from text
-            # new_slug = new_string.translate(CHARACTER_MAP)
             new_id = slugify(new_string,'-')
             tag['id'] = unique(new_id, ids)
-            if genid['debug']:
-                print("Slug %s : %s" % (tag['id'], new_string))
             if genid['permalinks']:
                 permalink(soup, tag)
                 if genid['debug']:
