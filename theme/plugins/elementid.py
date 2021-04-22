@@ -195,7 +195,7 @@ def generate_elementid(content):
         tagnav = tag.parent
         this_string = str(tag.string)
         print("name = %s, string = %s" % (tagnav.name, this_string))
-        m = elementid_re.find(tag.string)
+        m = elementid_re.search(tag.string)
         if m:
             print(m)
             this_type = m.group('type')
