@@ -168,7 +168,7 @@ def permalink(soup, mod_element):
     new_tag['title'] = "Permalink"
     new_tag.string = LINK_CHAR
     mod_element.append(new_tag)
-    print(newtag)
+    print(new_tag)
 
 def generate_elementid(content):
     if isinstance(content, contents.Static):
