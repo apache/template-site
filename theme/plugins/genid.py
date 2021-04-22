@@ -155,7 +155,7 @@ def permalink(soup, mod_element):
     new_tag.string = LINK_CHAR
     mod_element.append(new_tag)
 
-    
+
 def generate_id(content):
     if isinstance(content, contents.Static):
         return
