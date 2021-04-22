@@ -133,6 +133,7 @@ def unique(id, ids):
     """ Ensure id is unique in set of ids. Append '_1', '_2'... if not """
     while id in ids or not id:
         m = IDCOUNT_RE.match(id)
+        print("id=\"%s\" is a duplicate" & id)
         if m:
             id = '%s_%d' % (m.group(1), int(m.group(2)) + 1)
         else:
@@ -146,7 +147,7 @@ def permalink(soup, mod_element):
     new_tag['title'] = "Permalink"
     new_tag.string = LINK_CHAR
     mod_element.append(new_tag)
-    print(new_tag)
+    print(mod_element)
 
 def generate_elementid(content):
     if isinstance(content, contents.Static):
@@ -167,8 +168,14 @@ def generate_elementid(content):
     soup = BeautifulSoup(content._content, 'html.parser')
     title = content.metadata.get('title', 'Title')
 
+    print("Directory of ids already in %s" % content.path_no_ext)
+    # Find all id attributes already present
+    for tag in soup.findAll(id=True):
+        this_id = unique(tag["id"], ids)
+        # don't change existing ids
+
     print("Checking for elementid in %s" % content.path_no_ext)
-    # Find all {#id} and {.class} attr tags
+    # Find all {#id} and {.class} text and assign attributes
     for tag in soup.findAll(string=ELEMENTID_RE):
         tagnav = tag.parent
         this_string = str(tag.string)
@@ -180,13 +187,13 @@ def generate_elementid(content):
                 if m.group('type') == '#':
                     tagnav['id'] = unique(m.group('id'), ids)
                     permalink(soup, tagnav)
-                    print(tagnav)
+                    # print(tagnav)
                 else:
                     tagnav['class'] = m.group('id')
-                    print("Class %s : %s" % (tag.name,tagnav['class']))
+                    # print("Class %s : %s" % (tag.name,tagnav['class']))
 
     print("Checking for headings in %s" % content.path_no_ext)
-    # Find all headings w/o ids
+    # Find all headings w/o ids already present or assigned with {#id} text
     for tag in soup.findAll(HEADING_RE, id=False):
         new_string = tag.string
         if not new_string:
@@ -206,7 +213,7 @@ def generate_elementid(content):
     # Find TOC tag
     tocTag = soup.find('p', text='[TOC]')
     if tocTag:
-        # generate_toc
+        # Generate ToC from headings following the [TOC]
         settoc = False
         tree = node = HtmlTreeNode(None, title, 'h0', '')
         for header in tocTag.findAllNext(HEADING_RE):
@@ -215,10 +222,11 @@ def generate_elementid(content):
 
         if settoc:
             print("Generating ToC for %s" % content.path_no_ext)
+            # convert the HtmlTreeNode into Beautiful soup
             tree_string = '{}'.format(tree)
             tree_soup = BeautifulSoup(tree_string, 'html.parser')
             content.toc = tree_soup.decode(formatter='html')
-            print(content.toc)
+            # print(content.toc)
             tocTag.replaceWith(tree_soup)
 
     print("Reflowing content in %s" % content.path_no_ext)
