@@ -81,14 +81,14 @@ AUTHOR_FEED_RSS = None
 PLUGIN_PATHS = ['./theme/plugins']
 PLUGINS = ['genid', 'pelican-gfm', 'sitemap']
 
-GENID = {
-    'elements' : True,
-    'headings' : False,
-    'toc' : True,
-    'toc_headers' : r"h[1-6]",
-    'permalinks' : True,
-    'debug' : True
-}
+#GENID = {
+#    'elements' : True,
+#    'headings' : True,
+#    'toc' : True,
+#    'toc_headers' : r"h[1-6]",
+#    'permalinks' : True,
+#    'debug' : True
+#}
 
 # Markdown Configuration
 # MARKDOWN = {
