@@ -86,7 +86,8 @@ GENID = {
     'headings' : True,
     'toc' : True,
     'toc_headers' : r"h[1-6]",
-    'permalinks' : True
+    'permalinks' : True,
+    'debug' : False
 }
 
 # Markdown Configuration
