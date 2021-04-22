@@ -60,7 +60,7 @@ CHARACTER_MAP = {
     ord('\"') : None,
     ord('?') : None,
     ord('/') : None,
-     ord(',') : None,
+    ord(',') : None,
     ord('.') : None,
     ord('(') : None,
     ord(')') : None,
