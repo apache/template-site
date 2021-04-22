@@ -24,6 +24,14 @@ logger = logging.getLogger(__name__)
 https://github.com/waylan/Python-Markdown/blob/master/markdown/extensions/headerid.py
 '''
 
+GENID = {
+    'elements' : True,
+    'headings' : True,
+    'toc' : True,
+    'toc_headers' : r"h[1-6]",
+    'permalinks' : True
+}
+
 '''
 Find {#id} or {.class} trailing text
 '''
@@ -120,17 +128,9 @@ class HtmlTreeNode(object):
 def init_default_config(pelican):
     from pelican.settings import DEFAULT_CONFIG
 
-    GENID_DEFAULT = {
-        'elements' : True,
-        'headings' : True,
-        'toc' : True,
-        'toc_headers' : r"h[1-6]",
-        'permalinks' : True
-    }
-
-    DEFAULT_CONFIG.setdefault('GENID', GENID_DEFAULT)
+    DEFAULT_CONFIG.setdefault('GENID', GENID)
     if(pelican):
-        pelican.settings.setdefault('GENID', GENID_DEFAULT)
+        pelican.settings.setdefault('GENID', GENID)
 
 
 def unique(id, ids):
@@ -175,60 +175,66 @@ def generate_id(content):
         this_id = unique(tag["id"], ids)
         # don't change existing ids
 
-    print("Checking for elementid in %s" % content.path_no_ext)
-    # Find all {#id} and {.class} text and assign attributes
-    for tag in soup.findAll(string=ELEMENTID_RE):
-        tagnav = tag.parent
-        this_string = str(tag.string)
-        print("name = %s, string = %s" % (tagnav.name, this_string))
-        if tagnav.name not in ['[document]', 'code', 'pre']:
-            m = ELEMENTID_RE.search(tag.string)
-            if m:
-                tag.string.replace_with(this_string[:m.start()])
-                if m.group('type') == '#':
-                    tagnav['id'] = unique(m.group('id'), ids)
-                    permalink(soup, tagnav)
-                    # print(tagnav)
-                else:
-                    tagnav['class'] = m.group('id')
-                    # print("Class %s : %s" % (tag.name,tagnav['class']))
+    if genid['elements']:
+        print("Checking for elementid in %s" % content.path_no_ext)
+        # Find all {#id} and {.class} text and assign attributes
+        for tag in soup.findAll(string=ELEMENTID_RE):
+            tagnav = tag.parent
+            this_string = str(tag.string)
+            print("name = %s, string = %s" % (tagnav.name, this_string))
+            if tagnav.name not in ['[document]', 'code', 'pre']:
+                m = ELEMENTID_RE.search(tag.string)
+                if m:
+                    tag.string.replace_with(this_string[:m.start()])
+                    if m.group('type') == '#':
+                        tagnav['id'] = unique(m.group('id'), ids)
+                        if genid['permalinks']:
+                            permalink(soup, tagnav)
+                            # print(tagnav)
+                    else:
+                        tagnav['class'] = m.group('id')
+                        # print("Class %s : %s" % (tag.name,tagnav['class']))
 
-    print("Checking for headings in %s" % content.path_no_ext)
-    # Find all headings w/o ids already present or assigned with {#id} text
-    for tag in soup.findAll(HEADING_RE, id=False):
-        new_string = tag.string
-        if not new_string:
-            # roll up strings if no immediate string
-            new_string = tag.find_all(
-                text=lambda t: not isinstance(t, Comment),
-                recursive=True)
-            new_string = "".join(new_string)
+    if genid['headings']:
+        print("Checking for headings in %s" % content.path_no_ext)
+        # Find all headings w/o ids already present or assigned with {#id} text
+        for tag in soup.findAll(HEADING_RE, id=False):
+            new_string = tag.string
+            if not new_string:
+                # roll up strings if no immediate string
+                new_string = tag.find_all(
+                    text=lambda t: not isinstance(t, Comment),
+                    recursive=True)
+                new_string = "".join(new_string)
 
-        # don't have an id then createit from text
-        new_slug = new_string.translate(CHARACTER_MAP)
-        new_id = slugify(new_slug)
-        tag['id'] = unique(new_id, ids)
-        # print("Slug %s : %s : %s" % (tag['id'],new_slug,new_string))
-        permalink(soup, tag)
+            # don't have an id then createit from text
+            new_slug = new_string.translate(CHARACTER_MAP)
+            new_id = slugify(new_slug)
+            tag['id'] = unique(new_id, ids)
+            # print("Slug %s : %s : %s" % (tag['id'],new_slug,new_string))
+            if genid['permalinks']:
+                permalink(soup, tag)
 
-    # Find TOC tag
-    tocTag = soup.find('p', text='[TOC]')
-    if tocTag:
-        # Generate ToC from headings following the [TOC]
-        settoc = False
-        tree = node = HtmlTreeNode(None, title, 'h0', '')
-        for header in tocTag.findAllNext(HEADING_RE):
-            settoc = True
-            node, new_header = node.add(header)
+    if genid['toc']:
+        # Find TOC tag
+        tocTag = soup.find('p', text='[TOC]')
+        if tocTag:
+            # Generate ToC from headings following the [TOC]
+            settoc = False
+            tree = node = HtmlTreeNode(None, title, 'h0', '')
+            heading_re = re.compile(genid['toc_headers'])
+            for header in tocTag.findAllNext(heading_re):
+                settoc = True
+                node, new_header = node.add(header)
 
-        if settoc:
-            print("Generating ToC for %s" % content.path_no_ext)
-            # convert the HtmlTreeNode into Beautiful soup
-            tree_string = '{}'.format(tree)
-            tree_soup = BeautifulSoup(tree_string, 'html.parser')
-            content.toc = tree_soup.decode(formatter='html')
-            # print(content.toc)
-            tocTag.replaceWith(tree_soup)
+            if settoc:
+                print("Generating ToC for %s" % content.path_no_ext)
+                # convert the HtmlTreeNode into Beautiful soup
+                tree_string = '{}'.format(tree)
+                tree_soup = BeautifulSoup(tree_string, 'html.parser')
+                content.toc = tree_soup.decode(formatter='html')
+                # print(content.toc)
+                tocTag.replaceWith(tree_soup)
 
     print("Reflowing content in %s" % content.path_no_ext)
     content._content = soup.decode(formatter='html')
