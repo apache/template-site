@@ -82,7 +82,7 @@ AUTHOR_FEED_RSS = None
 # Pelican Plugins
 # The provided location. If the buildbot does not have a new plugin then look into requirements.txt
 PLUGIN_PATHS = ['./theme/plugins']
-PLUGINS = ['genid', 'test', 'pelican-gfm', 'sitemap']
+PLUGINS = ['genid', 'pelican-jinja2content', 'pelican-gfm', 'sitemap']
 
 GENID = {
     'elements': True,
