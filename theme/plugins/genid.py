@@ -39,6 +39,11 @@ Find {#id} or {.class} trailing text
 ELEMENTID_RE = re.compile(r'(?:[ \t]*[{\[][ \t]*(?P<type>[#.])(?P<id>[-._:a-zA-Z0-9 ]+)[}\]])(\n|$)')
 
 '''
+Find {{ metadata }}
+'''
+METADATA_RE = re.compile(r'{{ (%P<meta>[-._:a-zA-Z0-9 ]+ }}')
+
+'''
 Find heading tags
 '''
 HEADING_RE = re.compile(r'^h[1-6]')
@@ -154,6 +159,13 @@ def generate_id(content):
     ids = set()
     soup = BeautifulSoup(content._content, 'html.parser')
     title = content.metadata.get('title', 'Title')
+    currentyear = content.metadata.get('currentyear', '2001')
+
+    if genid['debug']:
+        for tag in soup.findAll(string=METADATA_RE):
+            this_string = str(tag.string)
+            m = METADATA_RE.search(this_string)
+            print(m)
 
     if genid['debug']:
         print("Directory of ids already in %s" % content.path_no_ext)

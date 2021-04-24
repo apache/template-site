@@ -93,6 +93,10 @@ GENID = {
     'debug': True
 }
 
+DEFAULT_METADATA = {
+    'currentyear': CURRENTYEAR
+}
+
 # Markdown Configuration
 # MARKDOWN = {
 #    'extensions' : [
