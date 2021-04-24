@@ -3,7 +3,8 @@ Title: What is Apache Petri?
 
 ![Apache Petri Logo](images/logo.svg) {.float-right}
 
-{{ CURRENTYEAR }} - The Apache Petri (as in “petri dish” –where cultures are grown and bloom) committee
+{% include 'currentyear.html' %}
+The Apache Petri (as in “petri dish” –where cultures are grown and bloom) committee
 assists external project communities interested in becoming an Apache project to
 learn how The Apache Software Foundation (ASF) works, its views on community, and
 how to build a healthy community for the long -term.
