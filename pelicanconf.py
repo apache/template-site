@@ -25,14 +25,19 @@ from datetime import date
 # import os
 # import sys
 
-from asfmetadata import metatdata
+# from asfmetadata import metadata
 
-# def metadata():
-#    asf_dict= {
-#        'version': "1.0"
-#    }
-#    return asf_dict
-#
+# ideally this is a separate module and is used to bring in metadata of three types.
+# (1) Simple text replacements maintained by Central Services
+# (2) Metadata models imported from JSON, XML, YAML, and other formats.
+# (3) Collated views of models.
+# All of these can be inserted into any page via {{ metadata }} inclusion.
+def metadata():
+    asf_dict= {
+        'version': "1.0"
+    }
+    return asf_dict
+
 
 PATH = 'content'
 
