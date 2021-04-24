@@ -34,8 +34,6 @@ def metadata():
     return asf_dict
 
 
-print(PYTHONPATH)
-
 PATH = 'content'
 
 TIMEZONE = 'UTC'
