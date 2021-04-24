@@ -1,3 +1,2 @@
 pelican
 pelican-sitemap
-pelican-jinja2content

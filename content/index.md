@@ -3,8 +3,7 @@ Title: What is Apache Petri?
 
 ![Apache Petri Logo](images/logo.svg) {.float-right}
 
-{% include 'currentyear.html' %}
-- The Apache Petri (as in “petri dish” –where cultures are grown and bloom) committee
+The Apache Petri (as in “petri dish” –where cultures are grown and bloom) committee
 assists external project communities interested in becoming an Apache project to
 learn how The Apache Software Foundation (ASF) works, its views on community, and
 how to build a healthy community for the long -term.
@@ -17,7 +16,7 @@ The primary goal is to reach a point where a recommendation to the ASF Board can
 be made to construct a new Apache Project Management Committee (PMC) for the
 external community.
 
-## About "The Apache Way" { #the-way}
+## About "The Apache Way" {#the-way}
 
 - [The Apache Way](https://www.apache.org/theapacheway/index.html)
 - [Sustainable Open Source](https://s.apache.org/GhnI)
