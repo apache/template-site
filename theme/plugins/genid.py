@@ -159,7 +159,7 @@ def generate_id(content):
     ids = set()
     soup = BeautifulSoup(content._content, 'html.parser')
     title = content.metadata.get('title', 'Title')
-    currentyear = content.metadata.get('currentyear', '2001')
+    version = content.metadata.get('version', '0.0')
 
     if genid['debug']:
         for tag in soup.findAll(string=METADATA_RE):
