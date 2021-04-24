@@ -20,7 +20,9 @@
 # under the License.
 
 
-asf_metadata = {
-    'version': "1.0"
-}
+def asf_metadata():
+    asf_dict= {
+        'version': "1.0"
+    }
+    return asf_dict
 
