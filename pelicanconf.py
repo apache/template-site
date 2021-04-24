@@ -25,7 +25,7 @@ from datetime import date
 # import os
 # import sys
 
-from asfmetadata import asf_metadata
+from asfmetadata import *
 
 PATH = 'content'
 
@@ -94,7 +94,7 @@ GENID = {
     'debug': True
 }
 
-DEFAULT_METADATA = asf_metadata
+DEFAULT_METADATA = metadata()
 
 # Markdown Configuration
 # MARKDOWN = {
