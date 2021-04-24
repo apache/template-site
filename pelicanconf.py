@@ -25,14 +25,14 @@ from datetime import date
 # import os
 # import sys
 
-# from asfmetadata import *
+from asfmetadata import metatdata
 
-def metadata():
-    asf_dict= {
-        'version': "1.0"
-    }
-    return asf_dict
-
+# def metadata():
+#    asf_dict= {
+#        'version': "1.0"
+#    }
+#    return asf_dict
+#
 
 PATH = 'content'
 
