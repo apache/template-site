@@ -25,7 +25,16 @@ from datetime import date
 # import os
 # import sys
 
-from asfmetadata import *
+# from asfmetadata import *
+
+def metadata():
+    asf_dict= {
+        'version': "1.0"
+    }
+    return asf_dict
+
+
+print(PYTHONPATH)
 
 PATH = 'content'
 
