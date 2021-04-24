@@ -41,7 +41,7 @@ ELEMENTID_RE = re.compile(r'(?:[ \t]*[{\[][ \t]*(?P<type>[#.])(?P<id>[-._:a-zA-Z
 '''
 Find {{ metadata }}
 '''
-METADATA_RE = re.compile(r'{{ (%P<meta>[-._:a-zA-Z0-9 ]+) }}')
+METADATA_RE = re.compile(r'{{\s*(?P<meta>[-._:a-zA-Z0-9]+)\s*}}')
 
 '''
 Find heading tags
