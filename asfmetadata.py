@@ -20,7 +20,7 @@
 # under the License.
 
 
-ASF_METADATA = {
+asf_metadata = {
     'version': "1.0"
 }
 
