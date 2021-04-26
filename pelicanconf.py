@@ -75,7 +75,7 @@ STATIC_PATHS = ['.']
 ARTICLE_PATHS = ['articles']
 
 # ignore README.md files in the content tree
-IGNORE_FILES = ['README.md', ASFDATA]
+IGNORE_FILES = ['README.md', ASF_DATA]
 
 # No translations
 PAGE_TRANSLATION_ID = None
