@@ -7,7 +7,7 @@ Pelican plugin that processes Markdown files through as an ezt template then thr
 import os
 from tempfile import NamedTemporaryFile
 
-from pelican-gfm import GFMReader
+from . import GFMReader
 
 from pelican import signals
 from pelican.utils import pelican_open
