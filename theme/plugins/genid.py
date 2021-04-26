@@ -157,7 +157,7 @@ def generate_id(content):
         for name in content.settings['PLUGINS']:
             print("Plugin: %s" % name)
 
-        for module on sys.modules:
+        for module in sys.modules:
             print("Module: %s" % module)
 
     ids = set()
