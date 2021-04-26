@@ -5,6 +5,8 @@ Pelican plugin that processes Markdown files through as an ezt template then thr
 """
 
 import os
+import sys
+
 from tempfile import NamedTemporaryFile
 
 from pelican import signals
