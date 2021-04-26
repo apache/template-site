@@ -16,7 +16,6 @@ GFMReader = sys.modules['pelican-gfm.gfm'].GFMReader
 
 class ASFReader(GFMReader):
     def read(self, source_path):
-        print("ASFReader,read: %s" % self.settings("ASF_DATA"))
         print("ASFReader.read: %s" % source_path)
         content, metadata = super().read(source_path)
         return content, metadata
