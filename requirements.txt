@@ -1,2 +1,4 @@
 pelican
 pelican-sitemap
+BeautifulSoup4
+ezt
