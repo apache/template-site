@@ -157,8 +157,8 @@ def generate_id(content):
         for name in content.settings['PLUGINS']:
             print("Plugin: %s" % name)
 
-        for module in sys.modules:
-            print("Module: %s" % module)
+        # for module in sys.modules:
+        #    print("Module: %s" % module)
 
     ids = set()
     soup = BeautifulSoup(content._content, 'html.parser')

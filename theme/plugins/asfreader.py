@@ -7,11 +7,10 @@ Pelican plugin that processes Markdown files through as an ezt template then thr
 import os
 from tempfile import NamedTemporaryFile
 
-from gfm import GFMReader
-
 from pelican import signals
 from pelican.utils import pelican_open
 
+GFMReader = sys.modules['pelican-gfm.gfm'].GFMReader
 
 class ASFReadertMixin:
     def __init__(self, *args, **kwargs):
