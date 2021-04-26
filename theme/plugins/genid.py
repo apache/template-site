@@ -12,6 +12,7 @@ from __future__ import unicode_literals
 import logging
 import re
 import unicodedata
+import sys
 
 from bs4 import BeautifulSoup, Comment
 
@@ -155,6 +156,9 @@ def generate_id(content):
 
         for name in content.settings['PLUGINS']:
             print("Plugin: %s" % name)
+
+        for module on sys.modules:
+            print("Module: %s" % module)
 
     ids = set()
     soup = BeautifulSoup(content._content, 'html.parser')
