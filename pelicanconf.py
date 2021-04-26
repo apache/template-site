@@ -55,7 +55,7 @@ SITEREPOSITORY = 'https://github.com/apache/template-site/blob/main/content/'
 CURRENTYEAR = date.today().year
 
 # ASF Data specification
-ASFDATA = ".asfdata.yaml"
+ASF_DATA = ".asfdata.yaml"
 
 # Save pages using full directory preservation
 PAGE_PATHS = ['.']

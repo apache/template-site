@@ -15,17 +15,9 @@ from pelican.utils import pelican_open
 GFMReader = sys.modules['pelican-gfm.gfm'].GFMReader
 
 class ASFReader(GFMReader):
-    def __init__(self, *args, **kwargs):
-        # super().__init__(*args, **kwargs)
-
-        # look for the ASFDATA yaml file
-        print("ASFReaderMixin.__init__: %s" % self.settings("ASFDATA"))
-        # read the ASFDATA yaml file
-        # slurp the datasources
-        # flatten for ezt
-
     def read(self, source_path):
-        print("ASFReaderMixin.read: %s" % source_path)
+        print("ASFReader,read: %s" % self.settings("ASF_DATA"))
+        print("ASFReader.read: %s" % source_path)
         content, metadata = super().read(source_path)
         return content, metadata
 
