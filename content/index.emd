@@ -2,7 +2,7 @@ Title: What is Apache Petri?
 version: 1.0
 <!-- Licensed under ALv2 -->
 
-![[]Apache Petri Logo](images/logo.svg) {.float-right}
+![Apache Petri Logo](images/logo.svg) {.float-right}
 
 [version] {{ version }}
 The Apache Petri (as in “petri dish” –where cultures are grown and bloom) committee
@@ -20,15 +20,15 @@ external community.
 
 ## About "The Apache Way" {#the-way}
 
-- [[]The Apache Way](https://www.apache.org/theapacheway/index.html)
-- [[]Sustainable Open Source](https://s.apache.org/GhnI)
-- [[]How it Works](https://www.apache.org/foundation/how-it-works.html)
-- [[]Merit](https://www.apache.org/foundation/how-it-works.html#meritocracy)
-- [[]Success at Apache](https://blogs.apache.org/foundation/category/SuccessAtApache)
+- [The Apache Way](https://www.apache.org/theapacheway/index.html)
+- [Sustainable Open Source](https://s.apache.org/GhnI)
+- [How it Works](https://www.apache.org/foundation/how-it-works.html)
+- [Merit](https://www.apache.org/foundation/how-it-works.html#meritocracy)
+- [Success at Apache](https://blogs.apache.org/foundation/category/SuccessAtApache)
 
 ## Which communities are currently mentored by Apache Petri?
 
-- [[]BuildStream](/buildstream)
+- [BuildStream](/buildstream)
 
 ## How can our project/community apply for Apache Petri mentorship?
 
@@ -38,14 +38,14 @@ questionnaires, but may introduce these should the need arise.
 
 ## Do you have additional questions?
 
-Please read our [[]FAQ](/faq) or ask questions on discuss@petri.apache.org
+Please read our [FAQ](/faq) or ask questions on discuss@petri.apache.org
 
 ## Petri Repositories and Issue Tracking
 
-- [[]Website](https://github.com/apache/petri-site)
-- [[]Issues](https://github.com/apache/petri-site/issues)
+- [Website](https://github.com/apache/petri-site)
+- [Issues](https://github.com/apache/petri-site/issues)
 
 ### Petri Status Files
 
-- [[]info.yaml](https://petri.apache.org/info.yaml)
-- [[]petri.rdf](https://projects.apache.org/project.html?petri)
+- [info.yaml](https://petri.apache.org/info.yaml)
+- [petri.rdf](https://projects.apache.org/project.html?petri)
