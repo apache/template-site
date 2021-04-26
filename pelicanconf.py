@@ -54,6 +54,9 @@ TRADEMARKS = u'Apache, the Apache feather logo, and Template are trademarks or r
 SITEREPOSITORY = 'https://github.com/apache/template-site/blob/main/content/'
 CURRENTYEAR = date.today().year
 
+# ASF Data specification
+ASFDATA = ".asfdata.yaml"
+
 # Save pages using full directory preservation
 PAGE_PATHS = ['.']
 
@@ -72,7 +75,7 @@ STATIC_PATHS = ['.']
 ARTICLE_PATHS = ['articles']
 
 # ignore README.md files in the content tree
-IGNORE_FILES = ['README.md']
+IGNORE_FILES = ['README.md', ASFDATA]
 
 # No translations
 PAGE_TRANSLATION_ID = None
@@ -95,7 +98,7 @@ AUTHOR_FEED_RSS = None
 # Pelican Plugins
 # The provided location. If the buildbot does not have a new plugin then look into requirements.txt
 PLUGIN_PATHS = ['./theme/plugins']
-PLUGINS = ['genid', 'pelican-gfm', 'sitemap']
+PLUGINS = ['genid', 'pelican-gfm', 'asfreader', 'sitemap']
 
 GENID = {
     'elements': True,
