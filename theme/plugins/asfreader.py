@@ -24,7 +24,8 @@ class ASFReader(GFMReader):
         with NamedTemporaryFile(delete=False) as f:
             f.write(content.encode('utf-8'))
             f.close()
-            template = ezt.Template(f.name, compress_whitespace=0, base_format=ezt.FORMAT_HTML)
+            # template = ezt.Template(f.name, compress_whitespace=0, base_format=ezt.FORMAT_HTML)
+            template = ezt.Template(f.name, compress_whitespace=0)
             os.unlink(f.name)
         fp = io.StringIO()
         template.generate(fp, metadata)
