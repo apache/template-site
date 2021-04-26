@@ -4,7 +4,8 @@ version: 1.0
 
 ![Apache Petri Logo](images/logo.svg) {.float-right}
 
-[title]: [version]
+<p>["Title: %0, Version: %1" title version]</p>
+
 {{ version }}
 The Apache Petri (as in “petri dish” –where cultures are grown and bloom) committee
 assists external project communities interested in becoming an Apache project to
