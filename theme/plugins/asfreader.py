@@ -19,14 +19,18 @@ GFMReader = sys.modules['pelican-gfm.gfm'].GFMReader
 class ASFReader(GFMReader):
     def read(self, source_path):
         print("ASFReader.read: %s" % source_path)
+        # read content with embedded ezt
         content, metadata = super().read(source_path)
+        # supplement metadata with ASFData
+        # write ezt content to temporary file
         template = None
         with NamedTemporaryFile(delete=False) as f:
             f.write(content.encode('utf-8'))
             f.close()
-            # template = ezt.Template(f.name, compress_whitespace=0, base_format=ezt.FORMAT_HTML)
-            template = ezt.Template(f.name, compress_whitespace=0)
+            # prepare ezt content as ezt template
+            template = ezt.Template(f.name, compress_whitespace=0, base_format=ezt.FORMAT_RAW)
             os.unlink(f.name)
+        # generate content from ezt template with metadata
         fp = io.StringIO()
         template.generate(fp, metadata)
         content = fp.getvalue()

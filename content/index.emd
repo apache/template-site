@@ -4,7 +4,7 @@ version: 1.0
 
 ![Apache Petri Logo](images/logo.svg) {.float-right}
 
-<p>["Title: %0, Version: %1" title version]</p>
+["Title: %0, Version: %1" title version]
 
 {{ version }}
 The Apache Petri (as in “petri dish” –where cultures are grown and bloom) committee
@@ -51,3 +51,5 @@ Please read our [FAQ](/faq) or ask questions on discuss@petri.apache.org
 
 - [info.yaml](https://petri.apache.org/info.yaml)
 - [petri.rdf](https://projects.apache.org/project.html?petri)
+
+["Title: %0, Version: %1" title version]
