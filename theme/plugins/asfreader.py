@@ -14,7 +14,7 @@ from pelican.utils import pelican_open
 
 GFMReader = sys.modules['pelican-gfm.gfm'].GFMReader
 
-class ASFReadertMixin:
+class ASFReader(GFMReader):
     def __init__(self, *args, **kwargs):
         # super().__init__(*args, **kwargs)
 
@@ -28,10 +28,6 @@ class ASFReadertMixin:
         print("ASFReaderMixin.read: %s" % source_path)
         content, metadata = super().read(source_path)
         return content, metadata
-
-
-class ASFReader(ASFReaderMixin, GFMReader):
-    pass
 
 
 def add_reader(readers):
