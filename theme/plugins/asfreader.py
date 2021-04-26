@@ -6,6 +6,7 @@ Pelican plugin that processes Markdown files through as an ezt template then thr
 
 import os
 import sys
+import ezt
 
 from tempfile import NamedTemporaryFile
 
@@ -18,6 +19,15 @@ class ASFReader(GFMReader):
     def read(self, source_path):
         print("ASFReader.read: %s" % source_path)
         content, metadata = super().read(source_path)
+        template = None
+        with NamedTemporaryFile(delete=False) as f:
+            f.write(content)
+            f.close()
+            template = ezt.Template(f.name, compress_whitespace=0, base_format=ezt.FORMAT_HTML)
+            os.unlink(f.name)
+        fp = io.StringIO()
+        template.generate(fp, metadata)
+        content = fp.getvalue()
         return content, metadata
 
 
