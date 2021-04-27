@@ -36,13 +36,14 @@ class ASFReader(pelican.readers.BaseReader):
 
         metadata = {
             'slug': slug,
+            'part0': parts[0]
         }
-        return parts[0], metadata
+        return metadata
 
     def read_source(self, source_path):
         # Start metadata with slug
-        content_type, metadata = self.prepare_slug(self, source_path)
-        print(content_type)
+        metadata = self.prepare_slug(source_path)
+        print(metadata['part0'])
         # Fetch the source content, with a few appropriate tweaks
         with pelican.utils.pelican_open(source_path) as text:
 
@@ -72,12 +73,12 @@ class ASFReader(pelican.readers.BaseReader):
             if sys.version_info >= (3, 0):
                 text = text.encode('utf-8')
 
-            return text, content_type, metadata
+            return text, metadata
 
 def read(self, source_path):
     print(source_path)
     # read content with embedded ezt
-    text, content_type, metadata = self.read_source(source_path)
+    text, metadata = self.read_source(source_path)
     # supplement metadata with ASFData
     print(self.settings.get("ASF_DATA", ()))
     # write ezt content to temporary file
@@ -101,7 +102,7 @@ def read(self, source_path):
 
     # Redo the slug for articles.
     # depending on pelicanconf.py this will change the output filename
-    if content_type == 'articles' and 'title' in metadata:
+    if metadata['part0'] == 'articles' and 'title' in metadata:
         metadata['slug'] = pelican.utils.slugify(
             metadata['title'],
             self.settings.get('SLUG_SUBSTITUTIONS', ()))
