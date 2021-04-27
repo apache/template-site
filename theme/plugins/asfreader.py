@@ -4,7 +4,7 @@ asfreader.py
 Pelican plugin that processes Markdown files through as an ezt template then through GitHub Flavored Markdown.
 """
 
-import os
+import os.path
 import sys
 import io
 import re
@@ -25,6 +25,8 @@ class ASFReader(GFMReader):
     RE_METADATA = re.compile('^([A-za-z]+): (.*)$')
 
     def read_source(self, source_path):
+      "Read metadata and content from the source."
+
         # Prepare the "slug", which is the target file name. It will be the
         # same as the source file, minus the leading ".../content/(articles|pages)"
         # and with the extension removed (Pelican will add .html)
@@ -69,12 +71,12 @@ class ASFReader(GFMReader):
 
             # Reassemble content, minus the metadata
             text = '\n'.join(lines[i:])
-            if sys.version_info >= (3, 0):
-                text = text.encode('utf-8')
 
             return text, metadata
 
     def read(self, source_path):
+      "Read metadata and content, process content as ezt template, then render into HTML."
+
         # read content with embedded ezt
         text, metadata = self.read_source(source_path)
         # supplement metadata with ASFData
@@ -83,6 +85,8 @@ class ASFReader(GFMReader):
         template = None
         content = None
         with NamedTemporaryFile(delete=False) as f:
+            if sys.version_info >= (3, 0):
+                text = text.encode('utf-8')
             f.write(text)
             f.close()
             # prepare ezt content as ezt template
