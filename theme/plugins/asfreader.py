@@ -75,7 +75,7 @@ def read(self, source_path):
     # read content with embedded ezt
     text, content_type, metadata = self.read_source(source_path)
     # supplement metadata with ASFData
-    print("ASFReader.read: ASF_DATA = %s", self.settings.get("ASF_DATA", ())
+    print("ASFReader.read: ASF_DATA = %s", self.settings.get("ASF_DATA", ()))
     # write ezt content to temporary file
     template = None
     with NamedTemporaryFile(delete=False) as f:
