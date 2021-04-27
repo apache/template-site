@@ -163,13 +163,23 @@ def generate_id(content):
     ids = set()
     soup = BeautifulSoup(content._content, 'html.parser')
     title = content.metadata.get('title', 'Title')
-    version = content.metadata.get('version', '0.0')
 
     if genid['debug']:
         for tag in soup.findAll(string=METADATA_RE):
             this_string = str(tag.string)
-            m = METADATA_RE.search(this_string)
-            print(m)
+            m = 1
+            modified = False
+            while m:
+                m = METADATA_RE.search(this_string)
+                if m:
+                    print(this_string)
+                    this_string = re.sub(METADATA_RE,
+                        content.metadata.get(m.group(1),''),
+                        this_string)
+                    modified = True
+            if modified:
+                print(this_string)
+                tag.string.replace_with(this_string)
 
     if genid['debug']:
         print("Directory of ids already in %s" % content.path_no_ext)
