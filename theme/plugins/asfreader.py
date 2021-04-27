@@ -14,6 +14,7 @@ from tempfile import NamedTemporaryFile
 
 from pelican import signals
 from pelican.utils import pelican_open
+import pelican.readers
 
 GFMReader = sys.modules['pelican-gfm.gfm'].GFMReader
 
@@ -106,9 +107,10 @@ def read(self, source_path):
     return content, metadata
 
 
-def add_reader(readers):
+def add_readers(readers):
+    print("Add ASFReader for emd")
     readers.reader_classes['emd'] = ASFReader
 
 
 def register():
-    signals.readers_init.connect(add_reader)
+    pelican.plugins.signals.readers_init.connect(add_readers)
