@@ -32,6 +32,7 @@ class ASFReader(pelican.readers.BaseReader):
         parts = relpath.split(os.sep)
         parts[-1] = os.path.splitext(parts[-1])[0]  # split off ext, keep base
         slug = os.sep.join(parts[1:])
+        print(slug)
 
         metadata = {
             'slug': slug,
@@ -41,6 +42,7 @@ class ASFReader(pelican.readers.BaseReader):
     def read_source(self, source_path):
         # Start metadata with slug
         content_type, metadata = self.prepare_slug(self, source_path)
+        print(content_type)
         # Fetch the source content, with a few appropriate tweaks
         with pelican.utils.pelican_open(source_path) as text:
 
@@ -73,11 +75,11 @@ class ASFReader(pelican.readers.BaseReader):
             return text, content_type, metadata
 
 def read(self, source_path):
-    print("ASFReader.read: %s" % source_path)
+    print(source_path)
     # read content with embedded ezt
     text, content_type, metadata = self.read_source(source_path)
     # supplement metadata with ASFData
-    print("ASFReader.read: ASF_DATA = %s", self.settings.get("ASF_DATA", ()))
+    print(self.settings.get("ASF_DATA", ()))
     # write ezt content to temporary file
     template = None
     with NamedTemporaryFile(delete=False) as f:
