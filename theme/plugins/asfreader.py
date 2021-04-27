@@ -88,7 +88,7 @@ def read(self, source_path):
     # generate content from ezt template with metadata
     fp = io.StringIO()
     template.generate(fp, metadata)
-    textt = fp.getvalue()
+    text = fp.getvalue()
     # Render the markdown into HTML
     if sys.version_info >= (3, 0):
         text = text.encode('utf-8')
