@@ -16,9 +16,9 @@ from pelican import signals
 from pelican.utils import pelican_open
 import pelican.readers
 
-GFMReader = sys.modules['pelican-gfm.gfm'].GFMReader
+GFMReader = sys.modules['pelican-gfm.gfm']
 
-class ASFReader(pelican.readers.BaseReader):
+class ASFReader(GFMReader):
     # Note: name starts in column 0, no whitespace before colon, will be
     #       made lower-case, and value will be stripped
     #
@@ -69,40 +69,40 @@ class ASFReader(pelican.readers.BaseReader):
 
             return text, metadata
 
-def read(self, source_path):
-    print(source_path)
-    # read content with embedded ezt
-    text, metadata = self.read_source(source_path)
-    # supplement metadata with ASFData
-    # print(self.settings.get("ASF_DATA", ()))
-    # write ezt content to temporary file
-    template = None
-    with NamedTemporaryFile(delete=False) as f:
-        f.write(text)
-        f.close()
-        # prepare ezt content as ezt template
-        template = ezt.Template(f.name, compress_whitespace=0, base_format=ezt.FORMAT_HTML)
-        os.unlink(f.name)
-    # generate content from ezt template with metadata
-    fp = io.StringIO()
-    template.generate(fp, metadata)
-    text = fp.getvalue()
-    # Render the markdown into HTML
-    gfm = GFMReader(self.settings)
-    if sys.version_info >= (3, 0):
-        text = text.encode('utf-8')
-        content = gfm.render(text).decode('utf-8')
-    else:
-        content = gfm.render(text)
+    def read(self, source_path):
+        print(source_path)
+        # read content with embedded ezt
+        text, metadata = self.read_source(source_path)
+        # supplement metadata with ASFData
+        # print(self.settings.get("ASF_DATA", ()))
+        # write ezt content to temporary file
+        template = None
+        content = None
+        with NamedTemporaryFile(delete=False) as f:
+            f.write(text)
+            f.close()
+            # prepare ezt content as ezt template
+            template = ezt.Template(f.name, compress_whitespace=0, base_format=ezt.FORMAT_HTML)
+            os.unlink(f.name)
+            # generate content from ezt template with metadata
+            fp = io.StringIO()
+            template.generate(fp, metadata)
+            text = fp.getvalue()
+            # Render the markdown into HTML
+            if sys.version_info >= (3, 0):
+                text = text.encode('utf-8')
+                content = super().render(text).decode('utf-8')
+            else:
+                content = super().render(text)
 
-    # Redo the slug for articles.
-    # depending on pelicanconf.py this will change the output filename
-    if metadata['part0'] == 'articles' and 'title' in metadata:
-        metadata['slug'] = pelican.utils.slugify(
-            metadata['title'],
-            self.settings.get('SLUG_SUBSTITUTIONS', ()))
+            # Redo the slug for articles.
+            # depending on pelicanconf.py this will change the output filename
+            if metadata['part0'] == 'articles' and 'title' in metadata:
+                metadata['slug'] = pelican.utils.slugify(
+                    metadata['title'],
+                    self.settings.get('SLUG_SUBSTITUTIONS', ()))
 
-    return content, metadata
+        return content, metadata
 
 
 def add_readers(readers):
