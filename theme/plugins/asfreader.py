@@ -82,7 +82,7 @@ class ASFReader(GFMReader):
         assert text
         assert metadata
         # supplement metadata with ASFData
-        print(self.settings.get("ASF_DATA", ()))
+        print("ASF Data file: %s" % self.settings.get("ASF_DATA", ()))
         # write ezt content to temporary file
         with NamedTemporaryFile(delete=False) as f:
             if sys.version_info >= (3, 0):
