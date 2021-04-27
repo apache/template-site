@@ -79,11 +79,13 @@ class ASFReader(GFMReader):
 
         # read content with embedded ezt
         text, metadata = self.read_source(source_path)
+        assert text
+        assert metadata
         # supplement metadata with ASFData
         print(self.settings.get("ASF_DATA", ()))
         # write ezt content to temporary file
-        template = None
-        content = None
+        # template = None
+        # content = None
         with NamedTemporaryFile(delete=False) as f:
             if sys.version_info >= (3, 0):
                 text = text.encode('utf-8')
@@ -91,6 +93,7 @@ class ASFReader(GFMReader):
             f.close()
             # prepare ezt content as ezt template
             template = ezt.Template(f.name, compress_whitespace=0, base_format=ezt.FORMAT_HTML)
+            assert template
             os.unlink(f.name)
             # generate content from ezt template with metadata
             fp = io.StringIO()
@@ -102,6 +105,7 @@ class ASFReader(GFMReader):
                 content = super().render(text).decode('utf-8')
             else:
                 content = super().render(text)
+            assert content
 
         return content, metadata
 
