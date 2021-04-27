@@ -16,7 +16,7 @@ from pelican import signals
 from pelican.utils import pelican_open
 import pelican.readers
 
-GFMReader = sys.modules['pelican-gfm.gfm']
+GFMReader = sys.modules['pelican-gfm.gfm'].GFMReader
 
 class ASFReader(GFMReader):
     # Note: name starts in column 0, no whitespace before colon, will be
