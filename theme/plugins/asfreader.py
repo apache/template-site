@@ -24,8 +24,6 @@ class ASFReader(pelican.readers.BaseReader):
     #
     RE_METADATA = re.compile('^([A-za-z]+): (.*)$')
 
-    gfm = GFMReader(self.settings)
-
     def read_source(self, source_path):
         # Prepare the "slug", which is the target file name. It will be the
         # same as the source file, minus the leading ".../content/(articles|pages)"
@@ -90,11 +88,12 @@ def read(self, source_path):
     template.generate(fp, metadata)
     text = fp.getvalue()
     # Render the markdown into HTML
+    gfm = GFMReader(self.settings)
     if sys.version_info >= (3, 0):
         text = text.encode('utf-8')
-        content = gfm().render(text).decode('utf-8')
+        content = gfm.render(text).decode('utf-8')
     else:
-        content = gfm().render(text)
+        content = gfm.render(text)
 
     # Redo the slug for articles.
     # depending on pelicanconf.py this will change the output filename
