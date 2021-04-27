@@ -32,7 +32,7 @@ class ASFReader(GFMReader):
         parts = relpath.split(os.sep)
         parts[-1] = os.path.splitext(parts[-1])[0]  # split off ext, keep base
         slug = os.sep.join(parts[1:])
-        print(slug)
+        print("slugs: %s / %s" % (parts[0],slug))
 
         metadata = {
             'slug': slug,
@@ -45,7 +45,7 @@ class ASFReader(GFMReader):
             lines = text.splitlines()
             for i in range(len(lines)):
                 line = lines[i]
-                match = RE_METADATA.match(line)
+                match = ASFReader.RE_METADATA.match(line)
                 if match:
                     name = match.group(1).strip().lower()
                     if name != 'slug':
