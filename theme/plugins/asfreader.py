@@ -103,7 +103,7 @@ class ASFReader(GFMReader):
 
 
 def add_readers(readers):
-    readers.reader_classes['emd'] = ASFReader
+    readers.reader_classes['ezmd'] = ASFReader
 
 
 def register():
