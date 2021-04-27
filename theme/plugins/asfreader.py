@@ -18,7 +18,7 @@ import pelican.readers
 
 GFMReader = sys.modules['pelican-gfm.gfm'].GFMReader
 
-class ASFReader(GFMReader):
+class ASFReader(pelican.readers.BaseReader):
     # Note: name starts in column 0, no whitespace before colon, will be
     #       made lower-case, and value will be stripped
     #
@@ -93,9 +93,9 @@ def read(self, source_path):
     # Render the markdown into HTML
     if sys.version_info >= (3, 0):
         text = text.encode('utf-8')
-        content = super().render(text).decode('utf-8')
+        content = GFMReader.render(text).decode('utf-8')
     else:
-        content = super().render(text)
+        content = GFMReader.render(text)
 
     # Redo the slug for articles.
     # depending on pelicanconf.py this will change the output filename
