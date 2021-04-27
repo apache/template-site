@@ -35,7 +35,6 @@ class ASFReader(GFMReader):
 
         metadata = {
             'slug': slug,
-            'part0': parts[0]
         }
         # Fetch the source content, with a few appropriate tweaks
         with pelican.utils.pelican_open(source_path) as text:
@@ -60,6 +59,13 @@ class ASFReader(GFMReader):
                 else:
                     # reached actual content
                     break
+
+            # Redo the slug for articles.
+            # depending on pelicanconf.py this will change the output filename
+            if parts[0] == 'articles' and 'title' in metadata:
+                metadata['slug'] = pelican.utils.slugify(
+                    metadata['title'],
+                    self.settings.get('SLUG_SUBSTITUTIONS', ()))
 
             # Reassemble content, minus the metadata
             text = '\n'.join(lines[i:])
@@ -92,13 +98,6 @@ class ASFReader(GFMReader):
                 content = super().render(text).decode('utf-8')
             else:
                 content = super().render(text)
-
-            # Redo the slug for articles.
-            # depending on pelicanconf.py this will change the output filename
-            if metadata['part0'] == 'articles' and 'title' in metadata:
-                metadata['slug'] = pelican.utils.slugify(
-                    metadata['title'],
-                    self.settings.get('SLUG_SUBSTITUTIONS', ()))
 
         return content, metadata
 
