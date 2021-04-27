@@ -32,7 +32,6 @@ class ASFReader(GFMReader):
         parts = relpath.split(os.sep)
         parts[-1] = os.path.splitext(parts[-1])[0]  # split off ext, keep base
         slug = os.sep.join(parts[1:])
-        print("slugs: %s / %s" % (parts[0],slug))
 
         metadata = {
             'slug': slug,
@@ -70,11 +69,10 @@ class ASFReader(GFMReader):
             return text, metadata
 
     def read(self, source_path):
-        print(source_path)
         # read content with embedded ezt
         text, metadata = self.read_source(source_path)
         # supplement metadata with ASFData
-        # print(self.settings.get("ASF_DATA", ()))
+        print(self.settings.get("ASF_DATA", ()))
         # write ezt content to temporary file
         template = None
         content = None
