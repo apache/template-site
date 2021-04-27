@@ -18,13 +18,13 @@ import pelican.readers
 
 GFMReader = sys.modules['pelican-gfm.gfm'].GFMReader
 
-gfm = GFMReader()
-
 class ASFReader(pelican.readers.BaseReader):
     # Note: name starts in column 0, no whitespace before colon, will be
     #       made lower-case, and value will be stripped
     #
     RE_METADATA = re.compile('^([A-za-z]+): (.*)$')
+
+    gfm = GFMReader(self.settings)
 
     def read_source(self, source_path):
         # Prepare the "slug", which is the target file name. It will be the
