@@ -24,7 +24,7 @@ class ASFReader(pelican.readers.BaseReader):
     #
     RE_METADATA = re.compile('^([A-za-z]+): (.*)$')
 
-    def prepare_slug(self, source_path):
+    def read_source(self, source_path):
         # Prepare the "slug", which is the target file name. It will be the
         # same as the source file, minus the leading ".../content/(articles|pages)"
         # and with the extension removed (Pelican will add .html)
@@ -38,12 +38,6 @@ class ASFReader(pelican.readers.BaseReader):
             'slug': slug,
             'part0': parts[0]
         }
-        return metadata
-
-    def read_source(self, source_path):
-        # Start metadata with slug
-        metadata = self.prepare_slug(source_path)
-        print(metadata['part0'])
         # Fetch the source content, with a few appropriate tweaks
         with pelican.utils.pelican_open(source_path) as text:
 
@@ -80,7 +74,7 @@ def read(self, source_path):
     # read content with embedded ezt
     text, metadata = self.read_source(source_path)
     # supplement metadata with ASFData
-    print(self.settings.get("ASF_DATA", ()))
+    # print(self.settings.get("ASF_DATA", ()))
     # write ezt content to temporary file
     template = None
     with NamedTemporaryFile(delete=False) as f:
