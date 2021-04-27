@@ -25,7 +25,7 @@ class ASFReader(GFMReader):
     RE_METADATA = re.compile('^([A-za-z]+): (.*)$')
 
     def read_source(self, source_path):
-      "Read metadata and content from the source."
+        "Read metadata and content from the source."
 
         # Prepare the "slug", which is the target file name. It will be the
         # same as the source file, minus the leading ".../content/(articles|pages)"
@@ -75,7 +75,7 @@ class ASFReader(GFMReader):
             return text, metadata
 
     def read(self, source_path):
-      "Read metadata and content, process content as ezt template, then render into HTML."
+        "Read metadata and content, process content as ezt template, then render into HTML."
 
         # read content with embedded ezt
         text, metadata = self.read_source(source_path)
