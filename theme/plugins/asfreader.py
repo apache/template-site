@@ -84,8 +84,6 @@ class ASFReader(GFMReader):
         # supplement metadata with ASFData
         print(self.settings.get("ASF_DATA", ()))
         # write ezt content to temporary file
-        # template = None
-        # content = None
         with NamedTemporaryFile(delete=False) as f:
             if sys.version_info >= (3, 0):
                 text = text.encode('utf-8')
