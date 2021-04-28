@@ -52,4 +52,4 @@ def add_readers(readers):
 
 
 def register():
-    signals.readers_init.connect(add_readers)
+    pelican.plugins.signals.readers_init.connect(add_readers)
