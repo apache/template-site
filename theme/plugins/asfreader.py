@@ -38,7 +38,7 @@ class ASFReader(GFMReader):
         #    f.write(text)
         #    f.close()
         # prepare ezt content as ezt template
-        template = ezt.Template()
+        template = ezt.Template(compress_whitespace=0)
         template.parse(text, base_format=ezt.FORMAT_HTML)
         assert template
         #    os.unlink(f.name)
