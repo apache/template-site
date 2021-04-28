@@ -20,11 +20,11 @@ GFMReader = sys.modules['pelican-gfm.gfm'].GFMReader
 
 class ASFReader(GFMReader):
     enabled = True
+    file_extensions = ['ezmd', 'emd']
+
     # Note: name starts in column 0, no whitespace before colon, will be
     #       made lower-case, and value will be stripped
     #
-    file_extensions = ['ezmd', 'emd']
-
     RE_METADATA = re.compile('^([A-za-z]+): (.*)$')
 
     def read_source(self, source_path):
@@ -81,7 +81,7 @@ class ASFReader(GFMReader):
         "Read metadata and content, process content as ezt template, then render into HTML."
 
         # read content with embedded ezt
-        text, metadata = self.read_source(source_path)
+        text, metadata = super().read_source(source_path)
         assert text
         assert metadata
         # supplement metadata with ASFData
