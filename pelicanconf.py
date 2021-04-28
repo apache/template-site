@@ -25,19 +25,6 @@ from datetime import date
 # import os
 # import sys
 
-# from asfmetadata import metadata
-
-# ideally this is a separate module and is used to bring in metadata of three types.
-# (1) Simple text replacements maintained by Central Services
-# (2) Metadata models imported from JSON, XML, YAML, and other formats.
-# (3) Collated views of models.
-# All of these can be inserted into any page via {{ metadata }} inclusion.
-def metadata():
-    asf_dict= {
-        'version': "1.0"
-    }
-    return asf_dict
-
 PATH = 'content'
 
 TIMEZONE = 'UTC'
@@ -59,14 +46,17 @@ ASF_DATA = ".asfdata.yaml"
 # Save pages using full directory preservation
 PAGE_PATHS = ['.']
 
+# Path with no extension
 PATH_METADATA = '(?P<path_no_ext>.*)\..*'
+
+# We are not slugifying any pages
 ARTICLE_URL = ARTICLE_SAVE_AS = PAGE_URL = PAGE_SAVE_AS = '{path_no_ext}.html'
 
+# If we wanted to have articles.
 # SLUGIFY_SOURCE = 'basename'
-# PAGE_SAVE_AS = '{slug}.html'
+# ARTICLE_SAVE_AS = '{slug}.html'
 
-# We want to serve info.yaml and template.rdf in addition to any images
-# STATIC_PATHS = ['.htaccess', 'template.rdf', 'images']
+# We want to serve our static files mixed with content.
 STATIC_PATHS = ['.']
 
 # We don't use articles, but we don't want pelican to think
@@ -93,6 +83,10 @@ CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
+
+# Theme
+THEME = './theme/apache'
+DEFAULT_DATE = 'fs'
 
 # Pelican Plugins
 # The provided location. If the buildbot does not have a new plugin then look into requirements.txt
@@ -123,21 +117,12 @@ TEST = {
 }
 
 # Markdown Configuration
-# If using GFMReader or ASFReader then MARKDOWN configuration is meaningless
+# When using GFMReader or ASFReader then MARKDOWN configuration is meaningless
 # MARKDOWN = {
-#    'extensions' : [
-#        'markdown.extensions.codehilite',
-#        'markdown.extensions.extra',
-#        'markdown.extensions.headerid',
-#        'markdown.extensions.attr_list',
-#        'markdown.extensions.smarty'
-#    ],
-#    'extension_configs': {
-#        'markdown.extensions.codehilite': {'css_class': 'highlight'},
-#    }
 # }
 
 # TOC Generator
+# When using GENID TOC generation then this is unused.
 # TOC_HEADERS = r"h[1-6]"
 
 # Sitemap Generator
