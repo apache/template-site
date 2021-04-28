@@ -30,7 +30,7 @@ def init_default_config(pelican):
     if pelican:
         pelican.settings.setdefault('ASFDATA', ASFDATA)
 
-        asfdata = pelican.settings('ASFDATA')
+        asfdata = pelican.settings.get('ASFDATA', DEFAULT_CONFIG(ASFDATA))
         print(asfdata)
         # for key in asfdata:
         #    print("ASFDATA[%s] = %s" % (key,asfdata[key]))
