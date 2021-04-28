@@ -48,4 +48,4 @@ def register():
     signals.initialized.connect(init_default_config)
 
 
-signals.page_generator_preread.connect(check_content)
+signals.content_object_init.connect(check_content)

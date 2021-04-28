@@ -121,8 +121,6 @@ TEST = {
     'test': 'Testing 1 2 3'
 }
 
-DEFAULT_METADATA = metadata()
-
 # Markdown Configuration
 # If using GFMReader or ASFReader then MARKDOWN configuration is meaningless
 # MARKDOWN = {
