@@ -32,7 +32,7 @@ def init_default_config(pelican):
 
         asfdata = pelican.settings('ASFDATA')
         for key in asfdata:
-            print("ASFDATA[%s] = %s" % (key,asfdata[key])
+            print("ASFDATA[%s] = %s" % (key,asfdata[key]))
 
 
 def register():
