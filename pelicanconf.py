@@ -116,6 +116,11 @@ GENID = {
     'debug': True
 }
 
+TEST = {
+    'debug': False,
+    'test': 'Testing 1 2 3'
+}
+
 DEFAULT_METADATA = metadata()
 
 # Markdown Configuration
