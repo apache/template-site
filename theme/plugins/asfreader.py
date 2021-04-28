@@ -10,10 +10,7 @@ import io
 import re
 import ezt
 
-from tempfile import NamedTemporaryFile
-
-from pelican import signals
-from pelican.utils import pelican_open
+import pelican.plugins.signals
 import pelican.readers
 
 GFMReader = sys.modules['pelican-gfm.gfm'].GFMReader
@@ -25,23 +22,16 @@ class ASFReader(GFMReader):
     def read(self, source_path):
         "Read metadata and content, process content as ezt template, then render into HTML."
 
-        # read content with embedded ezt
+        # read content with embedded ezt - use GFMReader
         text, metadata = super().read_source(source_path)
         assert text
         assert metadata
         # supplement metadata with ASFData
         print("ASF Data file: %s" % self.settings.get("ASF_DATA", ()))
-        # write ezt content to temporary file
-        # with NamedTemporaryFile(delete=False) as f:
-        #    if sys.version_info >= (3, 0):
-        #        text = text.encode('utf-8')
-        #    f.write(text)
-        #    f.close()
         # prepare ezt content as ezt template
         template = ezt.Template(compress_whitespace=0)
         template.parse(text, base_format=ezt.FORMAT_HTML)
         assert template
-        #    os.unlink(f.name)
         # generate content from ezt template with metadata
         fp = io.StringIO()
         template.generate(fp, metadata)
@@ -62,5 +52,4 @@ def add_readers(readers):
 
 
 def register():
-    print("ASFReader registered")
-    pelican.plugins.signals.readers_init.connect(add_readers)
+    signals.readers_init.connect(add_readers)
