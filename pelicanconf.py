@@ -99,7 +99,10 @@ AUTHOR_FEED_RSS = None
 PLUGIN_PATHS = ['./theme/plugins']
 PLUGINS = ['genid', 'pelican-gfm', 'asfreader', 'sitemap']
 
-# REader configuration
+GFMReader = sys.modules['pelican-gfm.gfm'].GFMReader
+ASFReader = sys.modules['asfreader'].ASFReader
+
+# Reader configuration
 READERS = {
     'html': None,
     'md': GFMReader,
