@@ -23,7 +23,7 @@ from __future__ import unicode_literals
 from datetime import date
 
 # import os
-import sys
+# import sys
 
 # from asfmetadata import metadata
 
@@ -99,15 +99,12 @@ AUTHOR_FEED_RSS = None
 PLUGIN_PATHS = ['./theme/plugins']
 PLUGINS = ['genid', 'pelican-gfm', 'asfreader', 'sitemap']
 
-GFMReader = sys.modules['pelican-gfm.gfm'].GFMReader
-ASFReader = sys.modules['asfreader'].ASFReader
-
-# Reader configuration
-READERS = {
-    'html': None,
-    'md': GFMReader,
-    'ezmd': ASFReader
-}
+# Reader configuration - Python does know about these plugins yet.
+# READERS = {
+#    'html': None,
+#    'md': GFMReader,
+#    'ezmd': ASFReader
+# }
 
 # Configure the genid pluigin
 GENID = {
