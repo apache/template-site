@@ -19,9 +19,12 @@ import pelican.readers
 GFMReader = sys.modules['pelican-gfm.gfm'].GFMReader
 
 class ASFReader(GFMReader):
+    enabled = True
     # Note: name starts in column 0, no whitespace before colon, will be
     #       made lower-case, and value will be stripped
     #
+    file_extensions = ['ezmd', 'emd']
+
     RE_METADATA = re.compile('^([A-za-z]+): (.*)$')
 
     def read_source(self, source_path):
