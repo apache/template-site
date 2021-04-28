@@ -41,7 +41,7 @@ SITEREPOSITORY = 'https://github.com/apache/template-site/blob/main/content/'
 CURRENTYEAR = date.today().year
 
 # ASF Data specification
-ASF_DATA = ".asfdata.yaml"
+ASF_DATA_YAML = ".asfdata.yaml"
 
 # Save pages using full directory preservation
 PAGE_PATHS = ['.']
@@ -64,7 +64,7 @@ STATIC_PATHS = ['.']
 ARTICLE_PATHS = ['articles']
 
 # ignore README.md files in the content tree
-IGNORE_FILES = ['README.md', ASF_DATA]
+IGNORE_FILES = ['README.md', ASF_DATA_YAML]
 
 # No translations
 PAGE_TRANSLATION_ID = None
@@ -114,9 +114,9 @@ GENID = {
 }
 
 # Configure the asfdata plugin
-ASFDATA = {
-    'data': ASF_DATA,
-    'ignore': False,
+ASF_DATA = {
+    'data': ASF_DATA_YAML,
+    'process': True,
     'debug': True
 }
 

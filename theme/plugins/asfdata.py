@@ -18,25 +18,24 @@ logger = logging.getLogger(__name__)
 https://github.com/waylan/Python-Markdown/blob/master/markdown/extensions/headerid.py
 '''
 
-ASFDATA = {
-    'ignore': True,
+ASF_DATA = {
+    'process': False,
     'debug': False
 }
 
 def init_default_config(pelican):
     from pelican.settings import DEFAULT_CONFIG
 
-    DEFAULT_CONFIG.setdefault('ASFDATA', ASFDATA)
-    print("default is set")
+    DEFAULT_CONFIG.setdefault('ASF_DATA', ASF_DATA)
     if pelican:
-        pelican.settings.setdefault('ASFDATA', ASFDATA)
-        print("pelican.settings default is set")
+        pelican.settings.setdefault('ASF_DATA', ASF_DATA)
 
-        asf_data = pelican.settings.get('ASFDATA', DEFAULT_CONFIG['ASFDATA'])
+        asf_data = pelican.settings.get('ASF_DATA', DEFAULT_CONFIG['ASF_DATA'])
         print(asf_data)
         for key in asf_data:
-            print("ASFDATA[%s] = %s" % (key,asf_data[key]))
-
+            print("ASF_DATA[%s] = %s" % (key,asf_data[key]))
+        if asf_data['process']:
+            print("Processing %s" % asf_data['data'])
 
 def register():
     signals.initialized.connect(init_default_config)

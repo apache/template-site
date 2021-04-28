@@ -150,10 +150,10 @@ def generate_id(content):
     if isinstance(content, contents.Static):
         return
 
-    test_setting = content.settings['ASFDATA']
-    if test_setting:
-        for option in test_setting:
-            print("Test Setting: %s: %s" % (option, test_setting[option]))
+    asf_data = content.settings['ASF_DATA']
+    if asf_data:
+        for option in asf_data:
+            print("ASF Data: %s: %s" % (option, asf_data[option]))
     
     genid = content.settings['GENID']
     if genid['debug']:
