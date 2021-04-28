@@ -38,7 +38,6 @@ def metadata():
     }
     return asf_dict
 
-
 PATH = 'content'
 
 TIMEZONE = 'UTC'
@@ -100,6 +99,14 @@ AUTHOR_FEED_RSS = None
 PLUGIN_PATHS = ['./theme/plugins']
 PLUGINS = ['genid', 'pelican-gfm', 'asfreader', 'sitemap']
 
+# REader configuration
+READERS = {
+    'html': None,
+    'md': GFMReader,
+    'ezmd': ASFReader
+}
+
+# Configure the genid pluigin
 GENID = {
     'elements': True,
     'headings': True,
@@ -112,6 +119,7 @@ GENID = {
 DEFAULT_METADATA = metadata()
 
 # Markdown Configuration
+# If using GFMReader or ASFReader then MARKDOWN configuration is meaningless
 # MARKDOWN = {
 #    'extensions' : [
 #        'markdown.extensions.codehilite',
@@ -126,7 +134,7 @@ DEFAULT_METADATA = metadata()
 # }
 
 # TOC Generator
-TOC_HEADERS = r"h[1-6]"
+# TOC_HEADERS = r"h[1-6]"
 
 # Sitemap Generator
 SITEMAP = {
