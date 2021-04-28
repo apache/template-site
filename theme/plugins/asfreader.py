@@ -32,34 +32,34 @@ class ASFReader(GFMReader):
         # supplement metadata with ASFData
         print("ASF Data file: %s" % self.settings.get("ASF_DATA", ()))
         # write ezt content to temporary file
-        with NamedTemporaryFile(delete=False) as f:
-            if sys.version_info >= (3, 0):
-                text = text.encode('utf-8')
-            f.write(text)
-            f.close()
-            # prepare ezt content as ezt template
-            template = ezt.Template(f.name, compress_whitespace=0, base_format=ezt.FORMAT_HTML)
-            assert template
-            os.unlink(f.name)
-            # generate content from ezt template with metadata
-            fp = io.StringIO()
-            template.generate(fp, metadata)
-            text = fp.getvalue()
-            # Render the markdown into HTML
-            if sys.version_info >= (3, 0):
-                text = text.encode('utf-8')
-                content = super().render(text).decode('utf-8')
-            else:
-                content = super().render(text)
-            assert content
+        # with NamedTemporaryFile(delete=False) as f:
+        #    if sys.version_info >= (3, 0):
+        #        text = text.encode('utf-8')
+        #    f.write(text)
+        #    f.close()
+        # prepare ezt content as ezt template
+        template = ezt.Template.parse(text, base_format=ezt.FORMAT_HTML)
+        assert template
+        #    os.unlink(f.name)
+        # generate content from ezt template with metadata
+        fp = io.StringIO()
+        template.generate(fp, metadata)
+        text = fp.getvalue()
+        # Render the markdown into HTML
+        if sys.version_info >= (3, 0):
+            text = text.encode('utf-8')
+            content = super().render(text).decode('utf-8')
+        else:
+            content = super().render(text)
+        assert content
 
         return content, metadata
 
 
-# def add_readers(readers):
-#    readers.reader_classes['ezmd'] = ASFReader
+def add_readers(readers):
+    readers.reader_classes['ezmd'] = ASFReader
 
 
 def register():
     print("ASFReader registered")
-#    pelican.plugins.signals.readers_init.connect(add_readers)
+    pelican.plugins.signals.readers_init.connect(add_readers)
