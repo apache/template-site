@@ -169,10 +169,10 @@ def generate_id(content):
     ids = set()
     soup = BeautifulSoup(content._content, 'html.parser')
     title = content.metadata.get('title', 'Title')
-    slug = content.metadata.get('slug', 'Slug')
+    print("source: %s; rel: %s" %(content.source_path, content.relative_source_path))
 
     if genid['debug']:
-        print("Metadata inclusion in slug: %s" % slug)
+        print("Metadata inclusion in %s" % content.path_no_ext)
     if genid['metadata']:
         for tag in soup.findAll(string=METADATA_RE):
             this_string = str(tag.string)
