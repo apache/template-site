@@ -169,8 +169,8 @@ def generate_id(content):
     ids = set()
     soup = BeautifulSoup(content._content, 'html.parser')
     title = content.metadata.get('title', 'Title')
-    content.metadata['rel_source_path'] = content.relative_source_path
-    rel_source = content.metadata['rel_source_path']
+    content.metadata['relative_source_path'] = content.relative_source_path
+    rel_source = content.metadata['relative_source_path']
     
     print("source: %s" % rel_source)
 
