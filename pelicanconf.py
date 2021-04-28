@@ -23,7 +23,7 @@ from __future__ import unicode_literals
 from datetime import date
 
 # import os
-# import sys
+import sys.modules
 
 # from asfmetadata import metadata
 
