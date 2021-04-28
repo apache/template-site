@@ -150,7 +150,7 @@ def generate_id(content):
     if isinstance(content, contents.Static):
         return
 
-    test_setting = content.settings['TEST']
+    test_setting = content.settings['ASFDATA']
     if test_setting:
         for option in test_setting:
             print("Test Setting: %s: %s" % (option, test_setting[option]))
@@ -170,12 +170,9 @@ def generate_id(content):
     soup = BeautifulSoup(content._content, 'html.parser')
     title = content.metadata.get('title', 'Title')
     content.metadata['relative_source_path'] = content.relative_source_path
-    rel_source = content.metadata['relative_source_path']
-    
-    print("source: %s" % rel_source)
 
     if genid['debug']:
-        print("Metadata inclusion in %s" % content.path_no_ext)
+        print("Metadata inclusion in %s" % content.relative_source_path)
     if genid['metadata']:
         for tag in soup.findAll(string=METADATA_RE):
             this_string = str(tag.string)
@@ -194,7 +191,7 @@ def generate_id(content):
                 tag.string.replace_with(this_string)
 
     if genid['debug']:
-        print("Directory of ids already in %s" % content.path_no_ext)
+        print("Directory of ids already in %s" % content.relative_source_path)
     # Find all id attributes already present
     for tag in soup.findAll(id=True):
         unique(tag["id"], ids)
@@ -202,7 +199,7 @@ def generate_id(content):
 
     if genid['elements']:
         if genid['debug']:
-            print("Checking for elementid in %s" % content.path_no_ext)
+            print("Checking for elementid in %s" % content.relative_source_path)
         # Find all {#id} and {.class} text and assign attributes
         for tag in soup.findAll(string=ELEMENTID_RE):
             tagnav = tag.parent
@@ -226,7 +223,7 @@ def generate_id(content):
 
     if genid['headings']:
         if genid['debug']:
-            print("Checking for headings in %s" % content.path_no_ext)
+            print("Checking for headings in %s" % content.relative_source_path)
         # Find all headings w/o ids already present or assigned with {#id} text
         for tag in soup.findAll(HEADING_RE, id=False):
             new_string = tag.string
@@ -259,7 +256,7 @@ def generate_id(content):
 
             if settoc:
                 if genid['debug']:
-                    print("Generating ToC for %s" % content.path_no_ext)
+                    print("Generating ToC for %s" % content.relative_source_path)
                 # convert the HtmlTreeNode into Beautiful soup
                 tree_string = '{}'.format(tree)
                 tree_soup = BeautifulSoup(tree_string, 'html.parser')
@@ -269,7 +266,7 @@ def generate_id(content):
                 tocTag.replaceWith(tree_soup)
 
     if genid['debug']:
-        print("Reflowing content in %s" % content.path_no_ext)
+        print("Reflowing content in %s" % content.relative_source_path)
     content._content = soup.decode(formatter='html')
 
 
