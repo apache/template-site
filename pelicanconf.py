@@ -86,7 +86,9 @@ AUTHOR_FEED_RSS = None
 
 # Theme
 THEME = './theme/apache'
-DEFAULT_DATE = 'fs'
+
+# Uncomment this to put the build date on every page.
+# DEFAULT_DATE = 'fs'
 
 # Pelican Plugins
 # The provided location. If the buildbot does not have a new plugin then look into requirements.txt
