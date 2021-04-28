@@ -60,5 +60,6 @@ class ASFReader(GFMReader):
 #    readers.reader_classes['ezmd'] = ASFReader
 
 
-# def register():
+def register():
+    print("ASFReader registered")
 #    pelican.plugins.signals.readers_init.connect(add_readers)
