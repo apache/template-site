@@ -22,25 +22,6 @@ TEST = {
     'debug': False
 }
 
-'''
-Find {#id} or {.class} trailing text
-'''
-ELEMENTID_RE = re.compile(r'(?:[ \t]*[{\[][ \t]*(?P<type>[#.])(?P<id>[-._:a-zA-Z0-9 ]+)[}\]])(\n|$)')
-
-'''
-Find heading tags
-'''
-HEADING_RE = re.compile(r'^h[1-6]')
-
-IDCOUNT_RE = re.compile(r'^(.*)_([0-9]+)$')
-
-LINK_CHAR = u'¶'
-
-PARA_MAP = {
-    ord('¶'): None
-}
-
-
 def init_default_config(pelican):
     from pelican.settings import DEFAULT_CONFIG
 
@@ -54,16 +35,13 @@ def check_content(content):
         return
 
     test_setting = content.settings['TEST']
-    if test_setting['debug']:
-        for option in test_setting:
-            print("Setting: %s: %s" % (option, test_setting[option]))
+    for option in test_setting:
+        print("Setting: %s: %s" % (option, test_setting[option]))
 
     title = content.metadata.get('title', 'Title')
     print("Testing %s" % content.path_no_ext)
     print(title)
     print(content._content)
-
-    # content._content = soup.decode(formatter='html')
 
 
 def register():
