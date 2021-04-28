@@ -30,22 +30,5 @@ def init_default_config(pelican):
         pelican.settings.setdefault('TEST', TEST)
 
 
-def check_content(content):
-    if isinstance(content, contents.Static):
-        return
-
-    test_setting = content.settings['TEST']
-    for option in test_setting:
-        print("Setting: %s: %s" % (option, test_setting[option]))
-
-    title = content.metadata.get('title', 'Title')
-    print("Testing %s" % content.path_no_ext)
-    print(title)
-    print(content._content)
-
-
 def register():
     signals.initialized.connect(init_default_config)
-
-
-signals.content_object_init.connect(check_content)

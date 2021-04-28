@@ -108,6 +108,7 @@ PLUGINS = ['genid', 'pelican-gfm', 'asfreader', 'sitemap', 'test']
 
 # Configure the genid pluigin
 GENID = {
+    'metadata': True,
     'elements': True,
     'headings': True,
     'toc': True,

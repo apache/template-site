@@ -26,6 +26,7 @@ https://github.com/waylan/Python-Markdown/blob/master/markdown/extensions/header
 '''
 
 GENID = {
+    'metadata': True,
     'elements': True,
     'headings': True,
     'toc': True,
@@ -149,6 +150,11 @@ def generate_id(content):
     if isinstance(content, contents.Static):
         return
 
+    test_setting = content.settings['TEST']
+    if test_setting:
+        for option in test_setting:
+            print("Test Setting: %s: %s" % (option, test_setting[option]))
+    
     genid = content.settings['GENID']
     if genid['debug']:
         for option in genid:
@@ -163,8 +169,11 @@ def generate_id(content):
     ids = set()
     soup = BeautifulSoup(content._content, 'html.parser')
     title = content.metadata.get('title', 'Title')
+    slug = content.metadata.get('slug', 'Slug')
 
     if genid['debug']:
+        print("Metadata inclusion in slug: %s" % slug)
+    if genid['metadata']:
         for tag in soup.findAll(string=METADATA_RE):
             this_string = str(tag.string)
             m = 1
@@ -174,8 +183,8 @@ def generate_id(content):
                 if m:
                     print(this_string)
                     this_string = re.sub(METADATA_RE,
-                        content.metadata.get(m.group(1),''),
-                        this_string)
+                                         content.metadata.get(m.group(1),''),
+                                         this_string)
                     modified = True
             if modified:
                 print(this_string)
