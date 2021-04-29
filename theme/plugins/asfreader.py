@@ -43,11 +43,12 @@ class ASFReader(GFMReader):
     def add_data(self, metadata):
         "Mix in ASF data as metadata"
 
-        asf_data = self.settings.get('ASF_DATA2', {'process': False})
+        asf_data = self.settings.get('ASF_DATA', {'process': False})
         if asf_data['process']:
             print("Using asf_data from %s" % asf_data['data'])
-        else:
-            print("No ASF Data to add to metadata")
+            asf_metadata = asf_data['metadata']
+            if asf_metadata:
+                asf_metadata.update(metadata)
 
         return metadata
 

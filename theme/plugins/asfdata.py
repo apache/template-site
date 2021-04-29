@@ -35,6 +35,10 @@ ASF_DATA = {
     'debug': False
 }
 
+TEST_DATA = {
+    'tester': 'Test Data'
+}
+
 def init_default_config(pelican):
     from pelican.settings import DEFAULT_CONFIG
 
@@ -48,6 +52,7 @@ def init_default_config(pelican):
             print("ASF_DATA[%s] = %s" % (key,asf_data[key]))
         if asf_data['process']:
             print("Processing %s" % asf_data['data'])
+            pelican.settings['ASF_DATA']['metadata'] = TEST_DATA
 
 def register():
     signals.initialized.connect(init_default_config)
