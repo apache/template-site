@@ -1,5 +1,5 @@
 '''
-asf_genid
+asfgenid
 ===================================
 Generates HeadingIDs, ElementID, and PermaLinks
 First find all specified IDs and classes. Assure unique ID and permalonk
@@ -176,18 +176,18 @@ def generate_id(content):
             while m:
                 m = METADATA_RE.search(this_string)
                 if m:
-                    print(this_string)
+                    if asf_genid['debug']:
+                        print(this_string)
                     this_string = re.sub(METADATA_RE,
                                          content.metadata.get(m.group(1),''),
                                          this_string)
                     modified = True
             if modified:
-                print(this_string)
+                if asf_genid['debug']:
+                    print(this_string)
                 tag.string.replace_with(this_string)
 
-    if asf_genid['debug']:
-        print("Directory of ids already in %s" % content.relative_source_path)
-    # Find all id attributes already present
+      # Find all id attributes already present
     for tag in soup.findAll(id=True):
         unique(tag["id"], ids)
         # don't change existing ids
@@ -250,14 +250,11 @@ def generate_id(content):
                 node, new_header = node.add(header)
 
             if settoc:
-                if asf_genid['debug']:
-                    print("Generating ToC for %s" % content.relative_source_path)
+                print("Generating ToC for %s" % content.relative_source_path)
                 # convert the HtmlTreeNode into Beautiful soup
                 tree_string = '{}'.format(tree)
                 tree_soup = BeautifulSoup(tree_string, 'html.parser')
                 content.toc = tree_soup.decode(formatter='html')
-                if asf_genid['debug']:
-                    print(content.toc)
                 tocTag.replaceWith(tree_soup)
 
     if asf_genid['debug']:
