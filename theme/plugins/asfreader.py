@@ -56,9 +56,10 @@ class ASFReader(GFMReader):
         text, metadata = super().read_source(source_path)
         assert text
         assert metadata
-        # supplement metadata with ASFData
+        # supplement metadata with ASFData if available
         self.add_data(metadata)
         # prepare ezt content as ezt template
+        # note compress_whitespace=0 is required or the markdown will be messsed up.
         template = ezt.Template(compress_whitespace=0)
         template.parse(text, base_format=ezt.FORMAT_HTML)
         assert template
@@ -77,7 +78,7 @@ class ASFReader(GFMReader):
         return content, metadata
 
 
-# The following are required or ezmd and emd files are not processed.
+# The following are required or ezmd and emd files are not read instead they are static.
 # For direct subclasses of BaseReader like GFMReader the following two
 # callables are optional if the class includes enabled=True and file_extenaions.
 def add_readers(readers):
