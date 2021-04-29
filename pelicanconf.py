@@ -93,7 +93,7 @@ THEME = './theme/apache'
 # Pelican Plugins
 # The provided location. If the buildbot does not have a new plugin then look into requirements.txt
 PLUGIN_PATHS = ['./theme/plugins']
-PLUGINS = ['genid', 'asfdata', 'pelican-gfm', 'asfreader', 'sitemap']
+PLUGINS = ['asfgenid', 'asfdata', 'pelican-gfm', 'asfreader', 'sitemap']
 
 # Reader configuration - Python does know about these plugins yet.
 # READERS = {
@@ -102,8 +102,8 @@ PLUGINS = ['genid', 'asfdata', 'pelican-gfm', 'asfreader', 'sitemap']
 #    'ezmd': ASFReader
 # }
 
-# Configure the genid pluigin
-GENID = {
+# Configure the asfgenid plugin
+ASF_GENID = {
     'metadata': True,
     'elements': True,
     'headings': True,
@@ -121,12 +121,12 @@ ASF_DATA = {
 }
 
 # Markdown Configuration
-# When using GFMReader or ASFReader then MARKDOWN configuration is meaningless
+# When using GFMReader or ASFReader then MARKDOWN configuration is meaningless to GFM
 # MARKDOWN = {
 # }
 
 # TOC Generator
-# When using GENID TOC generation then this is unused.
+# When using ASF_GENID TOC generation then this is unused.
 # TOC_HEADERS = r"h[1-6]"
 
 # Sitemap Generator
