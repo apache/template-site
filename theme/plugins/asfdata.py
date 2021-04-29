@@ -32,7 +32,6 @@ logger = logging.getLogger(__name__)
 
 ASF_DATA = {
     'metadata': None,
-    'process': False,
     'debug': False
 }
 
