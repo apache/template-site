@@ -58,7 +58,7 @@ class ASFReader(GFMReader):
         assert text
         assert metadata
         # supplement metadata with ASFData
-        metadata = add_data(metadata)
+        metadata = self.add_data(metadata)
         assert metadata
         # prepare ezt content as ezt template
         template = ezt.Template(compress_whitespace=0)
