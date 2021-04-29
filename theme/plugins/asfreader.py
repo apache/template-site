@@ -66,13 +66,9 @@ class ASFReader(GFMReader):
         # generate content from ezt template with metadata
         fp = io.StringIO()
         template.generate(fp, metadata)
-        text = fp.getvalue()
+        text = fp.getvalue().encode('utf-8')
         # Render the markdown into HTML
-        if sys.version_info >= (3, 0):
-            text = text.encode('utf-8')
-            content = super().render(text).decode('utf-8')
-        else:
-            content = super().render(text)
+        content = super().render(text).decode('utf-8')
         assert content
 
         return content, metadata

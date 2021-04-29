@@ -30,6 +30,8 @@ PATH = 'content'
 TIMEZONE = 'UTC'
 
 DEFAULT_LANG = u'en'
+
+# Website specific settings
 AUTHOR = u'Template Community'
 SITENAME = u'Apache Template'
 SITEDOMAIN = 'template.apache.org'
@@ -56,6 +58,13 @@ ARTICLE_URL = ARTICLE_SAVE_AS = PAGE_URL = PAGE_SAVE_AS = '{path_no_ext}.html'
 # SLUGIFY_SOURCE = 'basename'
 # ARTICLE_SAVE_AS = '{slug}.html'
 
+# Disable these pages
+ARCHIVES_SAVE_AS = ''
+AUTHORS_SAVE_AS = ''
+CATEGORIES_SAVE_AS = ''
+INDEX_SAVE_AS = ''
+TAGS_SAVE_AS = ''
+
 # We want to serve our static files mixed with content.
 STATIC_PATHS = ['.']
 
@@ -68,13 +77,6 @@ IGNORE_FILES = ['README.md', ASF_DATA_YAML]
 
 # No translations
 PAGE_TRANSLATION_ID = None
-
-# Disable these pages
-ARCHIVES_SAVE_AS = ''
-AUTHORS_SAVE_AS = ''
-CATEGORIES_SAVE_AS = ''
-INDEX_SAVE_AS = ''
-TAGS_SAVE_AS = ''
 
 # Enable ATOM feed and Disable other feeds
 FEED_DOMAIN = SITEURL
@@ -95,23 +97,17 @@ THEME = './theme/apache'
 PLUGIN_PATHS = ['./theme/plugins']
 PLUGINS = ['asfgenid', 'asfdata', 'pelican-gfm', 'asfreader', 'sitemap']
 
-# Reader configuration - Python does know about these plugins yet.
-# READERS = {
-#    'html': None,
-#    'md': GFMReader,
-#    'ezmd': ASFReader
-# }
-
-# Configure the asfgenid plugin
-ASF_GENID = {
-    'metadata': True,
-    'elements': True,
-    'headings': True,
-    'toc': True,
-    'toc_headers': r"h[1-6]",
-    'permalinks': True,
-    'debug': True
-}
+# Lifecycle and plugins:
+# (1) Initialization:
+#     asfdata - populate a sitewide dictionary of ASF_DATA
+# (2) Readers process content into metadata and html
+#     pelican-gfm (GFMReader) - reads GFM Markdown with metadata and generates html
+#     asfreader (ASFReader) - reads GFM Markdown with embedded ezt templates uses metadata enhanced
+#          by the sitewide dictionary to generate markdown with ezt and then generate html
+# (3) HTML Content enhancement
+#     asfgenid - performs a series of enhancements to the HTML - see ASF_GENID
+# (4) Site generation
+#     sitemap - produces a sitemap.xml
 
 # Configure the asfdata plugin
 ASF_DATA = {
@@ -120,14 +116,16 @@ ASF_DATA = {
     'debug': True
 }
 
-# Markdown Configuration
-# When using GFMReader or ASFReader then MARKDOWN configuration is meaningless to GFM
-# MARKDOWN = {
-# }
-
-# TOC Generator
-# When using ASF_GENID TOC generation then this is unused.
-# TOC_HEADERS = r"h[1-6]"
+# Configure the asfgenid plugin
+ASF_GENID = {
+    'metadata': True,
+    'elements': True,
+    'headings': True,
+    'permalinks': True,
+    'toc': True,
+    'toc_headers': r"h[1-6]",
+    'debug': True
+}
 
 # Sitemap Generator
 SITEMAP = {
@@ -144,6 +142,15 @@ SITEMAP = {
         "pages": "monthly"
     }
 }
+
+# Markdown Configuration
+# When using GFMReader or ASFReader then MARKDOWN configuration is meaningless to GFM
+# MARKDOWN = {
+# }
+
+# TOC Generator
+# When using ASF_GENID TOC generation then this is unused.
+# TOC_HEADERS = r"h[1-6]"
 
 # Unused links
 LINKS = ( )
