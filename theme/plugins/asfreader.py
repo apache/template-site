@@ -48,9 +48,8 @@ class ASFReader(GFMReader):
             print("Using asf_data from %s" % asf_data['data'])
             asf_metadata = asf_data['metadata']
             if asf_metadata:
-                asf_metadata.update(metadata)
-
-        return metadata
+                metadata.update(asf_metadata)
+                print("asf_metadata: %s" % asf_metadata)
 
 
     def read(self, source_path):
@@ -61,7 +60,8 @@ class ASFReader(GFMReader):
         assert text
         assert metadata
         # supplement metadata with ASFData
-        metadata = self.add_data(metadata)
+        self.add_data(metadata)
+        print("metadata: %s" % metadata)
         assert metadata
         # prepare ezt content as ezt template
         template = ezt.Template(compress_whitespace=0)
