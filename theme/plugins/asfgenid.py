@@ -187,7 +187,7 @@ def generate_id(content):
                     print(this_string)
                 tag.string.replace_with(this_string)
 
-      # Find all id attributes already present
+    # Find all id attributes already present
     for tag in soup.findAll(id=True):
         unique(tag["id"], ids)
         # don't change existing ids
