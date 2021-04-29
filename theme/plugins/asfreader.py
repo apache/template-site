@@ -43,14 +43,15 @@ class ASFReader(GFMReader):
     def add_data(self, metadata):
         "Mix in ASF data as metadata"
 
-        key = 'ASF_DATA'
-        if key in self.settings:
-            asf_data = self.settings.get(key, {})
-            key = 'metadata'
-            if key in asf_data:
-                asf_metadata = asf_data[key]
+        if 'ASF_DATA' in self.settings:
+            asf_data = self.settings['ASF_DATA']
+            if 'metadata' in asf_data:
+                asf_metadata = asf_data['metadata']
                 if asf_metadata:
                     metadata.update(asf_metadata)
+                    if 'debug' in asf_data and asf_data['debug']:
+                        print("metadata: %s" % metadata)
+
 
     def read(self, source_path):
         "Read metadata and content, process content as ezt template, then render into HTML."
@@ -61,8 +62,6 @@ class ASFReader(GFMReader):
         assert metadata
         # supplement metadata with ASFData
         self.add_data(metadata)
-        print("metadata: %s" % metadata)
-        assert metadata
         # prepare ezt content as ezt template
         template = ezt.Template(compress_whitespace=0)
         template.parse(text, base_format=ezt.FORMAT_HTML)
