@@ -31,6 +31,7 @@ from pelican import contents, signals
 logger = logging.getLogger(__name__)
 
 ASF_DATA = {
+    'metadata': None,
     'process': False,
     'debug': False
 }
@@ -47,7 +48,6 @@ def init_default_config(pelican):
         pelican.settings.setdefault('ASF_DATA', ASF_DATA)
 
         asf_data = pelican.settings.get('ASF_DATA', DEFAULT_CONFIG['ASF_DATA'])
-        print(asf_data)
         for key in asf_data:
             print("ASF_DATA[%s] = %s" % (key,asf_data[key]))
         if asf_data['process']:
