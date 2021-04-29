@@ -150,21 +150,16 @@ def generate_id(content):
     if isinstance(content, contents.Static):
         return
 
-    asf_data = content.settings['ASF_DATA']
-    if asf_data:
-        for option in asf_data:
-            print("ASF Data: %s: %s" % (option, asf_data[option]))
-    
     asf_genid = content.settings['ASF_GENID']
-    if asf_genid['debug']:
-        for option in asf_genid:
-            print("Setting: %s: %s" % (option, asf_genid[option]))
+    # if asf_genid['debug']:
+    #    for option in asf_genid:
+    #        print("Setting: %s: %s" % (option, asf_genid[option]))
 
-        for name in content.settings['PLUGINS']:
-            print("Plugin: %s" % name)
+    #    for name in content.settings['PLUGINS']:
+    #        print("Plugin: %s" % name)
 
-        # for module in sys.modules:
-        #    print("Module: %s" % module)
+    #    for module in sys.modules:
+    #        print("Module: %s" % module)
 
     ids = set()
     soup = BeautifulSoup(content._content, 'html.parser')
