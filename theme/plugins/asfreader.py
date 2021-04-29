@@ -28,6 +28,7 @@ import ezt
 
 import pelican.plugins.signals
 import pelican.readers
+import pelican.settings
 
 GFMReader = sys.modules['pelican-gfm.gfm'].GFMReader
 
@@ -38,6 +39,14 @@ class ASFReader(GFMReader):
     """
     file_extensions = ['ezmd', 'emd']
 
+    def add_asf_data(self, metadata):
+        
+        asf_data = self.settings.get('ASF_DATA2', {'process': False})
+        if asf_data['process']:
+            print("Using asf_data from %s" % asf_data['data'])
+
+        return metadata
+
     def read(self, source_path):
         "Read metadata and content, process content as ezt template, then render into HTML."
 
@@ -46,7 +55,8 @@ class ASFReader(GFMReader):
         assert text
         assert metadata
         # supplement metadata with ASFData
-        print("ASF Data file: %s" % self.settings.get("ASF_DATA", ()))
+        metadata = add_asf_data(metadata)
+        assert metadata
         # prepare ezt content as ezt template
         template = ezt.Template(compress_whitespace=0)
         template.parse(text, base_format=ezt.FORMAT_HTML)
