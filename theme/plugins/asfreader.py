@@ -45,7 +45,7 @@ class ASFReader(GFMReader):
 
         asf_data = self.settings.get('ASF_DATA', {})
         key = 'metadata'
-        if key in asf_data):
+        if key in asf_data:
             asf_metadata = asf_data[key]
             if asf_metadata:
                 metadata.update(asf_metadata)
