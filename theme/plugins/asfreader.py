@@ -33,24 +33,20 @@ import pelican.settings
 GFMReader = sys.modules['pelican-gfm.gfm'].GFMReader
 
 class ASFReader(GFMReader):
-    enabled = True
     """GFM-flavored Reader for the Pelican system that adds ASF data and ezt 
     generation prior to processing the GFM
     """
-    file_extensions = ['ezmd', 'emd']
-
 
     def add_data(self, metadata):
         "Mix in ASF data as metadata"
 
         if 'ASF_DATA' in self.settings:
-            asf_data = self.settings['ASF_DATA']
-            if 'metadata' in asf_data:
-                asf_metadata = asf_data['metadata']
-                if asf_metadata:
-                    metadata.update(asf_metadata)
-                    if 'debug' in asf_data and asf_data['debug']:
-                        print("metadata: %s" % metadata)
+            asf_metadata = self.settings.get('ASF_DATA', { }).get('metadata')
+            asf_debug = self.settings.get('ASF_DATA', { }).get('debug')
+            if asf_metadata:
+                metadata.update(asf_metadata)
+                if asf_debug:
+                    print("metadata: %s" % metadata)
 
 
     def read(self, source_path):
@@ -81,9 +77,12 @@ class ASFReader(GFMReader):
         return content, metadata
 
 
-# The following are required or ezmd files are not processed
+# The following are required or ezmd and emd files are not processed.
+# For direct subclasses of BaseReader like GFMReader the following two
+# callables are optional if the class includes enabled=True and file_extenaions.
 def add_readers(readers):
     readers.reader_classes['ezmd'] = ASFReader
+    readers.reader_classes['emd'] = ASFReader
 
 
 def register():
