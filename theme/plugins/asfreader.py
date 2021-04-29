@@ -46,6 +46,8 @@ class ASFReader(GFMReader):
         asf_data = self.settings.get('ASF_DATA2', {'process': False})
         if asf_data['process']:
             print("Using asf_data from %s" % asf_data['data'])
+        else:
+            print("No ASF Data to add to metadata")
 
         return metadata
 
