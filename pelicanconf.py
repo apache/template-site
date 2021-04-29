@@ -115,8 +115,8 @@ ASF_GENID = {
 
 # Configure the asfdata plugin
 ASF_DATA = {
-    'data': ASF_DATA_YAML,
-    'process': False,
+#    'data': ASF_DATA_YAML,
+    'metadata': None,
     'debug': True
 }
 
