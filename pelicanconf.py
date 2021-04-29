@@ -93,8 +93,7 @@ THEME = './theme/apache'
 # Pelican Plugins
 # The provided location. If the buildbot does not have a new plugin then look into requirements.txt
 PLUGIN_PATHS = ['./theme/plugins']
-#PLUGINS = ['asfgenid', 'asfdata', 'pelican-gfm', 'asfreader', 'sitemap']
-PLUGINS = ['asfgenid', 'pelican-gfm', 'asfreader', 'sitemap']
+PLUGINS = ['asfgenid', 'asfdata', 'pelican-gfm', 'asfreader', 'sitemap']
 
 # Reader configuration - Python does know about these plugins yet.
 # READERS = {
