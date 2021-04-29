@@ -50,8 +50,9 @@ def init_default_config(pelican):
         asf_data = pelican.settings.get('ASF_DATA', DEFAULT_CONFIG['ASF_DATA'])
         for key in asf_data:
             print("asfdata: [%s] = %s" % (key,asf_data[key]))
-        if 'data' in asf_data:
-            print("Processing %s" % asf_data['data'])
+        key = 'data'
+        if key in asf_data:
+            print("Processing %s" % asf_data[key])
             pelican.settings['ASF_DATA']['metadata'] = TEST_DATA
 
 def register():

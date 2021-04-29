@@ -44,8 +44,9 @@ class ASFReader(GFMReader):
         "Mix in ASF data as metadata"
 
         asf_data = self.settings.get('ASF_DATA', {})
-        if 'metadata' in asf_data):
-            asf_metadata = asf_data['metadata']
+        key = 'metadata'
+        if key in asf_data):
+            asf_metadata = asf_data[key]
             if asf_metadata:
                 metadata.update(asf_metadata)
 
