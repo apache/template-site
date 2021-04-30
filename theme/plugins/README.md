@@ -40,7 +40,7 @@ At a high level consider the following sequence of events:
         * .markdown
         * .mkd
         * .mdown
-    - ASFReader by the [asfreader plugin](./asfreader.py). Transforms an [ezt template](https://github.com/gtein/ezt) into GFM and then to HTML.
+    - ASFReader by the [asfreader plugin](./asfreader.py). Transforms an [ezt template](https://github.com/gstein/ezt) into GFM and then to HTML.
         * .ezmd
 4. Content Init (content_object_init). This is signaled after a Reader has processed content.
     At this point plugins can review, record, and transform the html content.

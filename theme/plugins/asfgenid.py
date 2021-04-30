@@ -225,6 +225,17 @@ def generate_toc(content, tag, title, toc_headers):
         tag.replaceWith(tree_soup)
 
 
+def add_data(metadata):
+    "Mix in ASF data as metadata"
+
+    asf_metadata = self.settings.get('ASF_DATA', { }).get('metadata')
+    if asf_metadata:
+        if asf_metadata.get('asf_data'):
+            return
+        metadata.update(asf_metadata)
+        if self.settings.get('ASF_DATA', { }).get('debug'):
+            print("metadata: %s" % metadata)
+
 # main worker transforming the html
 def generate_id(content):
     if isinstance(content, contents.Static):
@@ -238,6 +249,8 @@ def generate_id(content):
     title = content.metadata.get('title', 'Title')
     # assure relative source path is in the metadata
     content.metadata['relative_source_path'] = content.relative_source_path
+    # enhance metadata if done by asfreader
+    add_data(content.metadata)
     # get plugin settings
     asf_genid = content.settings['ASF_GENID']
 

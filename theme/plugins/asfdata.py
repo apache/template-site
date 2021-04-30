@@ -48,6 +48,7 @@ def init_default_config(pelican):
         if key in asf_data:
             print(f"Processing {asf_data[key]}")
             pelican.settings['ASF_DATA']['metadata'] = TEST_DATA
+            pelican.settings['ASF_DATA']['metadata']['asf_data'] = True
 
 def register():
     signals.initialized.connect(init_default_config)
