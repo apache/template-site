@@ -31,7 +31,7 @@ from pelican import contents, signals
 logger = logging.getLogger(__name__)
 
 ASF_DATA = {
-    'metadata': None,
+    'metadata': { },
     'debug': False
 }
 
