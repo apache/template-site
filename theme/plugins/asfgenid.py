@@ -166,7 +166,7 @@ def generate_id(content):
     title = content.metadata.get('title', 'Title')
     content.metadata['relative_source_path'] = content.relative_source_path
 
-    print("%s.html" % content.path_no_ext))
+    print("%s.html" % content.path_no_ext)
 
     if asf_genid['debug']:
         print("Metadata inclusion in %s" % content.relative_source_path)
