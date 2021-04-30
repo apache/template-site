@@ -287,9 +287,9 @@ def generate_id(content):
     # step 7 - reset the html content
     content._content = soup.decode(formatter='html')
 
-    # step 8 - output all of the ids including ones already present
-    for key in sorted(ids):
-        print(f"    #{key}")
+    # step 8 - output all of the ids now in the soup.
+    for tag in soup.findAll(id=True):
+        print(f"    #{tag['id']}")
     print("--------")
 
 
