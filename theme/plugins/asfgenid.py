@@ -228,9 +228,8 @@ def generate_toc(content, tag, title, toc_headers):
 def add_data(content):
     "Mix in ASF data as metadata"
 
-    if content.metadata.get('asf_data'):
-        pass
-    else:
+    # if the reader is 'asf' then the asf metadata is already in place
+    if content.metadata.get('reader') != 'asf':
         asf_metadata = content.settings.get('ASF_DATA', { }).get('metadata')
         if asf_metadata:
             content.metadata.update(asf_metadata)
