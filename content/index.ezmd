@@ -6,7 +6,7 @@ version: 1.0
 
 ["Title: %0, Version: %1" title version]
 
-{{ relative_source_path }}
+{{ relative_source_path }} - {{ version }} - {{ not_there }} - {{ tester }}
 
 The Apache Petri (as in “petri dish” – where cultures are grown and bloom) committee
 assists external project communities interested in becoming an Apache project to
