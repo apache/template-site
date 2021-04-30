@@ -127,7 +127,7 @@ def slugify(value, separator):
 def unique(id, ids):
     while id in ids or not id:
         m = IDCOUNT_RE.match(id)
-        print("id=\"%s\" is a duplicate" & id)
+        print(f"id=\"{id}\" is a duplicate")
         if m:
             id = '%s_%d' % (m.group(1), int(m.group(2)) + 1)
         else:
@@ -155,14 +155,14 @@ def generate_id(content):
     title = content.metadata.get('title', 'Title')
     content.metadata['relative_source_path'] = content.relative_source_path
 
-    print("%s.html" % content.path_no_ext)
+    print(f"{content.path_no_ext}.html") 
 
     asf_genid = content.settings['ASF_GENID']
     if asf_genid['debug']:
         print("asfgenid:\nshow plugins in case one is processing before this one")
         for name in content.settings['PLUGINS']:
-            print("plugin: %s" % name)
-        print("metadata expansion: %s" % content.relative_source_path)
+            print(f"plugin: {name}")
+        print(f"metadata expansion: {content.relative_source_path}")
     if asf_genid['metadata']:
         for tag in soup.findAll(string=METADATA_RE):
             this_string = str(tag.string)
@@ -171,8 +171,11 @@ def generate_id(content):
             while m:
                 m = METADATA_RE.search(this_string)
                 if m:
+                    format_string = '{{ {0} }}'.format(m.group(1))
+                    new_string = format_string.format(**content.metadata)
+                    print(f"{format_string} -> {new_string}")
                     if asf_genid['debug']:
-                        print(this_string)
+                        print(f"found: {this_string}")
                     this_string = re.sub(METADATA_RE,
                                          content.metadata.get(m.group(1),''),
                                          this_string)
