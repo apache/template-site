@@ -145,6 +145,87 @@ def permalink(soup, mod_element):
     mod_element.append(new_tag)
 
 
+# expand metadata found in {{ key }}
+def expand_metadata(tag, metadata):
+    this_string = str(tag.string)
+    m = 1
+    modified = False
+    while m:
+        m = METADATA_RE.search(this_string)
+        if m:
+            format_string = '{{{0}}}'.format(m.group(1).strip())
+            try:
+                new_string = format_string.format(**metadata)
+                print(f"{format_string} -> {new_string}")
+            except:
+                # the data expression was not found
+                print(f'Metadata "{format_string}" is not found')
+                new_string = format_string
+            # replace the first pattern with the new_string
+            this_string = re.sub(METADATA_RE, new_string, this_string, count=1)
+            modified = True
+    if modified:
+        tag.string.replace_with(this_string)
+
+
+# do elementid transformation for {#id} and {.class}
+def elementid_transform(soup, tag, permalinks, debug):
+    tagnav = tag.parent
+    this_string = str(tag.string)
+    if debug:
+        print(f"name = {tagnav.name}, string = {this_string}")
+    if tagnav.name not in ['[document]', 'code', 'pre']:
+        m = ELEMENTID_RE.search(tag.string)
+        if m:
+            tag.string.replace_with(this_string[:m.start()])
+            if m.group('type') == '#':
+                tagnav['id'] = unique(m.group('id'), ids)
+                if permalinks:
+                    permalink(soup, tagnav)
+                if debug:
+                    print(f"# insertion {tagnav}")
+            else:
+                tagnav['class'] = m.group('id')
+                if debug:
+                    print(f"Class {tag.name} : {tagnav['class']}")
+
+
+# generate id for a heading
+def headingid_transform(soup, tag, permalinks):
+    new_string = tag.string
+    if not new_string:
+        # roll up strings if no immediate string
+        new_string = tag.find_all(
+            text=lambda t: not isinstance(t, Comment),
+            recursive=True)
+        new_string = "".join(new_string)
+
+    # don't have an id create it from text
+    new_id = slugify(new_string,'-')
+    tag['id'] = unique(new_id, ids)
+    if permalinks:
+        permalink(soup, tag)
+
+
+# generate table of contents from headings after [TOC] content
+def generate_toc(content, tag, toc_headers):
+    settoc = False
+    tree = node = HtmlTreeNode(None, title, 'h0', '')
+    heading_re = re.compile(toc_headers)
+    for header in tag.findAllNext(heading_re):
+        settoc = True
+        node, new_header = node.add(header)
+
+    if settoc:
+        print("  ToC")
+        # convert the HtmlTreeNode into Beautiful soup
+        tree_string = '{}'.format(tree)
+        tree_soup = BeautifulSoup(tree_string, 'html.parser')
+        # not sure if we need to put the ToC here.
+        content.toc = tree_soup.decode(formatter='html')
+        tag.replaceWith(tree_soup)
+
+
 # main worker transforming the html
 def generate_id(content):
     if isinstance(content, contents.Static):
@@ -158,107 +239,56 @@ def generate_id(content):
     print(f"{content.path_no_ext}.html") 
 
     asf_genid = content.settings['ASF_GENID']
+
     if asf_genid['debug']:
         print("asfgenid:\nshow plugins in case one is processing before this one")
+
         for name in content.settings['PLUGINS']:
             print(f"plugin: {name}")
-        print(f"metadata expansion: {content.relative_source_path}")
-    if asf_genid['metadata']:
-        for tag in soup.findAll(string=METADATA_RE):
-            this_string = str(tag.string)
-            m = 1
-            modified = False
-            while m:
-                m = METADATA_RE.search(this_string)
-                if m:
-                    format_string = '{{{0}}}'.format(m.group(1).strip())
-                    try:
-                        new_string = format_string.format(**content.metadata)
-                        print(f"{format_string} -> {new_string}")
-                    except:
-                        # the data expression was not found
-                        print(f'Metadata "{format_string}" is not found')
-                        new_string = format_string
-                    # replace the first pattern with the new_string
-                    this_string = re.sub(METADATA_RE, new_string, this_string, count=1)
-                    modified = True
-            if modified:
-                tag.string.replace_with(this_string)
 
-    # Find all id attributes already present
+    # step 1 - metadata expansion
+    if asf_genid['metadata']:
+        if asf_genid['debug']:
+            print(f"metadata expansion: {content.relative_source_path}")
+
+        for tag in soup.findAll(string=METADATA_RE):
+            expand_metadata(tag, content.metadata)
+
+    # step 2 - find all id attributes already present
     for tag in soup.findAll(id=True):
         unique(tag["id"], ids)
         # don't change existing ids
 
+    # step 3 - find all {#id} and {.class} text and assign attributes
     if asf_genid['elements']:
         if asf_genid['debug']:
             print(f"elementid: {content.relative_source_path}")
-        # Find all {#id} and {.class} text and assign attributes
-        for tag in soup.findAll(string=ELEMENTID_RE):
-            tagnav = tag.parent
-            this_string = str(tag.string)
-            if asf_genid['debug']:
-                print(f"name = {tagnav.name}, string = {this_string}")
-            if tagnav.name not in ['[document]', 'code', 'pre']:
-                m = ELEMENTID_RE.search(tag.string)
-                if m:
-                    tag.string.replace_with(this_string[:m.start()])
-                    if m.group('type') == '#':
-                        tagnav['id'] = unique(m.group('id'), ids)
-                        if asf_genid['permalinks']:
-                            permalink(soup, tagnav)
-                        if asf_genid['debug']:
-                            print(f"# insertion {tagnav}")
-                    else:
-                        tagnav['class'] = m.group('id')
-                        if asf_genid['debug']:
-                            print(f"Class {tag.name} : {tagnav['class']}")
 
+        for tag in soup.findAll(string=ELEMENTID_RE):
+            elementid_transform(soup, tag, asf_genid['permalinks'], asf_genid['debug'])
+
+    # step 4 - find all headings w/o ids already present or assigned with {#id} text
     if asf_genid['headings']:
         if asf_genid['debug']:
             print(f"headings: {content.relative_source_path}")
-        # Find all headings w/o ids already present or assigned with {#id} text
+
         for tag in soup.findAll(HEADING_RE, id=False):
-            new_string = tag.string
-            if not new_string:
-                # roll up strings if no immediate string
-                new_string = tag.find_all(
-                    text=lambda t: not isinstance(t, Comment),
-                    recursive=True)
-                new_string = "".join(new_string)
+            headingid_transform(soup, tag, asf_genid['permalinks'])
 
-            # don't have an id then createit from text
-            new_id = slugify(new_string,'-')
-            tag['id'] = unique(new_id, ids)
-            if asf_genid['permalinks']:
-                permalink(soup, tag)
-
+    # step 5 - find TOC tag and generate Table of Contents
     if asf_genid['toc']:
-        # Find TOC tag
-        tocTag = soup.find('p', text='[TOC]')
-        if tocTag:
-            # Generate ToC from headings following the [TOC]
-            settoc = False
-            tree = node = HtmlTreeNode(None, title, 'h0', '')
-            heading_re = re.compile(asf_genid['toc_headers'])
-            for header in tocTag.findAllNext(heading_re):
-                settoc = True
-                node, new_header = node.add(header)
+        tag = soup.find('p', text='[TOC]')
+        if tag:
+            generate_toc(content, tag, asf_genid['toc_headers'])
 
-            if settoc:
-                print("  ToC")
-                # convert the HtmlTreeNode into Beautiful soup
-                tree_string = '{}'.format(tree)
-                tree_soup = BeautifulSoup(tree_string, 'html.parser')
-                content.toc = tree_soup.decode(formatter='html')
-                tocTag.replaceWith(tree_soup)
-
+    # step 6 - reset the html content
     content._content = soup.decode(formatter='html')
 
-    # output all of the ids including ones already present
+    # step 7 - output all of the ids including ones already present
     for key in sorted(ids):
         print(f"    #{key}")
     print("--------")
+
 
 def register():
     signals.initialized.connect(init_default_config)
