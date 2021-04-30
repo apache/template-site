@@ -237,6 +237,7 @@ def add_data(content):
     if content.settings.get('ASF_DATA', { }).get('debug'):
         print("metadata: %s" % content.metadata)
 
+
 # main worker transforming the html
 def generate_id(content):
     if isinstance(content, contents.Static):
