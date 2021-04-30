@@ -231,22 +231,26 @@ def generate_id(content):
     if isinstance(content, contents.Static):
         return
 
+    # track the id tags
     ids = set()
+    # parse html content into BeautifulSoup4
     soup = BeautifulSoup(content._content, 'html.parser')
+    # page title
     title = content.metadata.get('title', 'Title')
+    # assure relative source path is in the metadata
     content.metadata['relative_source_path'] = content.relative_source_path
-
-    print(f"{content.path_no_ext}.html") 
-
+    # get plugin settings
     asf_genid = content.settings['ASF_GENID']
+
+    # step 1 - display output path and title
+    print(f"{content.path_no_ext}.html - {title}") 
 
     if asf_genid['debug']:
         print("asfgenid:\nshow plugins in case one is processing before this one")
-
         for name in content.settings['PLUGINS']:
             print(f"plugin: {name}")
 
-    # step 1 - metadata expansion
+    # step 2 - metadata expansion
     if asf_genid['metadata']:
         if asf_genid['debug']:
             print(f"metadata expansion: {content.relative_source_path}")
@@ -254,12 +258,12 @@ def generate_id(content):
         for tag in soup.findAll(string=METADATA_RE):
             expand_metadata(tag, content.metadata)
 
-    # step 2 - find all id attributes already present
+    # step 3 - find all id attributes already present
     for tag in soup.findAll(id=True):
         unique(tag["id"], ids)
         # don't change existing ids
 
-    # step 3 - find all {#id} and {.class} text and assign attributes
+    # step 4 - find all {#id} and {.class} text and assign attributes
     if asf_genid['elements']:
         if asf_genid['debug']:
             print(f"elementid: {content.relative_source_path}")
@@ -267,7 +271,7 @@ def generate_id(content):
         for tag in soup.findAll(string=ELEMENTID_RE):
             elementid_transform(ids, soup, tag, asf_genid['permalinks'], asf_genid['debug'])
 
-    # step 4 - find all headings w/o ids already present or assigned with {#id} text
+    # step 5 - find all headings w/o ids already present or assigned with {#id} text
     if asf_genid['headings']:
         if asf_genid['debug']:
             print(f"headings: {content.relative_source_path}")
@@ -275,16 +279,16 @@ def generate_id(content):
         for tag in soup.findAll(HEADING_RE, id=False):
             headingid_transform(ids, soup, tag, asf_genid['permalinks'])
 
-    # step 5 - find TOC tag and generate Table of Contents
+    # step 6 - find TOC tag and generate Table of Contents
     if asf_genid['toc']:
         tag = soup.find('p', text='[TOC]')
         if tag:
             generate_toc(content, tag, title, asf_genid['toc_headers'])
 
-    # step 6 - reset the html content
+    # step 7 - reset the html content
     content._content = soup.decode(formatter='html')
 
-    # step 7 - output all of the ids including ones already present
+    # step 8 - output all of the ids including ones already present
     for key in sorted(ids):
         print(f"    #{key}")
     print("--------")
