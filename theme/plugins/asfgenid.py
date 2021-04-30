@@ -155,7 +155,7 @@ def expand_metadata(tag, metadata):
             format_string = '{{{0}}}'.format(m.group(1).strip())
             try:
                 new_string = format_string.format(**metadata)
-                print(f"{format_string} -> {new_string}")
+                print(f"{{{{{m.group(1)}}}}} -> {new_string}")
             except Exception:
                 # the data expression was not found
                 print(f'{{{{{m.group(1)}}}}} is not found')
