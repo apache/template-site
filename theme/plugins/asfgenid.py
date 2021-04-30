@@ -171,7 +171,7 @@ def generate_id(content):
             while m:
                 m = METADATA_RE.search(this_string)
                 if m:
-                    found_string = m.group(1).trim()
+                    found_string = m.group(1).strip()
                     print(f'{found_string}')
                     format_string = '{{ {0} }}'.format(found_string)
                     new_string = format_string.format(**content.metadata)
