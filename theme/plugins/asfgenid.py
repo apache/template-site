@@ -252,7 +252,7 @@ def generate_id(content):
                 node, new_header = node.add(header)
 
             if settoc:
-                print(" ToC")
+                print("  ToC")
                 # convert the HtmlTreeNode into Beautiful soup
                 tree_string = '{}'.format(tree)
                 tree_soup = BeautifulSoup(tree_string, 'html.parser')
@@ -264,7 +264,7 @@ def generate_id(content):
     content._content = soup.decode(formatter='html')
 
     # output all of the ids
-    for key in ids:
+    for key in sorted(ids):
         print("    #%s" % key)
 
 def register():
