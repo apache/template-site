@@ -169,7 +169,7 @@ def expand_metadata(tag, metadata):
 
 
 # do elementid transformation for {#id} and {.class}
-def elementid_transform(soup, tag, permalinks, debug):
+def elementid_transform(ids, soup, tag, permalinks, debug):
     tagnav = tag.parent
     this_string = str(tag.string)
     if debug:
@@ -191,7 +191,7 @@ def elementid_transform(soup, tag, permalinks, debug):
 
 
 # generate id for a heading
-def headingid_transform(soup, tag, permalinks):
+def headingid_transform(ids, soup, tag, permalinks):
     new_string = tag.string
     if not new_string:
         # roll up strings if no immediate string
@@ -265,7 +265,7 @@ def generate_id(content):
             print(f"elementid: {content.relative_source_path}")
 
         for tag in soup.findAll(string=ELEMENTID_RE):
-            elementid_transform(soup, tag, asf_genid['permalinks'], asf_genid['debug'])
+            elementid_transform(ids, soup, tag, asf_genid['permalinks'], asf_genid['debug'])
 
     # step 4 - find all headings w/o ids already present or assigned with {#id} text
     if asf_genid['headings']:
@@ -273,7 +273,7 @@ def generate_id(content):
             print(f"headings: {content.relative_source_path}")
 
         for tag in soup.findAll(HEADING_RE, id=False):
-            headingid_transform(soup, tag, asf_genid['permalinks'])
+            headingid_transform(ids, soup, tag, asf_genid['permalinks'])
 
     # step 5 - find TOC tag and generate Table of Contents
     if asf_genid['toc']:
