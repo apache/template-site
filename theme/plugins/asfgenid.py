@@ -261,6 +261,9 @@ def generate_id(content):
         print("Reflowing content in %s" % content.relative_source_path)
     content._content = soup.decode(formatter='html')
 
+    print(content.relative_source_path)
+    for key in ids:
+        print("#%s" % key)
 
 def register():
     signals.initialized.connect(init_default_config)

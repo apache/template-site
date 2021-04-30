@@ -42,10 +42,9 @@ class ASFReader(GFMReader):
 
         if 'ASF_DATA' in self.settings:
             asf_metadata = self.settings.get('ASF_DATA', { }).get('metadata')
-            asf_debug = self.settings.get('ASF_DATA', { }).get('debug')
             if asf_metadata:
                 metadata.update(asf_metadata)
-                if asf_debug:
+                if self.settings.get('ASF_DATA', { }).get('debug'):
                     print("metadata: %s" % metadata)
 
 
@@ -58,17 +57,16 @@ class ASFReader(GFMReader):
         assert metadata
         # supplement metadata with ASFData if available
         self.add_data(metadata)
-        # prepare ezt content as ezt template
-        # note compress_whitespace=0 is required or the markdown will be messsed up.
+        # prepare text as an ezt template
+        # compress_whitespace=0 is required as blank lines and indentation have meaning in markdown.
         template = ezt.Template(compress_whitespace=0)
         template.parse(text, base_format=ezt.FORMAT_HTML)
         assert template
         # generate content from ezt template with metadata
         fp = io.StringIO()
         template.generate(fp, metadata)
-        text = fp.getvalue().encode('utf-8')
         # Render the markdown into HTML
-        content = super().render(text).decode('utf-8')
+        content = super().render(fp.getvalue().encode('utf-8')).decode('utf-8')
         assert content
 
         return content, metadata
