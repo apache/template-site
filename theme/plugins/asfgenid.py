@@ -208,7 +208,7 @@ def headingid_transform(ids, soup, tag, permalinks):
 
 
 # generate table of contents from headings after [TOC] content
-def generate_toc(content, tag, toc_headers):
+def generate_toc(content, tag, title, toc_headers):
     settoc = False
     tree = node = HtmlTreeNode(None, title, 'h0', '')
     heading_re = re.compile(toc_headers)
@@ -279,7 +279,7 @@ def generate_id(content):
     if asf_genid['toc']:
         tag = soup.find('p', text='[TOC]')
         if tag:
-            generate_toc(content, tag, asf_genid['toc_headers'])
+            generate_toc(content, tag, title, asf_genid['toc_headers'])
 
     # step 6 - reset the html content
     content._content = soup.decode(formatter='html')
