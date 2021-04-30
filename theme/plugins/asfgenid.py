@@ -230,7 +230,7 @@ def add_data(content):
 
     asf_metadata = content.settings.get('ASF_DATA', { }).get('metadata')
     if asf_metadata:
-        if asf_metadata.get('asf_data'):
+        if content.metadata.get('asf_data'):
             return
         content.metadata.update(asf_metadata)
         if content.settings.get('ASF_DATA', { }).get('debug'):
