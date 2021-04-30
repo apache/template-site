@@ -179,7 +179,8 @@ def generate_id(content):
                         # the data expression was not found
                         print(f'Metadata "{format_string}" is not found')
                         new_string = format_string
-                    this_string = re.sub(METADATA_RE, new_string, this_string)
+                    # replace the first pattern with the new_string
+                    this_string = re.sub(METADATA_RE, new_string, this_string, count=1)
                     modified = True
             if modified:
                 tag.string.replace_with(this_string)
@@ -256,7 +257,7 @@ def generate_id(content):
 
     # output all of the ids including ones already present
     for key in sorted(ids):
-        print("    #%s" % key)
+        print(f"    #{key}")
     print("--------")
 
 def register():
