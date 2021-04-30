@@ -22,13 +22,7 @@
 
 from __future__ import unicode_literals
 
-import logging
-import re
-
 from pelican import contents, signals
-
-
-logger = logging.getLogger(__name__)
 
 ASF_DATA = {
     'metadata': { },
@@ -39,6 +33,7 @@ TEST_DATA = {
     'tester': 'Test Data'
 }
 
+
 def init_default_config(pelican):
     from pelican.settings import DEFAULT_CONFIG
 
@@ -48,10 +43,10 @@ def init_default_config(pelican):
 
         asf_data = pelican.settings.get('ASF_DATA', DEFAULT_CONFIG['ASF_DATA'])
         for key in asf_data:
-            print("asfdata: [%s] = %s" % (key,asf_data[key]))
+            print(f"asfdata: [{key}] = {asf_data[key]}")
         key = 'data'
         if key in asf_data:
-            print("Processing %s" % asf_data[key])
+            print(f"Processing {asf_data[key]}")
             pelican.settings['ASF_DATA']['metadata'] = TEST_DATA
 
 def register():

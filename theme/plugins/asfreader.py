@@ -20,10 +20,8 @@
 # asfreader.py -- Pelican plugin that processes ezt template Markdown through ezt and  then GitHub Flavored Markdown.
 #
 
-import os.path
 import sys
 import io
-import re
 import ezt
 
 import pelican.plugins.signals
@@ -32,8 +30,9 @@ import pelican.settings
 
 GFMReader = sys.modules['pelican-gfm.gfm'].GFMReader
 
+
 class ASFReader(GFMReader):
-    """GFM-flavored Reader for the Pelican system that adds ASF data and ezt 
+    """GFM-flavored Reader for the Pelican system that adds ASF data and ezt
     generation prior to processing the GFM
     """
 
@@ -45,7 +44,6 @@ class ASFReader(GFMReader):
             metadata.update(asf_metadata)
             if self.settings.get('ASF_DATA', { }).get('debug'):
                 print("metadata: %s" % metadata)
-
 
     def read(self, source_path):
         "Read metadata and content, process content as ezt template, then render into HTML."

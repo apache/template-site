@@ -11,7 +11,6 @@ from __future__ import unicode_literals
 
 import re
 import unicodedata
-import sys
 
 from bs4 import BeautifulSoup, Comment
 
@@ -201,7 +200,7 @@ def headingid_transform(ids, soup, tag, permalinks):
         new_string = "".join(new_string)
 
     # don't have an id create it from text
-    new_id = slugify(new_string,'-')
+    new_id = slugify(new_string, '-')
     tag['id'] = unique(new_id, ids)
     if permalinks:
         permalink(soup, tag)
@@ -243,7 +242,7 @@ def generate_id(content):
     asf_genid = content.settings['ASF_GENID']
 
     # step 1 - display output path and title
-    print(f"{content.path_no_ext}.html - {title}") 
+    print(f"{content.path_no_ext}.html - {title}")
 
     if asf_genid['debug']:
         print("asfgenid:\nshow plugins in case one is processing before this one")
