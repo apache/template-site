@@ -228,13 +228,15 @@ def generate_toc(content, tag, title, toc_headers):
 def add_data(content):
     "Mix in ASF data as metadata"
 
-    asf_metadata = content.settings.get('ASF_DATA', { }).get('metadata')
-    if asf_metadata:
-        if content.metadata.get('asf_data'):
-            return
-        content.metadata.update(asf_metadata)
-        if content.settings.get('ASF_DATA', { }).get('debug'):
-            print("metadata: %s" % content.metadata)
+    if content.metadata.get('asf_data'):
+        pass
+    else:
+        asf_metadata = content.settings.get('ASF_DATA', { }).get('metadata')
+        if asf_metadata:
+            content.metadata.update(asf_metadata)
+
+    if content.settings.get('ASF_DATA', { }).get('debug'):
+        print("metadata: %s" % content.metadata)
 
 # main worker transforming the html
 def generate_id(content):
