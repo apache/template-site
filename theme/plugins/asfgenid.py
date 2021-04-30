@@ -171,21 +171,17 @@ def generate_id(content):
             while m:
                 m = METADATA_RE.search(this_string)
                 if m:
-                    found_string = m.group(1).strip()
-                    print(f'{found_string}')
-                    format_string = '{{{0}}}'.format(found_string)
-                    print(f'{format_string}')
-                    new_string = format_string.format(**content.metadata)
-                    print(f"{format_string} -> {new_string}")
-                    if asf_genid['debug']:
-                        print(f"found: {this_string}")
-                    this_string = re.sub(METADATA_RE,
-                                         content.metadata.get(m.group(1),''),
-                                         this_string)
+                    format_string = '{{{0}}}'.format(m.group(1).strip())
+                    try:
+                        new_string = format_string.format(**content.metadata)
+                        print(f"{format_string} -> {new_string}")
+                    except:
+                        # the data expression was not found
+                        print(f'Metadata "{format_string}" is not found')
+                        new_string = format_string
+                    this_string = re.sub(METADATA_RE, new_string, this_string)
                     modified = True
             if modified:
-                if asf_genid['debug']:
-                    print(this_string)
                 tag.string.replace_with(this_string)
 
     # Find all id attributes already present
@@ -195,13 +191,13 @@ def generate_id(content):
 
     if asf_genid['elements']:
         if asf_genid['debug']:
-            print("elementid: %s" % content.relative_source_path)
+            print(f"elementid: {content.relative_source_path}")
         # Find all {#id} and {.class} text and assign attributes
         for tag in soup.findAll(string=ELEMENTID_RE):
             tagnav = tag.parent
             this_string = str(tag.string)
             if asf_genid['debug']:
-                print("name = %s, string = %s" % (tagnav.name, this_string))
+                print(f"name = {tagnav.name}, string = {this_string}")
             if tagnav.name not in ['[document]', 'code', 'pre']:
                 m = ELEMENTID_RE.search(tag.string)
                 if m:
@@ -211,15 +207,15 @@ def generate_id(content):
                         if asf_genid['permalinks']:
                             permalink(soup, tagnav)
                         if asf_genid['debug']:
-                            print("# insertion %s" % tagnav)
+                            print(f"# insertion {tagnav}")
                     else:
                         tagnav['class'] = m.group('id')
                         if asf_genid['debug']:
-                            print("Class %s : %s" % (tag.name, tagnav['class']))
+                            print(f"Class {tag.name} : {tagnav['class']}")
 
     if asf_genid['headings']:
         if asf_genid['debug']:
-            print("headings: %s" % content.relative_source_path)
+            print(f"headings: {content.relative_source_path}")
         # Find all headings w/o ids already present or assigned with {#id} text
         for tag in soup.findAll(HEADING_RE, id=False):
             new_string = tag.string
