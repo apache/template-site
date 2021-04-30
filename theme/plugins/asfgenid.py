@@ -166,6 +166,8 @@ def generate_id(content):
     title = content.metadata.get('title', 'Title')
     content.metadata['relative_source_path'] = content.relative_source_path
 
+    print("\n%s" % content.relative_source_path)
+
     if asf_genid['debug']:
         print("Metadata inclusion in %s" % content.relative_source_path)
     if asf_genid['metadata']:
@@ -250,7 +252,7 @@ def generate_id(content):
                 node, new_header = node.add(header)
 
             if settoc:
-                print("Generating ToC for %s" % content.relative_source_path)
+                print(" ToC")
                 # convert the HtmlTreeNode into Beautiful soup
                 tree_string = '{}'.format(tree)
                 tree_soup = BeautifulSoup(tree_string, 'html.parser')
@@ -261,9 +263,9 @@ def generate_id(content):
         print("Reflowing content in %s" % content.relative_source_path)
     content._content = soup.decode(formatter='html')
 
-    print(content.relative_source_path)
+    # output all of the ids
     for key in ids:
-        print("#%s" % key)
+        print("    #%s" % key)
 
 def register():
     signals.initialized.connect(init_default_config)
