@@ -40,12 +40,12 @@ class ASFReader(GFMReader):
     def add_data(self, metadata):
         "Mix in ASF data as metadata"
 
-        if 'ASF_DATA' in self.settings:
-            asf_metadata = self.settings.get('ASF_DATA', { }).get('metadata')
-            if asf_metadata:
-                metadata.update(asf_metadata)
-                if self.settings.get('ASF_DATA', { }).get('debug'):
-                    print("metadata: %s" % metadata)
+        # if 'ASF_DATA' in self.settings:
+        # asf_metadata = self.settings.get('ASF_DATA', { }).get('metadata')
+        # if asf_metadata:
+        metadata.update(self.settings.get('ASF_DATA', { }).get('metadata'))
+        if self.settings.get('ASF_DATA', { }).get('debug'):
+            print("metadata: %s" % metadata)
 
 
     def read(self, source_path):
@@ -72,12 +72,11 @@ class ASFReader(GFMReader):
         return content, metadata
 
 
-# The following are required or ezmd and emd files are not read instead they are static.
+# The following are required or ezmd files are not read instead they are static.
 # For direct subclasses of BaseReader like GFMReader the following two
 # callables are optional if the class includes enabled=True and file_extenaions.
 def add_readers(readers):
     readers.reader_classes['ezmd'] = ASFReader
-    readers.reader_classes['emd'] = ASFReader
 
 
 def register():
