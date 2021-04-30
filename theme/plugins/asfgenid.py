@@ -106,12 +106,6 @@ class HtmlTreeNode(object):
         return ret
 
 
-# debug print
-def DEBUG(genid, format1, var1):
-    if genid['debug']:
-        print(format1 % var1)
-
-
 # assure configuration
 def init_default_config(pelican):
     from pelican.settings import DEFAULT_CONFIG
@@ -156,11 +150,6 @@ def generate_id(content):
     if isinstance(content, contents.Static):
         return
 
-    asf_genid = content.settings['ASF_GENID']
-    # if asf_genid['debug']:
-    #    for name in content.settings['PLUGINS']:
-    #        print("Plugin: %s" % name)
-
     ids = set()
     soup = BeautifulSoup(content._content, 'html.parser')
     title = content.metadata.get('title', 'Title')
@@ -168,7 +157,12 @@ def generate_id(content):
 
     print("%s.html" % content.path_no_ext)
 
-    DEBUG(asf_genid, "Metadata inclusion in %s", content.relative_source_path)
+    asf_genid = content.settings['ASF_GENID']
+    if asf_genid['debug']:
+        print("asfgenid:\nshow plugins in case one is processing before this one")
+        for name in content.settings['PLUGINS']:
+            print("plugin: %s" % name)
+        print("metadata expansion: %s" % content.relative_source_path)
     if asf_genid['metadata']:
         for tag in soup.findAll(string=METADATA_RE):
             this_string = str(tag.string)
@@ -194,7 +188,8 @@ def generate_id(content):
         # don't change existing ids
 
     if asf_genid['elements']:
-        DEBUG(asf_genid, "Checking for elementid in %s", content.relative_source_path)
+        if asf_genid['debug']:
+            print("elementid: %s" % content.relative_source_path)
         # Find all {#id} and {.class} text and assign attributes
         for tag in soup.findAll(string=ELEMENTID_RE):
             tagnav = tag.parent
@@ -209,14 +204,16 @@ def generate_id(content):
                         tagnav['id'] = unique(m.group('id'), ids)
                         if asf_genid['permalinks']:
                             permalink(soup, tagnav)
-                        DEBUG(asf_genid, "# insertion %s",tagnav)
+                        if asf_genid['debug']:
+                            print("# insertion %s" % tagnav)
                     else:
                         tagnav['class'] = m.group('id')
                         if asf_genid['debug']:
-                        DEBUG(asf_genid, "Class %s : %s", (tag.name, tagnav['class']))
+                            print("Class %s : %s" % (tag.name, tagnav['class']))
 
     if asf_genid['headings']:
-        DEBUG(asf_genid, "Checking for headings in %s", content.relative_source_path)
+        if asf_genid['debug']:
+            print("headings: %s" % content.relative_source_path)
         # Find all headings w/o ids already present or assigned with {#id} text
         for tag in soup.findAll(HEADING_RE, id=False):
             new_string = tag.string
@@ -232,8 +229,6 @@ def generate_id(content):
             tag['id'] = unique(new_id, ids)
             if asf_genid['permalinks']:
                 permalink(soup, tag)
-                if asf_genid['debug']:
-                    print(tag)
 
     if asf_genid['toc']:
         # Find TOC tag
@@ -255,7 +250,6 @@ def generate_id(content):
                 content.toc = tree_soup.decode(formatter='html')
                 tocTag.replaceWith(tree_soup)
 
-    DEBUG(asf_genid, "Reflowing content in %s", content.relative_source_path)
     content._content = soup.decode(formatter='html')
 
     # output all of the ids including ones already present
