@@ -173,7 +173,8 @@ def generate_id(content):
                 if m:
                     found_string = m.group(1).strip()
                     print(f'{found_string}')
-                    format_string = '{{ {0} }}'.format(found_string)
+                    format_string = '{{{0}}}'.format(found_string)
+                    print(f'{format_string}')
                     new_string = format_string.format(**content.metadata)
                     print(f"{format_string} -> {new_string}")
                     if asf_genid['debug']:
