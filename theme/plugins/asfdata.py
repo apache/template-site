@@ -59,9 +59,11 @@ def url_data(url):
 def load_splits(metadata, value, key, load):
     if 'splits' in value:
         for split in value['splits']:
-            ref = value['splits'][split][0]
-            print(f"{split} {ref}")
-            reference = load[ref]
+            refs = value['splits'][split]
+            reference = load
+            for ref in refs:
+                print(f"{split} {ref}")
+                reference = reference[ref]
             metadata[split] = reference
     else:
         # no splits the whole loaded content is the saved dict
