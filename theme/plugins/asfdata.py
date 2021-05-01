@@ -59,7 +59,7 @@ def url_data(url):
 def load_splits(metadata, value, key, load):
     if 'splits' in value:
         for split in value['splits']:
-            ref = split[0]
+            ref = value['splits'][split][0]
             print(f"{split} {ref}")
             reference = load[ref]
             metadata[split] = reference
