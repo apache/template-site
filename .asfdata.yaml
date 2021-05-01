@@ -5,3 +5,11 @@ id2: 'testing 1, 2, 3'
 # data sources to slurp and sequence
 ci:
   url: https://whimsy.apache.org/public/committee-info.json
+  splits:
+    board:
+      - board
+      - roster
+    officers:
+      - officers
+    committees:
+      - committees

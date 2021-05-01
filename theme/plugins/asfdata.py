@@ -53,7 +53,17 @@ def url_data(url):
         load = yaml.load(content)
     else:
         load = { }
-    print(load)
+    return load
+
+
+def load_splits(metadata, value, key, load):
+    if 'splits' in value:
+        for split in value['splits']:
+            reference = load[split[0]]
+            metadata[split] = reference
+    else:
+        # no splits the whole loaded content is the saved dict
+        metadata[key] = load
 
 
 def init_default_config(pelican):
@@ -81,11 +91,15 @@ def init_default_config(pelican):
                     print(f"{key} is a dict")
                     print(value)
                     if 'url' in value:
-                        url_data(value['url'])
+                        load = url_data(value['url'])
+                        load_splits(metadata, value, key, load)
+                    else:
+                        metadata[key] = value
                 else:
                     print(f"{key} = {value}")
                     metadata[key] = value
-        print(metadata)
+        for key in metadata:
+            print(f"metadata[{key}]")
         pelican.settings['ASF_DATA']['metadata'] = metadata
         print("-----")
 
