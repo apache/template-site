@@ -13,7 +13,7 @@ PLUGINS = ['asfgenid', 'asfdata', 'pelican-gfm', 'asfreader', 'sitemap']
 
 2. Init (initialized). At this point any ASF_DATA is read into a metadata dictionary made available in every page.
 
-    - The [asfdata plugin](./asfdata.py) reads an .asfdata.yaml file and creates the metadata dictionary.
+- The [asfdata plugin](./asfdata.py) reads an .asfdata.yaml file and creates the metadata dictionary.
 
 ```python
 ASF_DATA_YAML = ".asfdata.yaml"
@@ -24,7 +24,7 @@ ASF_DATA = {
 }
 ```
 
-    - The [asfgenid plugin](./asfgenid.py) configures its features.
+- The [asfgenid plugin](./asfgenid.py) configures its features.
 
 ```python
 ASF_GENID = {
