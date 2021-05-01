@@ -47,10 +47,12 @@ def url_data(url):
     content = requests.get(url).text
     parts = url.split('/')
     extension = os.path.splitext(parts[-1])[1]  # split off ext, keep ext
-    if extension is ".json":
+    if extension = ".json":
         load = json.loads(content)
-    elif extension is ".yaml":
+    elif extension = ".yaml":
         load = yaml.load(content)
+    else:
+        load = { }
     print(load)
 
 
