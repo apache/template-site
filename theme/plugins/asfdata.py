@@ -61,8 +61,12 @@ def init_default_config(pelican):
             config_data = read_config(asf_data['data'])
             for key in config_data:
                 value = config_data[key]
-                print(f"{key} = {value}")
-                metadata[key] = value
+                if isinstance(value, dict):
+                    print(f"{key} is a dict")
+                    print(value)
+                else:
+                    print(f"{key} = {value}")
+                    metadata[key] = value
         print(metadata)
         pelican.settings['ASF_DATA']['metadata'] = metadata
         print("-----")
