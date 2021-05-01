@@ -25,6 +25,7 @@ from __future__ import unicode_literals
 from pelican import signals
 
 import pelican.utils
+import requests
 import yaml
 
 ASF_DATA = {
@@ -38,6 +39,11 @@ def read_config(config_yaml):
         config_data = yaml.load(text)
         print(config_data)
     return config_data
+
+
+def url_data(url):
+    content = requests.get(url).text
+    print(content)
 
 
 def init_default_config(pelican):
@@ -64,6 +70,8 @@ def init_default_config(pelican):
                 if isinstance(value, dict):
                     print(f"{key} is a dict")
                     print(value)
+                    if 'url' in value:
+                        url_data(value['url'])
                 else:
                     print(f"{key} = {value}")
                     metadata[key] = value
