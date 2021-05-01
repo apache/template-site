@@ -37,7 +37,7 @@ TEST_DATA = {
 
 
 def read_config(config_yaml):
-    with pelican_open(config_yaml) as text:
+    with pelican.utils.pelican_open(config_yaml) as text:
         config_data = yaml.load(text)
         print(config_data)
     return config_data
