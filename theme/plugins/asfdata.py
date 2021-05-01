@@ -22,7 +22,9 @@
 
 from __future__ import unicode_literals
 
-from pelican import contents, signals
+from pelican import util, signals
+
+import yaml
 
 ASF_DATA = {
     'metadata': { },
@@ -32,6 +34,13 @@ ASF_DATA = {
 TEST_DATA = {
     'tester': 'Test Data'
 }
+
+
+def read_config(config_yaml):
+    with pelican_open(config_yaml) as text:
+        config_data = yaml.load(text)
+        print(config_data)
+    return config_data
 
 
 def init_default_config(pelican):
@@ -47,6 +56,7 @@ def init_default_config(pelican):
         key = 'data'
         if key in asf_data:
             print(f"Processing {asf_data[key]}")
+            config_data = read_config(asf_data[key])
             pelican.settings['ASF_DATA']['metadata'] = TEST_DATA
 
 def register():
