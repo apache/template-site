@@ -32,10 +32,6 @@ ASF_DATA = {
     'debug': False
 }
 
-TEST_DATA = {
-    'tester': 'Test Data'
-}
-
 
 def read_config(config_yaml):
     with pelican.utils.pelican_open(config_yaml) as text:
@@ -47,18 +43,28 @@ def read_config(config_yaml):
 def init_default_config(pelican):
     from pelican.settings import DEFAULT_CONFIG
 
+    print("-----\nasfdata")
     DEFAULT_CONFIG.setdefault('ASF_DATA', ASF_DATA)
     if pelican:
         pelican.settings.setdefault('ASF_DATA', ASF_DATA)
 
         asf_data = pelican.settings.get('ASF_DATA', DEFAULT_CONFIG['ASF_DATA'])
         for key in asf_data:
-            print(f"asfdata: [{key}] = {asf_data[key]}")
-        key = 'data'
-        if key in asf_data:
-            print(f"Processing {asf_data[key]}")
-            config_data = read_config(asf_data[key])
-            pelican.settings['ASF_DATA']['metadata'] = TEST_DATA
+            print(f"config: [{key}] = {asf_data[key]}")
+        
+        if 'metadata' in asf_data:
+            metadata = asf_data['metadata']
+        else:
+            metadata = { }
+        if 'data' in asf_data:
+            print(f"Processing {asf_data['data']}")
+            config_data = read_config(asf_data['data'])
+            for key, value in config_data:
+                print(f"{key} = {value}")
+                metadata[key] = value
+        print(metadata)
+        pelican.settings['ASF_DATA']['metadata'] = metadata
+        print("-----")
 
 def register():
     signals.initialized.connect(init_default_config)
