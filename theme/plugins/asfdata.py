@@ -61,7 +61,7 @@ def load_splits(metadata, value, key, load):
         for split in value['splits']:
             ref = split[0]
             print(f"{split} {ref}")
-            reference = load[ref]]
+            reference = load[ref]
             metadata[split] = reference
     else:
         # no splits the whole loaded content is the saved dict
