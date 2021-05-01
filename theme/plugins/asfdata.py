@@ -47,7 +47,11 @@ def url_data(url):
     content = requests.get(url).text
     parts = url.split('/')
     extension = os.path.splitext(parts[-1])[1]  # split off ext, keep ext
-    print(extension)
+    if extension is ".json":
+        load = json.loads(content)
+    elif extension is ".yaml":
+        load = yaml.load(content)
+    print(load)
 
 
 def init_default_config(pelican):
