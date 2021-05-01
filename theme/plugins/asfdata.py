@@ -22,8 +22,9 @@
 
 from __future__ import unicode_literals
 
-from pelican import utils, signals
+from pelican import signals
 
+import pelican.utils
 import yaml
 
 ASF_DATA = {
