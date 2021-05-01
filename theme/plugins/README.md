@@ -5,34 +5,39 @@ Pelican uses signals at various points. These are documented [here](https://docs
 At a high level consider the following sequence of events:
 
 1. Pelican Settings. Settings for a Pelican Build are in your [Pelican Configuration](../../pelicanconf.py)
-    ~~~~
-    PLUGIN_PATHS = ['./theme/plugins']
-    PLUGINS = ['asfgenid', 'asfdata', 'pelican-gfm', 'asfreader', 'sitemap']
-    ~~~~
+
+```python
+PLUGIN_PATHS = ['./theme/plugins']
+PLUGINS = ['asfgenid', 'asfdata', 'pelican-gfm', 'asfreader', 'sitemap']
+```
 
 2. Init (initialized). At this point any ASF_DATA is read into a metadata dictionary made available in every page.
 
     - The [asfdata plugin](./asfdata.py) reads an .asfdata.yaml file and creates the metadata dictionary.
-        ~~~~
-        ASF_DATA_YAML = ".asfdata.yaml"
-        ASF_DATA = {
-            'data': ASF_DATA_YAML,
-            'metadata': { },
-            'debug': True
-        }
-        ~~~~
+
+```python
+ASF_DATA_YAML = ".asfdata.yaml"
+ASF_DATA = {
+    'data': ASF_DATA_YAML,
+    'metadata': { },
+    'debug': True
+}
+```
+
     - The [asfgenid plugin](./asfgenid.py) configures its features.
-        ~~~~
-        ASF_GENID = {
-            'metadata': True,
-            'elements': True,
-            'headings': True,
-            'permalinks': True,
-            'toc': True,
-            'toc_headers': r"h[1-6]",
-            'debug': False
-        }
-        ~~~~    
+
+```python
+ASF_GENID = {
+    'metadata': True,
+    'elements': True,
+    'headings': True,
+    'permalinks': True,
+    'toc': True,
+    'toc_headers': r"h[1-6]",
+    'debug': False
+}
+```
+
 3. Readers (readers_init). Two important readers are set at this point. Readers are responsible for transforming page files to html and
     providing a metadata dictionary
     - GFMReader by the pelican-gfm plugin. This code is in a private repository - ask Infra. Transforms GitHub Flavored Markdown(GFM) to HTML.
