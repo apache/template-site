@@ -25,8 +25,10 @@ from __future__ import unicode_literals
 from pelican import signals
 
 import pelican.utils
+import os.path
 import requests
 import yaml
+import json
 
 ASF_DATA = {
     'metadata': { },
@@ -43,7 +45,9 @@ def read_config(config_yaml):
 
 def url_data(url):
     content = requests.get(url).text
-    print(content)
+    parts = url.split('/')
+    extension = os.path.splitext(parts[-1])[1]  # split off ext, keep ext
+    print(extension)
 
 
 def init_default_config(pelican):
