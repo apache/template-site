@@ -59,7 +59,8 @@ def init_default_config(pelican):
         if 'data' in asf_data:
             print(f"Processing {asf_data['data']}")
             config_data = read_config(asf_data['data'])
-            for key, value in config_data:
+            for key in config_data:
+                value = config_data[key]
                 print(f"{key} = {value}")
                 metadata[key] = value
         print(metadata)
