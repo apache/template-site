@@ -42,8 +42,8 @@ class ASFReader(GFMReader):
         asf_metadata = self.settings.get('ASF_DATA', { }).get('metadata')
         if asf_metadata:
             metadata.update(asf_metadata)
-            if self.settings.get('ASF_DATA', { }).get('debug'):
-                print("metadata: %s" % metadata)
+            # if self.settings.get('ASF_DATA', { }).get('debug'):
+            #    print("metadata: %s" % metadata)
 
     def read(self, source_path):
         "Read metadata and content, process content as ezt template, then render into HTML."

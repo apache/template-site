@@ -234,8 +234,8 @@ def add_data(content):
         if asf_metadata:
             content.metadata.update(asf_metadata)
 
-    if content.settings.get('ASF_DATA', { }).get('debug'):
-        print("metadata: %s" % content.metadata)
+    # if content.settings.get('ASF_DATA', { }).get('debug'):
+    #    print("metadata: %s" % content.metadata)
 
 
 # main worker transforming the html
