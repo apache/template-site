@@ -22,7 +22,7 @@
 
 from __future__ import unicode_literals
 
-from pelican import util, signals
+from pelican import utils, signals
 
 import yaml
 
