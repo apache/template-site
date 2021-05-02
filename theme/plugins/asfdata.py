@@ -66,6 +66,7 @@ def remove_part(reference, part):
         if refs == part:
             print(f"remove {part}")
             del reference[part]
+            return
         elif isinstance(reference[refs], (list,dict)):
             remove_part(reference[refs], part)
 
