@@ -101,6 +101,12 @@ def process_sequence(metadata, seq, sequence, load):
         for part in parts:
             transform_part(reference, part)
 
+    # filter dictionary by attribute value. if filter is false discard
+    if 'filter' in sequence:
+        parts = sequence['filter'].split('==')
+        format_string = "{{reference[refs]['{0}']=={1}}}".format(parts[0],parts[1])
+        print(f"filter: {format_string}")
+
     # this sequence is derived from another sequence
     if 'sequence' in sequence:
         reference = metadata[sequence['sequence']]
