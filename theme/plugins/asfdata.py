@@ -118,9 +118,7 @@ def process_sequence(metadata, seq, sequence, load):
 
 def process_load(metadata, value, key, load):
     for seq in value:
-        if seq == 'url':
-            metadata[key] = load
-        else:
+        if seq != 'url':
             # sequence
             sequence = value[seq]
             process_sequence(metadata, seq, sequence, load)
@@ -160,9 +158,11 @@ def config_read_data(pelican):
                     metadata[key] = value
 
         pelican.settings['ASF_DATA']['metadata'] = metadata
-        for key in metadata:
-            print(f"metadata[{key}]")
         print("-----")
+        for key in metadata:
+            print(f"metadata[{key}] =")
+            print(metadata[key])
+            print("-----")
 
 def register():
     pelican.plugins.signals.initialized.connect(config_read_data)
