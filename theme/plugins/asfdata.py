@@ -74,7 +74,7 @@ def filter_parts(reference, part):
     filtered = [ ]
     for refs in reference:
         if not reference[refs][part]:
-            print(f"filtering {part} = {reference[refs][part]}"
+            print(f"filtering {part} = {reference[refs][part]}")
             filtered.append(refs)
     for refs in filtered:
         del reference[refs]
