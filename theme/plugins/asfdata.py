@@ -105,6 +105,10 @@ def process_sequence(metadata, seq, sequence, load):
             print(f"{part}")
             reference = reference[part]
 
+    # filter dictionary by attribute value. if filter is false discard
+    if 'filter' in sequence:
+        filter_parts(reference, sequence['filter'])
+
     # remove irrelevant keys
     if 'trim' in sequence:
         parts = sequence['trim'].split(',')
@@ -116,10 +120,6 @@ def process_sequence(metadata, seq, sequence, load):
         parts = sequence['transform'].split(',')
         for part in parts:
             transform_part(reference, part)
-
-    # filter dictionary by attribute value. if filter is false discard
-    if 'filter' in sequence:
-        filter_parts(reference, sequence['filter'])
 
     # this sequence is derived from another sequence
     if 'sequence' in sequence:
