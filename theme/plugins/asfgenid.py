@@ -14,7 +14,7 @@ import unicodedata
 
 from bs4 import BeautifulSoup, Comment
 
-import pelican.contents
+from pelican import contents
 import pelican.plugins.signals
 
 '''
