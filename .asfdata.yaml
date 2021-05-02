@@ -23,7 +23,7 @@ ci:
     select: committees
     trim: report,roster
     transform: chair
-    filter: pmc==True
+    filter: pmc
   featured_projs:
     description: 'Featured projects'
     sequence: projects
