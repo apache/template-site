@@ -6,27 +6,34 @@ id2: 'testing 1, 2, 3'
 ci:
   url: https://whimsy.apache.org/public/committee-info.json
   committees:
+    description: 'Foundation Committees'
     select: committees
     trim: report,roster
     transform: chair
   board:
+    description: 'Board of Directors'
     select: board.roster
     transform: each
   officers:
+    description: 'Foundation Officers'
     select: officers
     transform: roster
 
 pods:
   url: https://projects.apache.org/json/foundation/podlings.json
   podlings:
+    description: 'All current podlings'
   featured_pods:
+    description: 'Featured podlings'
     sequence: podlings
     random: 3
 
 projs:
   url: https://projects.apache.org/json/foundation/projects.json
   projects:
+    description: 'All current projects'
     trim: maintainer,release
   featured_projs:
+    description: 'Featured projects'
     sequence: projects
     random: 3

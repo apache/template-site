@@ -72,6 +72,10 @@ def process_sequence(metadata, seq, sequence, load):
     reference = load
     is_sequence = False
 
+    # description
+    if 'description' in sequence:
+        print(f"{seq} is {sequence['description']}")
+
     # select sub dictionary
     if 'select' in sequence:
         parts = sequence['select'].split('.')
