@@ -26,6 +26,7 @@ import pelican.plugins.signals
 import pelican.utils
 import os.path
 import requests
+import random
 import yaml
 import json
 
