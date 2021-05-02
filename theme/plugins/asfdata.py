@@ -58,7 +58,7 @@ def url_data(url):
 
 def sequence_dict(reference):
     print(f"sequence dict")
-    return reference
+    return list(reference)
 
 
 def remove_part(reference, part):
