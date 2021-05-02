@@ -84,7 +84,7 @@ def sequence_dict(reference):
     for refs in reference:
         if isinstance(reference[refs],dict):
             reference[refs]['key_id'] = refs
-            sequence.append(reference[refs]])
+            sequence.append(reference[refs])
     return sequence
 
 
