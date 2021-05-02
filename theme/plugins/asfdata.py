@@ -70,6 +70,15 @@ def remove_part(reference, part):
             remove_part(reference[refs], part)
 
 
+def filter_parts(reference, part, value):
+    filtered = [ ]
+    for refs in reference:
+        if reference[refs][part] != value:
+            filtered.append(refs)
+    for refs in filtered:
+        del reference[refs]
+
+
 def transform_part(reference, part):
     print(f"transform {part}")
 
@@ -104,8 +113,7 @@ def process_sequence(metadata, seq, sequence, load):
     # filter dictionary by attribute value. if filter is false discard
     if 'filter' in sequence:
         parts = sequence['filter'].split('==')
-        format_string = "{{reference[refs]['{0}']=={1}}}".format(parts[0],parts[1])
-        print(f"filter: {format_string}")
+        filter_parts(reference, parts[0], parts[1])
 
     # this sequence is derived from another sequence
     if 'sequence' in sequence:
