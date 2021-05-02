@@ -64,10 +64,9 @@ def sequence_dict(reference):
 def remove_part(reference, part):
     for refs in reference:
         if refs == part:
-            print(f"remove {part}")
             del reference[part]
             return
-        elif isinstance(reference[refs], (list,dict)):
+        elif isinstance(reference[refs], dict):
             remove_part(reference[refs], part)
 
 

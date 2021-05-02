@@ -32,7 +32,7 @@ projs:
   url: https://projects.apache.org/json/foundation/projects.json
   projects:
     description: 'All current projects'
-    trim: maintainer,release
+    trim: maintainer,release,implements,repository
   featured_projs:
     description: 'Featured projects'
     sequence: projects
