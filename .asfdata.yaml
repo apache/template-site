@@ -8,7 +8,6 @@ ci:
   board:
     description: 'Board of Directors'
     select: board.roster
-    transform: each
   officers:
     description: 'Foundation Officers'
     select: officers
@@ -19,21 +18,21 @@ ci:
     trim: report,roster
     transform: chair
   projects:
-    description: 'All current projects'
+    description: 'Current Projects'
     select: committees
     trim: report,roster
     transform: chair
     filter: pmc
   featured_projs:
-    description: 'Featured projects'
+    description: 'Featured Projects'
     sequence: projects
     random: 3
 
 pods:
   url: https://projects.apache.org/json/foundation/podlings.json
   podlings:
-    description: 'All current podlings'
+    description: 'Current Podlings'
   featured_pods:
-    description: 'Featured podlings'
+    description: 'Featured Podlings'
     sequence: podlings
     random: 3

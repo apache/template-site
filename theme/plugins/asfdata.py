@@ -69,7 +69,6 @@ def filter_parts(reference, part):
     filtered = [ ]
     for refs in reference:
         if not reference[refs][part]:
-            print(f"filtering {part} = {reference[refs][part]}")
             filtered.append(refs)
     for refs in filtered:
         del reference[refs]
@@ -77,6 +76,9 @@ def filter_parts(reference, part):
 
 def transform_part(reference, part):
     print(f"transform {part}")
+    for refs in reference:
+        fix = reference[refs][part]
+        print(fix)
 
 
 def sequence_dict(reference):
