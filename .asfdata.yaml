@@ -20,9 +20,9 @@ ci:
   projects:
     description: 'Current Projects'
     select: committees
+    filter: pmc
     trim: report,roster
     transform: chair
-    filter: pmc
   featured_projs:
     description: 'Featured Projects'
     sequence: projects
