@@ -56,11 +56,6 @@ def url_data(url):
     return load
 
 
-def sequence_dict(reference):
-    print(f"sequence dict")
-    return list(reference)
-
-
 def remove_part(reference, part):
     for refs in reference:
         if refs == part:
@@ -82,6 +77,15 @@ def filter_parts(reference, part):
 
 def transform_part(reference, part):
     print(f"transform {part}")
+
+
+def sequence_dict(reference):
+    sequence = [ ]
+    for refs in reference:
+        if isinstance(reference[refs],dict):
+            reference[refs]['key_id'] = refs
+            sequence.append(reference[refs]])
+    return sequence
 
 
 def process_sequence(metadata, seq, sequence, load):
