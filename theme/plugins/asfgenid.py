@@ -14,8 +14,8 @@ import unicodedata
 
 from bs4 import BeautifulSoup, Comment
 
-from pelican import contents, signals
-
+import pelican.contents
+import pelican.plugins.signals
 
 '''
 Based on
@@ -75,15 +75,15 @@ class HtmlTreeNode(object):
             new_string = "".join(new_string)
         new_string = new_string.translate(PARA_MAP)
 
-        if(self.level < new_level):
+        if self.level < new_level:
             new_node = HtmlTreeNode(self, new_string, new_level, new_id)
             self.children += [new_node]
             return new_node, new_header
-        elif(self.level == new_level):
+        elif self.level == new_level:
             new_node = HtmlTreeNode(self.parent, new_string, new_level, new_id)
             self.parent.children += [new_node]
             return new_node, new_header
-        elif(self.level > new_level):
+        elif self.level > new_level:
             return self.parent.add(new_header)
 
     def __str__(self):
@@ -309,7 +309,7 @@ def generate_id(content):
 
 
 def register():
-    signals.initialized.connect(init_default_config)
+    pelican.plugins.signals.initialized.connect(init_default_config)
 
 
-signals.content_object_init.connect(generate_id)
+pelican.plugins.signals.content_object_init.connect(generate_id)

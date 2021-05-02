@@ -22,8 +22,7 @@
 
 from __future__ import unicode_literals
 
-from pelican import signals
-
+import pelican.plugins.signals
 import pelican.utils
 import os.path
 import requests
@@ -56,21 +55,73 @@ def url_data(url):
     return load
 
 
-def load_splits(metadata, value, key, load):
-    if 'splits' in value:
-        for split in value['splits']:
-            refs = value['splits'][split]
-            reference = load
-            for ref in refs:
-                print(f"{split} {ref}")
-                reference = reference[ref]
-            metadata[split] = reference
-    else:
-        # no splits the whole loaded content is the saved dict
-        metadata[key] = load
+def sequence_dict(reference):
+    print(f"sequence dict")
+    return reference
 
 
-def init_default_config(pelican):
+def remove_part(reference, part):
+    print(f"remove {part}")
+
+
+def transform_part(reference, part):
+    print(f"transform {part}")
+
+
+def process_sequence(metadata, seq, sequence, load):
+    reference = load
+    is_sequence = False
+
+    # select sub dictionary
+    if 'select' in sequence:
+        parts = sequence['select'].split('.')
+        for part in parts:
+            print(f"{part}")
+            reference = reference[part]
+
+    # remove irrelevant keys
+    if 'trim' in sequence:
+        parts = sequence['trim'].split(',')
+        for part in parts:
+            remove_part(reference, part)
+
+    # transform roster and chair patterns
+    if 'transform' in sequence:
+        parts = sequence['transform'].split(',')
+        for part in parts:
+            transform_part(reference, part)
+
+    # this sequence is derived from another sequence
+    if 'sequence' in sequence:
+        reference = metadata[sequence['sequence']]
+        is_sequence = True
+
+    # this sequence is a random sample of another sequence
+    if 'random' in sequence:
+        if is_sequence:
+            reference = random.sample(reference, sequence['random'])
+        else:
+            print(f"{seq} - first specify the sequence to sample")
+
+    # convert the dictionary to a sequence
+    if not is_sequence:
+        reference = sequence_dict(reference)
+
+    # save sequence in metadata
+    metadata[seq] = reference
+
+
+def process_load(metadata, value, key, load):
+    for seq in value:
+        if seq == 'url':
+            metadata[key] = load
+        else:
+            # sequence
+            sequence = value[seq]
+            process_sequence(metadata, seq, sequence, load)
+
+
+def config_read_data(pelican):
     from pelican.settings import DEFAULT_CONFIG
 
     print("-----\nasfdata")
@@ -96,16 +147,17 @@ def init_default_config(pelican):
                     print(value)
                     if 'url' in value:
                         load = url_data(value['url'])
-                        load_splits(metadata, value, key, load)
+                        process_load(metadata, value, key, load)
                     else:
                         metadata[key] = value
                 else:
                     print(f"{key} = {value}")
                     metadata[key] = value
+
+        pelican.settings['ASF_DATA']['metadata'] = metadata
         for key in metadata:
             print(f"metadata[{key}]")
-        pelican.settings['ASF_DATA']['metadata'] = metadata
         print("-----")
 
 def register():
-    signals.initialized.connect(init_default_config)
+    pelican.plugins.signals.initialized.connect(config_read_data)
