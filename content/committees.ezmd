@@ -2,6 +2,7 @@ Title: Apache Board of Directors
 version: 1.0
 <!-- Licensed under ALv2 -->
 
-[for committees]
-| [committees.display_name] | [committees.chair] |
+| Committee   | Chair       |
+| ----------- | ----------- |
+[for committees]| [committees.display_name] | [committees.chair] |
 [end]
