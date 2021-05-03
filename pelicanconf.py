@@ -112,7 +112,9 @@ PLUGINS = ['asfgenid', 'asfdata', 'pelican-gfm', 'asfreader', 'sitemap']
 # Configure the asfdata plugin
 ASF_DATA = {
     'data': ASF_DATA_YAML,
-    'metadata': { },
+    'metadata': {
+        'site_url': SITEURL
+    },
     'debug': True
 }
 

@@ -35,6 +35,7 @@ ASF_DATA = {
     'debug': False
 }
 
+asf_data = ASF_DATA
 
 def read_config(config_yaml):
     with pelican.utils.pelican_open(config_yaml) as text:
@@ -47,6 +48,8 @@ def url_data(url):
     content = requests.get(url).text
     parts = url.split('/')
     extension = os.path.splitext(parts[-1])[1]  # split off ext, keep ext
+    if asf_data['debug']:
+        print(f"Loading {extension} from {url}")
     if extension == ".json":
         load = json.loads(content)
     elif extension == ".yaml":
@@ -83,7 +86,8 @@ def alpha_part(reference, part):
             letter = ' '
         else:
             letter = name[0]
-        print(f"{letter} {name}")
+        if asf_data['debug']:
+            print(f"{letter} {name}")
         reference[refs]['letter'] = letter
 
 
@@ -94,7 +98,8 @@ def asfid_part(reference, part):
         for k in fix:
             availid = k
             name = fix[k]['name']
-        print(f"{name} ({availid})")
+        if asf_data['debug']:
+            print(f"{name} ({availid})")
         reference[refs][part] = name
         reference[refs]['availid'] = availid
 
@@ -114,7 +119,7 @@ def process_sequence(metadata, seq, sequence, load):
 
     # description
     if 'description' in sequence:
-        print(f"{seq} is {sequence['description']}")
+        print(f"{seq}: {sequence['description']}")
 
     # select sub dictionary
     if 'path' in sequence:
