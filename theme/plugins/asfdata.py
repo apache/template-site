@@ -106,15 +106,35 @@ def sequence_dict(seq, reference):
     return sequence
 
 
-def split_list(seq, reference, split):
-    size = len(reference)
+def split_list(metadata, seq, reference, split):
+    # copy sequence
+    sequence = list(reference)
+    # sort the copy
+    sequence.sort(key=lambda x: (x.letter, x.display_name))
+    size = len(sequence)
     percol = int((size+26)/split)
     print(f"{percol} {size+26} {percol*split}")
     start = 0
+    letter = ' '
+    nseq = 0
+    nrow = 0
     for column in range(split):
+        subsequence = [ ]
         end = min(size+26, start+percol)
         print(f"{column}: {start}-{end}")
+        while nrow < end:
+            if letter < sequence[nseq].letter:
+                # new letter
+                letter = sequence[nseq].letter
+                subsequence.append(type(seq, (), { letter: letter, display_name: letter }))
+            else:
+                subsequence.append(sequence[nseq])
+                nseq++
+            nrow++
+        metadata[f"{seq}_{column}"] = subsequence
         start = start+percol
+    if nseq < size:
+        print(f"WARNING: {seq} not all of sequence consumed: short {size-nseq} projects")
 
 
 def process_sequence(metadata, seq, sequence, load, debug):
@@ -181,7 +201,7 @@ def process_sequence(metadata, seq, sequence, load, debug):
         if debug:
             print(f"split: {sequence['split']}")
         if is_sequence:
-            split_list(seq, reference, sequence['split'])
+            split_list(metadata, seq, reference, sequence['split'])
             save_sequence = False
         else:
             print(f"{seq} - split requires an existing sequence to split")
