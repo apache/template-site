@@ -124,9 +124,11 @@ def split_list(metadata, seq, reference, split):
             if letter < sequence[nseq].letter:
                 # new letter
                 letter = sequence[nseq].letter
-                subsequence.append(type(seq, (), { letter: letter, display_name: letter }))
+                subsequence.append(type(seq, (), { 'letter': letter, 'display_name': letter }))
+                print(letter)
             else:
                 subsequence.append(sequence[nseq])
+                print(sequence[nseq].display_name)
                 nseq = nseq+1
             nrow = nrow+1
         metadata[f"{seq}_{column}"] = subsequence
