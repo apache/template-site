@@ -3,7 +3,7 @@ version: 1.0
 <!-- Licensed under ALv2 -->
 
 [for committees]
-[if-any committees.paragraph]
+[is committees.pmc False]
 | [committees.display_name] | [committees.chair] | [committees.paragraph] |
 [end]
 [end]
