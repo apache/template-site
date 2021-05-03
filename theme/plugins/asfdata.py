@@ -114,10 +114,8 @@ def split_list(metadata, seq, reference, split):
     size = len(sequence)
     percol = int((size+26)/split)
     print(f"{percol} {size+26} {percol*split}")
-    start = 0
+    start = nseq = nrow = 0
     letter = ' '
-    nseq = 0
-    nrow = 0
     for column in range(split):
         subsequence = [ ]
         end = min(size+26, start+percol)
@@ -129,8 +127,8 @@ def split_list(metadata, seq, reference, split):
                 subsequence.append(type(seq, (), { letter: letter, display_name: letter }))
             else:
                 subsequence.append(sequence[nseq])
-                nseq++
-            nrow++
+                nseq = nseq+1
+            nrow = nrow+1
         metadata[f"{seq}_{column}"] = subsequence
         start = start+percol
     if nseq < size:
