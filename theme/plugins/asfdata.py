@@ -35,8 +35,6 @@ ASF_DATA = {
     'debug': False
 }
 
-asf_data = ASF_DATA
-
 def read_config(config_yaml):
     with pelican.utils.pelican_open(config_yaml) as text:
         config_data = yaml.load(text)
@@ -48,8 +46,7 @@ def url_data(url):
     content = requests.get(url).text
     parts = url.split('/')
     extension = os.path.splitext(parts[-1])[1]  # split off ext, keep ext
-    if asf_data['debug']:
-        print(f"Loading {extension} from {url}")
+    print(f"Loading {extension} from {url}")
     if extension == ".json":
         load = json.loads(content)
     elif extension == ".yaml":
@@ -86,8 +83,6 @@ def alpha_part(reference, part):
             letter = ' '
         else:
             letter = name[0]
-        if asf_data['debug']:
-            print(f"{letter} {name}")
         reference[refs]['letter'] = letter
 
 
@@ -98,8 +93,6 @@ def asfid_part(reference, part):
         for k in fix:
             availid = k
             name = fix[k]['name']
-        if asf_data['debug']:
-            print(f"{name} ({availid})")
         reference[refs][part] = name
         reference[refs]['availid'] = availid
 
@@ -113,7 +106,7 @@ def sequence_dict(reference):
     return sequence
 
 
-def process_sequence(metadata, seq, sequence, load):
+def process_sequence(metadata, seq, sequence, load, debug):
     reference = load
     is_sequence = False
 
@@ -123,54 +116,70 @@ def process_sequence(metadata, seq, sequence, load):
 
     # select sub dictionary
     if 'path' in sequence:
+        if debug:
+            print(f"path: {sequence['path']}")
         parts = sequence['path'].split('.')
         for part in parts:
             reference = reference[part]
 
     # filter dictionary by attribute value. if filter is false discard
     if 'where' in sequence:
+        if debug:
+            print(f"where: {sequence['where']}")
         where_parts(reference, sequence['where'])
 
     # remove irrelevant keys
     if 'trim' in sequence:
+        if debug:
+            print(f"trim: {sequence['trim']}")
         parts = sequence['trim'].split(',')
         for part in parts:
             remove_part(reference, part)
 
     # transform roster and chair patterns
     if 'asfid' in sequence:
+        if debug:
+            print(f"asfid: {sequence['asfid']}")
         asfid_part(reference, sequence['asfid'])
 
     # add first letter ofr alphabetic categories
     if 'alpha' in sequence:
+        if debug:
+            print(f"alpha: {sequence['alpha']}")
         alpha_part(reference, sequence['alpha'])
 
     # this sequence is derived from another sequence
     if 'sequence' in sequence:
+        if debug:
+            print(f"sequence: {sequence['sequence']}")
         reference = metadata[sequence['sequence']]
         is_sequence = True
 
     # this sequence is a random sample of another sequence
     if 'random' in sequence:
+        if debug:
+            print(f"random: {sequence['random']}")
         if is_sequence:
             reference = random.sample(reference, sequence['random'])
         else:
-            print(f"{seq} - first specify the sequence to sample")
+            print(f"{seq} - random requires an existing sequence to sample")
 
     # convert the dictionary to a sequence
     if not is_sequence:
+        if debug:
+            print(f"{seq}: create sequence")
         reference = sequence_dict(reference)
 
     # save sequence in metadata
     metadata[seq] = reference
 
 
-def process_load(metadata, value, key, load):
+def process_load(metadata, value, key, load, debug):
     for seq in value:
         if seq != 'url':
             # sequence
             sequence = value[seq]
-            process_sequence(metadata, seq, sequence, load)
+            process_sequence(metadata, seq, sequence, load, debug)
 
 
 def config_read_data(pelican):
@@ -199,7 +208,7 @@ def config_read_data(pelican):
                     print(value)
                     if 'url' in value:
                         load = url_data(value['url'])
-                        process_load(metadata, value, key, load)
+                        process_load(metadata, value, key, load, asf_data['debug'])
                     else:
                         metadata[key] = value
                 else:
