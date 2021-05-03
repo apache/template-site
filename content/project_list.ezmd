@@ -2,7 +2,6 @@ Title: Apache Board of Directors
 version: 1.0
 <!-- Licensed under ALv2 -->
 
-| Project     |
-| ----------- |
-[for project_list_0]| [project_list_0.display_name] |
-[end]
+| Project     | Project     |
+| ----------- | ----------- |
+| [for project_list_0][project_list_0.display_name]<br>[end] | [for project_list_1][project_list_1.display_name]<br>[end] |
