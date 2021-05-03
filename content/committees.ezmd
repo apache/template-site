@@ -3,8 +3,5 @@ version: 1.0
 <!-- Licensed under ALv2 -->
 
 [for committees]
-[is committees.pmc]
-[else]
-| [committees.display_name] | [committees.chair] | [committees.paragraph] |
-[end]
+| [committees.display_name] | [committees.chair] |
 [end]
