@@ -111,28 +111,28 @@ def split_list(metadata, seq, reference, split):
     sequence = list(reference)
     # sort the copy
     sequence.sort(key=lambda x: (x.letter, x.display_name))
-    size = len(sequence) - 1
+    # size of list
+    size = len(sequence)
+    # size of columns
     percol = int((size+26+split-1)/split)
-    print(f"{percol} {size+26} {percol*split}")
+    # positions
     start = nseq = nrow = 0
     letter = ' '
     for column in range(split):
         subsequence = [ ]
         end = min(size+26, start+percol)
-        print(f"{column}: {start}-{end}")
         while nrow < end:
             if letter < sequence[nseq].letter:
                 # new letter
                 letter = sequence[nseq].letter
                 subsequence.append(type(seq, (), { 'letter': letter, 'display_name': letter }))
-                print(letter)
             else:
                 subsequence.append(sequence[nseq])
-                print(sequence[nseq].display_name)
                 nseq = nseq+1
             nrow = nrow+1
+        # save the column sequence in the metadata
         metadata[f"{seq}_{column}"] = subsequence
-        start = start+percol
+        start = end
     if nseq < size:
         print(f"WARNING: {seq} not all of sequence consumed: short {size-nseq} projects")
 
