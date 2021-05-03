@@ -4,5 +4,5 @@ version: 1.0
 
 | Committee   | Chair       |
 | ----------- | ----------- |
-[for committees]| [committees.display_name] | [committees.chair] |
+[for committees][if-any committees.pmc][else]| [committees.display_name] | [committees.chair] |
 [end]

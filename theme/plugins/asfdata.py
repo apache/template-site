@@ -29,6 +29,7 @@ import requests
 import random
 import yaml
 import json
+import ezt
 
 ASF_DATA = {
     'metadata': { },
@@ -101,8 +102,10 @@ def sequence_dict(seq, reference):
     for refs in reference:
         if isinstance(reference[refs],dict):
             reference[refs]['key_id'] = refs
+            for item in reference[refs]:
+                if isinstance(reference[refs][item],bool):
+                    reference[refs][item] = ezt.boolean(reference[refs][item])
             sequence.append(type(seq, (), reference[refs]))
-            # do we need to fixup booleans for ezt?
     return sequence
 
 
