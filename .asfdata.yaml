@@ -22,8 +22,6 @@ ci:
     description: 'Current Projects'
     path: committees
     where: pmc
-    trim: report,roster
-    asfid: chair
     alpha: display_name
   featured_projs:
     description: 'Featured Projects'
