@@ -87,7 +87,6 @@ def alpha_part(reference, part):
 
 
 def asfid_part(reference, part):
-    print(f"asfid {part}")
     for refs in reference:
         fix = reference[refs][part]
         for k in fix:
@@ -97,12 +96,12 @@ def asfid_part(reference, part):
         reference[refs]['availid'] = availid
 
 
-def sequence_dict(reference):
+def sequence_dict(seq, reference):
     sequence = [ ]
     for refs in reference:
         if isinstance(reference[refs],dict):
             reference[refs]['key_id'] = refs
-            sequence.append(reference[refs])
+            sequence.append(type(seq, (), reference[refs]))
     return sequence
 
 
@@ -168,7 +167,7 @@ def process_sequence(metadata, seq, sequence, load, debug):
     if not is_sequence:
         if debug:
             print(f"{seq}: create sequence")
-        reference = sequence_dict(reference)
+        reference = sequence_dict(seq, reference)
 
     # save sequence in metadata
     metadata[seq] = reference
