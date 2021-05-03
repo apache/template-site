@@ -3,5 +3,4 @@ version: 1.0
 <!-- Licensed under ALv2 -->
 
 [for board]
-- [board.name]
-[end]
+- [board.name][end]
