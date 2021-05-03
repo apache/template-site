@@ -152,7 +152,12 @@ def expand_metadata(tag, metadata):
     while m:
         m = METADATA_RE.search(this_string)
         if m:
-            format_string = '{{{0}}}'.format(m.group(1).strip())
+            this_data = m.group(1).strip()
+            parts = this_data.split('.')
+            if len(parts) == 3:
+                this_data = f"{parts[0]}[{parts[1]}].{parts[2]}"
+                print(this_data)
+            format_string = '{{{0}}}'.format(this_data)
             try:
                 new_string = format_string.format(**metadata)
                 print(f"{{{{{m.group(1)}}}}} -> {new_string}")
