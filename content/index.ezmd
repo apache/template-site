@@ -6,7 +6,7 @@ version: 1.0
 
 ["Title: %0, Version: %1" title version]
 
-{{ relative_source_path }} - {{ version }} - {{ board.fielding.name }} - {{ tester }}
+{{ relative_source_path }} - {{ version }} - {{ board.1.name }} - {{ tester }}
 
 The Apache Petri (as in “petri dish” – where cultures are grown and bloom) committee
 assists external project communities interested in becoming an Apache project to
