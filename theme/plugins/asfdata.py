@@ -112,7 +112,7 @@ def split_list(metadata, seq, reference, split):
     # sort the copy
     sequence.sort(key=lambda x: (x.letter, x.display_name))
     size = len(sequence) - 1
-    percol = int((size+26)/split)
+    percol = int((size+26+split-1)/split)
     print(f"{percol} {size+26} {percol*split}")
     start = nseq = nrow = 0
     letter = ' '
