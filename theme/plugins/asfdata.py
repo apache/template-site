@@ -102,12 +102,22 @@ def sequence_dict(seq, reference):
         if isinstance(reference[refs],dict):
             reference[refs]['key_id'] = refs
             sequence.append(type(seq, (), reference[refs]))
+            # do we need to fixup booleans for ezt?
     return sequence
+
+
+def split_list(seq, reference, split):
+    percol = (len(reference)+26+1)/split
+    start = 0
+    for column in range(split):
+        print(f"{column}: {start}-{start+percol}")
+        start = start+percol
 
 
 def process_sequence(metadata, seq, sequence, load, debug):
     reference = load
     is_sequence = False
+    save_sequence = True
 
     # description
     if 'description' in sequence:
@@ -163,14 +173,25 @@ def process_sequence(metadata, seq, sequence, load, debug):
         else:
             print(f"{seq} - random requires an existing sequence to sample")
 
-    # convert the dictionary to a sequence
+    # this sequence is a sorted list divided into multiple columns
+    if 'split' in sequence:
+        if debug:
+            print(f"split: {sequence['split']}")
+        if is_sequence:
+            split_list(seq, reference, sequence['split'])
+            save_sequence = False
+        else:
+            print(f"{seq} - split requires an existing sequence to split")
+
+    # convert the dictionary to a sequence of objects
     if not is_sequence:
         if debug:
             print(f"{seq}: create sequence")
         reference = sequence_dict(seq, reference)
 
     # save sequence in metadata
-    metadata[seq] = reference
+    if save_sequence:
+        metadata[seq] = reference
 
 
 def process_load(metadata, value, key, load, debug):

@@ -27,6 +27,10 @@ ci:
     description: 'Featured Projects'
     sequence: projects
     random: 3
+  project_list:
+    description: 'Project List Columns'
+    sequence: projects
+    split: 6
 
 # used on index.ezmd
 pods:
