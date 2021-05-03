@@ -107,10 +107,13 @@ def sequence_dict(seq, reference):
 
 
 def split_list(seq, reference, split):
-    percol = (len(reference)+26+1)/split
+    size = len(reference)
+    percol = int((size+26)/split)+1
+    print(f"{percol} {size+26} {percol*split}")
     start = 0
     for column in range(split):
-        print(f"{column}: {start}-{start+percol}")
+        end = min(size+26, start+percol)
+        print(f"{column}: {start}-{end}")
         start = start+percol
 
 
