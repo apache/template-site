@@ -3,31 +3,34 @@ id1: 'test id'
 id2: 'testing 1, 2, 3'
 
 # data sources to slurp and sequence
+# used on foundation/index.ezmd, index.ezmd
 ci:
   url: https://whimsy.apache.org/public/committee-info.json
   board:
     description: 'Board of Directors'
-    select: board.roster
+    path: board.roster
   officers:
     description: 'Foundation Officers'
-    select: officers
-    transform: roster
+    path: officers
+    asfid: roster
   committees:
     description: 'Foundation Committees'
-    select: committees
+    path: committees
     trim: report,roster
-    transform: chair
+    asfid: chair
   projects:
     description: 'Current Projects'
-    select: committees
-    filter: pmc
+    path: committees
+    where: pmc
     trim: report,roster
-    transform: chair
+    asfid: chair
+    alpha: display_name
   featured_projs:
     description: 'Featured Projects'
     sequence: projects
     random: 3
 
+# used on index.ezmd
 pods:
   url: https://projects.apache.org/json/foundation/podlings.json
   podlings:

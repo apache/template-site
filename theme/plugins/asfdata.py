@@ -65,7 +65,8 @@ def remove_part(reference, part):
             remove_part(reference[refs], part)
 
 
-def filter_parts(reference, part):
+def where_parts(reference, part):
+    # currently only works on True parts
     filtered = [ ]
     for refs in reference:
         if not reference[refs][part]:
@@ -74,11 +75,28 @@ def filter_parts(reference, part):
         del reference[refs]
 
 
-def transform_part(reference, part):
-    print(f"transform {part}")
+def alpha_part(reference, part):
+    for refs in reference:
+        name = reference[refs][part]
+        if name == 'HTTP Server':
+            # when sorting by letter HTTPD Server is wanted first
+            letter = ' '
+        else:
+            letter = name[0]
+        print(f"{letter} {name}")
+        reference[refs]['letter'] = letter
+
+
+def asfid_part(reference, part):
+    print(f"asfid {part}")
     for refs in reference:
         fix = reference[refs][part]
-        print(fix)
+        for k in fix:
+            availid = k
+            name = fix[k]['name']
+        print(f"{name} ({availid})")
+        reference[refs][part] = name
+        reference[refs]['availid'] = availid
 
 
 def sequence_dict(reference):
@@ -99,15 +117,14 @@ def process_sequence(metadata, seq, sequence, load):
         print(f"{seq} is {sequence['description']}")
 
     # select sub dictionary
-    if 'select' in sequence:
-        parts = sequence['select'].split('.')
+    if 'path' in sequence:
+        parts = sequence['path'].split('.')
         for part in parts:
-            print(f"{part}")
             reference = reference[part]
 
     # filter dictionary by attribute value. if filter is false discard
-    if 'filter' in sequence:
-        filter_parts(reference, sequence['filter'])
+    if 'where' in sequence:
+        where_parts(reference, sequence['where'])
 
     # remove irrelevant keys
     if 'trim' in sequence:
@@ -116,10 +133,12 @@ def process_sequence(metadata, seq, sequence, load):
             remove_part(reference, part)
 
     # transform roster and chair patterns
-    if 'transform' in sequence:
-        parts = sequence['transform'].split(',')
-        for part in parts:
-            transform_part(reference, part)
+    if 'asfid' in sequence:
+        asfid_part(reference, sequence['asfid'])
+
+    # add first letter ofr alphabetic categories
+    if 'alpha' in sequence:
+        alpha_part(reference, sequence['alpha'])
 
     # this sequence is derived from another sequence
     if 'sequence' in sequence:
