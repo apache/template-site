@@ -82,7 +82,7 @@ def alpha_part(reference, part):
             # when sorting by letter HTTPD Server is wanted first
             letter = ' '
         else:
-            letter = name[0]
+            letter = name[0].upper()
         reference[refs]['letter'] = letter
 
 
