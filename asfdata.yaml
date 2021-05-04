@@ -27,7 +27,7 @@ ci:
     description: 'Featured Projects'
     sequence: projects
     random: 3
-  project_list:
+  pl:
     description: 'Project List Columns'
     sequence: projects
     split: 6
