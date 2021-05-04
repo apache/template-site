@@ -14,7 +14,8 @@ import unicodedata
 
 from bs4 import BeautifulSoup, Comment
 
-from pelican import contents
+# from pelican import contents
+import pelican.contents
 import pelican.plugins.signals
 
 '''
@@ -245,7 +246,7 @@ def add_data(content):
 
 # main worker transforming the html
 def generate_id(content):
-    if isinstance(content, contents.Static):
+    if isinstance(content, pelican.contents.Static):
         return
 
     # track the id tags
