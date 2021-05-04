@@ -1,11 +1,12 @@
-Title: Featured Projects anbd Podlings
+Title: Featured
 version: 1.0
 <!-- Licensed under ALv2 -->
 
-## Featured Projects
+## 
+Projects
 [for featured_projs]
 - [[][featured_projs.display_name]]([featured_projs.site])[end]
 
-## Featured Podlings
+## Podlings
 [for featured_pods]
 - [[][featured_pods.name]]([featured_pods.homepage])[end]
