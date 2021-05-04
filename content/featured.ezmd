@@ -8,4 +8,4 @@ version: 1.0
 
 ## Featured Podlings
 [for featured_pods]
-- [[][featured_pods.display_name]]([featured_projs.homepage])[end]
+- [[][featured_pods.name]]([featured_projs.homepage])[end]
