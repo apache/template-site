@@ -2,8 +2,7 @@ Title: Featured
 version: 1.0
 <!-- Licensed under ALv2 -->
 
-## 
-Projects
+## Projects
 [for featured_projs]
 - [[][featured_projs.display_name]]([featured_projs.site])[end]
 
