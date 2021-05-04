@@ -4,7 +4,7 @@ version: 1.0
 
 ## Featured Projects
 [for featured_projs]
-- []][featured_projs.display_name]]([featured_projs.site])[end]
+- [[][featured_projs.display_name]]([featured_projs.site])[end]
 
 ## Featured Podlings
 [for featured_pods]
