@@ -1,4 +1,5 @@
 title: BuildStream @ Apache Petri
+source_button: yes
 <!-- Licensed under ALv2 -->
 
 ## About

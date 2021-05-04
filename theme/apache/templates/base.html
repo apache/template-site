@@ -139,8 +139,12 @@
     <div class="container">
       {% block content %}
       {% endblock %}
+      {% if page.source_button is defined %}
         <!-- button to view source in github -->
-        <h2><span class="badge badge-secondary"><a href="{{ SITEREPOSITORY }}{{ page.relative_source_path }}" style="color:white">Page Source</a></span></h2>
+      <h2><span class="badge badge-secondary">
+	  <a href="{{ SITEREPOSITORY }}{{ page.relative_source_path }}" style="color:white">Page Source</a>
+      </span></h2>
+      {% endif %}
     </div>
     <!-- End main content area -->
 

@@ -1,4 +1,5 @@
 Title: Apache Petri - FAQ
+source_button: yes
 <!-- Licensed under ALv2 -->
 
 [TOC]
