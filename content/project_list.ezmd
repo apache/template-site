@@ -4,4 +4,4 @@ version: 1.0
 
 | Column 1    | Column 2    | Column 3    | Column 4    | Column 5    | Column 6    |
 | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- |
-| [for project_list_0][project_list_0.display_name]<br>[end] | [for project_list_1][project_list_1.display_name]<br>[end] | [for project_list_2][project_list_2.display_name]<br>[end] | [for project_list_3][project_list_3.display_name]<br> | [for project_list_4][project_list_4.display_name]<br>[end] | [for project_list_5][project_list_5.display_name]<br>[end] |
+| [for project_list_0][project_list_0.display_name]<br>[end] | [for project_list_1][project_list_1.display_name]<br>[end] | [for project_list_2][project_list_2.display_name]<br>[end] | [for project_list_3][project_list_3.display_name]<br>[end] | [for project_list_4][project_list_4.display_name]<br>[end] | [for project_list_5][project_list_5.display_name]<br>[end] |
