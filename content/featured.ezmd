@@ -4,8 +4,8 @@ version: 1.0
 
 ## Featured Projects
 [for featured_projs]
-- [[][featured_projs.display_name]]([featured_projs.site])[end]
+- ![[]Logo](https://www.apache.org/logos/res/[featured_projs.display_name]/default.png)[[]Apache [featured_projs.display_name]]([featured_projs.site])[end]
 
 ## Featured Podlings
 [for featured_pods]
-- [[][featured_pods.name]]([featured_pods.homepage])[end]
+- ![[]Logo](https://www.apache.org/logos/res/[featured_pods.name]/default.png)[[][featured_pods.name]]([featured_pods.homepage])[end]
