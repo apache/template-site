@@ -66,7 +66,7 @@ class ASFReader(GFMReader):
         content = super().render(fp.getvalue().encode('utf-8')).decode('utf-8')
         assert content
         print("--------")
-        print(content._content)
+        print(content)
         print("--------")
 
         return content, metadata
