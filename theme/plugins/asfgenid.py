@@ -30,6 +30,7 @@ ASF_GENID = {
     'toc': True,
     'toc_headers': r"h[1-6]",
     'permalinks': True,
+    'table': True,
     'debug': False
 }
 
@@ -144,6 +145,26 @@ def permalink(soup, mod_element):
     mod_element.append(new_tag)
 
 
+# fixup cmark content
+def fixup_content(content):
+    text = content._content
+    modified = False
+    # Find messed up html
+    SCRIPTS_RE = re.compile(r'&lt;scripts>')
+    m = SCRIPTS_RE.search(text)
+    if m:
+        modified = True
+        text = re.sub(SCRIPTS_RE, '<scripts>', text)
+    STYLE_RE = re.compile(r'&lt;style>')
+    m = STYLE_RE.search(text)
+    if m:
+        modified = True
+        text = re.sub(STYLE_RE, '<style>', text)
+    if modified:
+        print(text)
+        content._content = text
+
+
 # expand metadata found in {{ key }}
 def expand_metadata(tag, metadata):
     this_string = str(tag.string)
@@ -253,6 +274,8 @@ def generate_id(content):
     print("--------")
     # track the id tags
     ids = set()
+    # fix cmark mistakes
+    fixup_content(content)
     # parse html content into BeautifulSoup4
     soup = BeautifulSoup(content._content, 'html.parser')
     # page title

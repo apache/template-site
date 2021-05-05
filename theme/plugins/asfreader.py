@@ -51,9 +51,6 @@ class ASFReader(GFMReader):
         # read content with embedded ezt - use GFMReader
         text, metadata = super().read_source(source_path)
         assert text
-        print("--------")
-        print(text)
-        print("--------")
         assert metadata
         # supplement metadata with ASFData if available
         self.add_data(metadata)
