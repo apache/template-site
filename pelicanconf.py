@@ -97,6 +97,9 @@ THEME = './theme/apache'
 PLUGIN_PATHS = ['./theme/plugins']
 PLUGINS = ['asfgenid', 'asfdata', 'pelican-gfm', 'asfreader', 'sitemap']
 
+TYPOGRAPHY = True
+TYPOGRAPHY_IGNORE_TAGS = ['pre', 'code', 'style', 'script']
+
 # Lifecycle and plugins:
 # (1) Initialization:
 #     asfdata - populate a sitewide dictionary of ASF_DATA
