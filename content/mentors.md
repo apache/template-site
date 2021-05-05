@@ -1,6 +1,10 @@
 title: Mentors at Apache Petri
 <!-- Licensed under ALv2 -->
 
+<script type="text/javascript">
+location.href = location.href.replace(/^https?:\/\/[^\/]+\/dev\//, 'https://petri.apache.org/');
+</script>
+
 ## Introduction
 
 Mentors at Apache Petri provides insight into the Apache Way and general oversight of the learning process
