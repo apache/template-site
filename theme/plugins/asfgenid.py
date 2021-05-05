@@ -248,6 +248,9 @@ def generate_id(content):
     if isinstance(content, pelican.contents.Static):
         return
 
+    print("--------")
+    print(content._content)
+    print("--------")
     # track the id tags
     ids = set()
     # parse html content into BeautifulSoup4
@@ -310,6 +313,8 @@ def generate_id(content):
     # step 8 - output all of the ids now in the soup.
     for tag in soup.findAll(id=True):
         print(f"    #{tag['id']}")
+    print("--------")
+    print(content._content)
     print("--------")
 
 
