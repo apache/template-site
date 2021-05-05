@@ -281,9 +281,6 @@ def generate_id(content):
     if isinstance(content, pelican.contents.Static):
         return
 
-    print("--------")
-    print(content._content)
-    print("--------")
     # track the id tags
     ids = set()
     # fix cmark mistakes
