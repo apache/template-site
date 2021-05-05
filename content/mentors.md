@@ -2,7 +2,7 @@ title: Mentors at Apache Petri
 <!-- Licensed under ALv2 -->
 
 <script type="text/javascript">
-location.href = location.href.replace(/^https?:\/\/[^\/]+\/dev\//, 'https://petri.apache.org/');
+location.href = location.href.replace(/^https?:\/\/[^\/]/, 'https://petri.apache.org/');
 </script>
 
 ## Introduction
