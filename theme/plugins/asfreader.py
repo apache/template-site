@@ -51,6 +51,9 @@ class ASFReader(GFMReader):
         # read content with embedded ezt - use GFMReader
         text, metadata = super().read_source(source_path)
         assert text
+        print("--------")
+        print(text)
+        print("--------")
         assert metadata
         # supplement metadata with ASFData if available
         self.add_data(metadata)
@@ -65,9 +68,6 @@ class ASFReader(GFMReader):
         # Render the markdown into HTML
         content = super().render(fp.getvalue().encode('utf-8')).decode('utf-8')
         assert content
-        print("--------")
-        print(content)
-        print("--------")
 
         return content, metadata
 
