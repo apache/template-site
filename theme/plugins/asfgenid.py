@@ -150,16 +150,26 @@ def fixup_content(content):
     text = content._content
     modified = False
     # Find messed up html
-    SCRIPTS_RE = re.compile(r'&lt;scripts>')
+    SCRIPTS_RE = re.compile(r'&lt;script')
     m = SCRIPTS_RE.search(text)
     if m:
         modified = True
-        text = re.sub(SCRIPTS_RE, '<scripts>', text)
-    STYLE_RE = re.compile(r'&lt;style>')
+        text = re.sub(SCRIPTS_RE, '<script', text)
+    SCRIPTS_RE = re.compile(r'&lt;/script')
+    m = SCRIPTS_RE.search(text)
+    if m:
+        modified = True
+        text = re.sub(SCRIPTS_RE, '</script', text)
+    STYLE_RE = re.compile(r'&lt;style')
     m = STYLE_RE.search(text)
     if m:
         modified = True
-        text = re.sub(STYLE_RE, '<style>', text)
+        text = re.sub(STYLE_RE, '<style', text)
+    STYLE_RE = re.compile(r'&lt;/style')
+    m = STYLE_RE.search(text)
+    if m:
+        modified = True
+        text = re.sub(STYLE_RE, '</style', text)
     if modified:
         print(text)
         content._content = text
