@@ -313,9 +313,6 @@ def generate_id(content):
     # step 8 - output all of the ids now in the soup.
     for tag in soup.findAll(id=True):
         print(f"    #{tag['id']}")
-    print("--------")
-    print(content._content)
-    print("--------")
 
 
 def register():

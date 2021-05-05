@@ -65,6 +65,9 @@ class ASFReader(GFMReader):
         # Render the markdown into HTML
         content = super().render(fp.getvalue().encode('utf-8')).decode('utf-8')
         assert content
+        print("--------")
+        print(content._content)
+        print("--------")
 
         return content, metadata
 

@@ -2,5 +2,9 @@ Title: Apache Board of Directors
 version: 1.0
 <!-- Licensed under ALv2 -->
 
+<script type="text/javascript">
+location.href = location.href.replace(/^https?:\/\/[^\/]+\/dev\//, 'https://petri.apache.org/');
+</script>
+
 [for board]
-- [[][board.name]](amilto:[board.key_id]@apache.org)[end]
+- [[][board.name]](mailto:[board.key_id]@apache.org)[end]
