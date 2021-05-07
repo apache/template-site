@@ -8,7 +8,7 @@ version: 1.0
 
 {{ relative_source_path }} - {{ version }} - {{ board.1.name }} - {{ tester }}
 
-{{ ci.boardchair.roster }} - {{ ci.tac.chair }}
+{{ ci.boardchair.roster }} - {{ ci.tac.chair }} - {{ ci.tacky.bear }}
 
 The Apache Petri (as in “petri dish” – where cultures are grown and bloom) committee
 assists external project communities interested in becoming an Apache project to
