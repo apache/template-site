@@ -194,7 +194,7 @@ def process_sequence(metadata, seq, sequence, load, debug):
         reference = { }
         parts = sequence['dictionary'].split(',')
         for part in parts:
-            for item in metadata[part]):
+            for item in metadata[part]:
                 reference[item.key_id] = item
         is_dictionary = True
 
