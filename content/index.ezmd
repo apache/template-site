@@ -10,6 +10,8 @@ version: 1.0
 
 {{ ci.boardchair.roster }} - {{ ci.tac.chair }} - {{ ci.tacky.bear }}
 
+{{ board.30.name }}
+
 The Apache Petri (as in “petri dish” – where cultures are grown and bloom) committee
 assists external project communities interested in becoming an Apache project to
 learn how The Apache Software Foundation (ASF) works, its views on community, and
