@@ -189,7 +189,7 @@ def expand_metadata(tag, metadata):
             parts = this_data.split('.')
             if len(parts) == 3:
                 if isinstance(metadata[parts[0]], dict):
-                    this_data = f"{parts[0]}['{parts[1]}'].{parts[2]}"
+                    this_data = f"{parts[0]}['{parts[1]}']['{parts[2]}']"
                 else:
                     this_data = f"{parts[0]}[{parts[1]}].{parts[2]}"
                 print(this_data)
