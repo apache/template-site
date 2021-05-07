@@ -192,10 +192,10 @@ def process_sequence(metadata, seq, sequence, load, debug):
         if debug:
             print(f"dictionary: {sequence['dictionary']}")
         reference = { }
-        parts = sequence['dictionary'].split(',')
-        for part in parts:
-            for item in metadata[part]:
-                reference[item.key_id] = item
+        paths = sequence['dictionary'].split(',')
+        for path in paths:
+            for key in load[path]:
+                reference[key] = load[path][key]
         is_dictionary = True
 
     # this sequence is derived from another sequence
