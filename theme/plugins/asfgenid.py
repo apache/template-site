@@ -188,7 +188,10 @@ def expand_metadata(tag, metadata):
             this_data = m.group(1).strip()
             parts = this_data.split('.')
             if len(parts) == 3:
-                this_data = f"{parts[0]}[{parts[1]}].{parts[2]}"
+                if isinstance(metadata[parts[0]], dict):
+                    this_data = f"{parts[0]}['{parts[1]}'].{parts[2]}"
+                else:
+                    this_data = f"{parts[0]}[{parts[1]}].{parts[2]}"
                 print(this_data)
             format_string = '{{{0}}}'.format(this_data)
             try:
