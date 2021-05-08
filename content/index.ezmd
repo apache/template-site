@@ -6,6 +6,8 @@ version: 1.0
 
 ["Title: %0, Version: %1" title version]
 
+[insertfile "projects/projects.snippet"]
+
 {{ relative_source_path }} - {{ version }} - {{ board.1.name }} - {{ tester }}
 
 {{ ci.boardchair.roster }} - {{ ci.tac.chair }} - {{ ci.tacky.bear }}
