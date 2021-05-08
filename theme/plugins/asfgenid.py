@@ -251,15 +251,17 @@ def headingid_transform(ids, soup, tag, permalinks):
 
 
 # generate table of contents from headings after [TOC] content
-def generate_toc(content, tag, title, toc_headers):
+def generate_toc(content, tags, title, toc_headers):
     settoc = False
-    ncase = len(tag)
     tree = node = HtmlTreeNode(None, title, 'h0', '')
     heading_re = re.compile(toc_headers)
-    for header in tag[ncase-1].findAllNext(heading_re):
+    for tag in tags:
+        taglast = tag
+    for header in taglast.findAllNext(heading_re):
         settoc = True
         node, new_header = node.add(header)
 
+    tree_soup = ""
     if settoc:
         print("  ToC - %s" % ncase)
         # convert the HtmlTreeNode into Beautiful soup
@@ -267,10 +269,10 @@ def generate_toc(content, tag, title, toc_headers):
         tree_soup = BeautifulSoup(tree_string, 'html.parser')
         # not sure if we need to put the ToC here.
         content.toc = tree_soup.decode(formatter='html')
-        for item in tag:
-            tag[item].replaceWith(tree_soup)
-            tree_soup = ""
-        
+    for tag in tags:
+        tag.replaceWith(tree_soup)
+        tree_soup = ""
+
 
 def add_data(content):
     "Mix in ASF data as metadata"
@@ -352,9 +354,9 @@ def generate_id(content):
 
     # step 7 - find TOC tag and generate Table of Contents
     if asf_genid['toc']:
-        tag = soup('p', text='[TOC]')
+        tags = soup('p', text='[TOC]')
         if tag:
-            generate_toc(content, tag, title, asf_genid['toc_headers'])
+            generate_toc(content, tags, title, asf_genid['toc_headers'])
 
     # step 8 - reset the html content
     content._content = soup.decode(formatter='html')
