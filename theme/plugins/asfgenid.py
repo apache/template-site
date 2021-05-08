@@ -253,7 +253,7 @@ def headingid_transform(ids, soup, tag, permalinks):
 # generate table of contents from headings after [TOC] content
 def generate_toc(content, tag, title, toc_headers):
     settoc = False
-    ncase = tag.len()
+    ncase = len(tag)
     tree = node = HtmlTreeNode(None, title, 'h0', '')
     heading_re = re.compile(toc_headers)
     for header in tag[ncase-1].findAllNext(heading_re):
