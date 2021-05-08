@@ -254,16 +254,16 @@ def headingid_transform(ids, soup, tag, permalinks):
 def generate_toc(content, tags, title, toc_headers):
     settoc = False
     tree = node = HtmlTreeNode(None, title, 'h0', '')
-    heading_re = re.compile(toc_headers)
+    taglast = tags[0]
     for tag in tags:
         taglast = tag
+    heading_re = re.compile(toc_headers)
     for header in taglast.findAllNext(heading_re):
         settoc = True
         node, new_header = node.add(header)
-
     tree_soup = ""
     if settoc:
-        print("  ToC - %s" % ncase)
+        print("  ToC")
         # convert the HtmlTreeNode into Beautiful soup
         tree_string = '{}'.format(tree)
         tree_soup = BeautifulSoup(tree_string, 'html.parser')
@@ -355,7 +355,7 @@ def generate_id(content):
     # step 7 - find TOC tag and generate Table of Contents
     if asf_genid['toc']:
         tags = soup('p', text='[TOC]')
-        if tag:
+        if tags:
             generate_toc(content, tags, title, asf_genid['toc_headers'])
 
     # step 8 - reset the html content
