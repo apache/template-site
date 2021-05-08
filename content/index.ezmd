@@ -6,7 +6,7 @@ version: 1.0
 
 ["Title: %0, Version: %1" title version]
 
-[insertfile "projects/projects.snippet"]
+[insertfile "content/projects/projects.snippet"]
 
 {{ relative_source_path }} - {{ version }} - {{ board.1.name }} - {{ tester }}
 
