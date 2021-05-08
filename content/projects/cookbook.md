@@ -11,6 +11,8 @@ During its time in Petri a culture may go through a number of transitions. We tr
 This section should describe the project.
 Whenever a community begins to call itself Apache Foo then it needs to provide a DISCLAIMER. Contact discuss@petri.apache.org for the text.
 
+[TOC]
+
 ### Website
 
 Provide the current website for the project community. When the community wishes Petri will guide in the creation of a website on Apache Infrastructure.
