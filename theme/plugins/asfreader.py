@@ -22,6 +22,7 @@
 
 import sys
 import io
+import os
 import ezt
 
 import pelican.plugins.signals
