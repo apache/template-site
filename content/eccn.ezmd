@@ -1,0 +1,6 @@
+Title: Export Notification
+version: 1.0
+<!-- Licensed under ALv2 -->
+
+[for eccn]
+- [[][eccn.name]]([eccn.href])[if-any eccn.contact][eccn.contact][end][end]
