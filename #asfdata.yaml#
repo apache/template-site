@@ -47,7 +47,7 @@ pods:
 
 # used on licenses/exports/index.ezmd
 matrix:
-  url: file:data/eccn/eccnmatrix.json
+  url: data/eccn/eccnmatrix.json
   eccn:
     description: 'ECCN Matrix'
-    path: eccnmatrix
+    path: eccn
