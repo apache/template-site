@@ -107,11 +107,24 @@ def asfid_part(reference, part):
 def sequence_dict(seq, reference):
     sequence = [ ]
     for refs in reference:
-        if isinstance(reference[refs],dict):
+        if isinstance(reference[refs], dict):
             reference[refs]['key_id'] = refs
             for item in reference[refs]:
-                if isinstance(reference[refs][item],bool):
+                if isinstance(reference[refs][item], bool):
                     reference[refs][item] = ezt.boolean(reference[refs][item])
+            sequence.append(type(seq, (), reference[refs]))
+    return sequence
+
+
+def sequence_list(seq, reference):
+    sequence = [ ]
+    for refs in reference:
+        if isinstance(reference[refs], dict):
+            for item in reference[refs]:
+                if isinstance(reference[refs][item], bool):
+                    reference[refs][item] = ezt.boolean(reference[refs][item])
+                elif isinstance(reference[refs][item], list):
+                    reference[refs][item] = sequence_list(seq, reference[refs][item])
             sequence.append(type(seq, (), reference[refs]))
     return sequence
 
@@ -231,11 +244,16 @@ def process_sequence(metadata, seq, sequence, load, debug):
         else:
             print(f"{seq} - split requires an existing sequence to split")
 
-    # convert the dictionary to a sequence of objects
+    # convert the dictionary/list to a sequence of objects
     if not is_sequence and not is_dictionary:
         if debug:
             print(f"{seq}: create sequence")
-        reference = sequence_dict(seq, reference)
+        if isinstance(reference,dict):
+            reference = sequence_dict(seq, reference)
+        elif isinstance(reference,listt):
+            reference = sequence_list(seq, reference)
+        else:
+            print(f"{seq}: cannot proceed invalid type, must be dict or list")
 
     # save sequence in metadata
     if save_metadata:
