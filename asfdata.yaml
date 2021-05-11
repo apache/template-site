@@ -44,3 +44,10 @@ pods:
     description: 'Featured Podlings'
     sequence: podlings
     random: 3
+
+# used on licenses/exports/index.ezmd
+matrix:
+  url: data/eccn/eccnmatrix.json
+  eccn:
+    description: 'ECCN Matrix'
+    path: eccnmatrix
