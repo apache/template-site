@@ -43,11 +43,10 @@ def read_config(config_yaml):
     return config_data
 
 
-def url_data(url):
-    content = requests.get(url).text
-    parts = url.split('/')
+def load_data(path, content):
+    parts = path.split('/')
     extension = os.path.splitext(parts[-1])[1]  # split off ext, keep ext
-    print(f"Loading {extension} from {url}")
+    print(f"Loading {extension} from {path}")
     if extension == ".json":
         load = json.loads(content)
     elif extension == ".yaml":
@@ -55,6 +54,14 @@ def url_data(url):
     else:
         load = { }
     return load
+
+
+def url_data(url):
+    return load_data( url, requests.get(url).text )
+
+
+def file_data(rel_path):
+    return load_data( rel_path, open(rel_path,'r').read() )
 
 
 def remove_part(reference, part):
@@ -237,7 +244,7 @@ def process_sequence(metadata, seq, sequence, load, debug):
 
 def process_load(metadata, value, key, load, debug):
     for seq in value:
-        if seq != 'url':
+        if seq != 'url' and seq != 'file':
             # sequence
             sequence = value[seq]
             process_sequence(metadata, seq, sequence, load, debug)
@@ -269,6 +276,9 @@ def config_read_data(pelican):
                     print(value)
                     if 'url' in value:
                         load = url_data(value['url'])
+                        process_load(metadata, value, key, load, asf_data['debug'])
+                    elif 'file' in value:
+                        load = file_data(value['file'])
                         process_load(metadata, value, key, load, asf_data['debug'])
                     else:
                         metadata[key] = value
