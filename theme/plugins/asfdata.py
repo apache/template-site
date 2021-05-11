@@ -126,7 +126,7 @@ def sequence_list(seq, reference):
                 elif isinstance(refs[item], list):
                     refs[item] = sequence_list(seq, refs[item])
                     print(f"{item} {refs[item]}")
-            sequence.append(type(seq, (), refs))
+            sequence.append(type("asf"+item, (), refs))
     return sequence
 
 
