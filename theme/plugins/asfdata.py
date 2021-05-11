@@ -124,9 +124,9 @@ def sequence_list(seq, reference):
                 if isinstance(refs[item], bool):
                     refs[item] = ezt.boolean(refs[item])
                 elif isinstance(refs[item], list):
-                    refs[item] = sequence_list(seq, refs[item])
+                    refs[item] = sequence_list(item, refs[item])
                     print(f"{item} {refs[item]}")
-            sequence.append(type(f"asf{item}", (), refs))
+            sequence.append(type(f"asf{seq}", (), refs))
     return sequence
 
 
