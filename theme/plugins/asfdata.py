@@ -128,7 +128,7 @@ def sequence_list(seq, reference):
             sequence.append(type(f"{seq}", (), refs))
     print(f"{seq} {sequence}")
     for item in sequence:
-        print(var(item));
+        print(vars(item));
     return sequence
 
 
