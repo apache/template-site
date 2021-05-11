@@ -248,9 +248,9 @@ def process_sequence(metadata, seq, sequence, load, debug):
     if not is_sequence and not is_dictionary:
         if debug:
             print(f"{seq}: create sequence")
-        if isinstance(reference,dict):
+        if isinstance(reference, dict):
             reference = sequence_dict(seq, reference)
-        elif isinstance(reference,listt):
+        elif isinstance(reference, list):
             reference = sequence_list(seq, reference)
         else:
             print(f"{seq}: cannot proceed invalid type, must be dict or list")
