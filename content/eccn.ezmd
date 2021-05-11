@@ -4,4 +4,6 @@ version: 1.0
 
 [for eccn]
 - [[][eccn.name]]([eccn.href])[if-any eccn.contact] -- [eccn.contact][end]
-  [eccn.product.name][end]
+[for eccn.product]  - [eccn.product.name]
+[for eccn.product.versions]    - [eccn.product.versions.name]
+[end][end][end]
