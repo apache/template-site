@@ -105,6 +105,7 @@ def asfid_part(reference, part):
 
 
 def sequence_dict(seq, reference):
+    print("sequence_dict")
     sequence = [ ]
     for refs in reference:
         if isinstance(reference[refs], dict):
@@ -117,15 +118,16 @@ def sequence_dict(seq, reference):
 
 
 def sequence_list(seq, reference):
+    print("sequence_list")
     sequence = [ ]
     for refs in reference:
-        if isinstance(reference[refs], dict):
-            for item in reference[refs]:
-                if isinstance(reference[refs][item], bool):
-                    reference[refs][item] = ezt.boolean(reference[refs][item])
-                elif isinstance(reference[refs][item], list):
-                    reference[refs][item] = sequence_list(seq, reference[refs][item])
-            sequence.append(type(seq, (), reference[refs]))
+        if isinstance(refs, dict):
+            for item in refs:
+                if isinstance(refs[item], bool):
+                    refs[item] = ezt.boolean(refs[item])
+                elif isinstance(refs[item], list):
+                    refs[item] = sequence_list(seq, refs[item])
+            sequence.append(type(seq, (), refs))
     return sequence
 
 
