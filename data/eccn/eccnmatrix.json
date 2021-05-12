@@ -2915,7 +2915,7 @@
       "href": "http://shiro.apache.org/",
       "name": "Apache Shiro Project",
       "contact": "Les Hazlewood",
-      "product:": [
+      "product": [
         {
           "name": "Apache Shiro",
           "versions": [
