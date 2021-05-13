@@ -285,7 +285,7 @@ def connect_to_endpoint(url, headers):
     return response.json()
 
 
-def process_tweets(handle, count):
+def process_twitter(handle, count):
     bearer_token = twitter_auth()
     query = "from:TheASF"
     tweet_fields = "tweet.fields=author_id"
