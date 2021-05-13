@@ -11,17 +11,17 @@ version: 1.0
 
 ### Foundation
 [for foundation]
-[[]- [foundation.title]([foundation.href])
+- [[][foundation.title]]([foundation.href])
 [end]
 
 ### Planet
 [for planet]
-[[]- [planet.title]([planet.href])
+- [[][planet.title]]([planet.href])
 [end]
 
 ### Conferences
 [for conferences]
-[[]- [conferences.title]([conferences.href])
+- [[][conferences.title]]([conferences.href])
 [end]
 
 ## Projects
