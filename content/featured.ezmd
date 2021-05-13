@@ -3,17 +3,33 @@ version: 1.0
 <!-- Licensed under ALv2 -->
 
 ## Tweet
-
 [for twitter]
 [twitter.text]
 [end]
 
+## Blogs
+
+### Foundation
+[for foundation]
+[[]- [foundation.title]([foundation.href])
+[end]
+
+### Planet
+[for planet]
+[[]- [planet.title]([planet.href])
+[end]
+
+### Conferences
+[for conferences]
+[[]- [conferences.title]([conferences.href])
+[end]
+
 ## Projects
 [for featured_projs]
-<img alt="Logo" width="100" src="https://www.apache.org/logos/res/[featured_projs.key_id]/default.png"/>[[]Apache [featured_projs.display_name]]([featured_projs.site])
+<img alt="Logo" width="100" src="https://www.apache.org/logos/res/[featured_projs.key_id]/default.png"/> [[]Apache [featured_projs.display_name]]([featured_projs.site])
 [end]
 
 ## Podlings
 [for featured_pods]
-<img alt="Logo" width="100" src="https://www.apache.org/logos/res/[featured_pods.key_id]/default.png"/>[[][featured_pods.name]]([featured_pods.homepage])
+<img alt="Logo" width="100" src="https://www.apache.org/logos/res/[featured_pods.key_id]/default.png"/> [[][featured_pods.name]]([featured_pods.homepage])
 [end]
