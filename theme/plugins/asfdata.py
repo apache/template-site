@@ -294,7 +294,7 @@ def process_twitter(handle, count):
     )
     headers = {"Authorization": "Bearer {}".format(bearer_token)}
     load = connect_to_endpoint(url, headers)
-    reference = sequence_dict(seq, load['data'])
+    reference = sequence_dict('twitter', load['data'])
     if load['meta']['result_count'] < count:
         v = reference
     else:
