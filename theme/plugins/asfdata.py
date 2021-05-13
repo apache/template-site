@@ -320,57 +320,57 @@ class Project(wrapper): pass
 
 
 def config_read_data(pel_ob):
-        #print('PEL_OB:', pel_ob)
-        print("-----\nasfdata")
+    #print('PEL_OB:', pel_ob)
+    print("-----\nasfdata")
 
-        asf_data = pel_ob.settings.get('ASF_DATA')
-        print('ASFDATA:', asf_data)
+    asf_data = pel_ob.settings.get('ASF_DATA')
+    print('ASFDATA:', asf_data)
 
-        if not asf_data:
-            # This Pelican installation is not using ASF_DATA
-            return
+    if not asf_data:
+        # This Pelican installation is not using ASF_DATA
+        return
 
-        for key in asf_data:
-            print(f"config: [{key}] = {asf_data[key]}")
+    for key in asf_data:
+        print(f"config: [{key}] = {asf_data[key]}")
 
-        # This must be present in ASF_DATA. It contains data for use
-        # by our plugins, and possibly where we load/inject data from
-        # other sources.
-        metadata = asf_data['metadata']
+    # This must be present in ASF_DATA. It contains data for use
+    # by our plugins, and possibly where we load/inject data from
+    # other sources.
+    metadata = asf_data['metadata']
 
-        # Lift data from ASF_DATA['data'] into METADATA
-        if 'data' in asf_data:
-            print(f"Processing {asf_data['data']}")
-            config_data = read_config(asf_data['data'])
-            for key in config_data:
-                if key == 'eccn':
-                    fname = config_data[key]['file']
-                    v = process_eccn(fname)
-                    print('ECCN V:', v)
-                    metadata['eccn'] = v
-                    continue
+    # Lift data from ASF_DATA['data'] into METADATA
+    if 'data' in asf_data:
+        print(f"Processing {asf_data['data']}")
+        config_data = read_config(asf_data['data'])
+        for key in config_data:
+            if key == 'eccn':
+                fname = config_data[key]['file']
+                v = process_eccn(fname)
+                print('ECCN V:', v)
+                metadata['eccn'] = v
+                continue
 
-                value = config_data[key]
-                if isinstance(value, dict):
-                    print(f"{key} is a dict")
-                    print(value)
-                    if 'url' in value:
-                        load = url_data(value['url'])
-                        process_load(metadata, value, key, load, asf_data['debug'])
-                    elif 'file' in value:
-                        load = file_data(value['file'])
-                        process_load(metadata, value, key, load, asf_data['debug'])
-                    else:
-                        metadata[key] = value
+            value = config_data[key]
+            if isinstance(value, dict):
+                print(f"{key} is a dict")
+                print(value)
+                if 'url' in value:
+                    load = url_data(value['url'])
+                    process_load(metadata, value, key, load, asf_data['debug'])
+                elif 'file' in value:
+                    load = file_data(value['file'])
+                    process_load(metadata, value, key, load, asf_data['debug'])
                 else:
-                    print(f"{key} = {value}")
                     metadata[key] = value
+            else:
+                print(f"{key} = {value}")
+                metadata[key] = value
 
+    print("-----")
+    for key in metadata:
+        print(f"metadata[{key}] =")
+        print(metadata[key])
         print("-----")
-        for key in metadata:
-            print(f"metadata[{key}] =")
-            print(metadata[key])
-            print("-----")
 
 
 def tb_initialized(pel_ob):
