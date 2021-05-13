@@ -288,7 +288,7 @@ def getText(nodelist):
 
 def get_element_text(entry, child):
     elements = entry.getElementsByTagName(child)
-    values = getText(elements)
+    values = getText(elements[0].childNodes)
     return " ".join(values).strip()
 
 
