@@ -288,8 +288,7 @@ def getText(nodelist):
 
 def get_element_text(entry, child):
     elements = entry.getElementsByTagName(child)
-    values = getText(elements[0].childNodes)
-    return " ".join(values).strip()
+    return getText(elements[0].childNodes)
 
 
 def process_blog(feed, count):
