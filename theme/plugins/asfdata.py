@@ -282,12 +282,13 @@ def getText(nodelist):
     for node in nodelist:
         if node.nodeType == node.TEXT_NODE:
             rc = rc + node.data
+    print(rc)
     return rc
 
 
 def get_element_text(entry, child):
-    element = entry.getElementsByTagName(child)
-    values = getText(element.childNodes)
+    elements = entry.getElementsByTagName(child)
+    values = getText(elements)
     return " ".join(values).strip()
 
 
