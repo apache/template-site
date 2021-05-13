@@ -20,25 +20,28 @@
 # asfdata.py -- Pelican plugin that processes a yaml specification of data into a setting directory
 #
 
-from __future__ import unicode_literals
+import os.path
+import random
+import json
+import traceback
+import operator
+
+import requests
+import yaml
+import ezt
 
 import pelican.plugins.signals
 import pelican.utils
-import os.path
-import requests
-import random
-import yaml
-import json
-import ezt
+
 
 ASF_DATA = {
     'metadata': { },
-    'debug': False
+    'debug': False,
 }
 
 def read_config(config_yaml):
     with pelican.utils.pelican_open(config_yaml) as text:
-        config_data = yaml.load(text)
+        config_data = yaml.safe_load(text)
         print(config_data)
     return config_data
 
@@ -50,7 +53,7 @@ def load_data(path, content):
     if extension == ".json":
         load = json.loads(content)
     elif extension == ".yaml":
-        load = yaml.load(content)
+        load = yaml.safe_load(content)
     else:
         load = { }
     return load
@@ -271,26 +274,82 @@ def process_load(metadata, value, key, load, debug):
             process_sequence(metadata, seq, sequence, load, debug)
 
 
-def config_read_data(pelican):
-    from pelican.settings import DEFAULT_CONFIG
+def process_eccn(fname):
+    print('ECCN:', fname)
+    j = json.load(open(fname))
 
-    print("-----\nasfdata")
-    DEFAULT_CONFIG.setdefault('ASF_DATA', ASF_DATA)
-    if pelican:
-        pelican.settings.setdefault('ASF_DATA', ASF_DATA)
+    def make_sources(sources):
+        return [ Source(href=s['href'],
+                        manufacturer=s['manufacturer'],
+                        why=s['why'])
+                 for s in sources ]
 
-        asf_data = pelican.settings.get('ASF_DATA', DEFAULT_CONFIG['ASF_DATA'])
+    def make_versions(vsns):
+        return [ Version(version=v['version'],
+                         eccn=v['eccn'],
+                         source=make_sources(v.get('source', [ ])),
+                         )
+                 for v in sorted(vsns,
+                                 key=operator.itemgetter('version')) ]
+
+    def make_products(prods):
+        return [ Product(name=p['name'],
+                         versions=make_versions(p['versions']),
+                         )
+                 for p in sorted(prods,
+                                 key=operator.itemgetter('name')) ]
+
+    #print('PROJs:', [p['name'] for p in j['eccnmatrix']])
+    return [ Project(name=proj['name'],
+                     href=proj['href'],
+                     contact=proj['contact'],
+                     product=make_products(proj['product']))
+             for proj in sorted(j['eccnmatrix'],
+                                key=operator.itemgetter('name')) ]
+
+
+class wrapper:
+    def __init__(self, **kw):
+        vars(self).update(kw)
+
+# Improve the names when failures occur.
+class Source(wrapper): pass
+class Version(wrapper): pass
+class Product(wrapper): pass
+class Project(wrapper): pass
+
+
+def config_read_data(pel_ob):
+        #print('PEL_OB:', pel_ob)
+        print("-----\nasfdata")
+
+        asf_data = pel_ob.settings.get('ASF_DATA')
+        print('ASFDATA:', asf_data)
+
+        if not asf_data:
+            # This Pelican installation is not using ASF_DATA
+            return
+
         for key in asf_data:
             print(f"config: [{key}] = {asf_data[key]}")
-        
-        if 'metadata' in asf_data:
-            metadata = asf_data['metadata']
-        else:
-            metadata = { }
+
+        # This must be present in ASF_DATA. It contains data for use
+        # by our plugins, and possibly where we load/inject data from
+        # other sources.
+        metadata = asf_data['metadata']
+
+        # Lift data from ASF_DATA['data'] into METADATA
         if 'data' in asf_data:
             print(f"Processing {asf_data['data']}")
             config_data = read_config(asf_data['data'])
             for key in config_data:
+                if key == 'eccn':
+                    fname = config_data[key]['file']
+                    v = process_eccn(fname)
+                    print('ECCN V:', v)
+                    metadata['eccn'] = v
+                    continue
+
                 value = config_data[key]
                 if isinstance(value, dict):
                     print(f"{key} is a dict")
@@ -307,12 +366,22 @@ def config_read_data(pelican):
                     print(f"{key} = {value}")
                     metadata[key] = value
 
-        pelican.settings['ASF_DATA']['metadata'] = metadata
         print("-----")
         for key in metadata:
             print(f"metadata[{key}] =")
             print(metadata[key])
             print("-----")
 
+
+def tb_initialized(pel_ob):
+    "Print any exception, before Pelican chews it into nothingness."
+    try:
+        config_read_data(pel_ob)
+    except:
+        traceback.print_exc()
+        raise
+
+
 def register():
-    pelican.plugins.signals.initialized.connect(config_read_data)
+    # Hook the "initialized" signal, to load our custom data.
+    pelican.plugins.signals.initialized.connect(tb_initialized)
