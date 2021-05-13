@@ -276,19 +276,18 @@ def process_load(metadata, value, key, load, debug):
             process_sequence(metadata, seq, sequence, load, debug)
 
 
-def getText(nodelist):
+def get_node_text(nodelist):
     """http://www.python.org/doc/2.5.2/lib/minidom-example.txt"""
     rc = ""
     for node in nodelist:
         if node.nodeType == node.TEXT_NODE:
             rc = rc + node.data
-    print(rc)
     return rc
 
 
 def get_element_text(entry, child):
     elements = entry.getElementsByTagName(child)
-    return getText(elements[0].childNodes)
+    return get_node_text(elements[0].childNodes)
 
 
 def process_blog(feed, count):
