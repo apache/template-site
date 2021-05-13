@@ -294,14 +294,19 @@ def get_element_text(entry, child):
 def process_blog(feed, count):
     content = requests.get(feed).text
     dom = xml.dom.minidom.parseString(content)
-    entries = dom.getElementsByTagName('entries')
+    entries = dom.getElementsByTagName('entry')
     entries = entries[:count]
     v = [ ]
     for entry in entries:
-        v.append = {
-            'id': get_element_text(entry, 'id'),
-            'title': get_element_text(entry, 'title'),
+        print(entry.tagName);
+        v.append(
+            {
+                'id': get_element_text(entry, 'id'),
+                'title': get_element_text(entry, 'title'),
             }
+        )
+    for s in v:
+        print(s)
 
     return [ Blog(href=s['id'],
                   title=s['title'])
