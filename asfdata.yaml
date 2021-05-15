@@ -60,7 +60,7 @@ ci:
 # used on index.ezmd
 pods:
   # load, transform, and create data sequences from podling info 
-  url: https://projects.apache.org/json/foundation/podlings.jsony
+  url: https://projects.apache.org/json/foundation/podlings.json
   podlings:
     description: 'Current Podlings'
     # create a sequence from the dictionary
@@ -75,7 +75,7 @@ pods:
 eccn:
   # load, transform, and create a four tiered structure of sequence objects
   # projects, products, versions, and sources
-  file: data/eccn/eccnmatrix.json
+  file: data/eccn/eccnmatrix.jsony
 
 # used on index.ezmd
 twitter:
