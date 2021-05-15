@@ -117,6 +117,7 @@ def add_logo(reference, part):
         if response.status_code != 200:
             logo = part[1]
         setattr(item, 'logo', logo)
+        print(logo, item.logo)    
 
 
 def sequence_dict(seq, reference):
