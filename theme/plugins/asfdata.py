@@ -325,7 +325,7 @@ def connect_to_endpoint(url, headers):
 
 def process_twitter(handle, count):
     bearer_token = twitter_auth()
-    query = "from:TheASF"
+    query = f"from:{handle}"
     tweet_fields = "tweet.fields=author_id"
     url = "https://api.twitter.com/2/tweets/search/recent?query={}&{}".format(
         query, tweet_fields

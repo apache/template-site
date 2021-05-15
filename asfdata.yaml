@@ -80,7 +80,7 @@ eccn:
 # used on index.ezmd
 twitter:
   # load, transform, and create a sequence of tweets
-  handle: ''
+  handle: 'WhatTheASF'
   count: 1
 
 # used on index.ezmd
