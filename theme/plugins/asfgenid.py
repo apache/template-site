@@ -307,7 +307,7 @@ def generate_id(content):
     # track the id tags
     ids = set()
     # fix cmark mistakes
-    fixup_content(content)
+    mixup_content(content)
     # parse html content into BeautifulSoup4
     soup = BeautifulSoup(content._content, 'html.parser')
     # page title

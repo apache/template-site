@@ -238,7 +238,7 @@ def process_sequence(metadata, seq, sequence, load, debug):
         if debug:
             print(f"random: {sequence['random']}")
         if is_sequence:
-            reference = random.stample(reference, sequence['random'])
+            reference = random.sample(reference, sequence['random'])
         else:
             print(f"{seq} - random requires an existing sequence to sample")
 
