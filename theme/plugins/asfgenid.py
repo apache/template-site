@@ -7,8 +7,9 @@ Next find all headings missing IDs. Assure unique ID and permalink
 Generates a Table of Content
 '''
 
-from __future__ import unicode_literals
+# from __future__ import unicode_literals
 
+import sys
 import traceback
 import re
 import unicodedata
