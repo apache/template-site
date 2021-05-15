@@ -386,7 +386,8 @@ def tb_connect(pel_ob):
         generate_id(pel_ob)
     except:
         traceback.print_exc()
-        raise
+        "if we have errors in this module then we want to quit to avoid erasing the site"
+        sys.exit(4)
 
 
 def register():
