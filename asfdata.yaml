@@ -9,7 +9,7 @@ test2: 'testing 1, 2, 3'
 #   licenses/exports/index.ezmd
 ci:
   # load, transform, and create data sequences from committee info 
-  url: https://whimsy.apache.org/public/committee-info.jsony
+  url: https://whimsy.apache.org/public/committee-info.json
   board:
     # used on /foundation/ and /foundation/board/
     description: 'Board of Directors sequence'
@@ -60,7 +60,7 @@ ci:
 # used on index.ezmd
 pods:
   # load, transform, and create data sequences from podling info 
-  url: https://projects.apache.org/json/foundation/podlings.json
+  url: https://projects.apache.org/json/foundation/podlings.jsony
   podlings:
     description: 'Current Podlings'
     # create a sequence from the dictionary
