@@ -112,10 +112,10 @@ def asfid_part(reference, part):
 def add_logo(reference, part):
     parts = part.split(',')
     for item in reference:
-        logo = (part[0].format(item.key_id))
+        logo = (parts[0].format(item.key_id))
         response = requests.head("https://www.apache.org/" + logo)
         if response.status_code != 200:
-            logo = part[1]
+            logo = parts[1]
         setattr(item, 'logo', logo)
         print(logo, item.logo)    
 
