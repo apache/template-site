@@ -109,6 +109,16 @@ def asfid_part(reference, part):
         reference[refs]['availid'] = availid
 
 
+def add_logo(reference, part):
+    parts = part.split(',')
+    for item in reference:
+        logo = (part[0].format(item.key_id))
+        response = requests.head("https://www.apache.org/" + logo)
+        if response.status_code != 200:
+            logo = part[1]
+        setattr(item, 'logo', logo)
+
+
 def sequence_dict(seq, reference):
     sequence = [ ]
     for refs in reference:
@@ -241,6 +251,15 @@ def process_sequence(metadata, seq, sequence, load, debug):
             reference = random.sample(reference, sequence['random'])
         else:
             print(f"{seq} - random requires an existing sequence to sample")
+
+    # this sequence is a random sample of another sequence
+    if 'logo' in sequence:
+        if debug:
+            print(f"logo: {sequence['logo']}")
+        if is_sequence:
+            reference = add_logo(reference, sequence['logo'])
+        else:
+            print(f"{seq} - logo requires an existing sequence")
 
     # this sequence is a sorted list divided into multiple columns
     if 'split' in sequence:
