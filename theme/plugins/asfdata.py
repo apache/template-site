@@ -260,6 +260,9 @@ def process_sequence(metadata, seq, sequence, load, debug):
             print(f"logo: {sequence['logo']}")
         if is_sequence:
             reference = add_logo(reference, sequence['logo'])
+            if seq == 'featured_pods':
+                for item in reference:
+                    setattr(item, 'name', " ".join(item.name.split(' ')[1:-1]))
         else:
             print(f"{seq} - logo requires an existing sequence")
 
@@ -408,7 +411,6 @@ class Blog(wrapper): pass
 
 
 def config_read_data(pel_ob):
-    #print('PEL_OB:', pel_ob)
     print("-----\nasfdata")
 
     asf_data = pel_ob.settings.get('ASF_DATA')
