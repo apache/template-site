@@ -254,13 +254,14 @@ def process_sequence(metadata, seq, sequence, load, debug):
         else:
             print(f"{seq} - random requires an existing sequence to sample")
 
-    # this sequence is a random sample of another sequence
+    # for a project or podling see if the logo exists w/HEAD and set the relative path.
     if 'logo' in sequence:
         if debug:
             print(f"logo: {sequence['logo']}")
         if is_sequence:
             reference = add_logo(reference, sequence['logo'])
             if seq == 'featured_pods':
+                # for podlings strip "Apache" from the beginning and "(incubating)" from the end.
                 for item in reference:
                     setattr(item, 'name', " ".join(item.name.split(' ')[1:-1]))
         else:
