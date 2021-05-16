@@ -310,7 +310,7 @@ def generate_id(content):
     # get plugin settings
     asf_genid = content.settings['ASF_GENID']
     # asf_headings setting may be overridden
-    asf_headings = content.metadata('asf_headings', str(asf_genid['asf_headings']))
+    asf_headings = content.metadata('asf_headings', str(asf_genid['headings']))
     # show active plugins
     if asf_genid['debug']:
         print("asfgenid:\nshow plugins in case one is processing before this one")
