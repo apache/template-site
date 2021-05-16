@@ -8,7 +8,7 @@ version: 1.0
 
 [include "/tmp/template/source/content/projects/projects.snippet"]
 
-{{ relative_source_path }} - {{ version }} - {{ board.1.name }} - {{ tester }}
+[relative_source_path] - [version] - {{ board.1.name }} - {{ tester }}
 
 {{ ci.boardchair.roster }} - {{ ci.tac.chair }} - {{ ci.tacky.bear }}
 
