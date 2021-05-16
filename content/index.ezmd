@@ -4,6 +4,8 @@ version: 1.0
 
 ![[]Apache Petri Logo](images/logo.svg) {.float-right}
 
+[error]
+
 ["Title: %0, Version: %1" title version]
 
 [include "/tmp/template/source/content/projects/projects.snippet"]
