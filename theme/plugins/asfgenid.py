@@ -291,7 +291,7 @@ def generate_id(content):
     # track the id tags
     ids = set()
     # track permalinks
-    permas = set()
+    permalinks = set()
     
     # step 1 - fixup html that cmark marks unsafe
     fixup_content(content)
