@@ -50,7 +50,7 @@ ci:
     # take a random sample of 3
     random: 3
     # logo path - use apache powered by if missing
-    logo: /logos/res/{}/default.pngs,/foundation/press/kit/poweredBy/Apache_PoweredBy.svg
+    logo: /logos/res/{}/default.png,/foundation/press/kit/poweredBy/Apache_PoweredBy.svg
   pl:
     # used on /
     description: 'Project List Columns'
