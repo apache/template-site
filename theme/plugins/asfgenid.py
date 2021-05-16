@@ -219,7 +219,7 @@ def elementid_transform(ids, soup, tag, permalinks, perma_set, debug):
                 tagnav['id'] = unique(m.group('id'), ids)
                 if permalinks:
                     permalink(soup, tagnav)
-                    unique(tag['id'], perma_set)
+                    unique(tagnav['id'], perma_set)
                 if debug:
                     print(f"# insertion {tagnav}")
             else:
