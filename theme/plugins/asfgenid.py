@@ -50,11 +50,11 @@ TABLE_RE = re.compile(r'^table')
 IDCOUNT_RE = re.compile(r'^(.*)_([0-9]+)$')
 
 # For permalinks
-LINK_CHAR = u'¶'
+LINK_CHAR = '¶'
 
 # strips permalink chars from headings for ToC
 PARA_MAP = {
-    ord('¶'): None
+    ord(LINK_CHAR): None
 }
 
 # Fixup tuples
@@ -131,8 +131,8 @@ def init_default_config(pelican):
 def slugify(value, separator):
     """ Slugify a string, to make it URL friendly. """
     value = unicodedata.normalize('NFKD', value).encode('ascii', 'ignore')
-    value = re.sub('[^\w\s-]', '', value.decode('ascii')).strip().lower()
-    return re.sub('[%s\s]+' % separator, separator, value)
+    value = re.sub('[^\\w\\s-]', '', value.decode('ascii')).strip().lower()
+    return re.sub('[%s\\s]+' % separator, separator, value)
 
 
 # Ensure id is unique in set of ids. Append '_1', '_2'... if not
@@ -256,7 +256,7 @@ def generate_toc(content, tags, title, toc_headers):
     heading_re = re.compile(toc_headers)
     for header in taglast.findAllNext(heading_re):
         settoc = True
-        node, new_header = node.add(header)
+        node, _new_header = node.add(header)
     tree_soup = ""
     if settoc:
         print("  ToC")
