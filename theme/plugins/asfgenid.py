@@ -307,6 +307,8 @@ def generate_id(content):
     # step 1 - fixup html that cmark marks unsafe
     fixup_content(content)
 
+    junk = junk
+
     # step 2 - prepare for genid processes
     # parse html content into BeautifulSoup4
     soup = BeautifulSoup(content._content, 'html.parser')
@@ -386,6 +388,7 @@ def tb_connect(pel_ob):
     try:
         generate_id(pel_ob)
     except:
+        print('FATAL: %s' % (pel_ob.relative_source_path), file=sys.stderr)
         traceback.print_exc()
         "if we have errors in this module then we want to quit to avoid erasing the site"
         sys.exit(4)
