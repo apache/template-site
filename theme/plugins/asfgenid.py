@@ -386,6 +386,7 @@ def tb_connect(pel_ob):
     try:
         generate_id(pel_ob)
     except:
+        print("-----", file=sys.stderr)
         print('FATAL: %s' % (pel_ob.relative_source_path), file=sys.stderr)
         traceback.print_exc()
         "if we have errors in this module then we want to quit to avoid erasing the site"

@@ -495,6 +495,7 @@ def tb_initialized(pel_ob):
     try:
         config_read_data(pel_ob)
     except:
+        print("-----", file=sys.stderr)
         traceback.print_exc()
         raise
 
