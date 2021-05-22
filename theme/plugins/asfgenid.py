@@ -185,18 +185,16 @@ def expand_metadata(tag, metadata):
             parts = this_data.split('.')
             try:
                 mytype = key
-                myref = "metadata"
+                myref = metadata
                 for part in parts:
                     if isinstance(myref, dict):
-                        myref = f'{myref}["{part}"]'
+                        myref = myref[part]
                     elif isinstance(myref, list):
-                        myref = f'{myref}[{part}]'
+                        myref = myref[part]
                     else:
-                        myref = f'{myref}.{part}'
+                        myref = myref.part
                     print(myref)
-                format_string = '{{{0}}}'.format(myref)
-                print(format_string)
-                new_string = format_string.format(**metadata)
+                new_string = myref
                 print(f'{{{{{m.group(1)}}}}} -> {new_string}')
             except Exception:
                 # the data expression was not found
