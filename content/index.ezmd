@@ -14,7 +14,7 @@ version: 1.0
 
 {{ board.30.name }} - {{ eccn.0.product.0.name }} - {{ eccn.0.product.0.versions.0.version }}
 
-{{ board.3.name }} - {{ eccn.0.product.0.__repr__ }} - {{ eccn.0.product.0.versions.0.__repr__ }}
+{{ board.3.name }} - {{ eccn.0.product.0.str }} - {{ eccn.0.product.0.versions.0.str }}
 
 The Apache Petri (as in “petri dish” – where cultures are grown and bloom) committee
 assists external project communities interested in becoming an Apache project to
