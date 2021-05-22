@@ -118,7 +118,6 @@ def add_logo(reference, part):
         if response.status_code != 200:
             logo = parts[1]
         setattr(item, 'logo', logo)
-        print(logo, item.logo)
     return reference
 
 
@@ -144,9 +143,6 @@ def sequence_list(seq, reference):
                 elif isinstance(refs[item], list):
                     refs[item] = sequence_list(item, refs[item])
             sequence.append(type(f"{seq}", (), refs))
-    print(f"{seq} {sequence}")
-    for item in sequence:
-        print(vars(item))
     return sequence
 
 
@@ -316,22 +312,25 @@ def get_element_text(entry, child):
     return get_node_text(elements[0].childNodes)
 
 
-def process_blog(feed, count):
+def process_blog(feed, count, debug):
+    print(f"blog feed: {feed}")
     content = requests.get(feed).text
     dom = xml.dom.minidom.parseString(content)
     entries = dom.getElementsByTagName('entry')
     entries = entries[:count]
     v = [ ]
     for entry in entries:
-        print(entry.tagName)
+        if debug:
+            print(entry.tagName)
         v.append(
             {
                 'id': get_element_text(entry, 'id'),
                 'title': get_element_text(entry, 'title'),
             }
         )
-    for s in v:
-        print(s)
+    if debug:
+        for s in v:
+            print(s)
 
     return [ Blog(href=s['id'],
                   title=s['title'])
@@ -350,6 +349,7 @@ def connect_to_endpoint(url, headers):
 
 
 def process_twitter(handle, count):
+    print(f"twitter feed: {handle}")
     bearer_token = twitter_auth()
     query = f"from:{handle}"
     tweet_fields = "tweet.fields=author_id"
@@ -425,6 +425,8 @@ def config_read_data(pel_ob):
     for key in asf_data:
         print(f"config: [{key}] = {asf_data[key]}")
 
+    debug = asf_data['debug']
+    
     # This must be present in ASF_DATA. It contains data for use
     # by our plugins, and possibly where we load/inject data from
     # other sources.
@@ -440,6 +442,7 @@ def config_read_data(pel_ob):
                 # process eccn data
                 fname = config_data[key]['file']
                 metadata[key] = v = process_eccn(fname)
+                if debug:
                 print('ECCN V:', v)
                 continue
 
@@ -448,7 +451,8 @@ def config_read_data(pel_ob):
                 handle = config_data[key]['handle']
                 count = config_data[key]['count']
                 metadata[key] = v = process_twitter(handle, count)
-                print('TWITTER V:', v)
+                if debug:
+                    print('TWITTER V:', v)
                 continue
 
             value = config_data[key]
@@ -461,20 +465,20 @@ def config_read_data(pel_ob):
                     # process blog feed
                     feed = config_data[key]['blog']
                     count = config_data[key]['count']
-                    v = process_blog(feed, count)
-                    print('BLOG V:', v)
-                    metadata[key] = v
+                    metadata[key] = v = process_blog(feed, count, debug)
+                    if debug:
+                        print('BLOG V:', v)
                     continue
 
                 elif 'url' in value:
                     # process a url based data source
                     load = url_data(value['url'])
-                    process_load(metadata, value, load, asf_data['debug'])
+                    process_load(metadata, value, load, debug)
 
                 elif 'file' in value:
                     # process a file from within the site tree
                     load = file_data(value['file'])
-                    process_load(metadata, value, load, asf_data['debug'])
+                    process_load(metadata, value, load, debug)
 
                 else:
                     # should probably be an error.
@@ -486,8 +490,12 @@ def config_read_data(pel_ob):
 
     print("-----")
     for key in metadata:
-        print(f"metadata[{key}] =")
-        print(metadata[key])
+        if debug:
+            print(f"metadata[{key}] =")
+            print(metadata[key])
+        else:
+            keytype = type(metadata[key])
+            print(f"metadata[{key}] is {keytype}")
         print("-----")
 
 
