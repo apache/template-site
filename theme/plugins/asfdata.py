@@ -46,7 +46,7 @@ ASF_DATA = {
 def read_config(config_yaml):
     with pelican.utils.pelican_open(config_yaml) as text:
         config_data = yaml.safe_load(text)
-        pp = pprint.PrettyPrinter(indent=4)
+        pp = pprint.PrettyPrinter(indent=2)
         pp.pprint(config_data)
     return config_data
 
