@@ -418,10 +418,9 @@ def config_read_data(pel_ob):
     print("-----\nasfdata")
 
     asf_data = pel_ob.settings.get('ASF_DATA')
-    print('ASFDATA:', asf_data)
 
     if not asf_data:
-        # This Pelican installation is not using ASF_DATA
+        print("This Pelican installation is not using ASF_DATA")
         return
 
     for key in asf_data:
@@ -460,7 +459,7 @@ def config_read_data(pel_ob):
             value = config_data[key]
             if isinstance(value, dict):
                 # dictionaries are complex data sources
-                print(f"{key} is a dict")
+                print(f"-----\n{key} creates one or more sequences")
                 if debug:
                     print(value)
                 # special cases that are multiple are processed first
@@ -497,11 +496,15 @@ def config_read_data(pel_ob):
             print(f"metadata[{key}] =")
             print(metadata[key])
             print("-----")
-        elif isinstance(metadata[key],str):
-            print(f"metadata[{key}] = {metadata[key]}")
+        elif isinstance(metadata[key], str):
+            print(f'metadata[{key}] = "{metadata[key]}"')
+        elif isinstance(metadata[key], list):
+            print(f"metadata[{key}] is a sequence.")
+        elif isinstance(metadata[key], dict):
+            print(f"metadata[{key}] is a dictionary.")
         else:
             keytype = type(metadata[key])
-            print(f"metadata[{key}] is {keytype}")
+            print(f"metadata[{key}] is a {keytype}")
 
 
 def tb_initialized(pel_ob):
