@@ -443,7 +443,7 @@ def config_read_data(pel_ob):
                 fname = config_data[key]['file']
                 metadata[key] = v = process_eccn(fname)
                 if debug:
-                print('ECCN V:', v)
+                    print('ECCN V:', v)
                 continue
 
             if key == 'twitter':
