@@ -180,20 +180,21 @@ def expand_metadata(tag, metadata):
         m = METADATA_RE.search(this_string)
         if m:
             this_data = m.group(1).strip()
+            print(this_data)
             format_string = '{{{0}}}'.format(this_data)
             parts = this_data.split('.')
             try:
-                # should refactor this to be more general
-                if isinstance(metadata[parts[0]], dict):
-                    ref = metadata
-                    for part in parts:
-                        ref = ref[part]
-                    new_string = ref
-                else:
-                    if len(parts) == 3:
-                        this_data = f'{parts[0]}[{parts[1]}].{parts[2]}'
-                    format_string = '{{{0}}}'.format(this_data)
-                    new_string = format_string.format(**metadata)
+                mytype = key
+                myref = metadata
+                for part in parts:
+                    if isinstance(myref, dict):
+                        myref = myref[part]
+                    elif isinstance(myref, list):
+                        myref = myref[part]
+                    else:
+                        myref = myref.part
+                    print(myref)
+                new_string = myref
                 print(f'{{{{{m.group(1)}}}}} -> {new_string}')
             except Exception:
                 # the data expression was not found
