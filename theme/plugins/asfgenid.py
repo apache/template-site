@@ -307,8 +307,6 @@ def generate_id(content):
     # step 1 - fixup html that cmark marks unsafe
     fixup_content(content)
 
-    junk = junk
-
     # step 2 - prepare for genid processes
     # parse html content into BeautifulSoup4
     soup = BeautifulSoup(content._content, 'html.parser')

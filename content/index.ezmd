@@ -2,6 +2,8 @@ Title: What is Apache Petri?
 version: 1.0
 <!-- Licensed under ALv2 -->
 
+[junk]
+
 ![[]Apache Petri Logo](images/logo.svg) {.float-right}
 
 ["Title: %0, Version: %1" title version]
