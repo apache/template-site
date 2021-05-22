@@ -26,6 +26,7 @@ import random
 import json
 import traceback
 import operator
+import pprint
 
 import requests
 import yaml
@@ -45,7 +46,8 @@ ASF_DATA = {
 def read_config(config_yaml):
     with pelican.utils.pelican_open(config_yaml) as text:
         config_data = yaml.safe_load(text)
-        print(config_data)
+        pp = pprint.PrettyPrinter(indent=4)
+        pp.pprint(config_data)
     return config_data
 
 
@@ -494,10 +496,12 @@ def config_read_data(pel_ob):
         if debug:
             print(f"metadata[{key}] =")
             print(metadata[key])
+            print("-----")
+        elif isinstance(metadata[key],str):
+            print(f"metadata[{key}] = {metadata[key]}")
         else:
             keytype = type(metadata[key])
             print(f"metadata[{key}] is {keytype}")
-    print("-----")
 
 
 def tb_initialized(pel_ob):
