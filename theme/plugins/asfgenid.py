@@ -190,8 +190,10 @@ def expand_metadata(tag, metadata):
                         ref = ref[part]
                     new_string = ref
                 else:
-                    if len(parts) == 3:
-                        this_data = f'{parts[0]}[{parts[1]}].{parts[2]}'
+                    if len(parts) > 1:
+                        this_data = parts[0]
+                        for i in range(1, len(parts), 2):
+                            this_data = f'{this_data}[{parts[i]}].{parts[i+1]}'
                     format_string = '{{{0}}}'.format(this_data)
                     new_string = format_string.format(**metadata)
                 print(f'{{{{{m.group(1)}}}}} -> {new_string}')
