@@ -459,7 +459,8 @@ def config_read_data(pel_ob):
             if isinstance(value, dict):
                 # dictionaries are complex data sources
                 print(f"{key} is a dict")
-                print(value)
+                if debug:
+                    print(value)
                 # special cases that are multiple are processed first
                 if 'blog' in value:
                     # process blog feed
@@ -496,7 +497,7 @@ def config_read_data(pel_ob):
         else:
             keytype = type(metadata[key])
             print(f"metadata[{key}] is {keytype}")
-        print("-----")
+    print("-----")
 
 
 def tb_initialized(pel_ob):
