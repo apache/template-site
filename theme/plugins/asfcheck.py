@@ -36,6 +36,7 @@ import xml.dom.minidom
 
 import pelican.plugins.signals
 import pelican.utils
+import pelican.generators
 
 
 ASF_CHECK = {
@@ -59,7 +60,10 @@ def check_page_data(pel_ob):
 
     debug = asf_check['debug']
     min_pages = asf_check['pages']
-    actual_pages = pel_ob.pages_generator.pages
+    generators = pel_ob._get_generator_classes()
+    pages_generator = next(g for g in generators
+                           if isinstance(g, PagesGenerator))
+    actual_pages = len(pages_generator.pages)
     print(f'-----\nminimum: {min_pages}; actual: {actual_pages}')
 
 
