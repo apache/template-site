@@ -95,7 +95,7 @@ THEME = './theme/apache'
 # Pelican Plugins
 # The provided location. If the buildbot does not have a new plugin then look into requirements.txt
 PLUGIN_PATHS = ['./theme/plugins']
-PLUGINS = ['asfgenid', 'asfdata', 'pelican-gfm', 'asfreader', 'sitemap']
+PLUGINS = ['asfgenid', 'asfdata', 'pelican-gfm', 'asfreader', 'asfcheck', 'sitemap']
 
 TYPOGRAPHY = True
 TYPOGRAPHY_IGNORE_TAGS = ['pre', 'code', 'style', 'script']
@@ -119,6 +119,11 @@ ASF_DATA = {
         'site_url': SITEURL
     },
     'debug': False
+}
+
+ASF_CHECK = {
+    'pages': 10,
+    'debug': True
 }
 
 # Configure the asfgenid plugin
