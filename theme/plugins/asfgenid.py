@@ -42,8 +42,8 @@ ELEMENTID_RE = re.compile(r'(?:[ \t]*[{\[][ \t]*(?P<type>[#.])(?P<id>[-._:a-zA-Z
 
 # Find {{ metadata }}
 METADATA_RE = re.compile(r'{{\s*(?P<meta>[-._:a-zA-Z0-9\(\)]+)\s*}}')
-LEFTPAREN_RE = re.compile(r'(')
-RIGHTPAREN_RE = re.compile(r')')
+LEFTPAREN_RE = re.compile(r'\(')
+RIGHTPAREN_RE = re.compile(r'\)')
 
 # Find table tags
 TABLE_RE = re.compile(r'^table')
