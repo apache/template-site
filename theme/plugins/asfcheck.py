@@ -58,9 +58,9 @@ def check_page_data(pel_ob):
         print(f'config: [{key}] = {asf_check[key]}')
 
     debug = asf_check['debug']
-    pages = asf_check['pages']
-    pp = pprint.PrettyPrinter(indent=2)
-    pp.pprint(pel_ob)
+    min_pages = asf_check['pages']
+    actual_pages = pel_ob.pages_generator.pages
+    print(f'-----\nminimum: {min_pages}; actual: {actual_pages}')
 
 
 def tb_finalized(pel_ob):
