@@ -36,7 +36,9 @@ import xml.dom.minidom
 
 import pelican.plugins.signals
 import pelican.utils
-from pelican.generators import (PagesGenerator)
+from pelican.generators import (ArticlesGenerator,  # noqa: I100
+                                PagesGenerator, SourceFileGenerator,
+                                StaticGenerator, TemplatePagesGenerator)
 
 
 ASF_CHECK = {
