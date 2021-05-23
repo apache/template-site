@@ -184,7 +184,6 @@ def expand_metadata(tag, metadata):
             this_data = m.group(1).strip()
             this_data = re.sub(LEFTPAREN_RE, '[', this_data)
             this_data = re.sub(RIGHTPAREN_RE, ']', this_data)
-            print(this_data)
             format_string = '{{{0}}}'.format(this_data)
             parts = this_data.split('.')
             subs = parts[0].split('[')
@@ -197,7 +196,6 @@ def expand_metadata(tag, metadata):
                     new_string = ref
                 else:
                     format_string = '{{{0}}}'.format(this_data)
-                    print(format_string)
                     new_string = format_string.format(**metadata)
                 print(f'{{{{{m.group(1)}}}}} -> {new_string}')
             except Exception:
