@@ -187,9 +187,10 @@ def expand_metadata(tag, metadata):
             print(this_data)
             format_string = '{{{0}}}'.format(this_data)
             parts = this_data.split('.')
+            subs = parts[0].split('[')
             try:
                 # should refactor this to be more general
-                if isinstance(metadata[parts[0]], dict):
+                if len(subs) == 1 and isinstance(metadata[parts[0]], dict):
                     ref = metadata
                     for part in parts:
                         ref = ref[part]
