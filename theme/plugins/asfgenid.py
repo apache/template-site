@@ -41,7 +41,7 @@ ASF_GENID = {
 ELEMENTID_RE = re.compile(r'(?:[ \t]*[{\[][ \t]*(?P<type>[#.])(?P<id>[-._:a-zA-Z0-9 ]+)[}\]])(\n|$)')
 
 # Find {{ metadata }}
-METADATA_RE = re.compile(r'{{\s*(?P<meta>[-._:a-zA-Z0-9]+)\s*}}')
+METADATA_RE = re.compile(r'{{\s*(?P<meta>[-._:a-zA-Z0-9\(\)]+)\s*}}')
 
 # Find table tags
 TABLE_RE = re.compile(r'^table')
