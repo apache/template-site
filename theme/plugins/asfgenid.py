@@ -42,6 +42,8 @@ ELEMENTID_RE = re.compile(r'(?:[ \t]*[{\[][ \t]*(?P<type>[#.])(?P<id>[-._:a-zA-Z
 
 # Find {{ metadata }}
 METADATA_RE = re.compile(r'{{\s*(?P<meta>[-._:a-zA-Z0-9\(\)]+)\s*}}')
+LEFTPAREN_RE = re.compile(r'(')
+RIGHTPAREN_RE = re.compile(r')')
 
 # Find table tags
 TABLE_RE = re.compile(r'^table')
@@ -180,29 +182,19 @@ def expand_metadata(tag, metadata):
         m = METADATA_RE.search(this_string)
         if m:
             this_data = m.group(1).strip()
+            this_data = re.sub(LEFTPAREN_RE, '[', this_data)
+            this_data = re.sub(RIGHTPAREN_RE, ']', this_data)
+            print(this_data)
             format_string = '{{{0}}}'.format(this_data)
             parts = this_data.split('.')
-            subs = this_data.split('(')
             try:
                 # should refactor this to be more general
-                if len(subs) == 1 and isinstance(metadata[parts[0]], dict):
+                if isinstance(metadata[parts[0]], dict):
                     ref = metadata
                     for part in parts:
                         ref = ref[part]
                     new_string = ref
                 else:
-                    if len(parts) > 1 or len(subs) > 1:
-                        this_data = ''
-                        for part in parts:
-                            if len(this_data) > 0:
-                                this_data = f'{this_data}.'
-                            subs = part.split('(')
-                            if len(subs) == 1:
-                                this_data = f'{this_data}{part}'
-                            else:
-                                item = subs[1].split(')')
-                                this_data = f'{this_data}{subs[0]}[{item[0]}]'
-                            print(this_data)
                     format_string = '{{{0}}}'.format(this_data)
                     new_string = format_string.format(**metadata)
                 print(f'{{{{{m.group(1)}}}}} -> {new_string}')
