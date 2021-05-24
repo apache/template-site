@@ -25,6 +25,7 @@ import io
 import os
 import traceback
 
+import re
 import ezt
 
 import pelican.plugins.signals
