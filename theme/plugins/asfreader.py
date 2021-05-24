@@ -34,7 +34,7 @@ import pelican.settings
 
 GFMReader = sys.modules['pelican-gfm.gfm'].GFMReader
 
-METADATA_RE = re.compile(r'\[{\s*(?P<meta>[-._:a-zA-Z0-9\[\]\']+)\s*}\]')
+METADATA_RE = re.compile(r'\[{\s*(?P<meta>[-._:a-zA-Z0-9\[\]]+)\s*}\]')
 
 class ASFTemplateReader(ezt.Reader):
     """Enables inserts relative to the template we loaded."""
@@ -68,9 +68,7 @@ class ASFReader(GFMReader):
                 if m:
                     this_data = m.group(1).strip()
                     format_string = '{{{0}}}'.format(this_data)
-                    print(format_string)
                     try:
-                        # we are using python syntax. 
                         new_string = format_string.format(**metadata)
                         print(f'{{{{{m.group(1)}}}}} -> {new_string}')
                     except Exception:
