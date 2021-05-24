@@ -34,7 +34,7 @@ import pelican.settings
 
 GFMReader = sys.modules['pelican-gfm.gfm'].GFMReader
 
-METADATA_RE = re.compile(r'\[{\s*(?P<meta>[-._:a-zA-Z0-9\[\]]+)\s*}\]')
+METADATA_RE = re.compile(r'\[{\s*(?P<meta>[-._:a-zA-Z0-9\[\]\']+)\s*}\]')
 
 class ASFTemplateReader(ezt.Reader):
     """Enables inserts relative to the template we loaded."""
