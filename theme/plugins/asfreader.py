@@ -74,7 +74,7 @@ class ASFReader(GFMReader):
                         print(f'{{{{{m.group(1)}}}}} -> {new_string}')
                     except Exception:
                         new_string = format_string
-                    text = re.sub(METADATA_RE, new_string, this_string, count=1)
+                    text = re.sub(METADATA_RE, new_string, text, count=1)
         return text, metadata
 
 
