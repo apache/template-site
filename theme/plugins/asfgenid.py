@@ -199,7 +199,6 @@ def expand_metadata(tag, metadata):
                         ref = ref[part]
                     new_string = ref
                 else:
-                    format_string = '{{{0}}}'.format(this_data)
                     new_string = format_string.format(**metadata)
                 print(f'{{{{{m.group(1)}}}}} -> {new_string}')
             except Exception:

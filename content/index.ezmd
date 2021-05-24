@@ -8,11 +8,11 @@ version: 1.0
 
 [include "/tmp/template/source/content/projects/projects.snippet"]
 
-{{ relative_source_path }} - {{ version }} - {{ board[[]1].name }} - {{ tester }}
+[{ relative_source_path }] - [{ version }] - [{ board[1].name }] - [{ tester }]
 
-{{ ci.boardchair.roster }} - {{ ci.tac.chair }} - {{ ci.tacky.bear }}
+[{ ci['boardchair']['roster'] }] - [{ ci['tac']['chair'] }] - [{ ci['tacky']['bear'] }]
 
-{{ board(30).name }} - {{ eccn[[]11].product[[]0].name }} - {{ eccn(11).product(0).versions(0).version }}
+[{ board[30].name }] - [{ eccn[11].product[0].name }] - [{ eccn[11].product[0].versions[0].version }]
 
 The Apache Petri (as in “petri dish” – where cultures are grown and bloom) committee
 assists external project communities interested in becoming an Apache project to
