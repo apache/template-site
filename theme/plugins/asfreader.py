@@ -72,7 +72,9 @@ class ASFReader(GFMReader):
                         new_string = format_string.format(**metadata)
                         print(f'{{{{{m.group(1)}}}}} -> {new_string}')
                     except Exception:
+                        # the data expression was not found
                         new_string = format_string
+                        print(f'{{{{{m.group(1)}}}}} is not found')
                     text = re.sub(METADATA_RE, new_string, text, count=1)
         return text, metadata
 
