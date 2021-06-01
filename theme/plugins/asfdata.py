@@ -376,7 +376,14 @@ def process_blog(feed, count, debug):
 
 # to be updated from hidden location. (Need to discuss local.)
 def twitter_auth():
-    return 'AAAAAAAAAAAAAAAAAAAAACg4PgEAAAAApGfiQijpZK4EQmSvWFLqYE%2FWD%2BI%3D4F9v6SszNmT3lf8o2scY28Zlv7XilgfhMIOFdiFcUmaHfg2PwH'
+    authtokens = os.path.join(os.path.expanduser('~'), '.authtokens')
+    for line in open(authtokens).readlines():
+        if line.startswith('twitter:'):
+            token = line.strip().split(':')[1]
+            break
+        else:
+            raise Exception('token not available in ~/.authokens')
+    return token
 
 
 # retrieve from twitter
