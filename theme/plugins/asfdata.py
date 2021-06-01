@@ -377,11 +377,14 @@ def process_blog(feed, count, debug):
 # to be updated from hidden location. (Need to discuss local.)
 def twitter_auth():
     authtokens = os.path.join(os.path.expanduser('~'), '.authtokens')
-    for line in open(authtokens).readlines():
-        if line.startswith('twitter:'):
-            token = line.strip().split(':')[1] 
-            # do not print or display token as it is a secret
-            return token
+    try:
+        for line in open(authtokens).readlines():
+            if line.startswith('twitter:'):
+                token = line.strip().split(':')[1] 
+                # do not print or display token as it is a secret
+                return token
+    except:
+        traceback.print_exc()
     return None
 
 
