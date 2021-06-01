@@ -379,7 +379,8 @@ def twitter_auth():
     authtokens = os.path.join(os.path.expanduser('~'), '.authtokens')
     for line in open(authtokens).readlines():
         if line.startswith('twitter:'):
-            token = line.strip().split(':')[1]
+            token = line.strip().split(':')[1] 
+            # do not print or display token as it is a secret
             return token
     raise Exception('token not available in ~/.authtokens')
 
@@ -397,6 +398,7 @@ def connect_to_endpoint(url, headers):
 def process_twitter(handle, count):
     print(f'-----\ntwitter feed: {handle}')
     bearer_token = twitter_auth()
+    # do not print or display bearer_token as it is a secret
     query = f'from:{handle}'
     tweet_fields = 'tweet.fields=author_id'
     url = f'https://api.twitter.com/2/tweets/search/recent?query={query}&{tweet_fields}'
