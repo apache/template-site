@@ -382,7 +382,7 @@ def twitter_auth():
             token = line.strip().split(':')[1]
             break
         else:
-            raise Exception('token not available in ~/.authokens')
+            raise Exception('token not available in ~/.authtokens')
     return token
 
 
