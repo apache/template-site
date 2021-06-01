@@ -380,10 +380,9 @@ def twitter_auth():
     for line in open(authtokens).readlines():
         if line.startswith('twitter:'):
             token = line.strip().split(':')[1]
-            break
-        else:
-            raise Exception('token not available in ~/.authtokens')
-    return token
+            return token
+    raise Exception('token not available in ~/.authtokens')
+
 
 
 # retrieve from twitter
