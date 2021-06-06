@@ -26,6 +26,7 @@ Which is BSD licensed, but is very much rewritten.
 '''
 
 ASF_GENID = {
+    'unsafe_tags': 'True',     # fix script, style, and iframe html that gfm filters as unsafe
     'metadata': True,          # {{ metadata }} inclusion of data in the html.
     'elements': True,	       # {#id} and {.class} annotations.
     'headings': True,	       # add slugified id to headings missing id. Can be overridden by page metadata.
@@ -287,13 +288,25 @@ def generate_id(content):
     if isinstance(content, pelican.contents.Static):
         return
 
+    # get plugin settings
+    asf_genid = content.settings['ASF_GENID']
+    # asf_headings setting may be overridden
+    asf_headings = content.metadata.get('asf_headings', str(asf_genid['headings']))
+
+    # show active plugins
+    if asf_genid['debug']:
+        print('asfgenid:\nshow plugins in case one is processing before this one')
+        for name in content.settings['PLUGINS']:
+            print(f'plugin: {name}')
+
     # track the id tags
     ids = set()
     # track permalinks
     permalinks = set()
     
     # step 1 - fixup html that cmark marks unsafe - move to later?
-    fixup_content(content)
+    if asf_genid['unsafe_tags']:
+        fixup_content(content)
 
     # step 2 - prepare for genid processes
     # parse html content into BeautifulSoup4
@@ -306,15 +319,6 @@ def generate_id(content):
     print(f'{content.relative_source_path} - {title}')
     # enhance metadata if done by asfreader
     add_data(content)
-    # get plugin settings
-    asf_genid = content.settings['ASF_GENID']
-    # asf_headings setting may be overridden
-    asf_headings = content.metadata.get('asf_headings', str(asf_genid['headings']))
-    # show active plugins
-    if asf_genid['debug']:
-        print('asfgenid:\nshow plugins in case one is processing before this one')
-        for name in content.settings['PLUGINS']:
-            print(f'plugin: {name}')
 
     # step 3 - metadata expansion
     if asf_genid['metadata']:
