@@ -12,6 +12,9 @@ version: 1.0
 ### Foundation
 [for foundation]
 - [[][foundation.title]]([foundation.href])
+
+  [format "raw"][foundation.content][end]
+
 [end]
 
 ### Planet

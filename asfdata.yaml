@@ -91,7 +91,8 @@ twitter:
 foundation:
   # load, transform, and create a sequence of foundation blogs
   blog: https://blogs.apache.org/foundation/feed/entries/atom
-  count: 1
+  count: 3
+  coontent: 44
 
 # used on index.ezmd
 planet:
