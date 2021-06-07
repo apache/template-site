@@ -68,6 +68,9 @@ TAGS_SAVE_AS = ''
 # We want to serve our static files mixed with content.
 STATIC_PATHS = ['.']
 
+# we want any html to be served as is
+READERS = {'html': None}
+
 # We don't use articles, but we don't want pelican to think
 # that content/ contains articles.
 ARTICLE_PATHS = ['articles']
@@ -95,7 +98,12 @@ THEME = './theme/apache'
 # Pelican Plugins
 # The provided location. If the buildbot does not have a new plugin then look into requirements.txt
 PLUGIN_PATHS = ['./theme/plugins']
-PLUGINS = ['asfgenid', 'asfdata', 'pelican-gfm', 'asfreader', 'sitemap']
+# With pelican-sitemap
+# PLUGINS = ['asfgenid', 'asfdata', 'pelican-gfm', 'asfreader', 'sitemap']
+# With data and ezt templates
+PLUGINS = ['asfgenid', 'asfdata', 'pelican-gfm', 'asfreader']
+# With asfgenid
+# PLUGINS = ['asfgenid', 'pelican-gfm']
 
 TYPOGRAPHY = True
 TYPOGRAPHY_IGNORE_TAGS = ['pre', 'code', 'style', 'script']
@@ -112,7 +120,7 @@ TYPOGRAPHY_IGNORE_TAGS = ['pre', 'code', 'style', 'script']
 # (4) Site generation
 #     sitemap - produces a sitemap.xml
 
-# Configure the asfdata plugin
+# Configure the asfdata plugin if you need data and ezt templates
 ASF_DATA = {
     'data': ASF_DATA_YAML,
     'metadata': {
@@ -136,20 +144,20 @@ ASF_GENID = {
 }
 
 # Sitemap Generator
-SITEMAP = {
-    "exclude": ["tag/", "category/"],
-    "format": "xml",
-    "priorities": {
-        "articles": 0.1,
-        "indexes": 0.1,
-        "pages": 0.8
-    },
-    "changefreqs": {
-        "articles": "never",
-        "indexes": "never",
-        "pages": "monthly"
-    }
-}
+# SITEMAP = {
+#    "exclude": ["tag/", "category/"],
+#    "format": "xml",
+#    "priorities": {
+#        "articles": 0.1,
+#        "indexes": 0.1,
+#        "pages": 0.8
+#    },
+#    "changefreqs": {
+#        "articles": "never",
+#        "indexes": "never",
+#        "pages": "monthly"
+#    }
+#}
 
 # Markdown Configuration
 # When using GFMReader or ASFReader then MARKDOWN configuration is meaningless to GFM

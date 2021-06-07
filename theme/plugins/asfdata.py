@@ -24,6 +24,7 @@ import os.path
 import sys
 import random
 import json
+import re
 import traceback
 import operator
 import pprint
@@ -37,11 +38,17 @@ import xml.dom.minidom
 import pelican.plugins.signals
 import pelican.utils
 
+from bs4 import BeautifulSoup
 
 ASF_DATA = {
     'metadata': { },
     'debug': False,
 }
+
+FIXUP_HTML = [
+    (re.compile(r'&lt;'),'<'),
+    (re.compile(r'&gt;'),'>'),
+]
 
 # read the asfdata configuration in order to get data load and transformation instructions.
 def read_config(config_yaml):
@@ -345,8 +352,20 @@ def get_element_text(entry, child):
     return get_node_text(elements[0].childNodes)
 
 
+# retrieve truncate words in html.
+def truncate_words(text, words):
+    content_text = ' '.join(text.split(' ')[:words]) + "..."
+    for regex, replace in FIXUP_HTML:
+        m = regex.search(content_text)
+        if m:
+            content_text = re.sub(regex, replace, content_text)
+    tree_soup = BeautifulSoup(content_text, 'html.parser')
+    content_text = tree_soup.prettify()
+    return content_text
+
+
 # retrieve blog posts from an Atom feed.
-def process_blog(feed, count, debug):
+def process_blog(feed, count, words, debug):
     print(f'blog feed: {feed}')
     content = requests.get(feed).text
     dom = xml.dom.minidom.parseString(content)
@@ -358,11 +377,16 @@ def process_blog(feed, count, debug):
     for entry in entries:
         if debug:
             print(entry.tagName)
-        # we only want the title and href
+        # we may want content
+        content_text = ''
+        if words:
+            content_text = truncate_words(get_element_text(entry, 'content'), words)
+        # we want the title and href
         v.append(
             {
                 'id': get_element_text(entry, 'id'),
                 'title': get_element_text(entry, 'title'),
+                'content': content_text
             }
         )
     if debug:
@@ -370,7 +394,8 @@ def process_blog(feed, count, debug):
             print(s)
 
     return [ Blog(href=s['id'],
-                  title=s['title'])
+                  title=s['title'],
+                  content=s['content'])
              for s in v ]
 
 
@@ -525,7 +550,11 @@ def config_read_data(pel_ob):
                     # process blog feed
                     feed = config_data[key]['blog']
                     count = config_data[key]['count']
-                    metadata[key] = v = process_blog(feed, count, debug)
+                    if config_data[key]['content']:
+                        words = config_data[key]['content']
+                    else:
+                        words = None
+                    metadata[key] = v = process_blog(feed, count, words, debug)
                     if debug:
                         print('BLOG V:', v)
                     continue
