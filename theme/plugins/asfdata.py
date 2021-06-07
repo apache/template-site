@@ -550,7 +550,7 @@ def config_read_data(pel_ob):
                     # process blog feed
                     feed = config_data[key]['blog']
                     count = config_data[key]['count']
-                    if config_data[key]['content']:
+                    if 'content' in config_data[key].keys():
                         words = config_data[key]['content']
                     else:
                         words = None
