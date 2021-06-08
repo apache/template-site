@@ -26,15 +26,15 @@ Which is BSD licensed, but is very much rewritten.
 '''
 
 ASF_GENID = {
-    'unsafe_tags': 'True',     # fix script, style, and iframe html that gfm filters as unsafe
-    'metadata': True,          # {{ metadata }} inclusion of data in the html.
-    'elements': True,	       # {#id} and {.class} annotations.
-    'headings': True,	       # add slugified id to headings missing id. Can be overridden by page metadata.
-    'headings_re': r'^h[1-6]', # regex for which headings to check.
-    'permalinks': True,	       # add permalinks to elements and headings when id is added.
-    'toc': True,  	       # check for [TOC] and add Table of Content if present.
-    'toc_headers': r'h[1-6]',  # regex for which headings to include in the [TOC]
-    'tables': True,	       # add class="table" for tables missing class.
+    'unsafe_tags': True,        # fix script, style, and iframe html that gfm filters as unsafe
+    'metadata': True,           # {{ metadata }} inclusion of data in the html.
+    'elements': True,	        # {#id} and {.class} annotations.
+    'headings': True,	        # add slugified id to headings missing id. Can be overridden by page metadata.
+    'headings_re': r'^h[1-6]',  # regex for which headings to check.
+    'permalinks': True,	        # add permalinks to elements and headings when id is added.
+    'toc': True,  	        # check for [TOC] and add Table of Content if present.
+    'toc_headers': r'h[1-6]',   # regex for which headings to include in the [TOC]
+    'tables': True,	        # add class="table" for tables missing class.
     'debug': False
 }
 

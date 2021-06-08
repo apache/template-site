@@ -397,7 +397,7 @@ def process_blog(feed, count, words, debug):
     return [ Blog(href=s['id'],
                   title=s['title'],
                   content=s['content'])
-             for s in v ]
+             for s in v]
 
 
 # to be updated from hidden location. (Need to discuss local.)
