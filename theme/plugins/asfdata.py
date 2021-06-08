@@ -22,6 +22,8 @@
 
 import os.path
 import sys
+import subprocess
+import datetime
 import random
 import json
 import re
@@ -337,6 +339,104 @@ def process_load(metadata, value, load, debug):
             process_sequence(metadata, seq, sequence, load, debug)
 
 
+# open a subprocess
+def os_popen(list):
+    return subprocess.Popen(list, stdout=subprocess.PIPE, universal_newlines=True)
+
+
+# retrieve the release distributions for a project from svn
+def process_distributions(project, src, sort_revision):
+
+    # current date information will help process svn ls results
+    gatherDate = datetime.datetime.utcnow()
+    gatherYear = gatherDate.year
+
+    # information to accumulate
+    signatures = {}
+    checksums = {}
+    fsizes = {}
+    dtms = {}
+    versions = {}
+    revisions = {}
+
+    # read the output from svn ls -Rv
+    with os_popen(['svn', 'ls', '-Rv', f'https://dist.apache.org/repos/dist/release/{project}']) as s:
+        for line in s.stdout:
+            line = line.strip()
+            listing = line.split(' ')
+            if line[-1:] == '/':
+                # skip directories
+                continue
+            if sort_revision:
+                revision = int(listing[0])
+            else:
+                revision = 0
+            user = listing[1]
+            if listing[-6] == '':
+                # dtm in the past year
+                dtm1 = datetime.datetime.strptime(" ".join(listing[-4:-2])+" "+str(gatherYear),"%b %d %Y")
+                if dtm1 > gatherDate:
+                    dtm1 = datetime.datetime.strptime(" ".join(listing[-4:-2])+" "+str(gatherYear-1),"%b %d %Y")
+                fsize = listing[-5]
+            else:
+                # dtm older than one year
+                dtm1 = datetime.datetime.strptime(" ".join(listing[-5:-1]),"%b %d %Y")
+                fsize = listing[-6]
+            # date is close enough
+            dtm = dtm1.strftime("%m/%d/%Y")
+            # line is path
+            line = listing[-1]
+            # fields are parts of the path
+            fields = line.split('/')
+            # filename os the final part
+            filename = fields[-1]
+            # parts includes the whole path
+            parts = line.split('.')
+            # use the path as a key for each release
+            release = line
+            if filename:
+                if re.search('KEYS(\.txt)?$', filename):
+                    # save the KEYS file url
+                    keys = f'https://dist.apache.org/repos/dist/release/{project}/{line}'
+                elif re.search('\.(asc|sig)$', filename, flags=re.IGNORECASE):
+                    # we key a release off of a signature. remove the extension
+                    release = '.'.join(parts[:-1])
+                    signatures[release] = filename
+                    # the path to the signature is used as the version
+                    versions[release] = '/'.join(fields[:-1])
+                    # we use the revision for sorting
+                    revisions[release] = revision
+                    if re.search(src, filename):
+                        # put source distributions in the front (it is a reverse sort)
+                        revisions[release] = revision+100000
+                elif re.search('\.(sha512|sha1|sha256|sha|md5)$', filename, flags=re.IGNORECASE):
+                    # some projects checksum their signatures
+                    part0 = ".".join(line.split('.')[-2:-1])
+                    if part0 == "asc":
+                        # skip files that are hashes of signatures
+                        continue
+                    # strip the extension to get the release name
+                    release = '.'.join(parts[:-1]) 
+                    checksums[release] = filename
+                else:
+                    # for the released file save the size and dtm
+                    fsizes[release] = fsize
+                    dtms[release] = dtm
+
+    # create a sequence of distributions
+    distributions = [ Distribution(release=rel[len(versions[rel]) + 1:],
+                                   revision=revisions[rel],
+                                   version=versions[rel],
+                                   signature=signatures[rel],
+                                   checksum=checksums[rel],
+                                   dtm=dtms[rel],
+                                   fsize=fsizes[rel])
+                      for rel in signatures]
+
+    distributions.sort(key=lambda x: (-x.revision, x.version, x.release))
+    return keys, distributions
+
+
 # get xml text node
 def get_node_text(nodelist):
     """http://www.python.org/doc/2.5.2/lib/minidom-example.txt"""
@@ -509,6 +609,10 @@ class Blog(wrapper):
     pass
 
 
+class Distribution(wrapper):
+    pass
+
+
 # create metadata according to instructions.
 def config_read_data(pel_ob):
     print('-----\nasfdata')
@@ -573,6 +677,17 @@ def config_read_data(pel_ob):
                     if debug:
                         print('BLOG V:', v)
                     continue
+
+                elif 'release' in value:
+                    # retrieve active release distributions
+                    src = config_data[key]['src']
+                    revision = config_data[key]['revision']
+                    project = config_data[key]['release']
+                    keys, distributions = process_distributions(project, src, revision)
+                    metadata[key] = v = distributions
+                    metadata[f"{key}-keys"] = keys
+                    if debug:
+                        print('RELEASE V:', v)
 
                 elif 'url' in value:
                     # process a url based data source

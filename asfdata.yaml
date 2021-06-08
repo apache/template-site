@@ -105,3 +105,10 @@ conferences:
   # load, transform, and create a sequence of foundation blogs
   blog: https://blogs.apache.org/conferences/feed/entries/atom
   count: 1
+#
+# used on downloads.ezmd
+openoffice:
+  # load a sequence of release distributions
+  release: openoffice
+  src: src
+  revision:
