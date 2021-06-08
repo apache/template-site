@@ -64,7 +64,7 @@ This repository provides a website template for [ASF-Pelican](https://infra.apac
 9. Tools
 
    - GitHub Action -- A manual **Lint** action is provided:
-   
+
      - [Lint](.github/workflows/lint.yml) -- [GitHub Actions](https://docs.github.com/en/actions) Workflow
      - [Flake8](https://flake8.pycqa.org/en/latest/) - [Python](https://www.python.org/) based tool for style guide enforcement
      - [markdownlint](https://github.com/DavidAnson/markdownlint) -- using [markdownlint-cli](https://github.com/igorshubovych/markdownlint-cli) - [Node.js](https://nodejs.org/) style checker and lint tool for [Markdown](https://daringfireball.net/projects/markdown/) and CommonMark files
@@ -78,5 +78,4 @@ This repository provides a website template for [ASF-Pelican](https://infra.apac
 
      - [.editorconfig](.editorconfig)
 
-
-See the [Developer Tools](DEVELOPER.md) for tools that may be helpful.
+   See the [Developer Tools](DEVELOPER.md) for tools that may be helpful.
