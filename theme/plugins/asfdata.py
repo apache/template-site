@@ -46,9 +46,10 @@ ASF_DATA = {
 }
 
 FIXUP_HTML = [
-    (re.compile(r'&lt;'),'<'),
-    (re.compile(r'&gt;'),'>'),
+    (re.compile(r'&lt;'), '<'),
+    (re.compile(r'&gt;'), '>'),
 ]
+
 
 # read the asfdata configuration in order to get data load and transformation instructions.
 def read_config(config_yaml):
@@ -75,12 +76,12 @@ def load_data(path, content):
 
 # load data source from a url.
 def url_data(url):
-    return load_data( url, requests.get(url).text )
+    return load_data( url, requests.get(url).text)
 
 
 # load data source from a file.
 def file_data(rel_path):
-    return load_data( rel_path, open(rel_path,'r').read() )
+    return load_data( rel_path, open(rel_path, 'r').read())
 
 
 # remove parts of a data source we don't want ro access
@@ -119,7 +120,7 @@ def alpha_part(reference, part):
         reference[refs]['letter'] = letter
 
 
-# rotate a roster list singleton into an name and availid 
+# rotate a roster list singleton into an name and availid
 def asfid_part(reference, part):
     for refs in reference:
         fix = reference[refs][part]
@@ -191,24 +192,24 @@ def split_list(metadata, seq, reference, split):
     # size of list
     size = len(sequence)
     # size of columns
-    percol = int((size+26+split-1)/split)
+    percol = int((size + 26 + split - 1) / split)
     # positions
     start = nseq = nrow = 0
     letter = ' '
     # create each column
     for column in range(split):
         subsequence = [ ]
-        end = min(size+26, start+percol)
+        end = min(size + 26, start + percol)
         while nrow < end:
             if letter < sequence[nseq].letter:
                 # new letter - add a letter break into the column. If a letter has no content it is skipped
                 letter = sequence[nseq].letter
-                subsequence.append(type(seq, (), { 'letter': letter, 'display_name': letter }))
+                subsequence.append(type(seq, (), { 'letter': letter, 'display_name': letter}))
             else:
                 # add the project into the sequence
                 subsequence.append(sequence[nseq])
-                nseq = nseq+1
-            nrow = nrow+1
+                nseq = nseq + 1
+            nrow = nrow + 1
         # save the column sequence in the metadata
         metadata[f'{seq}_{column}'] = subsequence
         start = end
@@ -405,10 +406,10 @@ def twitter_auth():
     try:
         for line in open(authtokens).readlines():
             if line.startswith('twitter:'):
-                token = line.strip().split(':')[1] 
+                token = line.strip().split(':')[1]
                 # do not print or display token as it is a secret
                 return token
-    except:
+    except Exception:
         traceback.print_exc()
     return None
 
@@ -428,7 +429,7 @@ def process_twitter(handle, count):
     if not bearer_token:
         return {
             'text': 'Add twitter bearer token to ~/.authtokens'
-            }
+        }
     # do not print or display bearer_token as it is a secret
     query = f'from:{handle}'
     tweet_fields = 'tweet.fields=author_id'
@@ -453,7 +454,7 @@ def process_eccn(fname):
         return [ Source(href=s['href'],
                         manufacturer=s['manufacturer'],
                         why=s['why'])
-                 for s in sources ]
+                 for s in sources]
 
     # products have one or more versions
     def make_versions(vsns):
@@ -462,7 +463,7 @@ def process_eccn(fname):
                          source=make_sources(v.get('source', [ ])),
                          )
                  for v in sorted(vsns,
-                                 key=operator.itemgetter('version')) ]
+                                 key=operator.itemgetter('version'))]
 
     # projects have one or more products
     def make_products(prods):
@@ -470,7 +471,7 @@ def process_eccn(fname):
                          versions=make_versions(p['versions']),
                          )
                  for p in sorted(prods,
-                                 key=operator.itemgetter('name')) ]
+                                 key=operator.itemgetter('name'))]
 
     # eccn matrix has one or more projects
     return [ Project(name=proj['name'],
@@ -478,7 +479,7 @@ def process_eccn(fname):
                      contact=proj['contact'],
                      product=make_products(proj['product']))
              for proj in sorted(j['eccnmatrix'],
-                                key=operator.itemgetter('name')) ]
+                                key=operator.itemgetter('name'))]
 
 
 # object wrappers
@@ -486,12 +487,26 @@ class wrapper:
     def __init__(self, **kw):
         vars(self).update(kw)
 
+
 # Improve the names when failures occur.
-class Source(wrapper): pass
-class Version(wrapper): pass
-class Product(wrapper): pass
-class Project(wrapper): pass
-class Blog(wrapper): pass
+class Source(wrapper):
+    pass
+
+
+class Version(wrapper):
+    pass
+
+
+class Product(wrapper):
+    pass
+
+
+class Project(wrapper):
+    pass
+
+
+class Blog(wrapper):
+    pass
 
 
 # create metadata according to instructions.
@@ -508,7 +523,7 @@ def config_read_data(pel_ob):
         print(f'config: [{key}] = {asf_data[key]}')
 
     debug = asf_data['debug']
-    
+
     # This must be present in ASF_DATA. It contains data for use
     # by our plugins, and possibly where we load/inject data from
     # other sources.
@@ -601,7 +616,7 @@ def tb_initialized(pel_ob):
     """ Print any exception, before Pelican chews it into nothingness."""
     try:
         config_read_data(pel_ob)
-    except:
+    except Exception:
         print('-----', file=sys.stderr)
         traceback.print_exc()
         # exceptions here stop the build

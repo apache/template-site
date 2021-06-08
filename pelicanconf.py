@@ -76,7 +76,7 @@ READERS = {'html': None}
 ARTICLE_PATHS = ['articles']
 
 # ignore README.md files in the content tree
-IGNORE_FILES = ['README.md','include']
+IGNORE_FILES = ['README.md', 'include']
 
 # No translations
 PAGE_TRANSLATION_ID = None
@@ -157,7 +157,7 @@ ASF_GENID = {
 #        "indexes": "never",
 #        "pages": "monthly"
 #    }
-#}
+# }
 
 # Markdown Configuration
 # When using GFMReader or ASFReader then MARKDOWN configuration is meaningless to GFM

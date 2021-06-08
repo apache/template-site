@@ -40,12 +40,12 @@ ASF_GENID = {
 
 # Fixup tuples for HTML that GFM makes into text.
 FIXUP_UNSAFE = [
-    (re.compile(r'&lt;script'),'<script'),
-    (re.compile(r'&lt;/script'),'</script'),
-    (re.compile(r'&lt;style'),'<style'),
-    (re.compile(r'&lt;/style'),'</style'),
-    (re.compile(r'&lt;iframe'),'<iframe'),
-    (re.compile(r'&lt;/iframe'),'</iframe')
+    (re.compile(r'&lt;script'), '<script'),
+    (re.compile(r'&lt;/script'), '</script'),
+    (re.compile(r'&lt;style'), '<style'),
+    (re.compile(r'&lt;/style'), '</style'),
+    (re.compile(r'&lt;iframe'), '<iframe'),
+    (re.compile(r'&lt;/iframe'), '</iframe')
 ]
 
 # Find {{ metadata }} inclusions
@@ -67,6 +67,7 @@ PARA_MAP = {
 
 # Find table tags - to check for ones without class attribute.
 TABLE_RE = re.compile(r'^table')
+
 
 # An item in a Table of Contents - from toc.py
 class HtmlTreeNode(object):
@@ -263,7 +264,7 @@ def generate_toc(content, tags, title, toc_headers):
         # convert the HtmlTreeNode into Beautiful Soup
         tree_string = '{}'.format(tree)
         tree_soup = BeautifulSoup(tree_string, 'html.parser')
-        # Make the ToC availble to the theme's template
+        # Make the ToC available to the theme's template
         content.toc = tree_soup.decode(formatter='html')
     # replace the first [TOC] with the generated table of contents
     for tag in tags:
@@ -303,7 +304,7 @@ def generate_id(content):
     ids = set()
     # track permalinks
     permalinks = set()
-    
+
     # step 1 - fixup html that cmark marks unsafe - move to later?
     if asf_genid['unsafe_tags']:
         fixup_content(content)
@@ -373,7 +374,7 @@ def tb_connect(pel_ob):
     """Print any exception, before Pelican chews it into nothingness."""
     try:
         generate_id(pel_ob)
-    except:
+    except Exception:
         print('-----', file=sys.stderr)
         print('FATAL: %s' % (pel_ob.relative_source_path), file=sys.stderr)
         traceback.print_exc()

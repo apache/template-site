@@ -2697,4 +2697,3 @@ eccnmatrix:
               - href: 'http://eclipse.org/jetty'
                 manufacturer: The Eclipse Foundation
                 why: HTTPS support in Jetty (uses SSL)
-
