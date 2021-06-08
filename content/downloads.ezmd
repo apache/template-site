@@ -5,7 +5,7 @@ Title: Download Releases
 
 Version     | Release        | Signature         | Hash
 ------------|----------------|-------------------|--------
-[for openoffice][openoffice.version] | [openoffice.release] | [openoffice.signature] | [openoffice.checksum]
+[for openoffice][if-index openoffice.version first][openoffice.version][end] | [openoffice.release] | [openoffice.signature] | [openoffice.checksum]
 [end]
 
-[[]KEYS]([{keys}])
+[[]KEYS]([{openoffice-keys}])
