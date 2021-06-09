@@ -438,7 +438,7 @@ def process_distributions(project, src, sort_revision):
                                                    fsize=fsizes[rel]))
     distributions = []
     for version in each_version:
-        each_version[version].sort(key=lambda x: (-x.revision, x.version, x.release))
+        each_version[version].sort(key=lambda x: (-x.revision, x.release))
         distributions.append( Version(version=version,
                                       release=each_version[version]))
     return keys, distributions
