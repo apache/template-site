@@ -4,4 +4,3 @@ title: Links
 ## Project Status
 
 - [Cookbook](projects/cookbook)
-
