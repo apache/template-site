@@ -2,31 +2,6 @@ Title: Featured
 version: 1.0
 <!-- Licensed under ALv2 -->
 
-## Tweet
-[for twitter]
-[twitter.text]
-[end]
-
-## Blogs
-
-### Foundation
-[for foundation]
-- [[][foundation.title]]([foundation.href])
-
-  [format "raw"][foundation.content][end]
-
-[end]
-
-### Planet
-[for planet]
-- [[][planet.title]]([planet.href])
-[end]
-
-### Conferences
-[for conferences]
-- [[][conferences.title]]([conferences.href])
-[end]
-
 ## Projects
 [for featured_projs]
 <img alt="Logo" width="100" src="https://www.apache.org/[featured_projs.logo]"/> [[]Apache [featured_projs.display_name]]([featured_projs.site])

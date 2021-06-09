@@ -4,6 +4,10 @@ version: 1.0
 
 ![[]Apache Petri Logo](images/logo.svg) {.float-right}
 
+The Apache Template is an effort to show how to use **Pelican ASF**
+
+Here are various data inclusions:
+
 ["Title: %0, Version: %1" title version]
 
 [include "/tmp/template/source/content/projects/projects.snippet"]
@@ -14,19 +18,6 @@ version: 1.0
 
 [{ board[30].name }] - [{ eccn[11].product[0].name }] - [{ eccn[11].product[0].versions[0].version }]
 
-The Apache Petri (as in “petri dish” – where cultures are grown and bloom) committee
-assists external project communities interested in becoming an Apache project to
-learn how The Apache Software Foundation (ASF) works, its views on community, and
-how to build a healthy community for the long -term.
-
-Petri’s mission is to mentor existing external communities (“cultures”) about
-“The Apache Way” by focusing on community governance that includes discussions
-about ASF policies. The mentoring and education is conducted on a mailing list.
-
-The primary goal is to reach a point where a recommendation to the ASF Board can
-be made to construct a new Apache Project Management Committee (PMC) for the
-external community.
-
 ## About "The Apache Way" {#the-way}
 
 - [[]The Apache Way](https://www.apache.org/theapacheway/index.html)
@@ -35,24 +26,12 @@ external community.
 - [[]Merit](https://www.apache.org/foundation/how-it-works.html#meritocracy)
 - [[]Success at Apache](https://blogs.apache.org/foundation/category/SuccessAtApache)
 
-## Which communities are currently mentored by Apache Petri?
+Please read our [[]FAQ](/faq)
 
-- [[]BuildStream](/buildstream)
+## Repositories and Issue Tracking
 
-## How can our project/community apply for Apache Petri mentorship?
-
-Email discuss@petri.apache.org (public list; subscription not required) or private@petri.apache.org (private list,
-only Apache Petri PMC members and Apache Members can subscribe) and introduce yourself! We don’t have any forms or
-questionnaires, but may introduce these should the need arise.
-
-## Do you have additional questions?
-
-Please read our [[]FAQ](/faq) or ask questions on discuss@petri.apache.org
-
-## Petri Repositories and Issue Tracking
-
-- [[]Website](https://github.com/apache/petri-site)
-- [[]Issues](https://github.com/apache/petri-site/issues)
+- [[]Website](https://github.com/apache/template-site)
+- [[]Issues](https://github.com/apache/template-site/issues)
 
 ### Petri Status Files
 
@@ -61,6 +40,3 @@ Please read our [[]FAQ](/faq) or ask questions on discuss@petri.apache.org
 
 <p>["Title: %0, Version: %1" title version]</p>
 
-| Office    | Individual  |
-|-----------|-------------|  [for projects]
-| V.P., [if-any projects.site][[][end]Apache [projects.display_name][if-any projects.site]]([projects.site])[end] | [projects.chair] |[end]
