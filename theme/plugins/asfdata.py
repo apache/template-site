@@ -393,7 +393,7 @@ def process_distributions(project, src, sort_revision):
             # date is close enough
             dtm = dtm1.strftime("%m/%d/%Y")
             # covert to number of MB
-            fsize = round(bytesto(fsize, 'm'), 2) + ' MB'
+            fsize = round(bytesto(float(fsize), 'm'), 2) + ' MB'
             # line is path
             line = listing[-1]
             # fields are parts of the path
