@@ -372,16 +372,16 @@ def process_distributions(project, src, sort_revision):
                 revision = int(listing[0])
             else:
                 revision = 0
-            user = listing[1]
+            # user = listing[1]
             if listing[-6] == '':
                 # dtm in the past year
-                dtm1 = datetime.datetime.strptime(" ".join(listing[-4:-2])+" "+str(gatherYear),"%b %d %Y")
+                dtm1 = datetime.datetime.strptime(" ".join(listing[-4:-2]) + " " + str(gatherYear), "%b %d %Y")
                 if dtm1 > gatherDate:
-                    dtm1 = datetime.datetime.strptime(" ".join(listing[-4:-2])+" "+str(gatherYear-1),"%b %d %Y")
+                    dtm1 = datetime.datetime.strptime(" ".join(listing[-4:-2]) + " " + str(gatherYear-1), "%b %d %Y")
                 fsize = listing[-5]
             else:
                 # dtm older than one year
-                dtm1 = datetime.datetime.strptime(" ".join(listing[-5:-1]),"%b %d %Y")
+                dtm1 = datetime.datetime.strptime(" ".join(listing[-5:-1]), "%b %d %Y")
                 fsize = listing[-6]
             # date is close enough
             dtm = dtm1.strftime("%m/%d/%Y")
@@ -409,7 +409,7 @@ def process_distributions(project, src, sort_revision):
                     revisions[release] = revision
                     if re.search(src, filename):
                         # put source distributions in the front (it is a reverse sort)
-                        revisions[release] = revision+100000
+                        revisions[release] = revision + 100000
                 elif re.search('\.(sha512|sha1|sha256|sha|md5)$', filename, flags=re.IGNORECASE):
                     # some projects checksum their signatures
                     part0 = ".".join(line.split('.')[-2:-1])
@@ -417,7 +417,7 @@ def process_distributions(project, src, sort_revision):
                         # skip files that are hashes of signatures
                         continue
                     # strip the extension to get the release name
-                    release = '.'.join(parts[:-1]) 
+                    release = '.'.join(parts[:-1])
                     checksums[release] = filename
                 else:
                     # for the released file save the size and dtm
@@ -430,7 +430,7 @@ def process_distributions(project, src, sort_revision):
         version = versions[rel]
         if version not in each_version:
             each_version[version] = []
-        release=rel[len(version) + 1:]
+        release = rel[len(version) + 1:]
         each_version[version].append( Distribution(release=release,
                                                    revision=revisions[rel],
                                                    signature=signatures[rel],
