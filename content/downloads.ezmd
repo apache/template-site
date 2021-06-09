@@ -6,11 +6,11 @@ Title: Download Releases
 
 ## Keys
 
-[[]KEYS]([openoffice-keys])
+[[]KEYS]([release-keys])
 
-[for openoffice]
-## Version [openoffice.version]
-[for openoffice.release]* [[][openoffice.release.release]](https://downloads.apache.org/openoffice/[openoffice.version]/[openoffice.release.release])
-  [[]signature](https://dist.apache.org/repos/dist/openoffice/[openoffice.version]/[openoffice.release.signature])
-  [[]checksum](https://dist.apache.org/repos/dist/openoffice/[openoffice.version]/[openoffice.release.checksum])
+[for release]
+## Version [release.name]
+[for release.release]* [[][release.release.release]](https://downloads.apache.org/release/[release.version]/[release.release.release])
+  -- ([[]signature](https://dist.apache.org/repos/dist/release/[release.version]/[release.release.signature]))
+  -- ([[]checksum](https://dist.apache.org/repos/dist/release/[release.version]/[release.release.checksum]))
 [end][end]

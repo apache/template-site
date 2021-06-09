@@ -107,8 +107,8 @@ conferences:
   count: 1
 #
 # used on downloads.ezmd
-openoffice:
+release:
   # load a sequence of release distributions
   release: openoffice
   src: src
-  revision:
+  revision: True

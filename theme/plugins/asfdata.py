@@ -1,4 +1,4 @@
-#!/usr/bin/python -B
+!/usr/bin/python -B
 # Licensed to the Apache Software Foundation (ASF) under one
 # or more contributor license agreements.  See the NOTICE file
 # distributed with this work for additional information
@@ -440,6 +440,7 @@ def process_distributions(project, src, sort_revision):
     for version in each_version:
         each_version[version].sort(key=lambda x: (-x.revision, x.release))
         distributions.append( Version(version=version,
+                                      name=' '.join(version.split('/')),
                                       revision=each_version[version][0].revision,
                                       release=each_version[version]))
     distributions.sort(key=lambda x: (-x.revision, x.version))
