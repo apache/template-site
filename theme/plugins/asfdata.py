@@ -343,7 +343,7 @@ def process_load(metadata, value, load, debug):
 def bytesto(bytes, to, bsize=1024): 
     a = {'k' : 1, 'm': 2, 'g' : 3, 't' : 4, 'p' : 5, 'e' : 6 }
     r = float(bytes)
-    return bytes / (bsize ** a[to])
+    return r / (bsize ** a[to])
 
 
 # open a subprocess
