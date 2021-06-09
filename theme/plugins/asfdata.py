@@ -369,6 +369,7 @@ def process_distributions(project, src, sort_revision):
 
     # read the output from svn ls -Rv
     url = f'https://dist.apache.org/repos/dist/release/{project}'
+    print(f'releases: {url}')
     with os_popen(['svn', 'ls', '-Rv', url]) as s:
         for line in s.stdout:
             line = line.strip()

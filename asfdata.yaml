@@ -111,4 +111,4 @@ release:
   # load a sequence of release distributions
   release: hadoop
   src: src
-  revision: False
+  revision: True
