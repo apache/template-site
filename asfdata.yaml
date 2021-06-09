@@ -111,4 +111,4 @@ release:
   # load a sequence of release distributions
   release: openoffice
   src: src
-  revision: True
+  revision: False

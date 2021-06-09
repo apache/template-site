@@ -346,6 +346,7 @@ def os_popen(list):
 
 # retrieve the release distributions for a project from svn
 def process_distributions(project, src, sort_revision):
+    print(f'releases: {project}')
 
     # current date information will help process svn ls results
     gatherDate = datetime.datetime.utcnow()
