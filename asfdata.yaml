@@ -109,6 +109,6 @@ conferences:
 # used on downloads.ezmd
 release:
   # load a sequence of release distributions
-  release: openoffice
+  release: hadoop
   src: src
   revision: False
