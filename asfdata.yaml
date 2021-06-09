@@ -109,6 +109,6 @@ conferences:
 # used on downloads.ezmd
 release:
   # load a sequence of release distributions
-  release: pulsar
+  release: openoffice
   src: src
-  revision: True
+  revision: False
