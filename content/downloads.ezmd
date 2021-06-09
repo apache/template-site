@@ -1,15 +1,16 @@
 Title: Download Releases
 
-
 # Releases
+
+[TOC]
+
+## Keys
 
 [[]KEYS]([{openoffice-keys}])
 
 [for openoffice]
 ## Version [openoffice.version]
-[for openoffice.release]
-* [[][openoffice.release.release]](https://downloads.apache.org/openoffice/[openoffice.version]/[openoffice.release.release])
-  - [[]signature](https://dist.apache.org/repos/dist/openoffice/[openoffice.version]/[openoffice.release.signature])
-  - [[]checksum](https://dist.apache.org/repos/dist/openoffice/[openoffice.version]/[openoffice.release.checksum])
-[end]
-[end]
+[for openoffice.release]* [[][openoffice.release.release]](https://downloads.apache.org/openoffice/[openoffice.version]/[openoffice.release.release])
+  [[]signature](https://dist.apache.org/repos/dist/openoffice/[openoffice.version]/[openoffice.release.signature])
+  [[]checksum](https://dist.apache.org/repos/dist/openoffice/[openoffice.version]/[openoffice.release.checksum])
+[end][end]
