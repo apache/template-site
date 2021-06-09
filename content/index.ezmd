@@ -33,10 +33,5 @@ Please read our [[]FAQ](/faq)
 - [[]Website](https://github.com/apache/template-site)
 - [[]Issues](https://github.com/apache/template-site/issues)
 
-### Petri Status Files
-
-- [[]info.yaml](https://petri.apache.org/info.yaml)
-- [[]petri.rdf](https://projects.apache.org/project.html?petri)
-
 <p>["Title: %0, Version: %1" title version]</p>
 
