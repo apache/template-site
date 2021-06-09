@@ -423,17 +423,24 @@ def process_distributions(project, src, sort_revision):
                     fsizes[release] = fsize
                     dtms[release] = dtm
 
-    # create a sequence of distributions
-    distributions = [ Distribution(release=rel[len(versions[rel]) + 1:],
-                                   revision=revisions[rel],
-                                   version=versions[rel],
-                                   signature=signatures[rel],
-                                   checksum=checksums[rel],
-                                   dtm=dtms[rel],
-                                   fsize=fsizes[rel])
-                      for rel in signatures]
-
-    distributions.sort(key=lambda x: (-x.revision, x.version, x.release))
+    # separate versions.
+    each_version = {}
+    for rel in signatures:
+        version = versions[rel]
+        if version not in each_version:
+            each_version[version] = []
+        release=rel[len(version) + 1:]
+        each_version[version].append( Distribution(release=release,
+                                                   revision=revisions[rel],
+                                                   signature=signatures[rel],
+                                                   checksum=checksums[rel],
+                                                   dtm=dtms[rel],
+                                                   fsize=fsizes[rel]))
+    distributions = []
+    for version in each_version:
+        each_version[version].sort(key=lambda x: (-x.revision, x.version, x.release))
+        distributions.append( Version(version=version,
+                                      release=each_version[version]))
     return keys, distributions
 
 

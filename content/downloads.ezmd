@@ -3,9 +3,13 @@ Title: Download Releases
 
 # Releases
 
-Version     | Release        | Signature         | Hash
-------------|----------------|-------------------|--------
-[for openoffice][if-index openoffice.version first][openoffice.version][end] | [openoffice.release] | [openoffice.signature] | [openoffice.checksum]
+[for openoffice]
+## Version [openoffice.version]
+[for openoffice.release]
+* [[][openoffice.release.release](https://downloads.apache.org/openoffice/[openoffice.version]/[openoffice.release.release])
+  - [[]signature](https://dist.apache.org/repos/dist/openoffice/[openoffice.version]/[openoffice.release.signature])
+  - [[]checksum](https://dist.apache.org/repos/dist/openoffice/[openoffice.version]/[openoffice.release.checksum])
+[end]
 [end]
 
 [[]KEYS]([{openoffice-keys}])
