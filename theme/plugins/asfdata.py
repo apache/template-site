@@ -339,6 +339,13 @@ def process_load(metadata, value, load, debug):
             process_sequence(metadata, seq, sequence, load, debug)
 
 
+# cionvert bytes
+def bytesto(bytes, to, bsize=1024): 
+    a = {'k' : 1, 'm': 2, 'g' : 3, 't' : 4, 'p' : 5, 'e' : 6 }
+    r = float(bytes)
+    return bytes / (bsize ** a[to])
+
+
 # open a subprocess
 def os_popen(list):
     return subprocess.Popen(list, stdout=subprocess.PIPE, universal_newlines=True)
@@ -385,6 +392,8 @@ def process_distributions(project, src, sort_revision):
                 fsize = listing[-6]
             # date is close enough
             dtm = dtm1.strftime("%m/%d/%Y")
+            # covert to number of MB
+            fsize = round(bytesto(fsize, 'm'), 2) + ' MB'
             # line is path
             line = listing[-1]
             # fields are parts of the path
