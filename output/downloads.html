@@ -1,0 +1,589 @@
+<!doctype html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one or more
+    contributor license agreements.  See the NOTICE file distributed with
+    this work for additional information regarding copyright ownership.
+    The ASF licenses this file to You under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with
+    the License.  You may obtain a copy of the License at
+
+         https://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<html lang="en" prefix="og: https://ogp.me/ns#">
+  <head>
+      <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Apache Template - Download Releases</title>
+
+
+    <!-- Below Meta Tags Generated via https://www.opengraph.xyz -->
+    <!-- If you don't care about social media then remove this section -->
+    <!-- Values are set in pelicanconf.py -->
+    <!-- HTML Meta Tags -->
+    <meta name="description" content="Assists external project communities interested in becoming an Apache project learn how The ASF works and its views on how to build a healthy community">
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://template.apache.org">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Apache Template">
+    <meta property="og:description" content="Assists external project communities interested in becoming an Apache project learn how The ASF works and its views on how to build a healthy community">
+    <meta property="og:image" content="https://template.apache.org/images/logo.png">
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="template.apache.org">
+    <meta property="twitter:url" content="https://template.apache.org">
+    <meta name="twitter:title" content="Apache Template">
+    <meta name="twitter:description" content="Assists external project communities interested in becoming an Apache project learn how The ASF works and its views on how to build a healthy community">
+    <meta name="twitter:image" content="https://template.apache.org/images/logo.png">
+    <!-- Above Meta Tags Generated via https://www.opengraph.xyz -->
+
+    <!-- Start favicon styles - use apache feather -->
+    <link rel="shortcut icon" href="https://www.apache.org/favicons/favicon.ico">
+    <link rel="apple-touch-icon" sizes="57x57" href="https://www.apache.org/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="https://www.apache.org/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="https://www.apache.org/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="https://www.apache.org/favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="https://www.apache.org/favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="https://www.apache.org/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="https://www.apache.org/favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://www.apache.org/favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://www.apache.org/favicons/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="https://www.apache.org/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://www.apache.org/favicons/favicon-194x194.png" sizes="194x194">
+    <link rel="icon" type="image/png" href="https://www.apache.org/favicons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="https://www.apache.org/favicons/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="https://www.apache.org/favicons/favicon-16x16.png" sizes="16x16">
+    <!--<link rel="manifest" href="https://www.apache.org/favicons/manifest.json" crossorigin="anonymous">-->
+    <meta name="msapplication-TileColor" content="#603cba">
+    <meta name="msapplication-TileImage" content="https://www.apache.org/favicons/mstile-144x144.png">
+    <meta name="msapplication-config" content="https://www.apache.org/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#282661">
+    <!-- End favicon styles - use apache feather -->
+
+    <!-- Start load of stylesheets (will need to upgrade periodically) -->
+    <link rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous">
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css"
+      crossorigin="anonymous">
+    <!-- Override css for this site. You can do this inline as shown here or with a site asset. See comment.-->
+    <style>
+html {
+  font-size: 18px;
+}
+body {
+  font-family: 'Montserrat', 'Source Sans Pro','Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  background-color: #fff;
+}
+.markdown-body {
+  box-sizing: border-box;
+  min-width: 200px;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 45px;
+}
+@media (max-width: 767px) {
+  .markdown-body {
+    padding: 15px;
+  }
+}
+.footer {
+  border-top: 1px solid black;
+  padding-top: 3px;
+}
+.right-align {
+  text-align: right;
+}
+.center-align {
+  text-align: center;
+}
+blockquote {
+  background: bisque;
+}
+.bg-primary {
+  background-color: #005bff!important;
+}
+a {
+  font-weight: 400;
+  color: #4643aa;
+#  color: #005bff;
+}
+#li {
+#  line-height: 2;
+#}
+.h1, h1 {
+  font-size: 1.5rem;
+}
+.h2, h2 {
+  font-size: 1.4rem;
+}
+.h3, h3 {
+  font-size: 1.3rem;
+}
+.h4, h4 {
+  font-size: 1.2rem;
+}
+.h5, h5 {
+  font-size: 1.1rem;
+}
+.headerlink {
+  visibility: hidden;
+}
+h1:hover > .headerlink, h2:hover > .headerlink, h3:hover > .headerlink, h4:hover > .headerlink, h5:hover > .headerlink, h6:hover > .headerlink {
+  visibility: visible
+}
+    </style>
+    <!--<link rel="stylesheet" href="/styles/styles.css">-->
+    <!-- End stylesheets -->
+  </head>
+
+  <body id="index" class="home">
+    <!-- Start branding and top navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <img src="https://www.apache.org/foundation/press/kit/feather.svg"
+        width="30" height="30" class="d-inline-block align-top"
+        alt="Apache Feather">
+      <a class="navbar-brand" href="/">Apache Template</a>
+      <button class="navbar-toggler" type="button"
+        data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/index.html">Home</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/projects.html">Projects</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/mentors.html">Mentors</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/faq.html">FAQ</a>
+          </li>
+        </ul>
+        <div class="navbar-nav">
+          <div class="nav-item dropdown dropdown-menu-right active">
+            <a class="nav-link dropdown-toggle" href="#"
+              role="button" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">About</a>
+            <div class="dropdown-menu dropdown-menu-right">
+              <a class="dropdown-item" href="https://www.apache.org/">Foundation</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item"
+                href="https://www.apache.org/licenses/">License</a>
+              <a class="dropdown-item"
+                href="https://www.apache.org/foundation/sponsorship.html">Sponsorship</a>
+              <a class="dropdown-item"
+                href="https://www.apache.org/foundation/thanks.html">Thanks</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item"
+                href="https://www.apache.org/security/">Security</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- End branding and top navigation -->
+
+    <!-- Start main content area -->
+    <div class="container">
+    <h1>Download Releases</h1>
+    
+
+    <h1 id="releases">Releases<a class="headerlink" href="#releases" title="Permalink">&para;</a></h1>
+<div id="toc"><ul><li><a class="toc-href" href="#keys" title="Keys">Keys</a></li><li><a class="toc-href" href="#thirdparty-thirdparty-111" title="thirdparty thirdparty-1.1.1">thirdparty thirdparty-1.1.1</a></li><li><a class="toc-href" href="#thirdparty-thirdparty-110" title="thirdparty thirdparty-1.1.0">thirdparty thirdparty-1.1.0</a></li><li><a class="toc-href" href="#common-hadoop-322" title="common hadoop-3.2.2">common hadoop-3.2.2</a></li><li><a class="toc-href" href="#common-hadoop-2101" title="common hadoop-2.10.1">common hadoop-2.10.1</a></li><li><a class="toc-href" href="#ozone-ozone-100" title="ozone ozone-1.0.0">ozone ozone-1.0.0</a></li><li><a class="toc-href" href="#common-hadoop-314" title="common hadoop-3.1.4">common hadoop-3.1.4</a></li><li><a class="toc-href" href="#common-hadoop-330" title="common hadoop-3.3.0">common hadoop-3.3.0</a></li><li><a class="toc-href" href="#ozone-ozone-050-beta" title="ozone ozone-0.5.0-beta">ozone ozone-0.5.0-beta</a></li><li><a class="toc-href" href="#thirdparty-thirdparty-100" title="thirdparty thirdparty-1.0.0">thirdparty thirdparty-1.0.0</a></li><li><a class="toc-href" href="#ozone-ozone-041-alpha" title="ozone ozone-0.4.1-alpha">ozone ozone-0.4.1-alpha</a></li><li><a class="toc-href" href="#common-hadoop-321" title="common hadoop-3.2.1">common hadoop-3.2.1</a></li><li><a class="toc-href" href="#submarine-submarine-020" title="submarine submarine-0.2.0">submarine submarine-0.2.0</a></li><li><a class="toc-href" href="#ozone-ozone-040-alpha" title="ozone ozone-0.4.0-alpha">ozone ozone-0.4.0-alpha</a></li><li><a class="toc-href" href="#ozone-ozone-030-alpha" title="ozone ozone-0.3.0-alpha">ozone ozone-0.3.0-alpha</a></li><li><a class="toc-href" href="#ozone-ozone-021-alpha" title="ozone ozone-0.2.1-alpha">ozone ozone-0.2.1-alpha</a></li></ul></div>
+<h2 id="keys">Keys<a class="headerlink" href="#keys" title="Permalink">&para;</a></h2>
+<p><a href="https://downloads.apache.org/hadoop/common/KEYS">KEYS</a></p>
+<h2 id="thirdparty-thirdparty-111">thirdparty thirdparty-1.1.1<a class="headerlink" href="#thirdparty-thirdparty-111" title="Permalink">&para;</a></h2>
+<ul>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/thirdparty/thirdparty-1.1.1/hadoop-thirdparty-1.1.1-src.tar.gz">hadoop-thirdparty-1.1.1-src.tar.gz</a>
+-- (<a href="https://downloads.apache.org/hadoop/thirdparty/thirdparty-1.1.1/hadoop-thirdparty-1.1.1-src.tar.gz.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/thirdparty/thirdparty-1.1.1/hadoop-thirdparty-1.1.1-src.tar.gz.sha512">checksum</a>)
+-- (21.25 KB)
+-- (06/01/2021)</li>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/thirdparty/thirdparty-1.1.1/CHANGELOG.md">CHANGELOG.md</a>
+-- (<a href="https://downloads.apache.org/hadoop/thirdparty/thirdparty-1.1.1/CHANGELOG.md.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/thirdparty/thirdparty-1.1.1/CHANGELOG.md.sha512">checksum</a>)
+-- (1.31 KB)
+-- (06/01/2021)</li>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/thirdparty/thirdparty-1.1.1/RELEASENOTES.md">RELEASENOTES.md</a>
+-- (<a href="https://downloads.apache.org/hadoop/thirdparty/thirdparty-1.1.1/RELEASENOTES.md.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/thirdparty/thirdparty-1.1.1/RELEASENOTES.md.sha512">checksum</a>)
+-- (0.97 KB)
+-- (06/01/2021)</li>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/thirdparty/thirdparty-1.1.1/hadoop-thirdparty-1.1.1-rat.txt">hadoop-thirdparty-1.1.1-rat.txt</a>
+-- (<a href="https://downloads.apache.org/hadoop/thirdparty/thirdparty-1.1.1/hadoop-thirdparty-1.1.1-rat.txt.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/thirdparty/thirdparty-1.1.1/hadoop-thirdparty-1.1.1-rat.txt.sha512">checksum</a>)
+-- (2.73 KB)
+-- (06/01/2021)</li>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/thirdparty/thirdparty-1.1.1/hadoop-thirdparty-1.1.1-site.tar.gz">hadoop-thirdparty-1.1.1-site.tar.gz</a>
+-- (<a href="https://downloads.apache.org/hadoop/thirdparty/thirdparty-1.1.1/hadoop-thirdparty-1.1.1-site.tar.gz.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/thirdparty/thirdparty-1.1.1/hadoop-thirdparty-1.1.1-site.tar.gz.sha512">checksum</a>)
+-- (393.41 KB)
+-- (06/01/2021)</li>
+</ul>
+<h2 id="thirdparty-thirdparty-110">thirdparty thirdparty-1.1.0<a class="headerlink" href="#thirdparty-thirdparty-110" title="Permalink">&para;</a></h2>
+<ul>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/thirdparty/thirdparty-1.1.0/hadoop-thirdparty-1.1.0-src.tar.gz">hadoop-thirdparty-1.1.0-src.tar.gz</a>
+-- (<a href="https://downloads.apache.org/hadoop/thirdparty/thirdparty-1.1.0/hadoop-thirdparty-1.1.0-src.tar.gz.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/thirdparty/thirdparty-1.1.0/hadoop-thirdparty-1.1.0-src.tar.gz.sha512">checksum</a>)
+-- (21.46 KB)
+-- (05/18/2021)</li>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/thirdparty/thirdparty-1.1.0/CHANGELOG.md">CHANGELOG.md</a>
+-- (<a href="https://downloads.apache.org/hadoop/thirdparty/thirdparty-1.1.0/CHANGELOG.md.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/thirdparty/thirdparty-1.1.0/CHANGELOG.md.sha512">checksum</a>)
+-- (2.53 KB)
+-- (05/18/2021)</li>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/thirdparty/thirdparty-1.1.0/RELEASENOTES.md">RELEASENOTES.md</a>
+-- (<a href="https://downloads.apache.org/hadoop/thirdparty/thirdparty-1.1.0/RELEASENOTES.md.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/thirdparty/thirdparty-1.1.0/RELEASENOTES.md.sha512">checksum</a>)
+-- (0.97 KB)
+-- (05/18/2021)</li>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/thirdparty/thirdparty-1.1.0/hadoop-thirdparty-1.1.0-rat.txt">hadoop-thirdparty-1.1.0-rat.txt</a>
+-- (<a href="https://downloads.apache.org/hadoop/thirdparty/thirdparty-1.1.0/hadoop-thirdparty-1.1.0-rat.txt.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/thirdparty/thirdparty-1.1.0/hadoop-thirdparty-1.1.0-rat.txt.sha512">checksum</a>)
+-- (2.73 KB)
+-- (05/18/2021)</li>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/thirdparty/thirdparty-1.1.0/hadoop-thirdparty-1.1.0-site.tar.gz">hadoop-thirdparty-1.1.0-site.tar.gz</a>
+-- (<a href="https://downloads.apache.org/hadoop/thirdparty/thirdparty-1.1.0/hadoop-thirdparty-1.1.0-site.tar.gz.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/thirdparty/thirdparty-1.1.0/hadoop-thirdparty-1.1.0-site.tar.gz.sha512">checksum</a>)
+-- (393.83 KB)
+-- (05/18/2021)</li>
+</ul>
+<h2 id="common-hadoop-322">common hadoop-3.2.2<a class="headerlink" href="#common-hadoop-322" title="Permalink">&para;</a></h2>
+<ul>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/common/hadoop-3.2.2/hadoop-3.2.2-src.tar.gz">hadoop-3.2.2-src.tar.gz</a>
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-3.2.2/hadoop-3.2.2-src.tar.gz.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-3.2.2/hadoop-3.2.2-src.tar.gz.sha512">checksum</a>)
+-- (31.16 MB)
+-- (01/13/2021)</li>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/common/hadoop-3.2.2/CHANGELOG.md">CHANGELOG.md</a>
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-3.2.2/CHANGELOG.md.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-3.2.2/CHANGELOG.md.sha512">checksum</a>)
+-- (95.04 KB)
+-- (01/13/2021)</li>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/common/hadoop-3.2.2/RELEASENOTES.md">RELEASENOTES.md</a>
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-3.2.2/RELEASENOTES.md.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-3.2.2/RELEASENOTES.md.sha512">checksum</a>)
+-- (5.16 KB)
+-- (01/13/2021)</li>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/common/hadoop-3.2.2/hadoop-3.2.2-rat.txt">hadoop-3.2.2-rat.txt</a>
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-3.2.2/hadoop-3.2.2-rat.txt.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-3.2.2/hadoop-3.2.2-rat.txt.sha512">checksum</a>)
+-- (1.84 MB)
+-- (01/13/2021)</li>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/common/hadoop-3.2.2/hadoop-3.2.2-site.tar.gz">hadoop-3.2.2-site.tar.gz</a>
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-3.2.2/hadoop-3.2.2-site.tar.gz.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-3.2.2/hadoop-3.2.2-site.tar.gz.sha512">checksum</a>)
+-- (43.08 MB)
+-- (01/13/2021)</li>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/common/hadoop-3.2.2/hadoop-3.2.2.tar.gz">hadoop-3.2.2.tar.gz</a>
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-3.2.2/hadoop-3.2.2.tar.gz.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-3.2.2/hadoop-3.2.2.tar.gz.sha512">checksum</a>)
+-- (377.13 MB)
+-- (01/13/2021)</li>
+</ul>
+<h2 id="common-hadoop-2101">common hadoop-2.10.1<a class="headerlink" href="#common-hadoop-2101" title="Permalink">&para;</a></h2>
+<ul>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/common/hadoop-2.10.1/hadoop-2.10.1-src.tar.gz">hadoop-2.10.1-src.tar.gz</a>
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-2.10.1/hadoop-2.10.1-src.tar.gz.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-2.10.1/hadoop-2.10.1-src.tar.gz.sha512">checksum</a>)
+-- (42.94 MB)
+-- (09/22/2020)</li>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/common/hadoop-2.10.1/CHANGES.md">CHANGES.md</a>
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-2.10.1/CHANGES.md.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-2.10.1/CHANGES.md.sha512">checksum</a>)
+-- (41.44 KB)
+-- (09/22/2020)</li>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/common/hadoop-2.10.1/RELEASENOTES.md">RELEASENOTES.md</a>
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-2.10.1/RELEASENOTES.md.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-2.10.1/RELEASENOTES.md.sha512">checksum</a>)
+-- (2.85 KB)
+-- (09/22/2020)</li>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/common/hadoop-2.10.1/hadoop-2.10.1-rat.txt">hadoop-2.10.1-rat.txt</a>
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-2.10.1/hadoop-2.10.1-rat.txt.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-2.10.1/hadoop-2.10.1-rat.txt.sha512">checksum</a>)
+-- (1.55 MB)
+-- (09/22/2020)</li>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/common/hadoop-2.10.1/hadoop-2.10.1-site.tar.gz">hadoop-2.10.1-site.tar.gz</a>
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-2.10.1/hadoop-2.10.1-site.tar.gz.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-2.10.1/hadoop-2.10.1-site.tar.gz.sha512">checksum</a>)
+-- (31.81 MB)
+-- (09/22/2020)</li>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/common/hadoop-2.10.1/hadoop-2.10.1.tar.gz">hadoop-2.10.1.tar.gz</a>
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-2.10.1/hadoop-2.10.1.tar.gz.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-2.10.1/hadoop-2.10.1.tar.gz.sha512">checksum</a>)
+-- (389.66 MB)
+-- (09/22/2020)</li>
+</ul>
+<h2 id="ozone-ozone-100">ozone ozone-1.0.0<a class="headerlink" href="#ozone-ozone-100" title="Permalink">&para;</a></h2>
+<ul>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/ozone/ozone-1.0.0/hadoop-ozone-1.0.0-src.tar.gz">hadoop-ozone-1.0.0-src.tar.gz</a>
+-- (<a href="https://downloads.apache.org/hadoop/ozone/ozone-1.0.0/hadoop-ozone-1.0.0-src.tar.gz.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/ozone/ozone-1.0.0/hadoop-ozone-1.0.0-src.tar.gz.mds">checksum</a>)
+-- (7.37 MB)
+-- (09/02/2020)</li>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/ozone/ozone-1.0.0/hadoop-ozone-1.0.0.tar.gz">hadoop-ozone-1.0.0.tar.gz</a>
+-- (<a href="https://downloads.apache.org/hadoop/ozone/ozone-1.0.0/hadoop-ozone-1.0.0.tar.gz.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/ozone/ozone-1.0.0/hadoop-ozone-1.0.0.tar.gz.mds">checksum</a>)
+-- (288.93 MB)
+-- (09/02/2020)</li>
+</ul>
+<h2 id="common-hadoop-314">common hadoop-3.1.4<a class="headerlink" href="#common-hadoop-314" title="Permalink">&para;</a></h2>
+<ul>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/common/hadoop-3.1.4/hadoop-3.1.4-src.tar.gz">hadoop-3.1.4-src.tar.gz</a>
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-3.1.4/hadoop-3.1.4-src.tar.gz.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-3.1.4/hadoop-3.1.4-src.tar.gz.sha512">checksum</a>)
+-- (29.10 MB)
+-- (08/24/2020)</li>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/common/hadoop-3.1.4/hadoop-3.1.4-rat.txt">hadoop-3.1.4-rat.txt</a>
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-3.1.4/hadoop-3.1.4-rat.txt.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-3.1.4/hadoop-3.1.4-rat.txt.sha512">checksum</a>)
+-- (1.73 MB)
+-- (08/24/2020)</li>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/common/hadoop-3.1.4/hadoop-3.1.4-site.tar.gz">hadoop-3.1.4-site.tar.gz</a>
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-3.1.4/hadoop-3.1.4-site.tar.gz.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-3.1.4/hadoop-3.1.4-site.tar.gz.sha512">checksum</a>)
+-- (41.07 MB)
+-- (08/24/2020)</li>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/common/hadoop-3.1.4/hadoop-3.1.4.tar.gz">hadoop-3.1.4.tar.gz</a>
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-3.1.4/hadoop-3.1.4.tar.gz.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-3.1.4/hadoop-3.1.4.tar.gz.sha512">checksum</a>)
+-- (332.19 MB)
+-- (08/24/2020)</li>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/common/hadoop-3.1.4/CHANGES.md">CHANGES.md</a>
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-3.1.4/CHANGES.md.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-3.1.4/CHANGES.md.sha512">checksum</a>)
+-- (56.77 KB)
+-- (08/19/2020)</li>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/common/hadoop-3.1.4/RELEASENOTES.md">RELEASENOTES.md</a>
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-3.1.4/RELEASENOTES.md.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-3.1.4/RELEASENOTES.md.sha512">checksum</a>)
+-- (4.71 KB)
+-- (08/19/2020)</li>
+</ul>
+<h2 id="common-hadoop-330">common hadoop-3.3.0<a class="headerlink" href="#common-hadoop-330" title="Permalink">&para;</a></h2>
+<ul>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/common/hadoop-3.3.0/hadoop-3.3.0-src.tar.gz">hadoop-3.3.0-src.tar.gz</a>
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-3.3.0/hadoop-3.3.0-src.tar.gz.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-3.3.0/hadoop-3.3.0-src.tar.gz.sha512">checksum</a>)
+-- (32.07 MB)
+-- (07/15/2020)</li>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/common/hadoop-3.3.0/hadoop-3.3.0-site.tar.gz">hadoop-3.3.0-site.tar.gz</a>
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-3.3.0/hadoop-3.3.0-site.tar.gz.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-3.3.0/hadoop-3.3.0-site.tar.gz.sha512">checksum</a>)
+-- (40.13 MB)
+-- (07/15/2020)</li>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/common/hadoop-3.3.0/hadoop-3.3.0.tar.gz">hadoop-3.3.0.tar.gz</a>
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-3.3.0/hadoop-3.3.0.tar.gz.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-3.3.0/hadoop-3.3.0.tar.gz.sha512">checksum</a>)
+-- (477.55 MB)
+-- (07/15/2020)</li>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/common/hadoop-3.3.0/hadoop-3.3.0-aarch64.tar.gz">hadoop-3.3.0-aarch64.tar.gz</a>
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-3.3.0/hadoop-3.3.0-aarch64.tar.gz.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-3.3.0/hadoop-3.3.0-aarch64.tar.gz.sha512">checksum</a>)
+-- (478.15 MB)
+-- (07/15/2020)</li>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/common/hadoop-3.3.0/CHANGELOG.md">CHANGELOG.md</a>
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-3.3.0/CHANGELOG.md.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-3.3.0/CHANGELOG.md.sha512">checksum</a>)
+-- (375.51 KB)
+-- (07/15/2020)</li>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/common/hadoop-3.3.0/RELEASENOTES.md">RELEASENOTES.md</a>
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-3.3.0/RELEASENOTES.md.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-3.3.0/RELEASENOTES.md.sha512">checksum</a>)
+-- (26.17 KB)
+-- (07/15/2020)</li>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/common/hadoop-3.3.0/hadoop-3.3.0-rat.txt">hadoop-3.3.0-rat.txt</a>
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-3.3.0/hadoop-3.3.0-rat.txt.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-3.3.0/hadoop-3.3.0-rat.txt.sha512">checksum</a>)
+-- (1.97 MB)
+-- (07/15/2020)</li>
+</ul>
+<h2 id="ozone-ozone-050-beta">ozone ozone-0.5.0-beta<a class="headerlink" href="#ozone-ozone-050-beta" title="Permalink">&para;</a></h2>
+<ul>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/ozone/ozone-0.5.0-beta/hadoop-ozone-0.5.0-beta-src.tar.gz">hadoop-ozone-0.5.0-beta-src.tar.gz</a>
+-- (<a href="https://downloads.apache.org/hadoop/ozone/ozone-0.5.0-beta/hadoop-ozone-0.5.0-beta-src.tar.gz.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/ozone/ozone-0.5.0-beta/hadoop-ozone-0.5.0-beta-src.tar.gz.sha512">checksum</a>)
+-- (4.07 MB)
+-- (03/23/2020)</li>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/ozone/ozone-0.5.0-beta/hadoop-ozone-0.5.0-beta.tar.gz">hadoop-ozone-0.5.0-beta.tar.gz</a>
+-- (<a href="https://downloads.apache.org/hadoop/ozone/ozone-0.5.0-beta/hadoop-ozone-0.5.0-beta.tar.gz.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/ozone/ozone-0.5.0-beta/hadoop-ozone-0.5.0-beta.tar.gz.sha512">checksum</a>)
+-- (277.01 MB)
+-- (03/23/2020)</li>
+</ul>
+<h2 id="thirdparty-thirdparty-100">thirdparty thirdparty-1.0.0<a class="headerlink" href="#thirdparty-thirdparty-100" title="Permalink">&para;</a></h2>
+<ul>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/thirdparty/thirdparty-1.0.0/hadoop-thirdparty-1.0.0-src.tar.gz">hadoop-thirdparty-1.0.0-src.tar.gz</a>
+-- (<a href="https://downloads.apache.org/hadoop/thirdparty/thirdparty-1.0.0/hadoop-thirdparty-1.0.0-src.tar.gz.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/thirdparty/thirdparty-1.0.0/hadoop-thirdparty-1.0.0-src.tar.gz.sha512">checksum</a>)
+-- (37.66 KB)
+-- (03/18/2020)</li>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/thirdparty/thirdparty-1.0.0/CHANGELOG.md">CHANGELOG.md</a>
+-- (<a href="https://downloads.apache.org/hadoop/thirdparty/thirdparty-1.0.0/CHANGELOG.md.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/thirdparty/thirdparty-1.0.0/CHANGELOG.md.sha512">checksum</a>)
+-- (2.68 KB)
+-- (03/18/2020)</li>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/thirdparty/thirdparty-1.0.0/RELEASENOTES.md">RELEASENOTES.md</a>
+-- (<a href="https://downloads.apache.org/hadoop/thirdparty/thirdparty-1.0.0/RELEASENOTES.md.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/thirdparty/thirdparty-1.0.0/RELEASENOTES.md.sha512">checksum</a>)
+-- (0.97 KB)
+-- (03/18/2020)</li>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/thirdparty/thirdparty-1.0.0/hadoop-thirdparty-1.0.0-rat.txt">hadoop-thirdparty-1.0.0-rat.txt</a>
+-- (<a href="https://downloads.apache.org/hadoop/thirdparty/thirdparty-1.0.0/hadoop-thirdparty-1.0.0-rat.txt.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/thirdparty/thirdparty-1.0.0/hadoop-thirdparty-1.0.0-rat.txt.sha512">checksum</a>)
+-- (2.45 KB)
+-- (03/18/2020)</li>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/thirdparty/thirdparty-1.0.0/hadoop-thirdparty-1.0.0-site.tar.gz">hadoop-thirdparty-1.0.0-site.tar.gz</a>
+-- (<a href="https://downloads.apache.org/hadoop/thirdparty/thirdparty-1.0.0/hadoop-thirdparty-1.0.0-site.tar.gz.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/thirdparty/thirdparty-1.0.0/hadoop-thirdparty-1.0.0-site.tar.gz.sha512">checksum</a>)
+-- (395.31 KB)
+-- (03/18/2020)</li>
+</ul>
+<h2 id="ozone-ozone-041-alpha">ozone ozone-0.4.1-alpha<a class="headerlink" href="#ozone-ozone-041-alpha" title="Permalink">&para;</a></h2>
+<ul>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/ozone/ozone-0.4.1-alpha/hadoop-ozone-0.4.1-alpha-src.tar.gz">hadoop-ozone-0.4.1-alpha-src.tar.gz</a>
+-- (<a href="https://downloads.apache.org/hadoop/ozone/ozone-0.4.1-alpha/hadoop-ozone-0.4.1-alpha-src.tar.gz.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/ozone/ozone-0.4.1-alpha/hadoop-ozone-0.4.1-alpha-src.tar.gz.mds">checksum</a>)
+-- (3.80 MB)
+-- (10/13/2019)</li>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/ozone/ozone-0.4.1-alpha/hadoop-ozone-0.4.1-alpha.tar.gz">hadoop-ozone-0.4.1-alpha.tar.gz</a>
+-- (<a href="https://downloads.apache.org/hadoop/ozone/ozone-0.4.1-alpha/hadoop-ozone-0.4.1-alpha.tar.gz.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/ozone/ozone-0.4.1-alpha/hadoop-ozone-0.4.1-alpha.tar.gz.mds">checksum</a>)
+-- (354.09 MB)
+-- (10/13/2019)</li>
+</ul>
+<h2 id="common-hadoop-321">common hadoop-3.2.1<a class="headerlink" href="#common-hadoop-321" title="Permalink">&para;</a></h2>
+<ul>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/common/hadoop-3.2.1/hadoop-3.2.1-src.tar.gz">hadoop-3.2.1-src.tar.gz</a>
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-3.2.1/hadoop-3.2.1-src.tar.gz.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-3.2.1/hadoop-3.2.1-src.tar.gz.sha512">checksum</a>)
+-- (30.20 MB)
+-- (09/23/2019)</li>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/common/hadoop-3.2.1/hadoop-3.2.1.tar.gz">hadoop-3.2.1.tar.gz</a>
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-3.2.1/hadoop-3.2.1.tar.gz.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/common/hadoop-3.2.1/hadoop-3.2.1.tar.gz.sha512">checksum</a>)
+-- (342.56 MB)
+-- (09/23/2019)</li>
+</ul>
+<h2 id="submarine-submarine-020">submarine submarine-0.2.0<a class="headerlink" href="#submarine-submarine-020" title="Permalink">&para;</a></h2>
+<ul>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/submarine/submarine-0.2.0/hadoop-submarine-0.2.0-src.tar.gz">hadoop-submarine-0.2.0-src.tar.gz</a>
+-- (<a href="https://downloads.apache.org/hadoop/submarine/submarine-0.2.0/hadoop-submarine-0.2.0-src.tar.gz.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/submarine/submarine-0.2.0/hadoop-submarine-0.2.0-src.tar.gz.sha512">checksum</a>)
+-- (33.34 MB)
+-- (06/28/2019)</li>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/submarine/submarine-0.2.0/hadoop-submarine-0.2.0.tar.gz">hadoop-submarine-0.2.0.tar.gz</a>
+-- (<a href="https://downloads.apache.org/hadoop/submarine/submarine-0.2.0/hadoop-submarine-0.2.0.tar.gz.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/submarine/submarine-0.2.0/hadoop-submarine-0.2.0.tar.gz.sha512">checksum</a>)
+-- (53.87 MB)
+-- (06/28/2019)</li>
+</ul>
+<h2 id="ozone-ozone-040-alpha">ozone ozone-0.4.0-alpha<a class="headerlink" href="#ozone-ozone-040-alpha" title="Permalink">&para;</a></h2>
+<ul>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/ozone/ozone-0.4.0-alpha/hadoop-ozone-0.4.0-alpha-src.tar.gz">hadoop-ozone-0.4.0-alpha-src.tar.gz</a>
+-- (<a href="https://downloads.apache.org/hadoop/ozone/ozone-0.4.0-alpha/hadoop-ozone-0.4.0-alpha-src.tar.gz.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/ozone/ozone-0.4.0-alpha/hadoop-ozone-0.4.0-alpha-src.tar.gz.sha512">checksum</a>)
+-- (33.03 MB)
+-- (05/10/2019)</li>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/ozone/ozone-0.4.0-alpha/hadoop-ozone-0.4.0-alpha.tar.gz">hadoop-ozone-0.4.0-alpha.tar.gz</a>
+-- (<a href="https://downloads.apache.org/hadoop/ozone/ozone-0.4.0-alpha/hadoop-ozone-0.4.0-alpha.tar.gz.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/ozone/ozone-0.4.0-alpha/hadoop-ozone-0.4.0-alpha.tar.gz.sha512">checksum</a>)
+-- (325.68 MB)
+-- (05/10/2019)</li>
+</ul>
+<h2 id="ozone-ozone-030-alpha">ozone ozone-0.3.0-alpha<a class="headerlink" href="#ozone-ozone-030-alpha" title="Permalink">&para;</a></h2>
+<ul>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/ozone/ozone-0.3.0-alpha/hadoop-ozone-0.3.0-alpha-src.tar.gz">hadoop-ozone-0.3.0-alpha-src.tar.gz</a>
+-- (<a href="https://downloads.apache.org/hadoop/ozone/ozone-0.3.0-alpha/hadoop-ozone-0.3.0-alpha-src.tar.gz.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/ozone/ozone-0.3.0-alpha/hadoop-ozone-0.3.0-alpha-src.tar.gz.sha512">checksum</a>)
+-- (30.98 MB)
+-- (11/19/2018)</li>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/ozone/ozone-0.3.0-alpha/hadoop-ozone-0.3.0-alpha.tar.gz">hadoop-ozone-0.3.0-alpha.tar.gz</a>
+-- (<a href="https://downloads.apache.org/hadoop/ozone/ozone-0.3.0-alpha/hadoop-ozone-0.3.0-alpha.tar.gz.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/ozone/ozone-0.3.0-alpha/hadoop-ozone-0.3.0-alpha.tar.gz.sha512">checksum</a>)
+-- (162.37 MB)
+-- (11/19/2018)</li>
+</ul>
+<h2 id="ozone-ozone-021-alpha">ozone ozone-0.2.1-alpha<a class="headerlink" href="#ozone-ozone-021-alpha" title="Permalink">&para;</a></h2>
+<ul>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/ozone/ozone-0.2.1-alpha/hadoop-ozone-0.2.1-alpha-src.tar.gz">hadoop-ozone-0.2.1-alpha-src.tar.gz</a>
+-- (<a href="https://downloads.apache.org/hadoop/ozone/ozone-0.2.1-alpha/hadoop-ozone-0.2.1-alpha-src.tar.gz.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/ozone/ozone-0.2.1-alpha/hadoop-ozone-0.2.1-alpha-src.tar.gz.sha512">checksum</a>)
+-- (30.03 MB)
+-- (09/27/2018)</li>
+<li><a href="https://www.apache.org/dyn/closer.lua/hadoop/ozone/ozone-0.2.1-alpha/hadoop-ozone-0.2.1-alpha.tar.gz">hadoop-ozone-0.2.1-alpha.tar.gz</a>
+-- (<a href="https://downloads.apache.org/hadoop/ozone/ozone-0.2.1-alpha/hadoop-ozone-0.2.1-alpha.tar.gz.asc">signature</a>)
+-- (<a href="https://downloads.apache.org/hadoop/ozone/ozone-0.2.1-alpha/hadoop-ozone-0.2.1-alpha.tar.gz.sha512">checksum</a>)
+-- (157.82 MB)
+-- (09/27/2018)</li>
+</ul>
+
+
+    </div>
+    <!-- End main content area -->
+
+    <!-- Start footer -->
+    <footer class="navbar-expand-lg navbar-light bg-light">
+      <div class="footer" id="footer">
+        <div class="row container-fluid">
+          <div class="col-sm">
+            <a href="https://www.apache.org/">
+              <img src="https://www.apache.org/img/asf_logo.png" alt="The Apache Software Foundation" style="border: 0; margin-top: 2px" width="200">
+            </a>
+          </div>
+          <div class="col-sm center-align">
+            <a href="https://www.apache.org/foundation/contributing.html">
+              <img src="https://www.apache.org/images/SupportApache-small.png" alt="Support The ASF" height="80" width="80">
+            </a>
+          </div>
+          <div class="col-sm right-align">
+            <a class="acevent" data-format="wide" data-mode="light" data-event="random"></a>
+          </div>
+        </div>
+
+        <div class="container-fluid">
+          Copyright &copy; 2021 The Apache Software Foundation,
+          Licensed under the
+          <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0.</a>
+          <br/>
+          Apache, the Apache feather logo, and Template are trademarks or registered trademarks of <a href="https://www.apache.org/">The Apache Software Foundation.</a>
+        </div><!-- #container-fluid -->
+
+      </div>
+    </footer>
+    <!-- End footer -->
+
+    <!-- Start the loading of javascript frameworks (will need to upgrade periodically) -->
+    <script src="https://www.apachecon.com/event-images/snippet.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.slim.min.js"
+      integrity="sha512-6ORWJX/LrnSjBzwefdNUyLCMTIsGoNP6NftMy2UAm1JBm6PRZCO1d7OHBStWpVFZLO+RerTvqX/Z9mBFfCJZ4A=="
+      crossorigin="anonymous"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"></script>
+    <!-- End the loading of javascript frameworks -->
+
+    <!-- Source: downloads.ezmd; Template: page; Url: downloads.html -->
+  </body>
+</html>
