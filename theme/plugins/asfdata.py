@@ -368,7 +368,8 @@ def process_distributions(project, src, sort_revision):
     revisions = {}
 
     # read the output from svn ls -Rv
-    with os_popen(['svn', 'ls', '-Rv', f'https://dist.apache.org/repos/dist/release/{project}']) as s:
+    url = f'https://dist.apache.org/repos/dist/release/{project}'
+    with os_popen(['svn', 'ls', '-Rv', url]) as s:
         for line in s.stdout:
             line = line.strip()
             listing = line.split(' ')
@@ -422,7 +423,7 @@ def process_distributions(project, src, sort_revision):
                     if re.search(src, filename):
                         # put source distributions in the front (it is a reverse sort)
                         revisions[release] = revision + 100000
-                elif re.search('\.(sha512|sha1|sha256|sha|md5)$', filename, flags=re.IGNORECASE):
+                elif re.search('\.(sha512|sha1|sha256|sha|md5|mds)$', filename, flags=re.IGNORECASE):
                     # some projects checksum their signatures
                     part0 = ".".join(line.split('.')[-2:-1])
                     if part0 == "asc":
@@ -443,12 +444,16 @@ def process_distributions(project, src, sort_revision):
         if version not in each_version:
             each_version[version] = []
         release = rel[len(version) + 1:]
-        each_version[version].append( Distribution(release=release,
-                                                   revision=revisions[rel],
-                                                   signature=signatures[rel],
-                                                   checksum=checksums[rel],
-                                                   dtm=dtms[rel],
-                                                   fsize=fsizes[rel]))
+        try:
+            each_version[version].append( Distribution(release=release,
+                                                       revision=revisions[rel],
+                                                       signature=signatures[rel],
+                                                       checksum=checksums[rel],
+                                                       dtm=dtms[rel],
+                                                       fsize=fsizes[rel]))
+        except Exception:
+            traceback.print_exc()
+        
     distributions = []
     for version in each_version:
         each_version[version].sort(key=lambda x: (-x.revision, x.release))
