@@ -398,7 +398,7 @@ def process_distributions(project, src, sort_revision):
             if filename:
                 if re.search('KEYS(\.txt)?$', filename):
                     # save the KEYS file url
-                    keys = f'https://dist.apache.org/repos/dist/release/{project}/{line}'
+                    keys = f'https://downloads.apache.org/{project}/{line}'
                 elif re.search('\.(asc|sig)$', filename, flags=re.IGNORECASE):
                     # we key a release off of a signature. remove the extension
                     release = '.'.join(parts[:-1])
@@ -697,6 +697,7 @@ def config_read_data(pel_ob):
                     keys, distributions = process_distributions(project, src, revision)
                     metadata[key] = v = distributions
                     metadata[f"{key}-keys"] = keys
+                    metadata[f"{key}-project"] = project
                     if debug:
                         print('RELEASE V:', v)
 

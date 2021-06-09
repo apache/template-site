@@ -10,7 +10,7 @@ Title: Download Releases
 
 [for release]
 ## Version [release.name]
-[for release.release]* [[][release.release.release]](https://downloads.apache.org/release/[release.version]/[release.release.release])
-  -- ([[]signature](https://dist.apache.org/repos/dist/release/[release.version]/[release.release.signature]))
-  -- ([[]checksum](https://dist.apache.org/repos/dist/release/[release.version]/[release.release.checksum]))
+[for release.release]* [[][release.release.release]](https://www.apache.org/dyn/closer.lua/[release-project]/[release.version]/[release.release.release])
+  -- ([[]signature](https://downloads.apache.org/[release-project]/[release.version]/[release.release.signature]))
+  -- ([[]checksum](https://downloads.apache.org/[release-project]/[release.version]/[release.release.checksum]))
 [end][end]
