@@ -377,7 +377,7 @@ def process_distributions(project, src, sort_revision):
                 # dtm in the past year
                 dtm1 = datetime.datetime.strptime(" ".join(listing[-4:-2]) + " " + str(gatherYear), "%b %d %Y")
                 if dtm1 > gatherDate:
-                    dtm1 = datetime.datetime.strptime(" ".join(listing[-4:-2]) + " " + str(gatherYear-1), "%b %d %Y")
+                    dtm1 = datetime.datetime.strptime(" ".join(listing[-4:-2]) + " " + str(gatherYear - 1), "%b %d %Y")
                 fsize = listing[-5]
             else:
                 # dtm older than one year
