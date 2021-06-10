@@ -49,12 +49,8 @@ This repository provides a website template for [ASF-Pelican](https://infra.apac
 8. [Issues and Template Questions](https://github.com/apache/template-site/issues)
 
 9. Tools
-   -[Lint](.github/workflows/lint.yml) -- [GitHub Actions](https://docs.github.com/en/actions) manual workflow
-     - [Flake8](https://flake8.pycqa.org/en/latest/) - [Python](https://www.python.org/) based tool for style guide enforcement
-     - [markdownlint](https://github.com/DavidAnson/markdownlint) -- using [markdownlint-cli](https://github.com/igorshubovych/markdownlint-cli) - [Node.js](https://nodejs.org/) style checker and lint tool for [Markdown](https://daringfireball.net/projects/markdown/) and CommonMark files
-     - [misspell](https://github.com/client9/misspell) -- [Golang](https://golang.org/) library to correct commonly misspelled English words quickly
-     - [yamllint](https://yamllint.readthedocs.io/en/stable/) -- a linter for [YAML](https://yaml.org/) files
-       For misspell you can pass in `-w` to autocorrect misspelled words. You can also autocorrect some markdownlint errors by using the `--fix` flag.
+   - [GitHub Actions](https://docs.github.com/en/actions)
+     - [Lint manual workflow](.github/workflows/lint.yml)
    - [EditorConfig](https://editorconfig.org/) -- helps maintain consistent coding styles for multiple developers working on
      the same project across various editors and IDEs
      - [.editorconfig](.editorconfig)
