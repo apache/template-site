@@ -285,8 +285,7 @@ def make_breadcrumbs(rel_source_path, title):
         url = f"{url}{parts[i]}/"
         p = parts[i].capitalize()
         crumbs.append(f'<a href="{url}">{p}</a>&nbsp;&raquo&nbsp;')
-    crumbs.append(title)
-    print(crumbs)
+    crumbs.append(f'<a href="#">{title}</a>')
     return ''.join(crumbs)
     
 
@@ -334,9 +333,10 @@ def generate_id(content):
     # assure relative source path is in the metadata
     content.metadata['relative_source_path'] = rel_source_path = content.relative_source_path
     # create breadcrumb thml
-    content.metadata['breadcrumbs'] = make_breadcrumbs(rel_source_path, title)
+    content.metadata['breadcrumbs'] = breadcrumbs = make_breadcrumbs(rel_source_path, title)
     # display output path and title
     print(f'{content.relative_source_path} - {title}')
+    print(f'    {breadcrumbs}')
     # enhance metadata if done by asfreader
     add_data(content)
 
