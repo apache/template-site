@@ -332,11 +332,13 @@ def generate_id(content):
     title = content.metadata.get('title', 'Title')
     # assure relative source path is in the metadata
     content.metadata['relative_source_path'] = rel_source_path = content.relative_source_path
-    # create breadcrumb thml
+    # create breadcrumb html
     content.metadata['breadcrumbs'] = breadcrumbs = make_breadcrumbs(rel_source_path, title)
     # display output path and title
     print(f'{content.relative_source_path} - {title}')
-    print(f'    {breadcrumbs}')
+    # if debug display breadcrumb html
+    if asf_genid['debug']:
+        print(f'    {breadcrumbs}')
     # enhance metadata if done by asfreader
     add_data(content)
 
