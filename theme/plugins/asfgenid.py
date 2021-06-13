@@ -273,6 +273,24 @@ def generate_toc(content, tags, title, toc_headers):
         tree_soup = ''
 
 
+# create breadcrumb html
+def make_breadcrumbs(rel_source_path, title):
+    parts = rel_source_path.split('/')
+    url = '/'
+    parts[0] = 'Home'
+    crumbs = []
+    # don't process the filename part
+    last = len(parts)-1
+    for i in range(last):
+        if i > 0:
+            url = f"{url}{parts[i]}/"
+            parts[i] = parts[i].capitalize()
+        crumbs.append(f'<a href="{url}">{parts[i]}</a>&nbsp;&raquo&nbsp;')
+    crumbs.append(title)
+    print(crumbs)
+    return ''.join(crumbs)
+    
+
 # add the asfdata metadata into GFM content.
 def add_data(content):
     """ Mix in ASF data as metadata """
@@ -315,7 +333,9 @@ def generate_id(content):
     # page title
     title = content.metadata.get('title', 'Title')
     # assure relative source path is in the metadata
-    content.metadata['relative_source_path'] = content.relative_source_path
+    content.metadata['relative_source_path'] = rel_source_path = content.relative_source_path
+    # create breadcrumb thml
+    content.metadata['breadcrumbs'] = make_breadcrumbs(rel_source_path, title)
     # display output path and title
     print(f'{content.relative_source_path} - {title}')
     # enhance metadata if done by asfreader
