@@ -37,12 +37,12 @@ This repository provides a website template for [ASF-Pelican](https://infra.apac
      `asfgenid.py` performs a series of html fixups including permalinks, heading ids, and table of contents
 
 5. Create your [content](content)
-   - `.md` files using Github Flavored Markdown ([**gfm**](https://infra.apache.org/gfm.html)
+   - `.md` files using Github Flavored Markdown ([**gfm**](https://infra.apache.org/gfm.html))
    - `.ezmd` files for templates using `ASF_DATA`
 
 6. Building
    - [Local build instructions](https://infra.apache.org/asf-pelican-local.html)
-   - [ASF YAML build](.asf.yaml) -- ASF infrastructure instructions
+   - [ASF YAML build](.asf.yaml) -- [ASF infrastructure instructions](https://cwiki.apache.org/confluence/display/INFRA/git+-+.asf.yaml+features)
 
 7. [Suggested Branch Strategy](https://infra.apache.org/asf-pelican-branches.html)
 
