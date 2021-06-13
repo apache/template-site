@@ -280,7 +280,7 @@ def make_breadcrumbs(rel_source_path, title):
     parts[0] = 'Home'
     crumbs = []
     # don't process the filename part
-    last = len(parts)-1
+    last = len(parts)
     for i in range(last):
         if i > 0:
             url = f"{url}{parts[i]}/"
