@@ -277,15 +277,14 @@ def generate_toc(content, tags, title, toc_headers):
 def make_breadcrumbs(rel_source_path, title):
     parts = rel_source_path.split('/')
     url = '/'
-    parts[0] = 'Home'
     crumbs = []
+    crumbs.append(f'<a href="/">Home</a>&nbsp;&raquo&nbsp;')
     # don't process the filename part
-    last = len(parts)
+    last = len(parts)-1
     for i in range(last):
-        if i > 0:
-            url = f"{url}{parts[i]}/"
-            parts[i] = parts[i].capitalize()
-        crumbs.append(f'<a href="{url}">{parts[i]}</a>&nbsp;&raquo&nbsp;')
+        url = f"{url}{parts[i]}/"
+        p = parts[i].capitalize()
+        crumbs.append(f'<a href="{url}">{p}</a>&nbsp;&raquo&nbsp;')
     crumbs.append(title)
     print(crumbs)
     return ''.join(crumbs)
