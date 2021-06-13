@@ -149,7 +149,7 @@
 
     <!-- Start main content area -->
     <div class="container">
-      <p>{{ breadcrumbs }}</p>
+      <p>{{ page.metadata.breadcrumbs }}</p>
       {% block content %}
       {% endblock %}
       {% if page.source_button is defined %}
