@@ -42,11 +42,6 @@ import pelican.utils
 
 from bs4 import BeautifulSoup
 
-ASF_DATA = {
-    'metadata': { },
-    'debug': False,
-}
-
 FIXUP_HTML = [
     (re.compile(r'&lt;'), '<'),
     (re.compile(r'&gt;'), '>'),
@@ -339,16 +334,16 @@ def process_load(metadata, value, load, debug):
             process_sequence(metadata, seq, sequence, load, debug)
 
 
-# convert bytes
-def bytesto(bytes, to, bsize=1024):
+# convert byte count to human-readable (1k 2m 3g etc)
+def bytesto(bytecount, to, bsize=1024):
     a = {'k': 1, 'm': 2, 'g': 3, 't': 4, 'p': 5, 'e': 6}
-    r = float(bytes)
+    r = float(bytecount)
     return r / (bsize ** a[to])
 
 
 # open a subprocess
-def os_popen(list):
-    return subprocess.Popen(list, stdout=subprocess.PIPE, universal_newlines=True)
+def os_popen(args):
+    return subprocess.Popen(args, stdout=subprocess.PIPE, universal_newlines=True)
 
 
 # retrieve the release distributions for a project from svn
@@ -556,9 +551,9 @@ def process_twitter(handle, count):
     print(f'-----\ntwitter feed: {handle}')
     bearer_token = twitter_auth()
     if not bearer_token:
-        return {
-            'text': 'Add twitter bearer token to ~/.authtokens'
-        }
+        return sequence_list('twitter',{
+            'text': 'To retrieve tweets supply a valid twitter bearer token in ~/.authtokens'
+        })
     # do not print or display bearer_token as it is a secret
     query = f'from:{handle}'
     tweet_fields = 'tweet.fields=author_id'
