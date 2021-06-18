@@ -4,6 +4,9 @@
 
 This repository provides a website template for [ASF-Pelican](https://infra.apache.org/asf-pelican.html)
 
+If you use this template for your project website and provide a [logo](https://www.apache.org/logos/) then
+your project will pass "[The Apache Project Website Checks](https://whimsy.apache.org/site/)".
+
 ## How to use this template
 
 1. Ask Infra to **Use this template** to create your new site repository
