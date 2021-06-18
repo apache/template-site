@@ -38,7 +38,7 @@ SITEDOMAIN = 'template.apache.org'
 SITEURL = 'https://template.apache.org'
 SITELOGO = 'https://template.apache.org/images/logo.png'
 SITEDESC = u'Provides a template for projects wishing to use the Pelican ASF static content system'
-TRADEMARKS = u'Apache, the Apache feather logo, and Template are trademarks or registered trademarks'
+TRADEMARKS = u'Apache, the Apache feather logo, and "Project" are trademarks or registered trademarks'
 SITEREPOSITORY = 'https://github.com/apache/template-site/blob/main/content/'
 CURRENTYEAR = date.today().year
 
