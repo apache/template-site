@@ -21,13 +21,12 @@
 # tools/convert2md.sh ${1}
 # ${1} Path of mdtext file to convert to md file
 
-if test "$#" != 1; then
-  echo "USAGE: $0 Type Path"
+if test "$#" != 2; then
+  echo "USAGE: $0 md-rel-path cms-dir"
   exit 1
 fi
 
 # convert .mdtext to .md by unconditionally dropping last 4 chars
-MDPATH=${1:0:${#1}-4}
-echo "Convert "${1}" to "${MDPATH}
-awk -f ../../tools/convert2md.awk ${1} > ${MDPATH}
+echo "==== "${1}
+diff -w ${2}/${1} ${1}
 

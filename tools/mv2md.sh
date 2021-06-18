@@ -28,6 +28,6 @@ fi
 
 # convert .mdtext to .md by unconditionally dropping last 4 chars
 MDPATH=${1:0:${#1}-4}
-echo "Convert "${1}" to "${MDPATH}
-awk -f ../../tools/convert2md.awk ${1} > ${MDPATH}
+echo "Rename "${1}" to "${MDPATH}
+mv ${1} ${MDPATH}
 
