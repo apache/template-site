@@ -769,6 +769,7 @@ def config_read_data(pel_ob):
         else:
             keytype = type(metadata[key])
             print(f'metadata[{key}] is a {keytype}')
+    print('-----')
 
 
 def tb_initialized(pel_ob):
