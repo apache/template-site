@@ -663,11 +663,11 @@ def config_read_data(pel_ob):
         print('This Pelican installation is not using ASF_DATA')
         return
 
+    debug = asf_data['debug']
+
     if debug:
         for key in asf_data:
             print(f'config: [{key}] = {asf_data[key]}')
-
-    debug = asf_data['debug']
 
     # This must be present in ASF_DATA. It contains data for use
     # by our plugins, and possibly where we load/inject data from
