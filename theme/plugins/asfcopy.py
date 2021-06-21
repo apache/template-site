@@ -45,7 +45,7 @@ def copy_trees(pel_ob):
         for tree in asf_copy:
             src = os.path.join(path, tree)
             dst = os.path.join(output_path, tree)
-            print(f'{src} --> {dest}')
+            print(f'{src} --> {dst}')
             shutil.copytree(src, dst)
     else:
         print("Nothing to copy")
