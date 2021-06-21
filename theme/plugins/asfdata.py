@@ -563,8 +563,9 @@ def connect_to_endpoint(url, headers):
 
 
 # retrieve the last count recent tweets from the handle.
-def process_twitter(handle, count):
-    print(f'-----\ntwitter feed: {handle}')
+def process_twitter(handle, count, debug):
+    if debug:
+        print(f'-----\ntwitter feed: {handle}')
     bearer_token = twitter_auth()
     if not bearer_token:
         return sequence_list('twitter',{
@@ -585,8 +586,9 @@ def process_twitter(handle, count):
 
 
 # create sequence of sequences of ASF ECCN data.
-def process_eccn(fname):
-    print('-----\nECCN:', fname)
+def process_eccn(fname, debug):
+    if debug:
+        print('-----\nECCN:', fname)
     j = yaml.safe_load(open(fname))
 
     # versions have zero or more controlled sources
@@ -684,7 +686,7 @@ def config_read_data(pel_ob):
             if key == 'eccn':
                 # process eccn data
                 fname = config_data[key]['file']
-                metadata[key] = v = process_eccn(fname)
+                metadata[key] = v = process_eccn(fname, debug)
                 if debug:
                     print('ECCN V:', v)
                 continue
@@ -694,7 +696,7 @@ def config_read_data(pel_ob):
                 # if we decide to have multiple twitter feeds available then move next to blog below
                 handle = config_data[key]['handle']
                 count = config_data[key]['count']
-                metadata[key] = v = process_twitter(handle, count)
+                metadata[key] = v = process_twitter(handle, count, debug)
                 if debug:
                     print('TWITTER V:', v)
                 continue
