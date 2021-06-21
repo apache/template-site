@@ -22,6 +22,7 @@
 
 import sys
 import io
+import shutil
 import os
 import traceback
 
@@ -33,16 +34,19 @@ import pelican.readers
 import pelican.settings
 
 
-# create metadata according to instructions.
-def config_copy_data(pel_ob):
+# copy trees from PATH to OUTPUT_PATH
+def copy_trees(pel_ob):
     print('-----\nasfcopy')
 
     output_path = pel_ob.settings.get('OUTPUT_PATH')
     path = pel_ob.settings.get('PATH')
-    print(f'{path} --> {output_path}')
     asf_copy = pel_ob.settings.get('ASF_COPY')
     if asf_copy:
-        print(asf_copy)
+        for tree in asf_copy:
+            src = os.path.join(path, tree)
+            dst = os.path.join(output_path, tree)
+            print(f'{src} --> {dest}')
+            shutil.copytree(src, dst)
     else:
         print("Nothing to copy")
 
@@ -50,7 +54,7 @@ def config_copy_data(pel_ob):
 def tb_finalized(pel_ob):
     """ Print any exception, before Pelican chews it into nothingness."""
     try:
-        config_copy_data(pel_ob)
+        copy_trees(pel_ob)
     except Exception:
         print('-----', file=sys.stderr)
         traceback.print_exc()
