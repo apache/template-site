@@ -76,7 +76,7 @@ READERS = {'html': None}
 ARTICLE_PATHS = ['articles']
 
 # ignore README.md files in the content tree
-IGNORE_FILES = ['README.md', 'include']
+IGNORE_FILES = ['README.md', 'include', 'docs']
 
 # No translations
 PAGE_TRANSLATION_ID = None
@@ -142,6 +142,12 @@ ASF_GENID = {
     'tables': True,
     'debug': False
 }
+
+# Configure the asfcopy plugin to copy files outside of all other pelican processes.
+# include the directories in IGNORE_FILES
+ASF_COPY = [
+    'docs'
+]
 
 # Sitemap Generator
 # SITEMAP = {
