@@ -55,3 +55,8 @@ At a high level consider the following sequence of events:
         * Set id and class attributes specified by {#id} and {.class} syntax.
         * Assign id to all headings without ids.
         * Insert a Table of Contents if a [TOC] tag is present.
+
+5. Finalization (finalized). This is signalled after all content is generated and static files copied.
+   At this point additional content can be copied and the final output analyzed.
+   - The [asfcopy plugin](.asfcopy.py) is an example. Here is copies files from the source tree.
+     It could be modified to copy information in from external sources too.
