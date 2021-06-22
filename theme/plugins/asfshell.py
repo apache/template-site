@@ -61,4 +61,4 @@ def tb_initialized(pel_ob):
 
 
 def register():
-    pelican.plugins.signals.initalized.connect(tb_initialized)
+    pelican.plugins.signals.initialized.connect(tb_initialized)
