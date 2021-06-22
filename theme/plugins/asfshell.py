@@ -17,12 +17,12 @@
 # under the License.
 #
 #
-# asfcopy.py -- Pelican plugin that copies trees during finalization
+# asfshell.py - Pelican plugin that runs shell scripts during initialization
 #
 
 import sys
+import subprocess
 import io
-import shutil
 import os
 import traceback
 
@@ -30,27 +30,29 @@ import pelican.plugins.signals
 import pelican.settings
 
 
-# copy trees from PATH to OUTPUT_PATH
-def copy_trees(pel_ob):
-    print('-----\nasfcopy')
-
-    output_path = pel_ob.settings.get('OUTPUT_PATH')
-    path = pel_ob.settings.get('PATH')
-    asf_copy = pel_ob.settings.get('ASF_COPY')
-    if asf_copy:
-        for tree in asf_copy:
-            src = os.path.join(path, tree)
-            dst = os.path.join(output_path, tree)
-            print(f'{src} --> {dst}')
-            shutil.copytree(src, dst)
-    else:
-        print("Nothing to copy")
+# open a subprocess
+def os_popen(args):
+    return subprocess.Popen(args, stdout=subprocess.PIPE, universal_newlines=True)
 
 
-def tb_finalized(pel_ob):
+# run shell
+def run_shell(pel_ob):
+    asf_shell = pel_ob.settings.get('ASF_SHELL')
+    if asf_shell:
+        print('-----\nasfshell')
+        for command in asf_shell:
+            print(f'-----\n{command}')
+            args = ' '.split(command)
+            with os_popen(args) as s:
+                for line in s.stdout:
+                    line = line.strip()
+                    print(f'{line}')
+
+
+def tb_initialized(pel_ob):
     """ Print any exception, before Pelican chews it into nothingness."""
     try:
-        copy_trees(pel_ob)
+        run_shell(pel_ob)
     except Exception:
         print('-----', file=sys.stderr)
         traceback.print_exc()
@@ -59,4 +61,4 @@ def tb_finalized(pel_ob):
 
 
 def register():
-    pelican.plugins.signals.finalized.connect(tb_finalized)
+    pelican.plugins.signals.initalized.connect(tb_initialized)

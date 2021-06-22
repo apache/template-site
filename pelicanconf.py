@@ -101,7 +101,7 @@ PLUGIN_PATHS = ['./theme/plugins']
 # With pelican-sitemap
 # PLUGINS = ['asfgenid', 'asfdata', 'pelican-gfm', 'asfreader', 'sitemap']
 # With data and ezt templates
-PLUGINS = ['asfgenid', 'asfdata', 'pelican-gfm', 'asfreader', 'asfcopy']
+PLUGINS = ['asfgenid', 'asfdata', 'pelican-gfm', 'asfreader', 'asfcopy', 'asfshell']
 # With asfgenid
 # PLUGINS = ['asfgenid', 'pelican-gfm']
 
@@ -147,6 +147,12 @@ ASF_GENID = {
 # include the directories in IGNORE_FILES
 ASF_COPY = [
     'docs'
+]
+
+# COnfigure the shell commands for the asfshell plugin to run during initialization
+ASF_SHELL = [
+    'pwd',
+    'find . -name "*.ezmd"'
 ]
 
 # Sitemap Generator
