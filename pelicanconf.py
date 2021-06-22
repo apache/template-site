@@ -151,8 +151,7 @@ ASF_COPY = [
 
 # COnfigure the shell commands for the asfshell plugin to run during initialization
 ASF_SHELL = [
-    'echo $PWD',
-    'find . -name "*.ezmd"'
+    '/bin/bash shell.sh'
 ]
 
 # Sitemap Generator
