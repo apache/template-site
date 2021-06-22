@@ -33,7 +33,7 @@ import pelican.settings
 
 # open a subprocess
 def os_run(args):
-    return subprocess.run(args, stdout=subprocess.PIPE, universal_newlines=True)
+    return subprocess.Popen(args, stdout=subprocess.PIPE, universal_newlines=True)
 
 
 # run shell
@@ -44,6 +44,7 @@ def run_shell(pel_ob):
         for command in asf_shell:
             print(f'-----\n{command}')
             args = shlex.split(command)
+            print(args)
             with os_run(args) as s:
                 for line in s.stdout:
                     line = line.strip()
