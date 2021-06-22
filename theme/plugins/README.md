@@ -8,7 +8,7 @@ At a high level consider the following sequence of events:
 
    ```python
    PLUGIN_PATHS = ['./theme/plugins']
-   PLUGINS = ['asfgenid', 'asfdata', 'pelican-gfm', 'asfreader', 'sitemap']
+   PLUGINS = ['asfgenid', 'asfshell', 'asfdata', 'pelican-gfm', 'asfreader', 'asfcopy']
    ```
 
 2. Init (initialized). At this point any ASF_DATA is read into a metadata dictionary made available in every page.
@@ -37,6 +37,15 @@ At a high level consider the following sequence of events:
        'debug': False
    }
    ```
+
+   - The [asfshell plugin](./asfshell.py) runs shell scripts as found in your [Pelican Configuration](../../pelicanconf.py)
+
+   ```python
+   ASF_SHELL = [
+       '/bin/bash shell.sh'
+   ]
+   ```
+
 
 3. Readers (readers_init). Two important readers are set at this point. Readers are responsible for transforming page files to html and
     providing a metadata dictionary
