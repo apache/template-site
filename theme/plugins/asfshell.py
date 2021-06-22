@@ -22,6 +22,7 @@
 
 import sys
 import subprocess
+import shlex
 import io
 import os
 import traceback
@@ -31,8 +32,8 @@ import pelican.settings
 
 
 # open a subprocess
-def os_popen(args):
-    return subprocess.Popen(args, stdout=subprocess.PIPE, universal_newlines=True)
+def os_run(args):
+    return subprocess.run(args, stdout=subprocess.PIPE, universal_newlines=True)
 
 
 # run shell
@@ -42,8 +43,8 @@ def run_shell(pel_ob):
         print('-----\nasfshell')
         for command in asf_shell:
             print(f'-----\n{command}')
-            args = ' '.split(command)
-            with os_popen(args) as s:
+            args = shlex.split('/bin/bash '+command)
+            with os_run(args) as s:
                 for line in s.stdout:
                     line = line.strip()
                     print(f'{line}')
