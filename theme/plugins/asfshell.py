@@ -43,7 +43,7 @@ def run_shell(pel_ob):
         print('-----\nasfshell')
         for command in asf_shell:
             print(f'-----\n{command}')
-            args = shlex.split('/bin/bash '+command)
+            args = shlex.split(command)
             with os_run(args) as s:
                 for line in s.stdout:
                     line = line.strip()

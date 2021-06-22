@@ -151,7 +151,7 @@ ASF_COPY = [
 
 # COnfigure the shell commands for the asfshell plugin to run during initialization
 ASF_SHELL = [
-    'pwd',
+    'echo $PWD',
     'find . -name "*.ezmd"'
 ]
 
