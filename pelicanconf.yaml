@@ -8,6 +8,8 @@ site:
 
 theme: theme/apache
 
+debug: yes
+
 plugins:
   paths:
     - theme/plugins
