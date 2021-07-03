@@ -16,12 +16,13 @@ plugins:
 
 setup:
   data: asfdata.yaml
-  debug: yes
   run:
     - /bin/bash shell.sh
   ignore:
     - README.md
     - include
+    - docs
+  copy:
     - docs
 
 genid:
