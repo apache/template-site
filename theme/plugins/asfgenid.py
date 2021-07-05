@@ -71,12 +71,12 @@ TABLE_RE = re.compile(r'^table')
 
 # An item in a Table of Contents - from toc.py
 class HtmlTreeNode(object):
-    def __init__(self, parent, header, level, id):
+    def __init__(self, parent, header, level, tag_id):
         self.children = []
         self.parent = parent
         self.header = header
         self.level = level
-        self.id = id
+        self.tag_id = tag_id
 
     def add(self, new_header):
         new_level = new_header.name
@@ -105,7 +105,7 @@ class HtmlTreeNode(object):
         ret = ''
         if self.parent:
             ret = "<a class='toc-href' href='#{0}' title='{1}'>{1}</a>".format(
-                self.id, self.header)
+                self.tag_id, self.header)
 
         if self.children:
             ret += "<ul>{}</ul>".format('{}' * len(self.children)).format(
@@ -138,16 +138,16 @@ def slugify(value, separator):
 
 
 # Ensure an id is unique in a set of ids. Append '_1', '_2'... if not
-def unique(id, ids):
-    while id in ids or not id:
-        m = IDCOUNT_RE.match(id)
-        print(f'id="{id}" is a duplicate')
+def unique(tag_id, ids):
+    while tag_id in ids or not tag_id:
+        m = IDCOUNT_RE.match(tag_id)
+        print(f'id="{tag_id}" is a duplicate')
         if m:
-            id = '%s_%d' % (m.group(1), int(m.group(2)) + 1)
+            tag_id = '%s_%d' % (m.group(1), int(m.group(2)) + 1)
         else:
-            id = '%s_%d' % (id, 1)
-    ids.add(id)
-    return id
+            tag_id = '%s_%d' % (tag_id, 1)
+    ids.add(tag_id)
+    return tag_id
 
 
 # append a permalink
