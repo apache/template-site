@@ -23,8 +23,6 @@
 import sys
 import subprocess
 import shlex
-import io
-import os
 import traceback
 
 import pelican.plugins.signals

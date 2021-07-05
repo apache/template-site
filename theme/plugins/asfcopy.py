@@ -21,7 +21,6 @@
 #
 
 import sys
-import io
 import shutil
 import os
 import traceback
