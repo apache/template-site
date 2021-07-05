@@ -48,7 +48,7 @@ ASF_DATA_YAML = "asfdata.yaml"
 # Save pages using full directory preservation
 PAGE_PATHS = ['.']
 
-# Path with no extension
+# Path with no extension: \..* matches the extension
 PATH_METADATA = '(?P<path_no_ext>.*)\..*'
 
 # We are not slugifying any pages
