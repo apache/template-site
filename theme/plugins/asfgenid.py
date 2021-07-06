@@ -40,12 +40,7 @@ ASF_GENID = {
 
 # Fixup tuples for HTML that GFM makes into text.
 FIXUP_UNSAFE = [
-    (re.compile(r'&lt;script'), '<script'),
-    (re.compile(r'&lt;/script'), '</script'),
-    (re.compile(r'&lt;style'), '<style'),
-    (re.compile(r'&lt;/style'), '</style'),
-    (re.compile(r'&lt;iframe'), '<iframe'),
-    (re.compile(r'&lt;/iframe'), '</iframe')
+    (re.compile(r'&lt;(/?(script|style|iframe))'), '<\1'),
 ]
 
 # Find {{ metadata }} inclusions
