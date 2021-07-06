@@ -278,16 +278,16 @@ def make_breadcrumbs(rel_source_path, title):
     parts = rel_source_path.split('/')
     url = '/'
     crumbs = []
-    crumbs.append(f'<a href="/">Home</a>&nbsp;&raquo&nbsp;')
+    crumbs.append('<a href="/">Home</a>&nbsp;&raquo&nbsp;')
     # don't process the filename part
-    last = len(parts)-1
+    last = len(parts) - 1
     for i in range(last):
         url = f"{url}{parts[i]}/"
         p = parts[i].capitalize()
         crumbs.append(f'<a href="{url}">{p}</a>&nbsp;&raquo&nbsp;')
     crumbs.append(f'<a href="#">{title}</a>')
     return ''.join(crumbs)
-    
+
 
 # add the asfdata metadata into GFM content.
 def add_data(content):
