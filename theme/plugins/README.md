@@ -46,7 +46,6 @@ At a high level consider the following sequence of events:
    ]
    ```
 
-
 3. Readers (readers_init). Two important readers are set at this point. Readers are responsible for transforming page files to html and
     providing a metadata dictionary
     - GFMReader by the pelican-gfm plugin. This code is in a private repository - ask Infra. Transforms GitHub Flavored Markdown(GFM) to HTML.
@@ -56,6 +55,7 @@ At a high level consider the following sequence of events:
         * .mdown
     - ASFReader by the [asfreader plugin](./asfreader.py). Transforms an [ezt template](https://github.com/gstein/ezt) into GFM and then to HTML.
         * .ezmd
+
 4. Content Init (content_object_init). This is signaled after a Reader has processed content.
     At this point plugins can review, record, and transform the html content.
     - The [asfgenid plugin](./asfgenid.py) performs a number of steps. Some of the steps are optional.
