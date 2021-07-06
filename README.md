@@ -4,8 +4,10 @@
 
 This repository provides a website template for [ASF-Pelican](https://infra.apache.org/asf-pelican.html)
 
+Pelican build site infrastructure is found [here](https://github.com/apache/infrastructure-pelican)
+
 If you use this template for your project website and provide a [logo](https://www.apache.org/logos/) then
-your project will pass "[Apache Project Website Checks](https://whimsy.apache.org/site/)".
+your project should pass "[Apache Project Website Checks](https://whimsy.apache.org/site/)".
 
 ## How to use this template
 
@@ -26,18 +28,15 @@ your project will pass "[Apache Project Website Checks](https://whimsy.apache.or
 
 3. Determine if your site requires a [data model](https://infra.apache.org/asf-pelican-data.html).
    - The `.ezmd` files in the [content](content) directory show examples
-   - [`asfdata.yaml`](asfdata.yaml) has manuy examples
-   - Remove the following if you do not need a data model:
-     1. `asfdata.py` and `asfreader.py` [Plugins](/theme/plugins)
-     2. `asfdata.yaml`
-     3. `data` directory
+   - [`asfdata.yaml`](asfdata.yaml) has many examples
 
-4. Edit your [configuration](pelicanconf.py)
-   - Website specific
-   - `PLUGINS`
-   - `ASF_DATA` - `asfdata.py` plugin settings
-   - `ASF_GENID` - `asfgenid.py` plugin settings
-     `asfgenid.py` performs a series of html fixups including permalinks, heading ids, and table of contents
+4. Edit your [configuration](pelicanconf.yaml)
+   - Site specific information
+   - Theme path
+   - Plugin configuration. If you develop your own plugin or pull in plugins via pip then be sure to include it in `use:`
+   - Setup is used to add data models, shell scripts, ignored files and directories, and any special copy action.
+   - Genid invokes various special features including elementid and headingid with permalinks, table of contents, table class,
+     and enabling of "unsafe" html.
 
 5. Create your [content](content)
    - `.md` files using Github Flavored Markdown ([**gfm**](https://infra.apache.org/gfm.html))
