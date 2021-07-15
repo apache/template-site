@@ -8,11 +8,11 @@ site:
 
 theme: theme/apache
 
-plugins:
-  paths:
-    - theme/plugins
-  use:
-    - gfm
+# plugins:
+#  paths:
+#    - theme/plugins
+#  use:
+#    - gfm
 
 setup:
   data: asfdata.yaml
