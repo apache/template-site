@@ -10,7 +10,7 @@ Here are various data inclusions:
 
 ["Title: %0, Version: %1" title version]
 
-[include "/tmp/template/source/content/projects/projects.snippet"]
+[include "projects/projects.snippet"]
 
 {{ relative_source_path }} - {{ version }} - [{ board[1].name }] - {{ tester }}
 
