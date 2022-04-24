@@ -24,7 +24,21 @@ See [Web Developer](../../../DEVELOPER.md) for framework and other information.
 
 Each of the above files should be edited as needed for the deployed website.
 
-## Pelican Variables set in [pelicanconf.py](../../../pelicanconf.py)
+## Pelican variables set in [pelicanconf.yaml](../../../pelicanconf.yaml)
+
+```
+site:
+  name: YOURPROJECT
+  description: SHORT DESCRIPTION
+  domain: YOURDOMAIN.apache.org
+  logo: images/logo.png
+  repository: https://github.com/apache/YOURREPO/blob/main/content/
+  trademarks: Apache, the Apache feather logo, and "YOUR PROJECT NAME" are trademarks or registered trademarks
+```
+
+### Pelican Variables set in pelicanconf.py
+
+**Note**: early users of this template worked with pelicanconf.py, which is not part of the latest release. This information is for their convenience.
 
 ~~~python
 SITENAME = u'Apache <pmc>'
