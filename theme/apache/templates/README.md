@@ -1,4 +1,4 @@
-# Apache Theme
+# Apache theme
 
 The Apache Theme included here consists two types of files.
 
@@ -7,13 +7,13 @@ The Apache Theme included here consists two types of files.
 2. CSS stylesheets.
   There are css overrides for the site and/or template.
 
-## Page Templates
+## Page templates
 
 1. base.html - there is only one page type.
 
 Change the base page as necessary and add new page types as required.
 
-## CSS Stylesheets
+## CSS stylesheets
 
 These are site or template specific overrides to the stylesheet frameworks.
 You can choose to include these in your template, or you can move the file into your assets.
@@ -36,7 +36,7 @@ site:
   trademarks: Apache, the Apache feather logo, and "YOUR PROJECT NAME" are trademarks or registered trademarks
 ```
 
-### Pelican Variables set in pelicanconf.py
+### Pelican variables set in pelicanconf.py
 
 **Note**: early users of this template worked with pelicanconf.py, which is not part of the latest release. This information is for their convenience.
 
